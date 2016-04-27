@@ -1,0 +1,25 @@
+{
+  "version": "0.1",
+  "TotalIncidentTypes": 10,	
+  "Incidents": {
+	"0": ["Loitering", 1, -1, 2],
+	"1": ["Littering", 1, -1, 1],
+	"2": ["Noise Complaint", 2, -1, 2],
+	"3": ["Land Argument", 2, -1, 3],
+	"4": ["Discrimination", 1, 6, 2],
+	"5": ["Domestic Abuse", 2, 6, 3],
+	"6": ["Assault", 2, 7, 4],
+	"7": ["Multiple Assaults", 4, 9, 5],
+	"8": ["Traffic Incident", 2, 9, 3],
+	"9": ["Fatalities", 4, -1, 5]
+  },
+  "TotalAreaTypes" : 5,
+  "Areas": [
+	"City",
+	"Estate",
+	"Coastal",
+	"Central",
+	"Industrial"
+  ]
+
+}

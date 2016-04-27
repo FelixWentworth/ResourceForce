@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "NumberOfIncidents": 3,	
+  "Incident1": {
+  	"NumberOfTexts": 4,
+    "IncidentText": [
+      "Incident -",
+      "In Progress -",
+      "Ignored - ",
+      "Developed - "
+    ],
+    "Turns": 3,
+    "Officers": 1,
+  },
+  "Incident2": {
+  	"NumberOfTexts": 4,
+    "IncidentText": [
+      "Incident -",
+      "In Progress -",
+      "Ignored - ",
+      "Developed - "
+    ],
+    "Turns": 2,
+    "Officers": 2,
+  },
+  "Incident3": {
+  	"NumberOfTexts": 4,
+    "IncidentText": [
+      "Incident -",
+      "In Progress -",
+      "Ignored - ",
+      "Developed - "
+    ],
+    "Turns": 2,
+    "Officers": 1,
+  }
+}
