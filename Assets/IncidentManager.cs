@@ -8,13 +8,16 @@ public class IncidentManager : MonoBehaviour {
     public List<Incident> incidents = new List<Incident>();
     private SimplifiedJson jsonReader;
 
-    Incident NextIncident;
+    public List<Incident> NextIncident = new List<Incident>();
     OfficerController m_OfficerController;
 
     public Text CaseStatus;
 
+    protected int currentTurn;
+
 	public void CreateNewIncident(int zTurn)
     {
+        NextIncident.Clear();
         Incident newIncident = new Incident();
         
         //now get a random incident data from JSON file
@@ -24,21 +27,21 @@ public class IncidentManager : MonoBehaviour {
         jsonReader.CreateNewIncident(ref newIncident);
 
         incidents.Add(newIncident);
-        NextIncident = newIncident;
+        NextIncident.Add(newIncident);
     }
     public bool IsIncidentWaitingToShow(int zTurn)
     {
+        NextIncident.Clear();
         for (int i=0; i < incidents.Count; i++)
         {
             if (incidents[i].turnToShow <= zTurn)
             {
                 //this incident wants to be shown on this turn
-                NextIncident = incidents[i];
-                return true;
+                NextIncident.Add(incidents[i]);
             }
         }
         //no elements in our incident list need to be shown
-        return false;
+        return (NextIncident.Count > 0);
     }
     public void UpdateIncidents()
     {
@@ -60,33 +63,45 @@ public class IncidentManager : MonoBehaviour {
     }
     public void ShowIncident(int turn)
     {
+        currentTurn = turn;
         if (NextIncident == null)
             CreateNewIncident(turn);
-        NextIncident.Show(ref NextIncident);
-
+        Incident currentIncident = NextIncident[0];
+        NextIncident[0].Show(ref currentIncident);
+        NextIncident[0] = currentIncident;
         //make the incident null to make sure we dont show it again until its due
         //NextIncident = null;
     }
     public void ClearList()
     {
         incidents.Clear();
+        NextIncident.Clear();
     }
     public void WaitPressed()
     {
-        GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref NextIncident, true);
-        NextIncident = null;
-        this.gameObject.GetComponent<TurnManager>().NextTurn();
+        Incident currentIncident = NextIncident[0];
+        GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
+        NextIncident.RemoveAt(0);
+        if (NextIncident.Count == 0)//no more incidents to show
+            this.gameObject.GetComponent<TurnManager>().NextTurn();
+        else
+            ShowIncident(currentTurn);
     }
     public void ResolvePressed()
     {
         if (m_OfficerController == null)
             m_OfficerController = GameObject.Find("OfficerManager").GetComponent<OfficerController>();
-        if (m_OfficerController.m_officers.Count > NextIncident.officer)
+        if (m_OfficerController.m_officers.Count >= NextIncident[0].officer)
         {
-            GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref NextIncident, false);
-            m_OfficerController.RemoveOfficer(NextIncident.officer);
-            NextIncident = null;
-            this.gameObject.GetComponent<TurnManager>().NextTurn();
+            Incident currentIncident = NextIncident[0];
+            m_OfficerController.RemoveOfficer(currentIncident.officer);
+            GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, false);
+
+            NextIncident.RemoveAt(0);
+            if (NextIncident.Count == 0)//no more incidents to show
+                this.gameObject.GetComponent<TurnManager>().NextTurn();
+            else
+                ShowIncident(currentTurn);
         }
     }
 }

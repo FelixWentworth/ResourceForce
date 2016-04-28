@@ -29,7 +29,7 @@ public class DialogBox : MonoBehaviour {
         Body.text += "Case " + caseNumber + "\n";
         Body.text += string.Format("{0} Reported at {1} area", zName, zArea);
         LeftButton.text = "Wait for more officers to become available";
-        SendOfficerButton.interactable = (m_officerController.m_officers.Count > zOfficers);
+        SendOfficerButton.interactable = (m_officerController.m_officers.Count >= zOfficers);
         if (!SendOfficerButton.interactable)
         {
             SendOfficerButton.GetComponent<Image>().color = Color.gray;
