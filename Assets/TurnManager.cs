@@ -10,6 +10,8 @@ public class TurnManager : MonoBehaviour {
     public Text turnsText;
     public Text resolvedCases;
     public Text gameOverText;
+    public Text maxCases;
+    public int GameOverLimit = 4;
     [HideInInspector]public string caseResolved = "";
 
     public GameObject GameOver;
@@ -19,7 +21,8 @@ public class TurnManager : MonoBehaviour {
         m_IncidentManager = this.GetComponent<IncidentManager>();
 
         NextTurn();
-	}
+        maxCases.text = "Max Cases: " + GameOverLimit;
+    }
 	
 	public void NextTurn()
     {
@@ -31,7 +34,7 @@ public class TurnManager : MonoBehaviour {
         if (m_IncidentManager == null)
             m_IncidentManager = this.GetComponent<IncidentManager>();
         m_IncidentManager.UpdateIncidents();
-        if (m_IncidentManager.incidents.Count > 4)
+        if (m_IncidentManager.incidents.Count > GameOverLimit)
         {
             //GAME OVER, too many incidents un resolved
             StartCoroutine(ShowGameOver());
@@ -65,5 +68,20 @@ public class TurnManager : MonoBehaviour {
         //turn = 0;
         //m_IncidentManager.ClearList();
         //NextTurn();
+    }
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            GameOverLimit++;
+            maxCases.text = "Max Cases: " + GameOverLimit;
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            if (GameOverLimit > 1)
+                GameOverLimit--;
+            maxCases.text = "Max Cases: " + GameOverLimit;
+        }
+
     }
 }
