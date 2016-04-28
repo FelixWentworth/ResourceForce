@@ -16,12 +16,14 @@ public class DialogBox : MonoBehaviour {
 
     private IncidentManager m_incidentManager;
     public OfficerController m_officerController;
+    public GameObject m_citizenHelpPopup;
+    public GameObject m_citizenHelpButton;
 
     void Start()
     {
         m_incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
     }
-    public void ShowBox(string zName, string zArea, int zOfficers, int caseNumber, bool developed)
+    public void ShowBox(string zName, string zArea, int zOfficers, int caseNumber, bool developed, bool showCitizen = false)
     {
         Body.text = "";
         if (developed)
@@ -40,7 +42,7 @@ public class DialogBox : MonoBehaviour {
         }
         RightButton.text = string.Format("Send {0} officer{1}", zOfficers, zOfficers > 1 ? "s" : "");
 
-
+        m_citizenHelpButton.SetActive(showCitizen);
 
         dialog.SetActive(true);
     }
@@ -53,5 +55,9 @@ public class DialogBox : MonoBehaviour {
     {
         //send officers to resolve issue
         m_incidentManager.ResolvePressed();
+    }
+    public void CitizenButtonPressed()
+    {
+        m_citizenHelpPopup.SetActive(true);
     }
 }

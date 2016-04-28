@@ -127,6 +127,10 @@ public class Incident {
     public void Show(ref Incident zIncident)
     {
         //use the dialog box to show the current incident
-        GameObject.Find("IncidentDialog").GetComponent<DialogBox>().ShowBox(incidentName, area, officer, caseNumber, developed);
+        //decide if we should show the citizen help box
+        int rand = UnityEngine.Random.Range(0, 10);
+
+
+        GameObject.Find("IncidentDialog").GetComponent<DialogBox>().ShowBox(incidentName, area, officer, caseNumber, developed, rand==1);
     }
 }
