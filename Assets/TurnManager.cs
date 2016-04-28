@@ -70,6 +70,7 @@ public class TurnManager : MonoBehaviour {
 
     void Reset()
     {
+        SimplifiedJson.identifier = 1;
         Application.LoadLevel(0);
         //turn = 0;
         //m_IncidentManager.ClearList();
