@@ -64,7 +64,6 @@ public class SimplifiedJson : MonoBehaviour {
             else
             {
                 //good response so dont branch
-                Debug.Log("Arrests Made");
                 zIncident.resolved = true;
                 this.GetComponent<TurnManager>().caseResolved = "Case " + zIncident.caseNumber + " Closed";
             }

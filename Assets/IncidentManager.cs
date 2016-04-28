@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class IncidentManager : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public class IncidentManager : MonoBehaviour {
 
     Incident NextIncident;
     OfficerController m_OfficerController;
+
+    public Text CaseStatus;
+
 	public void CreateNewIncident(int zTurn)
     {
         Incident newIncident = new Incident();
@@ -38,6 +42,7 @@ public class IncidentManager : MonoBehaviour {
     }
     public void UpdateIncidents()
     {
+        string status = "Active Cases\n";
         for (int i = 0; i < incidents.Count; i++)
         {
             //an incident has been resolved so remove it from our list
@@ -46,7 +51,12 @@ public class IncidentManager : MonoBehaviour {
                 incidents.RemoveAt(i);
                 i--;
             }
+            else
+            {
+                status += "Case " + incidents[i].caseNumber + ": " + incidents[i].incidentName + "\n";
+            }
         }
+        CaseStatus.text = status;
     }
     public void ShowIncident(int turn)
     {
