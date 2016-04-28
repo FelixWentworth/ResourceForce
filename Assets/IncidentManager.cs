@@ -57,7 +57,7 @@ public class IncidentManager : MonoBehaviour {
             }
             else
             {
-                status += "Case " + incidents[i].caseNumber + ": " + incidents[i].incidentName + "\n";
+                status += "Case " + incidents[i].caseNumber + ": " + incidents[i].nameBeforeDeveloped + "\n";
             }
         }
         CaseStatus.text = status;
@@ -120,6 +120,7 @@ public class Incident {
     public int turnsToAdd;
 
     public int caseNumber;
+    public string nameBeforeDeveloped;
     public bool developed;
 
     private TurnManager m_turnManager;

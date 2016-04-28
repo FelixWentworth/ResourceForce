@@ -52,8 +52,9 @@ public class SimplifiedJson : MonoBehaviour {
         else
         {
             if (waiting)
-            { 
+            {
                 //bad response so develop the situation
+                zIncident.nameBeforeDeveloped = zIncident.incidentName;
                 zIncident.incidentName = N["Incidents"][index][0];
                 zIncident.officer = int.Parse(N["Incidents"][index][1]);
                 zIncident.turnToShow += zIncident.turnsToAdd;
