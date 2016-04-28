@@ -25,7 +25,7 @@ public class IncidentManager : MonoBehaviour {
             jsonReader = this.GetComponent<SimplifiedJson>();
 
         jsonReader.CreateNewIncident(ref newIncident);
-
+        newIncident.turnToShow = zTurn;
         incidents.Add(newIncident);
         NextIncident.Add(newIncident);
     }

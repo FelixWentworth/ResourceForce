@@ -31,7 +31,7 @@ public class TurnManager : MonoBehaviour {
         if (m_IncidentManager == null)
             m_IncidentManager = this.GetComponent<IncidentManager>();
         m_IncidentManager.UpdateIncidents();
-        if (m_IncidentManager.incidents.Count > 5)
+        if (m_IncidentManager.incidents.Count > 4)
         {
             //GAME OVER, too many incidents un resolved
             StartCoroutine(ShowGameOver());
