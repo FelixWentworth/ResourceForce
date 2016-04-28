@@ -8,6 +8,7 @@ public class IncidentManager : MonoBehaviour {
     private SimplifiedJson jsonReader;
 
     Incident NextIncident;
+    OfficerController m_OfficerController;
 	public void CreateNewIncident(int zTurn)
     {
         Incident newIncident = new Incident();
@@ -68,10 +69,15 @@ public class IncidentManager : MonoBehaviour {
     }
     public void ResolvePressed()
     {
-        GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref NextIncident, false);
-        GameObject.Find("OfficerManager").GetComponent<OfficerController>().RemoveOfficer(NextIncident.officer);
-        NextIncident = null;
-        this.gameObject.GetComponent<TurnManager>().NextTurn();
+        if (m_OfficerController == null)
+            m_OfficerController = GameObject.Find("OfficerManager").GetComponent<OfficerController>();
+        if (m_OfficerController.m_officers.Count > NextIncident.officer)
+        {
+            GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref NextIncident, false);
+            m_OfficerController.RemoveOfficer(NextIncident.officer);
+            NextIncident = null;
+            this.gameObject.GetComponent<TurnManager>().NextTurn();
+        }
     }
 }
 
