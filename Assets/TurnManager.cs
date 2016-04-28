@@ -12,18 +12,24 @@ public class TurnManager : MonoBehaviour {
     public Text gameOverText;
     public Text maxCases;
     public int GameOverLimit = 4;
+
+    public GameObject startScreen;
+
     [HideInInspector]public string caseResolved = "";
 
     public GameObject GameOver;
 	// Use this for initialization
 	void Start () {
         GameOver.SetActive(false);
+        startScreen.SetActive(true);
         m_IncidentManager = this.GetComponent<IncidentManager>();
-
+    }
+	public void StartGame()
+    {
+        startScreen.SetActive(false);
         NextTurn();
         maxCases.text = "Max Cases: " + GameOverLimit;
     }
-	
 	public void NextTurn()
     {
         turn++;
