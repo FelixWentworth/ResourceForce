@@ -12,7 +12,7 @@ public class IncidentManager : MonoBehaviour {
     OfficerController m_OfficerController;
 
     public Text CaseStatus;
-
+    public Text CaseReview;
     protected int currentTurn;
 
 	public void CreateNewIncident(int zTurn)
@@ -41,6 +41,7 @@ public class IncidentManager : MonoBehaviour {
             }
         }
         //no elements in our incident list need to be shown
+        CaseReview.text = "Cases To Review This Turn: " + NextIncident.Count;
         return (NextIncident.Count > 0);
     }
     public void UpdateIncidents()
@@ -69,6 +70,7 @@ public class IncidentManager : MonoBehaviour {
         Incident currentIncident = NextIncident[0];
         NextIncident[0].Show(ref currentIncident);
         NextIncident[0] = currentIncident;
+        CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count - 1);
         //make the incident null to make sure we dont show it again until its due
         //NextIncident = null;
     }
@@ -86,6 +88,7 @@ public class IncidentManager : MonoBehaviour {
             this.gameObject.GetComponent<TurnManager>().NextTurn();
         else
             ShowIncident(currentTurn);
+        CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count - 1);
     }
     public void ResolvePressed()
     {
@@ -102,6 +105,7 @@ public class IncidentManager : MonoBehaviour {
                 this.gameObject.GetComponent<TurnManager>().NextTurn();
             else
                 ShowIncident(currentTurn);
+            CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count-1);
         }
     }
 }
