@@ -8,14 +8,11 @@ public class TurnManager : MonoBehaviour {
     IncidentManager m_IncidentManager;
 
     public Text turnsText;
-    public Text resolvedCases;
     public Text gameOverText;
     public Text maxCases;
     public int GameOverLimit = 4;
 
     public GameObject startScreen;
-
-    [HideInInspector]public string caseResolved = "";
 
     public GameObject GameOver;
 	// Use this for initialization
@@ -33,10 +30,9 @@ public class TurnManager : MonoBehaviour {
 	public void NextTurn()
     {
         turn++;
-        resolvedCases.text = caseResolved;
-        caseResolved = "";
+        
         GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
-        turnsText.text = "Turn: " + turn;
+        turnsText.text = "Turn\n" + turn;
         if (m_IncidentManager == null)
             m_IncidentManager = this.GetComponent<IncidentManager>();
         m_IncidentManager.UpdateIncidents();

@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class IncidentManager : MonoBehaviour {
+public class IncidentManager : MonoBehaviour
+{
 
     public List<Incident> incidents = new List<Incident>();
     private SimplifiedJson jsonReader;
@@ -12,14 +13,19 @@ public class IncidentManager : MonoBehaviour {
     OfficerController m_OfficerController;
 
     public Text CaseStatus;
-    public Text CaseReview;
+    public Text CaseNumber;
+    //public Text CaseReview;
+    public IncidentQueue m_IncidentQueue;
     protected int currentTurn;
+    public Text ArrestsMade;
+    protected int arrestsNum;
 
-	public void CreateNewIncident(int zTurn)
+    public void CreateNewIncident(int zTurn)
     {
+
         NextIncident.Clear();
         Incident newIncident = new Incident();
-        
+
         //now get a random incident data from JSON file
         if (jsonReader == null)
             jsonReader = this.GetComponent<SimplifiedJson>();
@@ -28,11 +34,13 @@ public class IncidentManager : MonoBehaviour {
         newIncident.turnToShow = zTurn;
         incidents.Add(newIncident);
         NextIncident.Add(newIncident);
+        m_IncidentQueue.AddToQueue(newIncident);
+        ArrestsMade.text = "Arrests\n" + arrestsNum + "/" + (SimplifiedJson.identifier-1);
     }
     public bool IsIncidentWaitingToShow(int zTurn)
     {
         NextIncident.Clear();
-        for (int i=0; i < incidents.Count; i++)
+        for (int i = 0; i < incidents.Count; i++)
         {
             if (incidents[i].turnToShow <= zTurn)
             {
@@ -41,7 +49,7 @@ public class IncidentManager : MonoBehaviour {
             }
         }
         //no elements in our incident list need to be shown
-        CaseReview.text = "Cases To Review This Turn: " + NextIncident.Count;
+        //CaseReview.text = "Cases To Review This Turn: " + NextIncident.Count;
         return (NextIncident.Count > 0);
     }
     public void UpdateIncidents()
@@ -50,17 +58,12 @@ public class IncidentManager : MonoBehaviour {
         for (int i = 0; i < incidents.Count; i++)
         {
             //an incident has been resolved so remove it from our list
-            if(incidents[i].resolved)
-            {
-                incidents.RemoveAt(i);
-                i--;
-            }
-            else
             {
                 status += "Case " + incidents[i].caseNumber + ": " + incidents[i].nameBeforeDeveloped + "\n";
             }
         }
         CaseStatus.text = status;
+        ArrestsMade.text = "Arrests\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
     }
     public void ShowIncident(int turn)
     {
@@ -68,11 +71,26 @@ public class IncidentManager : MonoBehaviour {
         if (NextIncident == null)
             CreateNewIncident(turn);
         Incident currentIncident = NextIncident[0];
-        NextIncident[0].Show(ref currentIncident);
-        NextIncident[0] = currentIncident;
-        CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count - 1);
-        //make the incident null to make sure we dont show it again until its due
-        //NextIncident = null;
+        if (currentIncident.resolved)
+        {
+            //show the case closed screen
+            NextIncident[0].ShowCaseClosed(ref currentIncident);
+            arrestsNum++;
+            ArrestsMade.text = "Arrests\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
+        }
+        else
+        {
+            NextIncident[0].Show(ref currentIncident);
+            NextIncident[0] = currentIncident;
+        }
+        m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
+        //if (currentIncident.turnToShow > turn)
+        //    m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.InProgress);
+        //else if (currentIncident.resolved)
+        //    m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.Resolved);
+        //else if (currentIncident.developed)
+        //    m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.Escalated);
+        CaseNumber.text = "Case Number: " + currentIncident.caseNumber.ToString();
     }
     public void ClearList()
     {
@@ -83,12 +101,9 @@ public class IncidentManager : MonoBehaviour {
     {
         Incident currentIncident = NextIncident[0];
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
-        NextIncident.RemoveAt(0);
-        if (NextIncident.Count == 0)//no more incidents to show
-            this.gameObject.GetComponent<TurnManager>().NextTurn();
-        else
-            ShowIncident(currentTurn);
-        CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count - 1);
+
+        ShowNext();
+        //CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count - 1);
     }
     public void ResolvePressed()
     {
@@ -100,13 +115,32 @@ public class IncidentManager : MonoBehaviour {
             m_OfficerController.RemoveOfficer(currentIncident.officer);
             GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, false);
 
-            NextIncident.RemoveAt(0);
-            if (NextIncident.Count == 0)//no more incidents to show
-                this.gameObject.GetComponent<TurnManager>().NextTurn();
-            else
-                ShowIncident(currentTurn);
-            CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count-1);
+            ShowNext();
+            //CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count-1);
         }
+    }   
+    public void ShowNext()
+    {
+        NextIncident.RemoveAt(0);
+        if (NextIncident.Count == 0)//no more incidents to show
+            this.gameObject.GetComponent<TurnManager>().NextTurn();
+        else
+            ShowIncident(currentTurn);
+    }
+    public void CloseCase(int caseNumber)
+    {
+        for (int i = 0; i < incidents.Count; i++)
+        {
+            if (incidents[i].caseNumber == caseNumber)
+            {
+                //we have found the case to remove
+                m_IncidentQueue.RemoveFromQueue(incidents[i].caseNumber);
+                incidents.RemoveAt(i);
+
+                i--;
+            }
+        }
+        ShowNext();
     }
 }
 
@@ -133,5 +167,9 @@ public class Incident {
 
 
         GameObject.Find("IncidentDialog").GetComponent<DialogBox>().ShowBox(incidentName, area, officer, caseNumber, developed, rand==1);
+    }
+    public void ShowCaseClosed(ref Incident zIncident)
+    {
+        GameObject.Find("IncidentDialog").GetComponent<DialogBox>().ShowCaseClosedBox(caseNumber);
     }
 }

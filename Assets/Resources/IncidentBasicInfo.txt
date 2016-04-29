@@ -3,7 +3,7 @@
   "TotalIncidentTypes": 10,	
   "Incidents": {
 	"0": ["Loitering", 1, -1, 2],
-	"1": ["Littering", 1, -1, 1],
+	"1": ["Littering", 1, -1, 2],
 	"2": ["Noise Complaint", 2, -1, 2],
 	"3": ["Land Argument", 2, -1, 3],
 	"4": ["Discrimination", 1, 6, 2],

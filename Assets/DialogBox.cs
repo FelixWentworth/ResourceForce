@@ -19,16 +19,21 @@ public class DialogBox : MonoBehaviour {
     public GameObject m_citizenHelpPopup;
     public GameObject m_citizenHelpButton;
 
+    public enum PopupType { Incident, CaseClosed };
+    public PopupType popupType = PopupType.Incident;
+
+    private int caseNum;
+
     void Start()
     {
         m_incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
     }
     public void ShowBox(string zName, string zArea, int zOfficers, int caseNumber, bool developed, bool showCitizen = false)
     {
+        popupType = PopupType.Incident;
         Body.text = "";
         if (developed)
             Body.text += "DEVELOPED CASE\n";
-        Body.text += "Case " + caseNumber + "\n";
         Body.text += string.Format("{0} Reported at {1} area", zName, zArea);
         LeftButton.text = "Wait for more officers to become available";
         SendOfficerButton.interactable = (m_officerController.m_officers.Count >= zOfficers);
@@ -46,10 +51,24 @@ public class DialogBox : MonoBehaviour {
 
         dialog.SetActive(true);
     }
+    public void ShowCaseClosedBox(int zCaseNumber)
+    {
+        popupType = PopupType.CaseClosed;
+        Body.text = "Arrests have been made";
+        SendOfficerButton.interactable = false;
+        LeftButton.text = "OK";
+        caseNum = zCaseNumber;
+    }
     public void LeftButtonPressed()
     {
         //wait for more officers to become available
-        m_incidentManager.WaitPressed();
+        if (popupType == PopupType.Incident)
+            m_incidentManager.WaitPressed();
+        if (popupType == PopupType.CaseClosed)
+        {
+            m_incidentManager.CloseCase(caseNum);
+            
+        }
     }
     public void RightButtonPressed()
     {

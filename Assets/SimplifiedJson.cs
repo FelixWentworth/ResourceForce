@@ -46,7 +46,6 @@ public class SimplifiedJson : MonoBehaviour {
             {
                 //we must resolve the issue
                 zIncident.resolved = true;
-                this.GetComponent<TurnManager>().caseResolved = "Case " + zIncident.caseNumber + " Closed";
             }
         }
         else
@@ -66,7 +65,6 @@ public class SimplifiedJson : MonoBehaviour {
             {
                 //good response so dont branch
                 zIncident.resolved = true;
-                this.GetComponent<TurnManager>().caseResolved = "Case " + zIncident.caseNumber + " Closed";
             }
         }
     }

@@ -26,7 +26,7 @@ public class OfficerController : MonoBehaviour {
             m_officers.Add(temp);
         }
         m_officersInUse = new List<officer>();
-        officersText.text = "Officers: " + m_officers.Count;
+        officersText.text = "Officers\n" + m_officers.Count + "/" + StartingOfficers;
         SetOfficerStatus();
     }
     public void RemoveOfficer(int num)
@@ -40,7 +40,7 @@ public class OfficerController : MonoBehaviour {
             removed.Use();
             m_officersInUse.Add(removed);
         }
-        officersText.text = "Officers: " + m_officers.Count;
+        officersText.text = "Officers\n" + m_officers.Count + "/" + StartingOfficers;
         SetOfficerStatus();
     }
     private void AddOfficer(officer zOfficer)
@@ -49,7 +49,7 @@ public class OfficerController : MonoBehaviour {
         officer removed = zOfficer;
         removed.Reset();
         m_officers.Add(removed);
-        officersText.text = "Officers: " + m_officers.Count;
+        officersText.text = "Officers\n" + m_officers.Count + "/" + StartingOfficers;
         SetOfficerStatus();
     }
     public void EndTurn()
@@ -66,7 +66,7 @@ public class OfficerController : MonoBehaviour {
                 i--; //reduce i as we removed one of the elements in the list
             }
         }
-        officersText.text = "Officers: " + m_officers.Count;
+        officersText.text = "Officers\n" + m_officers.Count + "/" + StartingOfficers;
         SetOfficerStatus();
     }
     private void SetOfficerStatus()
