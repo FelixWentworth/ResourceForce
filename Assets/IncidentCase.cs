@@ -11,6 +11,8 @@ public class IncidentCase : MonoBehaviour {
     public Text number;
     public Image severity;
 
+    public GameObject warningIcon;
+
     public Color background, fadedBackground;
 
     [HideInInspector]public int caseNumber;
@@ -64,9 +66,18 @@ public class IncidentCase : MonoBehaviour {
     public void ToggleFadeBackground(bool forceDefault = false)
     {
         Image img = this.GetComponent<Image>();
-        if (img.color != background || forceDefault)
+        if (forceDefault)
+        {
             img.color = background;
+        }
         else
+        {
             img.color = fadedBackground;
+            UpdateWarning(false);
+        }
+    }
+    public void UpdateWarning(bool activated)
+    {
+        warningIcon.SetActive(activated);
     }
 }

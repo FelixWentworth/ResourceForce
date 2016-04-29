@@ -15,8 +15,10 @@ public class TurnManager : MonoBehaviour {
     public GameObject startScreen;
 
     public GameObject GameOver;
+    public GameObject NextTurnButton;
 	// Use this for initialization
 	void Start () {
+        NextTurnButton.SetActive(false);
         GameOver.SetActive(false);
         startScreen.SetActive(true);
         m_IncidentManager = this.GetComponent<IncidentManager>();
@@ -30,7 +32,7 @@ public class TurnManager : MonoBehaviour {
 	public void NextTurn()
     {
         turn++;
-        
+        NextTurnButton.SetActive(false);
         GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
         turnsText.text = "Turn\n" + turn;
         if (m_IncidentManager == null)

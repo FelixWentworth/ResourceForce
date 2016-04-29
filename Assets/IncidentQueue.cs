@@ -16,6 +16,7 @@ public class IncidentQueue : MonoBehaviour {
         {
             //move the data from the current case and move it up
             allCases[i].Setup(allCases[i+1].caseNumber, allCases[i+1].m_state, allCases[i+1].severityNumber);
+            allCases[i].UpdateWarning(allCases[i + 1].warningIcon.activeSelf);
         }
     }
     public void AddToQueue(Incident zIncident)
@@ -35,6 +36,7 @@ public class IncidentQueue : MonoBehaviour {
             {
                 //move the remaining cases up the queue
                 //allCases[i].gameObject.SetActive(false);
+                allCases[i].UpdateWarning(false);
                 MoveQueueUp(i);
                 break;
             }
@@ -70,12 +72,19 @@ public class IncidentQueue : MonoBehaviour {
     }
     public IncidentCase GetCaseFromNum(int n)
     {
-        for (int i=0; i< cases; i++)
+        for (int i = 0; i < cases; i++)
         {
             if (allCases[i].caseNumber == n)
                 return allCases[i];
         }
         return null;
     }
-   
+    public void ShowWarningIcon(int n)
+    {
+        for (int i=0; i< cases; i++)
+        {
+            if (allCases[i].caseNumber == n)
+                allCases[i].UpdateWarning(true);
+        }
+    }
 }

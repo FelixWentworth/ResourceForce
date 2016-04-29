@@ -45,7 +45,9 @@ public class IncidentManager : MonoBehaviour
             if (incidents[i].turnToShow <= zTurn)
             {
                 //this incident wants to be shown on this turn
+                m_IncidentQueue.ShowWarningIcon(incidents[i].caseNumber);
                 NextIncident.Add(incidents[i]);
+
             }
         }
         //no elements in our incident list need to be shown
@@ -99,6 +101,7 @@ public class IncidentManager : MonoBehaviour
     }
     public void WaitPressed()
     {
+       
         Incident currentIncident = NextIncident[0];
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
 
@@ -123,7 +126,11 @@ public class IncidentManager : MonoBehaviour
     {
         NextIncident.RemoveAt(0);
         if (NextIncident.Count == 0)//no more incidents to show
-            this.gameObject.GetComponent<TurnManager>().NextTurn();
+        {
+            this.gameObject.GetComponent<TurnManager>().NextTurnButton.SetActive(true);
+            CaseNumber.text = "";
+            incidents[0].NoMoreIncidents();
+        }
         else
             ShowIncident(currentTurn);
     }
@@ -171,5 +178,13 @@ public class Incident {
     public void ShowCaseClosed(ref Incident zIncident)
     {
         GameObject.Find("IncidentDialog").GetComponent<DialogBox>().ShowCaseClosedBox(caseNumber);
+    }
+    public void ClearDialogBox()
+    {
+        GameObject.Find("IncidentDialog").GetComponent<DialogBox>().ClearDialogBox();
+    }
+    public void NoMoreIncidents()
+    {
+        GameObject.Find("IncidentDialog").GetComponent<DialogBox>().NoMoreIncidents();
     }
 }

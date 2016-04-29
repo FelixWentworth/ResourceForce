@@ -79,4 +79,12 @@ public class DialogBox : MonoBehaviour {
     {
         m_citizenHelpPopup.SetActive(true);
     }
+    public void ClearDialogBox()
+    {
+        Body.text = "";
+    }
+    public void NoMoreIncidents()
+    {
+        Body.text = "No More Incidents to check this turn";
+    }
 }
