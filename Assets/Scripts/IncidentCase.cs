@@ -26,6 +26,11 @@ public class IncidentCase : MonoBehaviour {
         caseNumber = zNumber;
         m_state = zState;
 
+        SetSeverity(zSeverity);
+        SetIcon();
+    }
+    public void SetSeverity(int zSeverity = 1)
+    {
         float alpha = 0f;
         if (zSeverity == 2)
             alpha = 0.5f;
@@ -33,9 +38,7 @@ public class IncidentCase : MonoBehaviour {
             alpha = 1.0f;
         severity.color = new Color(1f, 0f, 0f, alpha);
         severityNumber = zSeverity;
-        SetIcon();
     }
-
 	public void SetIcon()
     {
         switch (m_state)

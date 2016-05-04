@@ -50,8 +50,6 @@ public class IncidentManager : MonoBehaviour
 
             }
         }
-        //no elements in our incident list need to be shown
-        //CaseReview.text = "Cases To Review This Turn: " + NextIncident.Count;
         return (NextIncident.Count > 0);
     }
     public void UpdateIncidents()
@@ -62,6 +60,7 @@ public class IncidentManager : MonoBehaviour
             //an incident has been resolved so remove it from our list
             {
                 status += "Case " + incidents[i].caseNumber + ": " + incidents[i].nameBeforeDeveloped + "\n";
+                m_IncidentQueue.UpdateSeverity(incidents[i].caseNumber, incidents[i].severity);
             }
         }
         CaseStatus.text = status;
@@ -86,12 +85,6 @@ public class IncidentManager : MonoBehaviour
             NextIncident[0] = currentIncident;
         }
         m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
-        //if (currentIncident.turnToShow > turn)
-        //    m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.InProgress);
-        //else if (currentIncident.resolved)
-        //    m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.Resolved);
-        //else if (currentIncident.developed)
-        //    m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.Escalated);
         CaseNumber.text = "Case Number: " + currentIncident.caseNumber.ToString();
     }
     public void ClearList()
@@ -101,12 +94,10 @@ public class IncidentManager : MonoBehaviour
     }
     public void WaitPressed()
     {
-       
         Incident currentIncident = NextIncident[0];
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
         m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.Waiting);
         ShowNext();
-        //CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count - 1);
     }
     public void ResolvePressed()
     {
@@ -120,9 +111,7 @@ public class IncidentManager : MonoBehaviour
             m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.OfficersSent);
 
             ShowNext();
-            //CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count-1);
         }
-        
     }   
     public void ShowNext()
     {
@@ -161,7 +150,7 @@ public class Incident {
     public int turnToShow;
     public bool resolved;
     public int turnsToAdd;
-
+    public int severity;
     public int caseNumber;
     public string nameBeforeDeveloped;
     public bool developed;

@@ -23,6 +23,7 @@ public class SimplifiedJson : MonoBehaviour {
         zIncident.turnsToAdd = int.Parse(N["Incidents"][randIncident][3]);
         zIncident.resolved = false;
         zIncident.caseNumber = identifier;
+        zIncident.severity = int.Parse(N["Incidents"][randIncident][4]);
         identifier++;
     }
     public void DevelopIncident(ref Incident zIncident, bool waiting)
@@ -58,8 +59,11 @@ public class SimplifiedJson : MonoBehaviour {
                 zIncident.officer = int.Parse(N["Incidents"][index][1]);
                 zIncident.turnToShow += zIncident.turnsToAdd;
                 zIncident.turnsToAdd = int.Parse(N["Incidents"][index][3]);
+                zIncident.severity = int.Parse(N["Incidents"][index][4]);
                 zIncident.index = index;
                 zIncident.developed = true;
+
+
             }
             else
             {
