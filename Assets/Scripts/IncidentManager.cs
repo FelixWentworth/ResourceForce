@@ -104,7 +104,7 @@ public class IncidentManager : MonoBehaviour
        
         Incident currentIncident = NextIncident[0];
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
-
+        m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.Waiting);
         ShowNext();
         //CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count - 1);
     }
@@ -117,10 +117,12 @@ public class IncidentManager : MonoBehaviour
             Incident currentIncident = NextIncident[0];
             m_OfficerController.RemoveOfficer(currentIncident.officer);
             GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, false);
+            m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.OfficersSent);
 
             ShowNext();
             //CaseReview.text = "Cases Left To Review This Turn: " + (NextIncident.Count-1);
         }
+        
     }   
     public void ShowNext()
     {
