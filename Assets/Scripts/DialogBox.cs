@@ -16,7 +16,6 @@ public class DialogBox : MonoBehaviour {
 
     private IncidentManager m_incidentManager;
     public OfficerController m_officerController;
-    public GameObject m_citizenHelpPopup;
     public GameObject m_citizenHelpButton;
 
     public enum PopupType { Incident, Citizen, CaseClosed };
@@ -73,6 +72,7 @@ public class DialogBox : MonoBehaviour {
 
         LeftButton.text = success ? "OK" : "Wait for more officers to become available";
         caseNum = zCaseNumber;
+        m_citizenHelpButton.SetActive(false);
     }
     public void LeftButtonPressed()
     {
