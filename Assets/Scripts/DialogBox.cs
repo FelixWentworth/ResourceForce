@@ -37,15 +37,8 @@ public class DialogBox : MonoBehaviour {
             Body.text += "DEVELOPED CASE\n";
         Body.text += string.Format("{0} Reported at {1} area", zName, zArea);
         LeftButton.text = "Wait for more officers to become available";
-        SendOfficerButton.interactable = (m_officerController.m_officers.Count >= zOfficers);
-        if (!SendOfficerButton.interactable)
-        {
-            SendOfficerButton.GetComponent<Image>().color = Color.gray;
-        }
-        else
-        {
-            SendOfficerButton.GetComponent<Image>().color = Color.white;
-        }
+        SendOfficerButton.gameObject.SetActive(m_officerController.m_officers.Count >= zOfficers);
+ 
         RightButton.text = string.Format("Send {0} officer{1}", zOfficers, zOfficers > 1 ? "s" : "");
 
         m_citizenHelpButton.SetActive(showCitizen);
@@ -56,7 +49,7 @@ public class DialogBox : MonoBehaviour {
     {
         popupType = PopupType.CaseClosed;
         Body.text = "Arrests have been made";
-        SendOfficerButton.interactable = false;
+        SendOfficerButton.gameObject.SetActive(false);
         LeftButton.text = "OK";
         caseNum = zCaseNumber;
     }
@@ -67,7 +60,7 @@ public class DialogBox : MonoBehaviour {
         int rand = UnityEngine.Random.Range(1, 101);
         bool success = rand > 65;
         Body.text = success ? "Citizens Provide Evidence through the INSPEC2T app, 2 have been charged" : "Citizen fails to provide any evidence for the case";
-        SendOfficerButton.interactable = !success;
+        SendOfficerButton.gameObject.SetActive(!success);
         citizenSuccess = success;
 
         LeftButton.text = success ? "OK" : "Wait for more officers to become available";

@@ -9,7 +9,6 @@ public class TurnManager : MonoBehaviour {
 
     public Text turnsText;
     public Text gameOverText;
-    public Text maxCases;
     public int GameOverLimit = 4;
 
     public GameObject startScreen;
@@ -27,7 +26,6 @@ public class TurnManager : MonoBehaviour {
     {
         startScreen.SetActive(false);
         NextTurn();
-        maxCases.text = "Max Cases: " + GameOverLimit;
     }
 	public void NextTurn()
     {
@@ -70,22 +68,17 @@ public class TurnManager : MonoBehaviour {
     {
         SimplifiedJson.identifier = 1;
         Application.LoadLevel(0);
-        //turn = 0;
-        //m_IncidentManager.ClearList();
-        //NextTurn();
     }
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.W))
         {
             GameOverLimit++;
-            maxCases.text = "Max Cases: " + GameOverLimit;
         }
         if (Input.GetKeyUp(KeyCode.S))
         {
             if (GameOverLimit > 1)
                 GameOverLimit--;
-            maxCases.text = "Max Cases: " + GameOverLimit;
         }
 
     }
