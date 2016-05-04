@@ -72,12 +72,14 @@ public class IncidentManager : MonoBehaviour
         if (NextIncident == null)
             CreateNewIncident(turn);
         Incident currentIncident = NextIncident[0];
-        if (currentIncident.resolved)
+        if (currentIncident.citizenHelp)
+        {
+            NextIncident[0].ShowCitizenHelp(ref currentIncident);
+        }
+        else if (currentIncident.resolved)
         {
             //show the case closed screen
             NextIncident[0].ShowCaseClosed(ref currentIncident);
-            arrestsNum++;
-            ArrestsMade.text = "Arrests\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
         }
         else
         {
@@ -86,6 +88,11 @@ public class IncidentManager : MonoBehaviour
         }
         m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
         CaseNumber.text = "Case Number: " + currentIncident.caseNumber.ToString();
+    }
+    public void IncreaseArrestsMade()
+    {
+        arrestsNum++;
+        ArrestsMade.text = "Arrests\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
     }
     public void ClearList()
     {
@@ -113,6 +120,15 @@ public class IncidentManager : MonoBehaviour
             ShowNext();
         }
     }   
+    public void CitizenHelpPressed()
+    {
+        Incident currentIncident = NextIncident[0];
+        m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.CitizenRequest);
+        //make sure the incident is updated next turn, we will handle the citizen request result when we next show the incident
+        currentIncident.turnToShow++;
+        currentIncident.citizenHelp = true;
+        ShowNext();
+    }
     public void ShowNext()
     {
         NextIncident.RemoveAt(0);
@@ -135,7 +151,7 @@ public class IncidentManager : MonoBehaviour
                 //we have found the case to remove
                 m_IncidentQueue.RemoveFromQueue(incidents[i].caseNumber);
                 incidents.RemoveAt(i);
-
+                IncreaseArrestsMade();
                 i--;
             }
         }
@@ -153,10 +169,13 @@ public class Incident {
     public int turnsToAdd;
     public int severity;
     public int caseNumber;
+
     public string nameBeforeDeveloped;
     public bool developed;
+    public bool citizenHelp;
 
     private TurnManager m_turnManager;
+    private DialogBox m_dialogBox;
 
     public void Show(ref Incident zIncident)
     {
@@ -164,19 +183,32 @@ public class Incident {
         //decide if we should show the citizen help box
         int rand = UnityEngine.Random.Range(0, 10);
 
-
-        GameObject.Find("IncidentDialog").GetComponent<DialogBox>().ShowBox(incidentName, area, officer, caseNumber, developed, rand==1);
+        if (m_dialogBox == null)
+            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
+        m_dialogBox.ShowBox(incidentName, area, officer, caseNumber, developed, rand==1);
     }
     public void ShowCaseClosed(ref Incident zIncident)
     {
-        GameObject.Find("IncidentDialog").GetComponent<DialogBox>().ShowCaseClosedBox(caseNumber);
+        if (m_dialogBox == null)
+            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
+        m_dialogBox.ShowCaseClosedBox(caseNumber);
+    }
+    public void ShowCitizenHelp(ref Incident zIncident)
+    {
+        if (m_dialogBox == null)
+            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
+        m_dialogBox.ShowCitizenHelp(caseNumber);
     }
     public void ClearDialogBox()
     {
-        GameObject.Find("IncidentDialog").GetComponent<DialogBox>().ClearDialogBox();
+        if (m_dialogBox == null)
+            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
+        m_dialogBox.ClearDialogBox();
     }
     public void NoMoreIncidents()
     {
-        GameObject.Find("IncidentDialog").GetComponent<DialogBox>().NoMoreIncidents();
+        if (m_dialogBox == null)
+            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
+        m_dialogBox.NoMoreIncidents();
     }
 }

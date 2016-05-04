@@ -19,10 +19,12 @@ public class DialogBox : MonoBehaviour {
     public GameObject m_citizenHelpPopup;
     public GameObject m_citizenHelpButton;
 
-    public enum PopupType { Incident, CaseClosed };
+    public enum PopupType { Incident, Citizen, CaseClosed };
     public PopupType popupType = PopupType.Incident;
 
     private int caseNum;
+
+    private bool citizenSuccess = false;
 
     void Start()
     {
@@ -59,15 +61,43 @@ public class DialogBox : MonoBehaviour {
         LeftButton.text = "OK";
         caseNum = zCaseNumber;
     }
+    public void ShowCitizenHelp(int zCaseNumber)
+    {
+        popupType = PopupType.Citizen;
+        //now calculate if this was a success
+        int rand = UnityEngine.Random.Range(1, 101);
+        bool success = rand > 65;
+        Body.text = success ? "Citizens Provide Evidence through the INSPEC2T app, 2 have been charged" : "Citizen fails to provide any evidence for the case";
+        SendOfficerButton.interactable = !success;
+        citizenSuccess = success;
+
+        LeftButton.text = success ? "OK" : "Wait for more officers to become available";
+        caseNum = zCaseNumber;
+    }
     public void LeftButtonPressed()
     {
         //wait for more officers to become available
-        if (popupType == PopupType.Incident)
-            m_incidentManager.WaitPressed();
-        if (popupType == PopupType.CaseClosed)
+        switch(popupType)
         {
-            m_incidentManager.CloseCase(caseNum);
-            
+            case PopupType.CaseClosed:
+                m_incidentManager.CloseCase(caseNum);
+                break;
+            case PopupType.Incident:
+                m_incidentManager.WaitPressed();
+                break;
+            case PopupType.Citizen:
+                if (citizenSuccess)
+                {
+                    //has the issue been resolved
+                    m_incidentManager.CloseCase(caseNum);
+                    citizenSuccess = false;
+                }
+                else
+                {
+                    //issue was not resolved now the player has chosen to wait
+                    m_incidentManager.WaitPressed();
+                }
+                break;
         }
     }
     public void RightButtonPressed()
@@ -77,7 +107,8 @@ public class DialogBox : MonoBehaviour {
     }
     public void CitizenButtonPressed()
     {
-        m_citizenHelpPopup.SetActive(true);
+        //removing citizen help popup and instead setting the delay to one turn
+        m_incidentManager.CitizenHelpPressed();
     }
     public void ClearDialogBox()
     {
