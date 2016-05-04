@@ -55,11 +55,11 @@ public class IncidentQueue : MonoBehaviour {
         {
             if (allCases[i].caseNumber == caseNum)
             {
-                allCases[i].ToggleFadeBackground();
+                allCases[i].ToggleHighlight();
             }
             else
             {
-                allCases[i].ToggleFadeBackground(true);
+                allCases[i].ToggleHighlight(true);
             }
         }
     }

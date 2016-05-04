@@ -13,21 +13,20 @@ public class IncidentCase : MonoBehaviour {
 
     public GameObject warningIcon;
 
-    public Color background, fadedBackground;
+    public GameObject highlightObject;
 
     [HideInInspector]public int caseNumber;
     [HideInInspector]public int severityNumber;
 
     public void Setup(int zNumber, State zState = State.New, int zSeverity = 1)
     {
-        this.GetComponent<Image>().color = background;
-
         number.text = zNumber.ToString();
         caseNumber = zNumber;
         m_state = zState;
 
         SetSeverity(zSeverity);
         SetIcon();
+        highlightObject.SetActive(false);
     }
     public void SetSeverity(int zSeverity = 1)
     {
@@ -66,16 +65,16 @@ public class IncidentCase : MonoBehaviour {
                 break;
         }
     }
-    public void ToggleFadeBackground(bool forceDefault = false)
+    public void ToggleHighlight(bool forceDefault = false)
     {
-        Image img = this.GetComponent<Image>();
         if (forceDefault)
         {
-            img.color = background;
+            //by default the highlight should be disabled
+            highlightObject.SetActive(false);
         }
         else
         {
-            img.color = fadedBackground;
+            highlightObject.SetActive(true);
             UpdateWarning(false);
         }
     }
