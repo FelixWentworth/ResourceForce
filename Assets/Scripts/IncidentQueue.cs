@@ -22,7 +22,7 @@ public class IncidentQueue : MonoBehaviour {
     public void AddToQueue(Incident zIncident)
     {
         //set up the data to show on the case
-        allCases[cases].Setup(zIncident.caseNumber, IncidentCase.State.New);
+        allCases[cases].Setup(zIncident.caseNumber, IncidentCase.State.New, zIncident.severity);
         allCases[cases].gameObject.SetActive(true);
 
         cases++;

@@ -120,7 +120,8 @@ public class IncidentManager : MonoBehaviour
         {
             this.gameObject.GetComponent<TurnManager>().NextTurnButton.SetActive(true);
             CaseNumber.text = "";
-            incidents[0].NoMoreIncidents();
+            if (incidents.Count != 0)
+                incidents[0].NoMoreIncidents();
         }
         else
             ShowIncident(currentTurn);
