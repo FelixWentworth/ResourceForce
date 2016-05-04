@@ -14,20 +14,30 @@ public class OfficerController : MonoBehaviour {
     public Text officerStatus;
 
     public int StartingOfficers = 5;
+
+    public OfficerIndicator[] officerIndicators;
+
     public int GetAvailable()
     {
         return m_officers.Count;
     }
     // Use this for initialization
     void Awake () {
+        for (int i = 0; i<officerIndicators.Length; i++)
+        {
+            officerIndicators[i].UpdateText("");
+            officerIndicators[i].gameObject.SetActive(false);
+        }
         for (int i = 0; i< StartingOfficers; i++)
         {
             officer temp = new officer();
+            officerIndicators[i].gameObject.SetActive(true);
             m_officers.Add(temp);
         }
         m_officersInUse = new List<officer>();
         officersText.text = "Officers\n" + m_officers.Count + "/" + StartingOfficers;
         SetOfficerStatus();
+        
     }
     public void RemoveOfficer(int num)
     {
@@ -82,6 +92,20 @@ public class OfficerController : MonoBehaviour {
             status += count + " - " + m_officersInUse[i].turnsTilAvailable + " turns until available\n";
         }
         officerStatus.text = status;
+        UpdateOfficerIndicators();
+    }
+
+    private void UpdateOfficerIndicators()
+    {
+        int count = 0;
+        for (int i = 0; i < m_officers.Count; i++, count++)
+        {
+            officerIndicators[count].UpdateText("");
+        }
+        for (int i = 0; i < m_officersInUse.Count; i++, count++)
+        {
+            officerIndicators[count].UpdateText(m_officersInUse[i].turnsTilAvailable.ToString());
+        }
     }
 }
 public class officer
