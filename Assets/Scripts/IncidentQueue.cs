@@ -24,6 +24,7 @@ public class IncidentQueue : MonoBehaviour {
         //set up the data to show on the case
         allCases[cases].Setup(zIncident.caseNumber, IncidentCase.State.New, zIncident.severity);
         allCases[cases].gameObject.SetActive(true);
+        ShowWarningIcon(zIncident.caseNumber);
 
         cases++;
     }

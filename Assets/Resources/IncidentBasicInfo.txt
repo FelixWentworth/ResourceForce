@@ -24,14 +24,15 @@
   "LoiteringLength": 2,
   "Loitering": [
 	"A group of people have been reported loitering",
-	"Reports of intimidating groups reported"
+	"Reports of intimidating groups reported",
+	"Woman feels scared as crowds group"
   ],
   "LitteringLength": 1,
   "Littering": [
 	"Man seen dropping litter",
 	"Man reported to have spat gum on floor",
 	"Reports of person dropping papers out of window",
-	"Woman reported not picking up her dogs poo"
+	"Woman reported not picking up her dogs' poo"
   ],
   "NoiseComplaintLength": 1,
   "NoiseComplaint": [
@@ -39,30 +40,34 @@
 	"Noise complaints from numerous residents",
 	"Kids shouting and being disruptive",
 	"Reports of animals being loud during the night and keeping residents awake",
-	"Man reported swearing and shouting in his garden"
+	"Man reported swearing and shouting in his garden",
+	"Numerous noise complaints received from new club"
   ],
   "LandArgumentLength": 1,
   "LandArgument": [
-	"Reports of a group of people arguing over land"
+	"Reports of a group of people arguing over land",
+	"Man refusing access to public property",
+	"Man accuses trespassers to have stolen his grass"
   ],
   "DiscriminationLength": 1,
   "Discrimination": [
-	"An ethnic woman reports that she has been discriminated against"
+	"An ethnic woman reports that she has been discriminated against",
   ],
   "DomesticAbuseLength": 1,
   "DomesticAbuse": [
 	"Domestic abuse reported by mother of 4",
-	"Neighbours reporting worrying noises that could be domestic abuse in flat"
+	"Neighbours reporting worrying noises that could be domestic abuse in flat",
   ],
   "AssaultLength": 1,
   "Assault": [
 	"Assault reported",
 	"Man has been reported stabbed",
 	"A fight between 2 people has broken out",
-	"A man has reported he was jumped by a motley crew of junkies"
+	"A man has reported he was jumped by a motley crew of junkies",
+	"A barman has been injured during a drunken rage"
   ],
-  "MultipleAssaultLength": 1,
-  "MultipleAssault": [
+  "MultipleAssaultsLength": 1,
+  "MultipleAssaults": [
 	"A riot has broken out",
 	"Unidentified suspect seen weilding a machete and assaulting people",
 	"Multiple people reported injured after man loses it"
@@ -77,5 +82,6 @@
   "FatalityLength": 1,
   "Fatality": [
 	"Body has been found",
+	"Body seen floating in river",
   ]
 }
