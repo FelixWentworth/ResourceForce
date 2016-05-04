@@ -57,10 +57,10 @@ public class TurnManager : MonoBehaviour {
     }
     IEnumerator ShowGameOver()
     {
-        gameOverText.text = string.Format("You Survived {0} Turns", turn);
+        gameOverText.text = string.Format("You Survived {0} Turns\nAnd Made Arrests for {1}% of Cases", turn, m_IncidentManager.GetArrestPercentage());
         GameOver.SetActive(true);
         
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         Reset();
     }
 

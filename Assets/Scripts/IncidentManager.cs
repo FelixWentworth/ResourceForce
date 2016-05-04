@@ -19,6 +19,7 @@ public class IncidentManager : MonoBehaviour
     protected int currentTurn;
     public Text ArrestsMade;
     protected int arrestsNum;
+   
 
     public void CreateNewIncident(int zTurn)
     {
@@ -156,6 +157,11 @@ public class IncidentManager : MonoBehaviour
             }
         }
         ShowNext();
+    }
+
+    public int GetArrestPercentage()
+    {
+        return Mathf.RoundToInt((arrestsNum * 100) / (SimplifiedJson.identifier - 1));
     }
 }
 
