@@ -4,14 +4,14 @@
   "Incidents": {
 	"0": ["Loitering", 1, -1, 2, 1],
 	"1": ["Littering", 1, -1, 2, 1],
-	"2": ["Noise Complaint", 2, -1, 2, 1],
-	"3": ["Land Argument", 2, -1, 3, 1],
+	"2": ["NoiseComplaint", 2, -1, 2, 1],
+	"3": ["LandArgument", 2, -1, 3, 1],
 	"4": ["Discrimination", 1, 6, 2, 2],
-	"5": ["Domestic Abuse", 2, 6, 3, 2],
+	"5": ["DomesticAbuse", 2, 6, 3, 2],
 	"6": ["Assault", 2, 7, 4, 2],
-	"7": ["Multiple Assaults", 4, 9, 5, 3],
-	"8": ["Traffic Incident", 2, 9, 3, 2],
-	"9": ["Fatalities", 4, -1, 5, 3]
+	"7": ["MultipleAssaults", 4, 9, 5, 3],
+	"8": ["TrafficIncident", 2, 9, 3, 2],
+	"9": ["Fatality", 4, -1, 5, 3]
   },
   "TotalAreaTypes" : 5,
   "Areas": [
@@ -20,6 +20,62 @@
 	"Coastal",
 	"Central",
 	"Industrial"
+  ],
+  "LoiteringLength": 2,
+  "Loitering": [
+	"A group of people have been reported loitering",
+	"Reports of intimidating groups reported"
+  ],
+  "LitteringLength": 1,
+  "Littering": [
+	"Man seen dropping litter",
+	"Man reported to have spat gum on floor",
+	"Reports of person dropping papers out of window",
+	"Woman reported not picking up her dogs poo"
+  ],
+  "NoiseComplaintLength": 1,
+  "NoiseComplaint": [
+	"Couple reported making loud noises late at night",
+	"Noise complaints from numerous residents",
+	"Kids shouting and being disruptive",
+	"Reports of animals being loud during the night and keeping residents awake",
+	"Man reported swearing and shouting in his garden"
+  ],
+  "LandArgumentLength": 1,
+  "LandArgument": [
+	"Reports of a group of people arguing over land"
+  ],
+  "DiscriminationLength": 1,
+  "Discrimination": [
+	"An ethnic woman reports that she has been discriminated against"
+  ],
+  "DomesticAbuseLength": 1,
+  "DomesticAbuse": [
+	"Domestic abuse reported by mother of 4",
+	"Neighbours reporting worrying noises that could be domestic abuse in flat"
+  ],
+  "AssaultLength": 1,
+  "Assault": [
+	"Assault reported",
+	"Man has been reported stabbed",
+	"A fight between 2 people has broken out",
+	"A man has reported he was jumped by a motley crew of junkies"
+  ],
+  "MultipleAssaultLength": 1,
+  "MultipleAssault": [
+	"A riot has broken out",
+	"Unidentified suspect seen weilding a machete and assaulting people",
+	"Multiple people reported injured after man loses it"
+  ],
+  "TrafficIncidentLength": 1,
+  "TrafficIncident": [
+	"2 car pile up reported",
+	"A car has crashed with an ice cream truck",
+	"Large truck collides with lamp post",
+	"Cars seen driving recklessly"
+  ],
+  "FatalityLength": 1,
+  "Fatality": [
+	"Body has been found",
   ]
-
 }

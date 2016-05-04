@@ -50,7 +50,7 @@ public class TurnManager : MonoBehaviour {
             }
             else
             {
-                m_IncidentManager.CreateNewIncident(turn);
+                m_IncidentManager.CreateNewIncident(turn); 
                 m_IncidentManager.ShowIncident(turn);
             }
         }

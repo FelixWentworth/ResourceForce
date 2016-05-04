@@ -18,7 +18,7 @@ public class SimplifiedJson : MonoBehaviour {
 
         zIncident.index = randIncident;
         zIncident.officer = int.Parse(N["Incidents"][randIncident][1]);
-        zIncident.incidentName = N["Incidents"][randIncident][0];
+        zIncident.incidentName = GetIncidentFromType(N["Incidents"][randIncident][0]);
         zIncident.area = N["Areas"][randArea];
         zIncident.turnsToAdd = int.Parse(N["Incidents"][randIncident][3]);
         zIncident.resolved = false;
@@ -71,5 +71,21 @@ public class SimplifiedJson : MonoBehaviour {
                 zIncident.resolved = true;
             }
         }
+    }
+    public string GetIncidentFromType(string Type)
+    {
+        string description = "";
+
+        //get the json file
+        if (myText == null)
+            myText = Resources.Load(filePath) as TextAsset;
+        var N = JSON.Parse(myText.text);
+
+        //now get a random string from the table
+        string lookupString = Type + "Length";
+        int rand = UnityEngine.Random.Range(0, int.Parse(N[lookupString]));
+        description = N[Type][rand];
+
+        return description;
     }
 }

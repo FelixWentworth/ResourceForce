@@ -35,7 +35,7 @@ public class DialogBox : MonoBehaviour {
         Body.text = "";
         if (developed)
             Body.text += "DEVELOPED CASE\n";
-        Body.text += string.Format("{0} Reported at {1} area", zName, zArea);
+        Body.text += string.Format("{0} in {1} area", zName, zArea);
         LeftButton.text = "Wait for more officers to become available";
         SendOfficerButton.gameObject.SetActive(m_officerController.m_officers.Count >= zOfficers);
  
