@@ -44,15 +44,10 @@ public class TurnManager : MonoBehaviour {
         else
         {
             //decide which incident to show this turn
-            if (m_IncidentManager.IsIncidentWaitingToShow(turn))
-            {
-                m_IncidentManager.ShowIncident(turn);
-            }
-            else
-            {
-                m_IncidentManager.CreateNewIncident(turn); 
-                m_IncidentManager.ShowIncident(turn);
-            }
+            m_IncidentManager.IsIncidentWaitingToShow(turn);
+            m_IncidentManager.CreateNewIncident(turn); 
+            m_IncidentManager.ShowIncident(turn);
+            
         }
     }
     IEnumerator ShowGameOver()

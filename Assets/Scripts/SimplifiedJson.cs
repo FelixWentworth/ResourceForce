@@ -41,7 +41,7 @@ public class SimplifiedJson : MonoBehaviour {
             if (waiting)
             {
                 //case does not resolve if you do nothing and has no developments, instead we will delay the showing of this message
-                zIncident.turnToShow += 5;
+                zIncident.turnToShow += 1;
             }
             else
             {

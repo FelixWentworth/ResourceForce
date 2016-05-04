@@ -24,7 +24,7 @@ public class IncidentManager : MonoBehaviour
     public void CreateNewIncident(int zTurn)
     {
 
-        NextIncident.Clear();
+        //NextIncident.Clear();
         Incident newIncident = new Incident();
 
         //now get a random incident data from JSON file
