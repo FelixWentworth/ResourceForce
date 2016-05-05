@@ -37,13 +37,16 @@ public class Localization : MonoBehaviour {
         jsonTextAsset = Resources.Load(filePath) as TextAsset;
 
         var N = JSON.Parse(jsonTextAsset.text);
+        //get language index 
+        SetLanguageIndex();
+
         //now search through our file for our type
         int maxTexts = 0;
         for (int i = 0; N[i]!= null; i++)
         {
             if (N[i][0].ToString().Contains(type.ToUpper() + "_LENGTH"))
             {
-                maxTexts = int.Parse(N[i][1]);
+                maxTexts = int.Parse(N[i][languageIndex]);
                 break;
             }
         }
