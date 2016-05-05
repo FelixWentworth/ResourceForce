@@ -7,6 +7,7 @@ public class Localization : MonoBehaviour {
 
     public static string filePath = "incidentSpreadsheet";
     static TextAsset jsonTextAsset;
+    public static int languageIndex = 1;
     public static string Get(string key, JSONNode N)
     {
         string txt = "";
@@ -18,19 +19,20 @@ public class Localization : MonoBehaviour {
 
             N = JSON.Parse(jsonTextAsset.text);
         }
+        //set the language index based on the system language, we can do this every time in case the language changes
+        SetLanguageIndex();
+
         for (int i = 0; N[i]!= null; i++)
         {
             if (N[i][0].ToString().Contains(key))
             {
-                txt = N[i][1]; //TODO make the 1 match to the localisation of the device
+                txt = N[i][languageIndex]; //TODO make the 1 match to the localisation of the device
             }
         }
         return txt;
     }
     public static string GetRandomStringForType(string type)
     {
-        string txt = "";
-
         //get the text asset ready to search through
         jsonTextAsset = Resources.Load(filePath) as TextAsset;
 
@@ -49,8 +51,24 @@ public class Localization : MonoBehaviour {
         //now set a random string to get from the max number
         int rand = UnityEngine.Random.Range(1, maxTexts + 1);
 
-        txt = Get(type.ToUpper() + "_TEXT_" + rand, N);
-
-        return txt;
+        return Get(type.ToUpper() + "_TEXT_" + rand, N);
+    }
+    public static void SetLanguageIndex()
+    {
+        switch (Application.systemLanguage)
+        {
+            case SystemLanguage.English:
+                languageIndex = 1;
+                break;
+            case SystemLanguage.Dutch:
+                languageIndex = 2;
+                break;
+            case SystemLanguage.Greek:
+                languageIndex = 3;
+                break;
+            case SystemLanguage.Spanish:
+                languageIndex = 4;
+                break;
+        }
     }
 }
