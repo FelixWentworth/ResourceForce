@@ -18,8 +18,8 @@ public class SimplifiedJson : MonoBehaviour {
 
         zIncident.index = randIncident;
         zIncident.officer = int.Parse(N["Incidents"][randIncident][1]);
-        zIncident.incidentName = GetIncidentFromType(N["Incidents"][randIncident][0]);
         zIncident.area = N["Areas"][randArea];
+        zIncident.incidentName = GetIncidentFromType(N["Incidents"][randIncident][0]);
         zIncident.turnsToAdd = int.Parse(N["Incidents"][randIncident][3]);
         zIncident.resolved = false;
         zIncident.caseNumber = identifier;
@@ -28,6 +28,8 @@ public class SimplifiedJson : MonoBehaviour {
     }
     public void DevelopIncident(ref Incident zIncident, bool waiting)
     {
+        
+
         //we must now see if the incident can be developed
         if (myText == null)
             myText = Resources.Load(filePath) as TextAsset;
@@ -53,16 +55,25 @@ public class SimplifiedJson : MonoBehaviour {
         {
             if (waiting)
             {
-                //bad response so develop the situation
-                zIncident.nameBeforeDeveloped = zIncident.incidentName;
-                zIncident.incidentName = N["Incidents"][index][0];
-                zIncident.officer = int.Parse(N["Incidents"][index][1]);
-                zIncident.turnToShow += zIncident.turnsToAdd;
-                zIncident.turnsToAdd = int.Parse(N["Incidents"][index][3]);
-                zIncident.severity = int.Parse(N["Incidents"][index][4]);
-                zIncident.index = index;
-                zIncident.developed = true;
-
+                //check to see if the current incident has been ignored enough to develop into a new incident
+                TurnManager turn = GameObject.Find("TurnManager").GetComponent<TurnManager>();
+                if (zIncident.turnToDevelop >= turn.turn-1)
+                {
+                    zIncident.turnToShow += 1;
+                }
+                else
+                {
+                    //bad response so develop the situation
+                    zIncident.nameBeforeDeveloped = zIncident.incidentName;
+                    zIncident.incidentName = GetIncidentFromType(N["Incidents"][index][0]);
+                    zIncident.officer = int.Parse(N["Incidents"][index][1]);
+                    zIncident.turnToShow += 1;
+                    zIncident.turnsToAdd = int.Parse(N["Incidents"][index][3]);
+                    zIncident.turnToDevelop = turn.turn + 3;
+                    zIncident.severity = int.Parse(N["Incidents"][index][4]);
+                    zIncident.index = index;
+                    zIncident.developed = true;
+                }
 
             }
             else
@@ -76,16 +87,8 @@ public class SimplifiedJson : MonoBehaviour {
     {
         string description = "";
 
-        //get the json file
-        if (myText == null)
-            myText = Resources.Load(filePath) as TextAsset;
-        var N = JSON.Parse(myText.text);
-
-        //now get a random string from the table
-        string lookupString = Type + "Length";
-        int rand = UnityEngine.Random.Range(0, int.Parse(N[lookupString]));
-        description = N[Type][rand];
-
+        description = Localization.GetRandomStringForType(Type);
+        
         return description;
     }
 }

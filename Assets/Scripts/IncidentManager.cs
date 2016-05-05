@@ -33,6 +33,7 @@ public class IncidentManager : MonoBehaviour
 
         jsonReader.CreateNewIncident(ref newIncident);
         newIncident.turnToShow = zTurn;
+        newIncident.turnToDevelop = zTurn + 3;
         incidents.Add(newIncident);
         NextIncident.Add(newIncident);
         m_IncidentQueue.AddToQueue(newIncident);
@@ -176,6 +177,7 @@ public class Incident {
     public int severity;
     public int caseNumber;
 
+    public int turnToDevelop;
     public string nameBeforeDeveloped;
     public bool developed;
     public bool citizenHelp;
