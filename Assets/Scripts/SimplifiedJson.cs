@@ -28,8 +28,6 @@ public class SimplifiedJson : MonoBehaviour {
     }
     public void DevelopIncident(ref Incident zIncident, bool waiting)
     {
-        
-
         //we must now see if the incident can be developed
         if (myText == null)
             myText = Resources.Load(filePath) as TextAsset;
@@ -40,7 +38,14 @@ public class SimplifiedJson : MonoBehaviour {
 
         if (index == -1)
         {
-            if (waiting)
+            TurnManager turn = GameObject.Find("TurnManager").GetComponent<TurnManager>();
+            if (turn.turn >= zIncident.turnToDevelop)
+            {
+                //the incident that does not develop will expire, for now we will resolve the case, TODO make this a unsuccessful resolution
+                zIncident.resolved = true;
+                zIncident.positiveResolution = false;
+            }
+            else if (waiting)
             {
                 //case does not resolve if you do nothing and has no developments, instead we will delay the showing of this message
                 zIncident.turnToShow += 1;
@@ -49,6 +54,7 @@ public class SimplifiedJson : MonoBehaviour {
             {
                 //we must resolve the issue
                 zIncident.resolved = true;
+                zIncident.positiveResolution = false;
             }
         }
         else
@@ -80,6 +86,7 @@ public class SimplifiedJson : MonoBehaviour {
             {
                 //good response so dont branch
                 zIncident.resolved = true;
+                zIncident.positiveResolution = true;
             }
         }
     }

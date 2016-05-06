@@ -76,7 +76,9 @@ public class IncidentManager : MonoBehaviour
         Incident currentIncident = NextIncident[0];
         if (currentIncident.citizenHelp)
         {
+            currentIncident.citizenHelp = false;  //make sure this is not repeated every turn
             NextIncident[0].ShowCitizenHelp(ref currentIncident);
+            
         }
         else if (currentIncident.resolved)
         {
@@ -90,6 +92,9 @@ public class IncidentManager : MonoBehaviour
         }
         m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
         CaseNumber.text = "Case Number: " + currentIncident.caseNumber.ToString();
+        CaseNumber.text += currentIncident.isNew ? "" : " ONGOING CASE";
+        if (currentIncident.isNew)
+            currentIncident.isNew = false;
     }
     public void IncreaseArrestsMade()
     {
@@ -152,8 +157,10 @@ public class IncidentManager : MonoBehaviour
             {
                 //we have found the case to remove
                 m_IncidentQueue.RemoveFromQueue(incidents[i].caseNumber);
+                if (incidents[i].positiveResolution)
+                    IncreaseArrestsMade();
+
                 incidents.RemoveAt(i);
-                IncreaseArrestsMade();
                 i--;
             }
         }
@@ -172,15 +179,18 @@ public class Incident {
     public string area;
     public string incidentName;
     public int turnToShow;
-    public bool resolved;
     public int turnsToAdd;
     public int severity;
     public int caseNumber;
 
+    //values which are not set during setup
     public int turnToDevelop;
     public string nameBeforeDeveloped;
     public bool developed;
     public bool citizenHelp;
+    public bool resolved;
+    public bool positiveResolution = false;
+    public bool isNew = true;
 
     private TurnManager m_turnManager;
     private DialogBox m_dialogBox;
@@ -199,7 +209,7 @@ public class Incident {
     {
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.ShowCaseClosedBox(caseNumber);
+        m_dialogBox.ShowCaseClosedBox(caseNumber, zIncident.positiveResolution);
     }
     public void ShowCitizenHelp(ref Incident zIncident)
     {

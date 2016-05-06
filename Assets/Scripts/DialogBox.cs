@@ -45,13 +45,14 @@ public class DialogBox : MonoBehaviour {
 
         dialog.SetActive(true);
     }
-    public void ShowCaseClosedBox(int zCaseNumber)
+    public void ShowCaseClosedBox(int zCaseNumber, bool positive = false)
     {
         popupType = PopupType.CaseClosed;
-        Body.text = "Arrests have been made";
+        Body.text = positive ? "Arrests have been made" : "Officers fail to make any arrests regarding the case";
         SendOfficerButton.gameObject.SetActive(false);
         LeftButton.text = "OK";
         caseNum = zCaseNumber;
+        m_citizenHelpButton.SetActive(false);
     }
     public void ShowCitizenHelp(int zCaseNumber)
     {
@@ -62,7 +63,8 @@ public class DialogBox : MonoBehaviour {
         Body.text = success ? "Citizens Provide Evidence through the INSPEC2T app, 2 have been charged" : "Citizen fails to provide any evidence for the case";
         SendOfficerButton.gameObject.SetActive(!success);
         citizenSuccess = success;
-
+        if (citizenSuccess)
+            currentIncident.positiveResolution = true;
         LeftButton.text = success ? "OK" : "Wait for more officers to become available";
         caseNum = zCaseNumber;
         m_citizenHelpButton.SetActive(false);
@@ -89,6 +91,8 @@ public class DialogBox : MonoBehaviour {
                 {
                     //issue was not resolved now the player has chosen to wait
                     m_incidentManager.WaitPressed();
+                    citizenSuccess = false; 
+                    
                 }
                 break;
         }
