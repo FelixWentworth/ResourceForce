@@ -50,12 +50,19 @@ public class StartTransition : MonoBehaviour {
     }
     IEnumerator FadeBackground()
     {
+        float t = 0f;
+        float duration = 3f;
         while (background.color != fadedBackgroundColor)
         {
-            background.color = Color.Lerp(background.color, fadedBackgroundColor, 2.5f * Time.deltaTime);
+            background.color = Color.Lerp(background.color, fadedBackgroundColor, t);
+            if (t < 1)
+            {
+                t += Time.deltaTime/duration;
+            }
             yield return null;
         }
-        
+        this.gameObject.SetActive(false);
+
     }
     private void SetObjects(bool enabled)
     {

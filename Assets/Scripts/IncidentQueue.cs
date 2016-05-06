@@ -64,6 +64,14 @@ public class IncidentQueue : MonoBehaviour {
             }
         }
     }
+    public void RemoveWarningIcon(int caseNum)
+    {
+        for (int i=0; i<cases; i++)
+        {
+            if (allCases[i].caseNumber == caseNum)
+                allCases[i].UpdateWarning(false);
+        }
+    }
     public void UpdateSeverity(int caseNum, int zSeverity)
     {
         IncidentCase current = GetCaseFromNum(caseNum);

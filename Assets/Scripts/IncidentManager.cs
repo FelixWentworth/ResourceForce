@@ -19,7 +19,8 @@ public class IncidentManager : MonoBehaviour
     protected int currentTurn;
     public Text ArrestsMade;
     protected int arrestsNum;
-   
+
+    private int incidentShowingIndex = 1;
 
     public void CreateNewIncident(int zTurn)
     {
@@ -68,27 +69,52 @@ public class IncidentManager : MonoBehaviour
         CaseStatus.text = status;
         ArrestsMade.text = "Arrests\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
     }
-    public void ShowIncident(int turn)
+    public void _showIncident(Text myText)
+    {
+        int _caseNumer = int.Parse(myText.text);
+        int turn = GameObject.Find("TurnManager").GetComponent<TurnManager>().turn;
+        ShowIncident(turn, _caseNumer);
+    }
+    public void ShowIncident(int turn, int zCaseNumber = -1)
     {
         currentTurn = turn;
         if (NextIncident == null)
             CreateNewIncident(turn);
+        
         Incident currentIncident = NextIncident[0];
+        incidentShowingIndex = 0;
+        if (zCaseNumber != -1)
+        {
+            //player has chosen a message to look at on the side
+            bool incidentFound = false;
+            for (int i = 0; i<NextIncident.Count; i++)
+            {
+                if (NextIncident[i].caseNumber == zCaseNumber)
+                {
+                    currentIncident = NextIncident[i];
+                    incidentShowingIndex = i;
+                    incidentFound = true;
+                    break;
+                }
+            }
+            if (!incidentFound) //clicked on a case that has since been removed
+                return;
+        }
         if (currentIncident.citizenHelp)
         {
             currentIncident.citizenHelp = false;  //make sure this is not repeated every turn
-            NextIncident[0].ShowCitizenHelp(ref currentIncident);
+            currentIncident.ShowCitizenHelp(ref currentIncident);
             
         }
         else if (currentIncident.resolved)
         {
             //show the case closed screen
-            NextIncident[0].ShowCaseClosed(ref currentIncident);
+            currentIncident.ShowCaseClosed(ref currentIncident);
         }
         else
         {
-            NextIncident[0].Show(ref currentIncident);
-            NextIncident[0] = currentIncident;
+            currentIncident.Show(ref currentIncident);
+            currentIncident = currentIncident;
         }
         m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
         CaseNumber.text = "Subject: Case " + currentIncident.caseNumber.ToString();
@@ -108,7 +134,8 @@ public class IncidentManager : MonoBehaviour
     }
     public void WaitPressed()
     {
-        Incident currentIncident = NextIncident[0];
+        Incident currentIncident = NextIncident[incidentShowingIndex];
+        m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
         m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.Waiting);
         ShowNext();
@@ -119,7 +146,8 @@ public class IncidentManager : MonoBehaviour
             m_OfficerController = GameObject.Find("OfficerManager").GetComponent<OfficerController>();
         if (m_OfficerController.m_officers.Count >= NextIncident[0].officer)
         {
-            Incident currentIncident = NextIncident[0];
+            Incident currentIncident = NextIncident[incidentShowingIndex];
+            m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
             m_OfficerController.RemoveOfficer(currentIncident.officer);
             GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, false);
             m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.OfficersSent);
@@ -129,7 +157,8 @@ public class IncidentManager : MonoBehaviour
     }   
     public void CitizenHelpPressed()
     {
-        Incident currentIncident = NextIncident[0];
+        Incident currentIncident = NextIncident[incidentShowingIndex];
+        m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
         m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.CitizenRequest);
         //make sure the incident is updated next turn, we will handle the citizen request result when we next show the incident
         currentIncident.turnToShow++;
@@ -138,7 +167,8 @@ public class IncidentManager : MonoBehaviour
     }
     public void ShowNext()
     {
-        NextIncident.RemoveAt(0);
+        NextIncident.RemoveAt(incidentShowingIndex);
+        incidentShowingIndex = 0;
         if (NextIncident.Count == 0)//no more incidents to show
         {
             this.gameObject.GetComponent<TurnManager>().NextTurnButton.SetActive(true);

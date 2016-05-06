@@ -75,11 +75,15 @@ public class IncidentCase : MonoBehaviour {
         else
         {
             highlightObject.SetActive(true);
-            UpdateWarning(false);
         }
     }
     public void UpdateWarning(bool activated)
     {
         warningIcon.SetActive(activated);
+    }
+
+    public void Pressed(Text myText)
+    {
+        GameObject.Find("TurnManager").GetComponent<IncidentManager>()._showIncident(myText);
     }
 }

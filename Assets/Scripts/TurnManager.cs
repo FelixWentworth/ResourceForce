@@ -25,12 +25,6 @@ public class TurnManager : MonoBehaviour {
 	public void StartGame()
     {
         NextTurn();
-        StartCoroutine(WaitToDisableStartScreen());
-    }
-    IEnumerator WaitToDisableStartScreen()
-    {
-        yield return new WaitForSeconds(0.75f);
-        startScreen.SetActive(false);
     }
 	public void NextTurn()
     {
