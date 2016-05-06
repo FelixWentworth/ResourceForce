@@ -1,9 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using SimpleJSON;
-
+using UnityEngine.UI;
 
 public class Localization : MonoBehaviour {
+
+    public string Key;
+    public bool toUpper;
+    void Start()
+    {
+        Text _text = this.GetComponent<Text>();
+        if (_text == null)
+            Debug.LogError("Localization script could not find Text component");
+        _text.text = Get(Key, null);
+        if (toUpper)
+            _text.text = _text.text.ToUpper();
+    }
 
     public static string filePath = "incidentSpreadsheet";
     static TextAsset jsonTextAsset;
