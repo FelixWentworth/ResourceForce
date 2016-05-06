@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//#define SELECT_INCIDENTS
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -20,8 +22,9 @@ public class IncidentManager : MonoBehaviour
     public Text ArrestsMade;
     protected int arrestsNum;
 
+#if SELECT_INCIDENTS
     private int incidentShowingIndex = 1;
-
+#endif
     public void CreateNewIncident(int zTurn)
     {
 
@@ -82,7 +85,9 @@ public class IncidentManager : MonoBehaviour
             CreateNewIncident(turn);
         
         Incident currentIncident = NextIncident[0];
+#if SELECT_INCIDENTS
         incidentShowingIndex = 0;
+#endif
         if (zCaseNumber != -1)
         {
             //player has chosen a message to look at on the side
@@ -92,7 +97,9 @@ public class IncidentManager : MonoBehaviour
                 if (NextIncident[i].caseNumber == zCaseNumber)
                 {
                     currentIncident = NextIncident[i];
+#if SELECT_INCIDENTS
                     incidentShowingIndex = i;
+#endif
                     incidentFound = true;
                     break;
                 }
@@ -134,7 +141,11 @@ public class IncidentManager : MonoBehaviour
     }
     public void WaitPressed()
     {
+#if SELECT_INCIDENTS
         Incident currentIncident = NextIncident[incidentShowingIndex];
+#else
+        Incident currentIncident = NextIncident[0];
+#endif
         m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
         m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.Waiting);
@@ -146,7 +157,11 @@ public class IncidentManager : MonoBehaviour
             m_OfficerController = GameObject.Find("OfficerManager").GetComponent<OfficerController>();
         if (m_OfficerController.m_officers.Count >= NextIncident[0].officer)
         {
+#if SELECT_INCIDENTS
             Incident currentIncident = NextIncident[incidentShowingIndex];
+#else
+        Incident currentIncident = NextIncident[0];
+#endif
             m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
             m_OfficerController.RemoveOfficer(currentIncident.officer);
             GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, false);
@@ -157,7 +172,11 @@ public class IncidentManager : MonoBehaviour
     }   
     public void CitizenHelpPressed()
     {
+#if SELECT_INCIDENTS
         Incident currentIncident = NextIncident[incidentShowingIndex];
+#else
+        Incident currentIncident = NextIncident[0];
+#endif
         m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
         m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.CitizenRequest);
         //make sure the incident is updated next turn, we will handle the citizen request result when we next show the incident
@@ -167,8 +186,13 @@ public class IncidentManager : MonoBehaviour
     }
     public void ShowNext()
     {
+#if SELECT_INCIDENTS
         NextIncident.RemoveAt(incidentShowingIndex);
         incidentShowingIndex = 0;
+#else
+        NextIncident.RemoveAt(0);
+#endif
+
         if (NextIncident.Count == 0)//no more incidents to show
         {
             this.gameObject.GetComponent<TurnManager>().NextTurnButton.SetActive(true);
@@ -201,6 +225,13 @@ public class IncidentManager : MonoBehaviour
     {
         return Mathf.RoundToInt((arrestsNum * 100) / (SimplifiedJson.identifier - 1));
     }
+    public void UpdateCitizens()
+    {
+        for (int i = 0; i<incidents.Count; i++)
+        {
+            incidents[i].NewTurn();
+        }
+    }
 }
 
 public class Incident {
@@ -221,19 +252,26 @@ public class Incident {
     public bool resolved;
     public bool positiveResolution = false;
     public bool isNew = true;
+    private bool CitizenAvailable;
 
     private TurnManager m_turnManager;
     private DialogBox m_dialogBox;
 
+    public void NewTurn()
+    {
+        //decide if we should show the citizen help box
+        int rand = UnityEngine.Random.Range(0, 10);
+        CitizenAvailable = rand == 1;
+    }
+
     public void Show(ref Incident zIncident)
     {
         //use the dialog box to show the current incident
-        //decide if we should show the citizen help box
-        int rand = UnityEngine.Random.Range(0, 10);
+        
 
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.ShowBox(incidentName, area, officer, caseNumber, developed, rand==1);
+        m_dialogBox.ShowBox(incidentName, area, officer, caseNumber, developed, CitizenAvailable);
     }
     public void ShowCaseClosed(ref Incident zIncident)
     {

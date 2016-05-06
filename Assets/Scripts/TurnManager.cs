@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//#define SELECT_INCIDENTS
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -44,9 +46,17 @@ public class TurnManager : MonoBehaviour {
         {
             //decide which incident to show this turn
             m_IncidentManager.IsIncidentWaitingToShow(turn);
-            m_IncidentManager.CreateNewIncident(turn); 
+            m_IncidentManager.CreateNewIncident(turn);
+            m_IncidentManager.UpdateCitizens();
+#if SELECT_INCIDENTS
+            GameObject.Find("IncidentDialog").GetComponent<DialogBox>().DeactivateAll();
+#else
             m_IncidentManager.ShowIncident(turn);
-            
+#endif
+
+
+
+
         }
     }
     IEnumerator ShowGameOver()

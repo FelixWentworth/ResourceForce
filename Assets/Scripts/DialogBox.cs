@@ -10,14 +10,15 @@ public class DialogBox : MonoBehaviour {
     public Text LeftButton;
     public Text RightButton;
 
-    public Button SendOfficerButton;
+    
 
     public GameObject dialog;
 
     private IncidentManager m_incidentManager;
     public OfficerController m_officerController;
     public GameObject m_citizenHelpButton;
-
+    public GameObject SendOfficerButton;
+    public GameObject waitButton;
     public enum PopupType { Incident, Citizen, CaseClosed };
     public PopupType popupType = PopupType.Incident;
 
@@ -28,6 +29,13 @@ public class DialogBox : MonoBehaviour {
     void Start()
     {
         m_incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
+    }
+    public void DeactivateAll()
+    {
+        m_citizenHelpButton.gameObject.SetActive(false);
+        SendOfficerButton.gameObject.SetActive(false);
+        waitButton.SetActive(false);
+        Body.text = "";
     }
     public void ShowBox(string zName, string zArea, int zOfficers, int caseNumber, bool developed, bool showCitizen = false)
     {
@@ -41,6 +49,7 @@ public class DialogBox : MonoBehaviour {
  
         RightButton.text = string.Format("Send {0} officer{1}", zOfficers, zOfficers > 1 ? "s" : "");
 
+        waitButton.SetActive(true);
         m_citizenHelpButton.SetActive(showCitizen);
 
         dialog.SetActive(true);
@@ -52,6 +61,8 @@ public class DialogBox : MonoBehaviour {
         SendOfficerButton.gameObject.SetActive(false);
         LeftButton.text = "OK";
         caseNum = zCaseNumber;
+
+        waitButton.SetActive(true);
         m_citizenHelpButton.SetActive(false);
     }
     public void ShowCitizenHelp(int zCaseNumber)
@@ -67,6 +78,8 @@ public class DialogBox : MonoBehaviour {
             currentIncident.positiveResolution = true;
         LeftButton.text = success ? "OK" : "Wait for more officers to become available";
         caseNum = zCaseNumber;
+
+        waitButton.SetActive(true);
         m_citizenHelpButton.SetActive(false);
     }
     public void LeftButtonPressed()

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//#define SELECT_INCIDENTS
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -84,6 +86,8 @@ public class IncidentCase : MonoBehaviour {
 
     public void Pressed(Text myText)
     {
+#if SELECT_INCIDENTS
         GameObject.Find("TurnManager").GetComponent<IncidentManager>()._showIncident(myText);
+#endif
     }
 }
