@@ -91,8 +91,8 @@ public class IncidentManager : MonoBehaviour
             NextIncident[0] = currentIncident;
         }
         m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
-        CaseNumber.text = "Case Number: " + currentIncident.caseNumber.ToString();
-        CaseNumber.text += currentIncident.isNew ? "" : " ONGOING CASE";
+        CaseNumber.text = "Subject: Case " + currentIncident.caseNumber.ToString();
+        CaseNumber.text += currentIncident.isNew ? "" : " (ongoing)";
         if (currentIncident.isNew)
             currentIncident.isNew = false;
     }
