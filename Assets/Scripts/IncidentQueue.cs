@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//#define SELECT_INCIDENTS
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -57,10 +59,16 @@ public class IncidentQueue : MonoBehaviour {
             if (allCases[i].caseNumber == caseNum)
             {
                 allCases[i].ToggleHighlight();
+#if SELECT_INCIDENTS
+
+#else
+                allCases[i].warningIcon.SetActive(false);
+#endif
             }
             else
             {
                 allCases[i].ToggleHighlight(true);
+
             }
         }
     }

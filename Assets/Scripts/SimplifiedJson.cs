@@ -54,7 +54,8 @@ public class SimplifiedJson : MonoBehaviour {
             {
                 //we must resolve the issue
                 zIncident.resolved = true;
-                zIncident.positiveResolution = false;
+                zIncident.positiveResolution = true;
+                zIncident.turnToShow += zIncident.turnsToAdd;
             }
         }
         else
@@ -87,6 +88,7 @@ public class SimplifiedJson : MonoBehaviour {
                 //good response so dont branch
                 zIncident.resolved = true;
                 zIncident.positiveResolution = true;
+                zIncident.turnToShow += zIncident.turnsToAdd;
             }
         }
     }

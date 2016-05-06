@@ -39,7 +39,7 @@ public class OfficerController : MonoBehaviour {
         SetOfficerStatus();
         
     }
-    public void RemoveOfficer(int num)
+    public void RemoveOfficer(int num, int turnsAway)
     {
         //before calling this we must check if we have enough officers available
         for (int i = 0; i< num; i++)
@@ -47,7 +47,7 @@ public class OfficerController : MonoBehaviour {
             //move officer from available list to unavailable list
             officer removed = m_officers[0];
             m_officers.RemoveAt(0);
-            removed.Use();
+            removed.Use(turnsAway);
             m_officersInUse.Add(removed);
         }
         officersText.text = "Officers\n" + m_officers.Count + "/" + StartingOfficers;
@@ -118,10 +118,10 @@ public class officer
     public bool available;
     public int turnsTilAvailable;
 
-    public void Use()
+    public void Use(int turns = 3)
     {
         available = false;
-        turnsTilAvailable = 3;
+        turnsTilAvailable = turns;
     }
     public void Reset()
     {

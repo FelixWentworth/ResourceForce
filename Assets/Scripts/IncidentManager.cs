@@ -124,8 +124,22 @@ public class IncidentManager : MonoBehaviour
             currentIncident = currentIncident;
         }
         m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
-        CaseNumber.text = "Subject: Case " + currentIncident.caseNumber.ToString();
-        CaseNumber.text += currentIncident.isNew ? "" : " (ongoing)";
+
+        CaseNumber.text = "Subject: ";
+        if (currentIncident.isNew)
+        {
+            CaseNumber.text += "<New> ";
+        }
+        else if (currentIncident.resolved)
+        {
+            CaseNumber.text += "<Resolved> ";
+        }
+        else if (!currentIncident.isNew)
+        {
+            CaseNumber.text += "<Ongoing> ";
+        }
+        CaseNumber.text += "Case " + currentIncident.caseNumber.ToString();
+
         if (currentIncident.isNew)
             currentIncident.isNew = false;
     }
@@ -163,7 +177,7 @@ public class IncidentManager : MonoBehaviour
         Incident currentIncident = NextIncident[0];
 #endif
             m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
-            m_OfficerController.RemoveOfficer(currentIncident.officer);
+            m_OfficerController.RemoveOfficer(currentIncident.officer, currentIncident.turnsToAdd);
             GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, false);
             m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.OfficersSent);
 
@@ -271,7 +285,7 @@ public class Incident {
 
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.ShowBox(incidentName, area, officer, caseNumber, developed, CitizenAvailable);
+        m_dialogBox.ShowBox(incidentName, area, officer, caseNumber, developed, turnsToAdd, CitizenAvailable);
     }
     public void ShowCaseClosed(ref Incident zIncident)
     {

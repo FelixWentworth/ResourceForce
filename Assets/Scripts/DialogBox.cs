@@ -37,7 +37,7 @@ public class DialogBox : MonoBehaviour {
         waitButton.SetActive(false);
         Body.text = "";
     }
-    public void ShowBox(string zName, string zArea, int zOfficers, int caseNumber, bool developed, bool showCitizen = false)
+    public void ShowBox(string zName, string zArea, int zOfficers, int caseNumber, bool developed, int turnsToSolve, bool showCitizen = false)
     {
         popupType = PopupType.Incident;
         Body.text = "";
@@ -47,7 +47,7 @@ public class DialogBox : MonoBehaviour {
         LeftButton.text = "Wait for more officers to become available";
         SendOfficerButton.gameObject.SetActive(m_officerController.m_officers.Count >= zOfficers);
  
-        RightButton.text = string.Format("Send {0} officer{1}", zOfficers, zOfficers > 1 ? "s" : "");
+        RightButton.text = string.Format("Send {0} officer{1} for {2} turn{1}", zOfficers, zOfficers > 1 ? "s" : "", turnsToSolve);
 
         waitButton.SetActive(true);
         m_citizenHelpButton.SetActive(showCitizen);
