@@ -44,10 +44,10 @@ public class DialogBox : MonoBehaviour {
         if (developed)
             Body.text += "DEVELOPED CASE\n";
         Body.text += string.Format(zName, zArea);
-        LeftButton.text = "Wait for more officers to become available";
+        LeftButton.text = "Wait";
         SendOfficerButton.gameObject.SetActive(m_officerController.m_officers.Count >= zOfficers);
  
-        RightButton.text = string.Format("Send {0} officer{1} for {2} turn{1}", zOfficers, zOfficers > 1 ? "s" : "", turnsToSolve);
+        RightButton.text = string.Format("Send {0} officer{1} for {2} turns", zOfficers, zOfficers > 1 ? "s" : "", turnsToSolve);
 
         waitButton.SetActive(true);
         m_citizenHelpButton.SetActive(showCitizen);
@@ -76,7 +76,7 @@ public class DialogBox : MonoBehaviour {
         citizenSuccess = success;
         if (citizenSuccess)
             currentIncident.positiveResolution = true;
-        LeftButton.text = success ? "OK" : "Wait for more officers to become available";
+        LeftButton.text = success ? "OK" : "Wait";
         caseNum = zCaseNumber;
 
         waitButton.SetActive(true);

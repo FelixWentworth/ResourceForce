@@ -17,7 +17,7 @@ public class Localization : MonoBehaviour {
             _text.text = _text.text.ToUpper();
     }
 
-    public static string filePath = "incidentSpreadsheet";
+    public static string filePath = "StringLocalizations";
     static TextAsset jsonTextAsset;
     public static int languageIndex = 1;
     public static string Get(string key, JSONNode N)
