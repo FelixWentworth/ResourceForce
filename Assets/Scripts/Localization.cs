@@ -40,7 +40,7 @@ public class Localization : MonoBehaviour {
     {
         Text _text = this.GetComponent<Text>();
         if (_text == null)
-            Debug.LogError("Localization script could not find Text component");
+            Debug.LogError("Localization script could not find Text component attached to this gameObject: " + this.gameObject.name);
         _text.text = Get(Key);
         if (_text.text == "")
         {
