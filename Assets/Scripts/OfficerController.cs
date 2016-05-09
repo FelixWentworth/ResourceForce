@@ -35,7 +35,7 @@ public class OfficerController : MonoBehaviour {
             m_officers.Add(temp);
         }
         m_officersInUse = new List<officer>();
-        officersText.text = "Officers\n" + m_officers.Count + "/" + StartingOfficers;
+        officersText.text = Localization.Get("INCIDENT_OFFICERS") + "\n" + m_officers.Count + "/" + StartingOfficers;
         SetOfficerStatus();
         
     }
@@ -50,7 +50,7 @@ public class OfficerController : MonoBehaviour {
             removed.Use(turnsAway);
             m_officersInUse.Add(removed);
         }
-        officersText.text = "Officers\n" + m_officers.Count + "/" + StartingOfficers;
+        officersText.text = Localization.Get("INCIDENT_OFFICERS") + "\n" + m_officers.Count + "/" + StartingOfficers;
         SetOfficerStatus();
     }
     private void AddOfficer(officer zOfficer)
@@ -59,7 +59,7 @@ public class OfficerController : MonoBehaviour {
         officer removed = zOfficer;
         removed.Reset();
         m_officers.Add(removed);
-        officersText.text = "Officers\n" + m_officers.Count + "/" + StartingOfficers;
+        officersText.text = Localization.Get("INCIDENT_OFFICERS") + "\n" + m_officers.Count + "/" + StartingOfficers;
         SetOfficerStatus();
     }
     public void EndTurn()
@@ -76,7 +76,7 @@ public class OfficerController : MonoBehaviour {
                 i--; //reduce i as we removed one of the elements in the list
             }
         }
-        officersText.text = "Officers\n" + m_officers.Count + "/" + StartingOfficers;
+        officersText.text = Localization.Get("INCIDENT_OFFICERS") + "\n" + m_officers.Count + "/" + StartingOfficers;
         SetOfficerStatus();
     }
     private void SetOfficerStatus()
@@ -85,11 +85,11 @@ public class OfficerController : MonoBehaviour {
         int count = 1;
         for (int i = 0; i < m_officers.Count; i++, count++)
         {
-            status += count + " - Available\n";
+            status += count + " - " + Localization.Get("BASIC_TEXT_AVAILABLE") + "\n";
         }
         for (int i = 0; i< m_officersInUse.Count; i++, count++)
         {
-            status += count + " - " + m_officersInUse[i].turnsTilAvailable + " turns until available\n";
+            status += count + " - " + m_officersInUse[i].turnsTilAvailable + Localization.Get("BASIC_TEXT_TURNS_UNTIL_AVAILABLE") + "\n";
         }
         officerStatus.text = status;
         UpdateOfficerIndicators();

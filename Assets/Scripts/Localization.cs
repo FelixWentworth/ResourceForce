@@ -12,7 +12,11 @@ public class Localization : MonoBehaviour {
         Text _text = this.GetComponent<Text>();
         if (_text == null)
             Debug.LogError("Localization script could not find Text component");
-        _text.text = Get(Key, null);
+        _text.text = Get(Key);
+        if (_text.text == "")
+        {
+            Debug.LogError("Could not find string with key: " + Key);
+        }
         if (toUpper)
             _text.text = _text.text.ToUpper();
     }
@@ -20,7 +24,7 @@ public class Localization : MonoBehaviour {
     public static string filePath = "StringLocalizations";
     static TextAsset jsonTextAsset;
     public static int languageIndex = 1;
-    public static string Get(string key, JSONNode N)
+    public static string Get(string key, JSONNode N = null)
     {
         string txt = "";
         key = key.ToUpper();
@@ -36,11 +40,13 @@ public class Localization : MonoBehaviour {
 
         for (int i = 0; N[i]!= null; i++)
         {
-            if (N[i][0].ToString().Contains(key))
+            if (N[i][0].ToString() == "\"" + key.ToString() + "\"")
             {
                 txt = N[i][languageIndex]; //TODO make the 1 match to the localisation of the device
             }
         }
+        //new line character in spreadsheet is *n*
+        txt = txt.Replace("*n*", "\n\n");
         return txt;
     }
     public static string GetRandomStringForType(string type)

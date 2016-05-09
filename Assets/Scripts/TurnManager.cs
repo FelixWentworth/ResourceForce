@@ -33,7 +33,7 @@ public class TurnManager : MonoBehaviour {
         turn++;
         NextTurnButton.SetActive(false);
         GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
-        turnsText.text = "Turn\n" + turn;
+        turnsText.text = Localization.Get("BASIC_TEXT_TURN") + "\n" + turn;
         if (m_IncidentManager == null)
             m_IncidentManager = this.GetComponent<IncidentManager>();
         m_IncidentManager.UpdateIncidents();
@@ -53,15 +53,11 @@ public class TurnManager : MonoBehaviour {
 #else
             m_IncidentManager.ShowIncident(turn);
 #endif
-
-
-
-
         }
     }
     IEnumerator ShowGameOver()
     {
-        gameOverText.text = string.Format("You Survived {0} Turns\nAnd Made Arrests for {1}% of Cases", turn, m_IncidentManager.GetArrestPercentage());
+        gameOverText.text = string.Format(Localization.Get("BASIC_TEXT_GAMEOVER_BODY"), turn, m_IncidentManager.GetArrestPercentage());
         GameOver.SetActive(true);
         
         yield return new WaitForSeconds(2.5f);

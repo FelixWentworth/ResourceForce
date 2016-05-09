@@ -41,7 +41,7 @@ public class IncidentManager : MonoBehaviour
         incidents.Add(newIncident);
         NextIncident.Add(newIncident);
         m_IncidentQueue.AddToQueue(newIncident);
-        ArrestsMade.text = "Arrests\n" + arrestsNum + "/" + (SimplifiedJson.identifier-1);
+        ArrestsMade.text = Localization.Get("BASIC_TEXT_RESOLVED_CASES") + "\n" + arrestsNum + "/" + (SimplifiedJson.identifier-1);
     }
     public bool IsIncidentWaitingToShow(int zTurn)
     {
@@ -60,17 +60,17 @@ public class IncidentManager : MonoBehaviour
     }
     public void UpdateIncidents()
     {
-        string status = "Active Cases\n";
+        string status = Localization.Get("BASIC_TEXT_ACTIVE_CASES") + "\n";
         for (int i = 0; i < incidents.Count; i++)
         {
             //an incident has been resolved so remove it from our list
             {
-                status += "Case " + incidents[i].caseNumber + ": " + incidents[i].nameBeforeDeveloped + "\n";
+                status += Localization.Get("INCIDENT_CASE") + incidents[i].caseNumber + ": " + incidents[i].nameBeforeDeveloped + "\n";
                 m_IncidentQueue.UpdateSeverity(incidents[i].caseNumber, incidents[i].severity);
             }
         }
         CaseStatus.text = status;
-        ArrestsMade.text = "Arrests\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
+        ArrestsMade.text = Localization.Get("BASIC_TEXT_RESOLVED_CASES") + "\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
     }
     public void _showIncident(Text myText)
     {
@@ -125,20 +125,20 @@ public class IncidentManager : MonoBehaviour
         }
         m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
 
-        CaseNumber.text = "Subject: ";
+        CaseNumber.text = Localization.Get("INCIDENT_CASE_SUBJECT") + ": ";
         if (currentIncident.isNew)
         {
-            CaseNumber.text += "<New> ";
+            CaseNumber.text += Localization.Get("INCIDENT_NEW") + " ";
         }
         else if (currentIncident.resolved)
         {
-            CaseNumber.text += "<Resolved> ";
+            CaseNumber.text += Localization.Get("INCIDENT_RESOLVED") + " ";
         }
         else if (!currentIncident.isNew)
         {
-            CaseNumber.text += "<Ongoing> ";
+            CaseNumber.text += Localization.Get("INCIDENT_ONGOING") + " ";
         }
-        CaseNumber.text += "Case " + currentIncident.caseNumber.ToString();
+        CaseNumber.text += Localization.Get("INCIDENT_CASE") + " " + currentIncident.caseNumber.ToString();
 
         if (currentIncident.isNew)
             currentIncident.isNew = false;
@@ -146,7 +146,7 @@ public class IncidentManager : MonoBehaviour
     public void IncreaseArrestsMade()
     {
         arrestsNum++;
-        ArrestsMade.text = "Arrests\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
+        ArrestsMade.text = Localization.Get("BASIC_TEXT_RESOLVED_CASES") + "\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
     }
     public void ClearList()
     {

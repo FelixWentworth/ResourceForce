@@ -42,13 +42,19 @@ public class DialogBox : MonoBehaviour {
         popupType = PopupType.Incident;
         Body.text = "";
         if (developed)
-            Body.text += "DEVELOPED CASE\n";
+            Body.text += Localization.Get("BASIC_TEXT_DEVELOPED") + "\n";
         Body.text += string.Format(zName, zArea);
-        LeftButton.text = "Wait";
+        LeftButton.text = Localization.Get("BASIC_TEXT_WAIT");
         SendOfficerButton.gameObject.SetActive(m_officerController.m_officers.Count >= zOfficers);
- 
-        RightButton.text = string.Format("Send {0} officer{1} for {2} turns", zOfficers, zOfficers > 1 ? "s" : "", turnsToSolve);
 
+        if (zOfficers == 1)
+        {
+            RightButton.text = string.Format(Localization.Get("BASIC_TEXT_SEND_ONE"), turnsToSolve);
+        }
+        else
+        {
+            RightButton.text = string.Format(Localization.Get("BASIC_TEXT_SEND_MANY"), zOfficers, turnsToSolve);
+        }
         waitButton.SetActive(true);
         m_citizenHelpButton.SetActive(showCitizen);
 
@@ -57,9 +63,9 @@ public class DialogBox : MonoBehaviour {
     public void ShowCaseClosedBox(int zCaseNumber, bool positive = false)
     {
         popupType = PopupType.CaseClosed;
-        Body.text = positive ? "Arrests have been made" : "Officers fail to make any arrests regarding the case";
+        Body.text = positive ? Localization.Get("BASIC_TEXT_ARREST_SUCCESS") : Localization.Get("BASIC_TEXT_ARREST_FAIL");
         SendOfficerButton.gameObject.SetActive(false);
-        LeftButton.text = "OK";
+        LeftButton.text = Localization.Get("BASIC_TEXT_OK");
         caseNum = zCaseNumber;
 
         waitButton.SetActive(true);
@@ -71,12 +77,12 @@ public class DialogBox : MonoBehaviour {
         //now calculate if this was a success
         int rand = UnityEngine.Random.Range(1, 101);
         bool success = rand > 65;
-        Body.text = success ? "Citizens Provide Evidence through the INSPEC2T app, 2 have been charged" : "Citizen fails to provide any evidence for the case";
+        Body.text = success ? Localization.Get("BASIC_TEXT_CITIZEN_SUCCESS"): Localization.Get("BASIC_TEXT_CITIZEN_FAIL");
         SendOfficerButton.gameObject.SetActive(!success);
         citizenSuccess = success;
         if (citizenSuccess)
             currentIncident.positiveResolution = true;
-        LeftButton.text = success ? "OK" : "Wait";
+        LeftButton.text = success ? Localization.Get("BASIC_TEXT_OK") : Localization.Get("BASIC_TEXT_WAIT");
         caseNum = zCaseNumber;
 
         waitButton.SetActive(true);
@@ -126,6 +132,6 @@ public class DialogBox : MonoBehaviour {
     }
     public void NoMoreIncidents()
     {
-        Body.text = "No More Incidents to check this turn";
+        Body.text = Localization.Get("BASIC_TEXT_NO_MORE_INCIDENTS");
     }
 }
