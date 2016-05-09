@@ -1,12 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using SimpleJSON;
 using UnityEngine.UI;
 
 public class Localization : MonoBehaviour {
 
+    static Dictionary<string, string> localizationDict = new Dictionary<string, string>();
+
     public string Key;
     public bool toUpper;
+
+    public static string filePath = "StringLocalizations";
+    static TextAsset jsonTextAsset;
+    public static int languageIndex = 1;
+
+    void Awake()
+    {
+        SetLanguageIndex();
+        ConvertJsonToDict();
+    }
+    static void ConvertJsonToDict()
+    {
+        jsonTextAsset = Resources.Load(filePath) as TextAsset;
+
+        var N = JSON.Parse(jsonTextAsset.text);
+
+        for (int i = 0; N[i] != null; i++)
+        {
+            //go through the list and add the strings to the dictionary
+            string _key = N[i][0].ToString();
+            _key = _key.Replace("\"", "");
+            string _value = N[i][languageIndex].ToString();
+            _value = _value.Replace("\"", "");
+            localizationDict[_key] = _value;
+        }
+    }
     void Start()
     {
         Text _text = this.GetComponent<Text>();
@@ -20,33 +49,17 @@ public class Localization : MonoBehaviour {
         if (toUpper)
             _text.text = _text.text.ToUpper();
     }
-
-    public static string filePath = "StringLocalizations";
-    static TextAsset jsonTextAsset;
-    public static int languageIndex = 1;
-    public static string Get(string key, JSONNode N = null)
+    
+    public static string Get(string key)
     {
         string txt = "";
         key = key.ToUpper();
-        ////get the text asset ready to search through
-        if (N == null)
-        {
-            jsonTextAsset = Resources.Load(filePath) as TextAsset;
 
-            N = JSON.Parse(jsonTextAsset.text);
-        }
-        //set the language index based on the system language, we can do this every time in case the language changes
-        SetLanguageIndex();
+        localizationDict.TryGetValue(key, out txt);
 
-        for (int i = 0; N[i]!= null; i++)
-        {
-            if (N[i][0].ToString() == "\"" + key.ToString() + "\"")
-            {
-                txt = N[i][languageIndex]; //TODO make the 1 match to the localisation of the device
-            }
-        }
         //new line character in spreadsheet is *n*
-        txt = txt.Replace("*n*", "\n\n");
+        txt = txt.Replace("*n*", "\n");
+        txt = txt.Replace("*2n*", "\n\n");
         return txt;
     }
     public static string GetRandomStringForType(string type)
@@ -60,19 +73,15 @@ public class Localization : MonoBehaviour {
 
         //now search through our file for our type
         int maxTexts = 0;
-        for (int i = 0; N[i]!= null; i++)
-        {
-            if (N[i][0].ToString().Contains(type.ToUpper() + "_LENGTH"))
-            {
-                maxTexts = int.Parse(N[i][languageIndex]);
-                break;
-            }
-        }
+        string num;
+        localizationDict.TryGetValue(type.ToUpper() + "_LENGTH", out num);
+
+        maxTexts = int.Parse(num);
 
         //now set a random string to get from the max number
         int rand = UnityEngine.Random.Range(1, maxTexts + 1);
 
-        return Get(type.ToUpper() + "_TEXT_" + rand, N);
+        return Get(type.ToUpper() + "_TEXT_" + rand);
     }
     public static void SetLanguageIndex()
     {
@@ -92,4 +101,5 @@ public class Localization : MonoBehaviour {
                 break;
         }
     }
+
 }
