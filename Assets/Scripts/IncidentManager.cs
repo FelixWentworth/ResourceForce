@@ -29,6 +29,11 @@ public class IncidentManager : MonoBehaviour
     {
 
         //NextIncident.Clear();
+        if (incidents.Count == 10)
+        {
+            //we do not have the space for any more incidents
+            return;
+        }
         Incident newIncident = new Incident();
 
         //now get a random incident data from JSON file
