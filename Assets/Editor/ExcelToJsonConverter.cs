@@ -125,6 +125,7 @@ public class ExcelToJsonConverter
 			{
 				// The file name is the sheet name with spaces removed
 				string fileName = excelData.Tables[i].TableName.Replace(" ", string.Empty);
+                spreadSheetJson = spreadSheetJson.Replace("},{", "}," + System.Environment.NewLine + "{");
 				WriteTextToFile(spreadSheetJson, outputPath + "/" + fileName + ".json");
 				Debug.Log("Excel To Json Converter: " + excelData.Tables[i].TableName + " successfully written to file.");
 			}
