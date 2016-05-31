@@ -328,7 +328,7 @@ public class Incident {
     public void NewTurn()
     {
         //decide if we should show the citizen help box
-        int rand = UnityEngine.Random.Range(0, 10);
+        int rand = UnityEngine.Random.Range(0,5);
         CitizenAvailable = rand == 1;
     }
 
