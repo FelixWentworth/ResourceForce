@@ -58,6 +58,8 @@ public class Localization : MonoBehaviour {
         localizationDict.TryGetValue(key, out txt);
 
         //new line character in spreadsheet is *n*
+        if (txt == null)
+            return key;
         txt = txt.Replace("*n*", "\n");
         txt = txt.Replace("*2n*", "\n\n");
         return txt;

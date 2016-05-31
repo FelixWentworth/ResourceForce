@@ -65,8 +65,9 @@
 {"key":"BASIC_TEXT_RESOLVED_CASES","en-gb":"Arrests","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_ACTIVE_CASES","en-gb":"Active Cases","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_TURN","en-gb":"Turn","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"BASIC_TEXT_GAMEOVER","en-gb":"Game Over*2n*Too many unresolved cases","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"BASIC_TEXT_GAMEOVER_BODY","en-gb":"You Survived {0} Turns*2n*And Made Arrests for {1}% of Cases","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_GAMEOVER","en-gb":"Game Over*2n*Citizens not happy with your performance","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_GAMEOVER_BODY","en-gb":"You Survived {0} Turns*2n*Before citizen happiness fell too low, Citizens no longer feel safe under your control","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_AVAILABLE","en-gb":"Available","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_TURNS_UNTIL_AVAILABLE","en-gb":"turns until available","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"BASIC_TEXT_OFFICERS_REQUIRED","en-gb":"Officers required","de":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"BASIC_TEXT_OFFICERS_REQUIRED","en-gb":"Officers required","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_CITIZEN_HAPPINESS","en-gb":"Citizen Happines","de":"XXXX","el":"XXXX","es":"XXXX"}]

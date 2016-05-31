@@ -43,6 +43,7 @@ public class SimplifiedJson : MonoBehaviour {
             {
                 //the incident that does not develop will expire, for now we will resolve the case, TODO make this a unsuccessful resolution
                 zIncident.resolved = true;
+                zIncident.expired = true;
                 zIncident.positiveResolution = false;
             }
             else if (waiting)

@@ -21,6 +21,7 @@ public class IncidentManager : MonoBehaviour
     protected int currentTurn;
     public Text ArrestsMade;
     protected int arrestsNum;
+    protected float happiness = 50f;
 
     private DialogBox m_dialogBox;
 
@@ -48,7 +49,6 @@ public class IncidentManager : MonoBehaviour
         incidents.Add(newIncident);
         NextIncident.Add(newIncident);
         m_IncidentQueue.AddToQueue(newIncident);
-        ArrestsMade.text = Localization.Get("BASIC_TEXT_RESOLVED_CASES") + "\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
     }
     public bool IsIncidentWaitingToShow(int zTurn)
     {
@@ -77,7 +77,7 @@ public class IncidentManager : MonoBehaviour
             }
         }
         CaseStatus.text = status;
-        ArrestsMade.text = Localization.Get("BASIC_TEXT_RESOLVED_CASES") + "\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
+        ArrestsMade.text = Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + ": " + Mathf.RoundToInt(happiness) + "%";
     }
     public void _showIncident(Text myText)
     {
@@ -151,10 +151,36 @@ public class IncidentManager : MonoBehaviour
         if (currentIncident.isNew)
             currentIncident.isNew = false;
     }
-    public void IncreaseArrestsMade()
+    //public void IncreaseArrestsMade()
+    //{
+    //    arrestsNum++;
+    //    ArrestsMade.text = Localization.Get("BASIC_TEXT_RESOLVED_CASES") + "\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
+    //}
+    public void CaseClosed(bool zArrestMade, int zSeverity = 1, bool expired = false)
     {
-        arrestsNum++;
-        ArrestsMade.text = Localization.Get("BASIC_TEXT_RESOLVED_CASES") + "\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
+        //update the citizen security/happiness
+        if (zArrestMade)
+        {
+            happiness += 5f * zSeverity;
+        }
+        else
+        {
+            if (expired)
+            {
+                happiness -= 3f * zSeverity;
+            }
+            else
+            {
+                happiness += 1f * zSeverity;
+            }
+        }
+        ArrestsMade.text = Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + ": " + Mathf.RoundToInt(happiness) + "%";
+    }
+    public void EndTurn()
+    {
+        //punish the player for having cases open, stopping players from just ignoring all cases
+        happiness -= incidents.Count;
+        ArrestsMade.text = Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + ": " + Mathf.RoundToInt(happiness) + "%";
     }
     public void ClearList()
     {
@@ -192,6 +218,7 @@ public class IncidentManager : MonoBehaviour
             ShowNext();
         }
     }
+
     public void CitizenHelpPressed()
     {
 #if SELECT_INCIDENTS
@@ -233,9 +260,9 @@ public class IncidentManager : MonoBehaviour
             {
                 //we have found the case to remove
                 m_IncidentQueue.RemoveFromQueue(incidents[i].caseNumber);
-                if (incidents[i].positiveResolution)
-                    IncreaseArrestsMade();
-
+                //if (incidents[i].positiveResolution)
+                //    IncreaseArrestsMade();
+                CaseClosed(incidents[i].positiveResolution, incidents[i].severity, incidents[i].expired);
                 incidents.RemoveAt(i);
                 i--;
             }
@@ -253,6 +280,14 @@ public class IncidentManager : MonoBehaviour
         {
             incidents[i].NewTurn();
         }
+    }
+    public bool isGameOver()
+    {
+        return happiness <= 20f;
+    }
+    public int GetHappiness()
+    {
+        return Mathf.RoundToInt(happiness);
     }
 }
 
@@ -272,6 +307,7 @@ public class Incident {
     public bool developed;
     public bool citizenHelp;
     public bool resolved;
+    public bool expired = false;
     public bool positiveResolution = false;
     public bool isNew = true;
     private bool CitizenAvailable;
@@ -289,8 +325,6 @@ public class Incident {
     public void Show(ref Incident zIncident)
     {
         //use the dialog box to show the current incident
-        
-
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
        m_dialogBox.Show(incidentName, area, officer, caseNumber, severity, developed, turnsToAdd, CitizenAvailable);

@@ -31,13 +31,15 @@ public class TurnManager : MonoBehaviour {
 	public void NextTurn()
     {
         turn++;
+        
         NextTurnButton.SetActive(false);
         GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
         turnsText.text = Localization.Get("BASIC_TEXT_TURN") + "\n" + turn;
         if (m_IncidentManager == null)
             m_IncidentManager = this.GetComponent<IncidentManager>();
         m_IncidentManager.UpdateIncidents();
-        if (m_IncidentManager.incidents.Count > GameOverLimit)
+        m_IncidentManager.EndTurn();
+        if (m_IncidentManager.isGameOver())
         {
             //GAME OVER, too many incidents un resolved
             StartCoroutine(ShowGameOver());
@@ -54,10 +56,11 @@ public class TurnManager : MonoBehaviour {
             m_IncidentManager.ShowIncident(turn);
 #endif
         }
+        
     }
     IEnumerator ShowGameOver()
     {
-        gameOverText.text = string.Format(Localization.Get("BASIC_TEXT_GAMEOVER_BODY"), turn, m_IncidentManager.GetArrestPercentage());
+        gameOverText.text = string.Format(Localization.Get("BASIC_TEXT_GAMEOVER_BODY"), turn);
         GameOver.SetActive(true);
         
         yield return new WaitForSeconds(2.5f);
