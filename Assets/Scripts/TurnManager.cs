@@ -54,6 +54,7 @@ public class TurnManager : MonoBehaviour {
             m_IncidentManager.ShowIncident(turn);
 #endif
         }
+        
     }
     IEnumerator ShowGameOver()
     {

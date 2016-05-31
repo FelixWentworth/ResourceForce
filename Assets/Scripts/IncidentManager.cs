@@ -290,19 +290,19 @@ public class Incident {
 
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.ShowBox(incidentName, area, officer, caseNumber, developed, turnsToAdd, CitizenAvailable);
+       m_dialogBox.Show(incidentName, area, officer, caseNumber, developed, turnsToAdd, CitizenAvailable);
     }
     public void ShowCaseClosed(ref Incident zIncident)
     {
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.ShowCaseClosedBox(caseNumber, zIncident.positiveResolution);
+        m_dialogBox.Show(caseNumber, zIncident.positiveResolution);
     }
     public void ShowCitizenHelp(ref Incident zIncident)
     {
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.ShowCitizenHelp(caseNumber);
+        m_dialogBox.Show(caseNumber);
     }
     public void ClearDialogBox()
     {
