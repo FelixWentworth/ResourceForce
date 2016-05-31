@@ -34,9 +34,7 @@ public class DialogBox : MonoBehaviour {
     }
     public void DeactivateAll()
     {
-        m_citizenHelpButton.gameObject.SetActive(false);
-        SendOfficerButton.gameObject.SetActive(false);
-        waitButton.SetActive(false);
+        DisableButtons();
         Body.text = "";
         OfficerReqText.text = "";
     }
@@ -62,7 +60,7 @@ public class DialogBox : MonoBehaviour {
         Body.text += string.Format(zName, zArea);
         OfficerReqText.text = Localization.Get("BASIC_TEXT_OFFICERS_REQUIRED") + ": " + zOfficers;
         LeftButton.text = Localization.Get("BASIC_TEXT_WAIT");
-        SendOfficerButton.gameObject.SetActive(m_officerController.m_officers.Count >= zOfficers);
+        
 
         if (zOfficers == 1)
         {
@@ -77,6 +75,7 @@ public class DialogBox : MonoBehaviour {
 
         yield return EmailAnim(-1f);
 
+        SendOfficerButton.gameObject.SetActive(m_officerController.m_officers.Count >= zOfficers);
         waitButton.SetActive(true);
         m_citizenHelpButton.SetActive(showCitizen);
     }
@@ -104,7 +103,7 @@ public class DialogBox : MonoBehaviour {
         bool success = rand > 65;
         Body.text = success ? Localization.Get("BASIC_TEXT_CITIZEN_SUCCESS"): Localization.Get("BASIC_TEXT_CITIZEN_FAIL");
         OfficerReqText.text = "";
-        SendOfficerButton.gameObject.SetActive(!success);
+        
         citizenSuccess = success;
         if (citizenSuccess)
             currentIncident.positiveResolution = true;
@@ -115,6 +114,7 @@ public class DialogBox : MonoBehaviour {
 
         yield return EmailAnim(-1f);
 
+        SendOfficerButton.gameObject.SetActive(!success);
         waitButton.SetActive(true);
         m_citizenHelpButton.SetActive(false);
     }
@@ -141,6 +141,7 @@ public class DialogBox : MonoBehaviour {
     }
     public void LeftButtonPressed()
     {
+        DisableButtons();
         StartCoroutine(LeftButtonWithAnim());
     }
     IEnumerator LeftButtonWithAnim()
@@ -173,6 +174,7 @@ public class DialogBox : MonoBehaviour {
     }
     public void RightButtonPressed()
     {
+        DisableButtons();
         StartCoroutine(RightButtonWithAnim());        
     }
     IEnumerator RightButtonWithAnim()
@@ -183,6 +185,7 @@ public class DialogBox : MonoBehaviour {
     }
     public void CitizenButtonPressed()
     {
+        DisableButtons();
         StartCoroutine(CitizenButtonWithAnim());
     }
     IEnumerator CitizenButtonWithAnim()
@@ -195,5 +198,11 @@ public class DialogBox : MonoBehaviour {
     {
         Body.text = "";
         OfficerReqText.text = "";
+    }
+    public void DisableButtons()
+    {
+        waitButton.SetActive(false);
+        SendOfficerButton.SetActive(false);
+        m_citizenHelpButton.SetActive(false);
     }
 }
