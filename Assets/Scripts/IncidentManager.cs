@@ -163,7 +163,7 @@ public class IncidentManager : MonoBehaviour
         //update the citizen security/happiness
         if (zArrestMade)
         {
-            happiness += 5f * zSeverity;
+            happiness += 3f * zSeverity;
         }
         else
         {
@@ -176,12 +176,14 @@ public class IncidentManager : MonoBehaviour
                 happiness += 1f * zSeverity;
             }
         }
+        happiness = Mathf.Clamp(happiness, 0, 100);
         ArrestsMade.text = Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + ": " + Mathf.RoundToInt(happiness) + "%";
     }
     public void EndTurn()
     {
         //punish the player for having cases open, stopping players from just ignoring all cases
-        happiness -= incidents.Count;
+        happiness -= 1.5f * incidents.Count;
+        happiness = Mathf.Clamp(happiness, 0, 100);
         ArrestsMade.text = Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + ": " + Mathf.RoundToInt(happiness) + "%";
     }
     public void ClearList()
@@ -291,7 +293,7 @@ public class IncidentManager : MonoBehaviour
     }
     public bool isGameOver()
     {
-        return happiness <= 20f;
+        return happiness < 20f;
     }
     public int GetHappiness()
     {
@@ -341,7 +343,7 @@ public class Incident {
     {
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.Show(caseNumber, zIncident.positiveResolution, severity);
+        m_dialogBox.Show(caseNumber, incidentName, area, zIncident.positiveResolution, severity);
     }
     public void ShowCitizenHelp(ref Incident zIncident)
     {

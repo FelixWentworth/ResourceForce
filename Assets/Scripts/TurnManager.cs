@@ -39,7 +39,7 @@ public class TurnManager : MonoBehaviour {
         if (m_IncidentManager == null)
             m_IncidentManager = this.GetComponent<IncidentManager>();
         m_IncidentManager.UpdateIncidents();
-        m_IncidentManager.EndTurn();
+        
         if (m_IncidentManager.isGameOver())
         {
             //GAME OVER, too many incidents un resolved
@@ -57,7 +57,8 @@ public class TurnManager : MonoBehaviour {
             m_IncidentManager.ShowIncident(turn);
 #endif
         }
-        
+        //update at the end to give the player a chance to get citizen happiness over 20%
+        m_IncidentManager.EndTurn();
     }
     IEnumerator ShowGameOver()
     {
