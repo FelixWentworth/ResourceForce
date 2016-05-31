@@ -68,4 +68,5 @@
 {"key":"BASIC_TEXT_GAMEOVER","en-gb":"Game Over*2n*Too many unresolved cases","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_GAMEOVER_BODY","en-gb":"You Survived {0} Turns*2n*And Made Arrests for {1}% of Cases","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_AVAILABLE","en-gb":"Available","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"BASIC_TEXT_TURNS_UNTIL_AVAILABLE","en-gb":"turns until available","de":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"BASIC_TEXT_TURNS_UNTIL_AVAILABLE","en-gb":"turns until available","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_OFFICERS_REQUIRED","en-gb":"Officers required","de":"XXXX","el":"XXXX","es":"XXXX"}]
