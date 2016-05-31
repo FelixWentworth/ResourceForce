@@ -48,9 +48,9 @@ public class DialogBox : MonoBehaviour {
     {
         StartCoroutine(ShowCaseClosedBox(zCaseNumber, zName, zArea, zPositive, zSeverity));
     }
-    public void Show(int zCaseNumber, int zSeverity)
+    public void Show(int zCaseNumber, int zSeverity, int zOfficers, int zTurnsToSolve)
     {
-        StartCoroutine(ShowCitizenHelp(zCaseNumber, zSeverity));
+        StartCoroutine(ShowCitizenHelp(zCaseNumber, zSeverity, zOfficers, zTurnsToSolve));
     }
     public IEnumerator ShowBox(string zName, string zArea, int zOfficers, int caseNumber,int zSeverity, bool developed, int turnsToSolve, bool showCitizen = false)
     {
@@ -97,14 +97,15 @@ public class DialogBox : MonoBehaviour {
         waitButton.SetActive(true);
         m_citizenHelpButton.SetActive(false);
     }
-    public IEnumerator ShowCitizenHelp(int zCaseNumber, int zSeverity)
+    public IEnumerator ShowCitizenHelp(int zCaseNumber, int zSeverity, int zOfficers, int zTurnsToSolve)
     {
         popupType = PopupType.Citizen;
         //now calculate if this was a success
         int rand = UnityEngine.Random.Range(1, 101);
         bool success = rand > 65;
         Body.text = success ? Localization.Get("BASIC_TEXT_CITIZEN_SUCCESS"): Localization.Get("BASIC_TEXT_CITIZEN_FAIL");
-        OfficerReqText.text = "";
+        if (!success)
+            OfficerReqText.text = Localization.Get("BASIC_TEXT_OFFICERS_REQUIRED") + ": " + zOfficers + "\n" + Localization.Get("BASIC_TEXT_TURNS_REQUIRED") + ": " + zTurnsToSolve;
         
         citizenSuccess = success;
         if (citizenSuccess)

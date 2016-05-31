@@ -349,7 +349,7 @@ public class Incident {
     {
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.Show(caseNumber, severity);
+        m_dialogBox.Show(caseNumber, severity, zIncident.officer, zIncident.turnsToAdd);
     }
     public void ClearDialogBox()
     {
