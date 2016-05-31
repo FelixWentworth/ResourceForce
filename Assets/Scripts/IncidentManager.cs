@@ -23,7 +23,7 @@ public class IncidentManager : MonoBehaviour
     protected int arrestsNum;
     protected float happiness = 50f;
 
-    private DialogBox m_dialogBox;
+    public DialogBox m_dialogBox;
 
 #if SELECT_INCIDENTS
     private int incidentShowingIndex = 1;
@@ -93,6 +93,7 @@ public class IncidentManager : MonoBehaviour
             CreateNewIncident(turn);
 
         Incident currentIncident = NextIncident[0];
+        m_dialogBox.currentIncident = currentIncident;
 #if SELECT_INCIDENTS
         incidentShowingIndex = 0;
 #endif
@@ -105,6 +106,7 @@ public class IncidentManager : MonoBehaviour
                 if (NextIncident[i].caseNumber == zCaseNumber)
                 {
                     currentIncident = NextIncident[i];
+                    m_dialogBox.currentIncident = currentIncident;
 #if SELECT_INCIDENTS
                     incidentShowingIndex = i;
 #endif
@@ -191,8 +193,10 @@ public class IncidentManager : MonoBehaviour
     {
 #if SELECT_INCIDENTS
         Incident currentIncident = NextIncident[incidentShowingIndex];
+        m_dialogBox.currentIncident = currentIncident;
 #else
         Incident currentIncident = NextIncident[0];
+        m_dialogBox.currentIncident = currentIncident;
 #endif
         m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
@@ -207,8 +211,10 @@ public class IncidentManager : MonoBehaviour
         {
 #if SELECT_INCIDENTS
             Incident currentIncident = NextIncident[incidentShowingIndex];
+            m_dialogBox.currentIncident = currentIncident;
 #else
             Incident currentIncident = NextIncident[0];
+            m_dialogBox.currentIncident = currentIncident;
 #endif
             m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
             m_OfficerController.RemoveOfficer(currentIncident.officer, currentIncident.turnsToAdd);
@@ -223,8 +229,10 @@ public class IncidentManager : MonoBehaviour
     {
 #if SELECT_INCIDENTS
         Incident currentIncident = NextIncident[incidentShowingIndex];
+        m_dialogBox.currentIncident = currentIncident;
 #else
         Incident currentIncident = NextIncident[0];
+        m_dialogBox.currentIncident = currentIncident;
 #endif
         m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
         m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.CitizenRequest);

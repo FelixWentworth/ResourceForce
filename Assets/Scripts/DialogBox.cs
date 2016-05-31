@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class DialogBox : MonoBehaviour {
 
-    Incident currentIncident;
+    [HideInInspector]
+    public Incident currentIncident;
     
     public Text Body;
     public Text LeftButton;

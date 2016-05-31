@@ -11,6 +11,7 @@ public class TurnManager : MonoBehaviour {
 
     public Text turnsText;
     public Text gameOverText;
+    public Text HighScoreText;
     public int GameOverLimit = 4;
 
     public GameObject startScreen;
@@ -61,9 +62,17 @@ public class TurnManager : MonoBehaviour {
     IEnumerator ShowGameOver()
     {
         gameOverText.text = string.Format(Localization.Get("BASIC_TEXT_GAMEOVER_BODY"), turn);
+        int bestTurns = PlayerPrefs.GetInt("BestTurns");
+        if (turn > bestTurns)
+        {
+            bestTurns = turn;
+            PlayerPrefs.SetInt("BestTurns", bestTurns);
+        }
+        HighScoreText.text = Localization.Get("BASIC_TEXT_SCORE") + ": " + turn + "\n" + Localization.Get("BASIC_TEXT_BEST") + ": " + bestTurns;
+        HighScoreText.text = HighScoreText.text.ToUpper();
         GameOver.SetActive(true);
         
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(5f);
         Reset();
     }
 
