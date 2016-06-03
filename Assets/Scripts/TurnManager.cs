@@ -62,14 +62,15 @@ public class TurnManager : MonoBehaviour {
     }
     IEnumerator ShowGameOver()
     {
-        gameOverText.text = string.Format(Localization.Get("BASIC_TEXT_GAMEOVER_BODY"), turn);
+        int zTurn = turn - 1;
+        gameOverText.text = string.Format(Localization.Get("BASIC_TEXT_GAMEOVER_BODY"), zTurn);
         int bestTurns = PlayerPrefs.GetInt("BestTurns");
-        if (turn > bestTurns)
+        if (zTurn > bestTurns)
         {
-            bestTurns = turn;
+            bestTurns = zTurn;
             PlayerPrefs.SetInt("BestTurns", bestTurns);
         }
-        HighScoreText.text = Localization.Get("BASIC_TEXT_SCORE") + ": " + turn + "\n" + Localization.Get("BASIC_TEXT_BEST") + ": " + bestTurns;
+        HighScoreText.text = Localization.Get("BASIC_TEXT_SCORE") + ": " + zTurn + "\n" + Localization.Get("BASIC_TEXT_BEST") + ": " + bestTurns;
         HighScoreText.text = HighScoreText.text.ToUpper();
         GameOver.SetActive(true);
         

@@ -39,26 +39,26 @@ public class DialogBox : MonoBehaviour {
         Body.text = "";
         OfficerReqText.text = "";
     }
-    public void Show(string zName, string zArea, int zOfficers, int caseNumber, int zSeverity, bool developed, int turnsToSolve, bool showCitizen = false)
+    public void Show(string zName, int zOfficers, int caseNumber, int zSeverity, bool developed, int turnsToSolve, bool showCitizen = false)
     {
         //call this method so we can activate coroutines from incident class
-        StartCoroutine(ShowBox(zName, zArea, zOfficers, caseNumber, zSeverity, developed, turnsToSolve, showCitizen));
+        StartCoroutine(ShowBox(zName, zOfficers, caseNumber, zSeverity, developed, turnsToSolve, showCitizen));
     }
-    public void Show(int zCaseNumber, string zName, string zArea, bool zPositive, int zSeverity)
+    public void Show(int zCaseNumber, string zName, bool zPositive, int zSeverity)
     {
-        StartCoroutine(ShowCaseClosedBox(zCaseNumber, zName, zArea, zPositive, zSeverity));
+        StartCoroutine(ShowCaseClosedBox(zCaseNumber, zName, zPositive, zSeverity));
     }
     public void Show(int zCaseNumber, int zSeverity, int zOfficers, int zTurnsToSolve)
     {
         StartCoroutine(ShowCitizenHelp(zCaseNumber, zSeverity, zOfficers, zTurnsToSolve));
     }
-    public IEnumerator ShowBox(string zName, string zArea, int zOfficers, int caseNumber,int zSeverity, bool developed, int turnsToSolve, bool showCitizen = false)
+    public IEnumerator ShowBox(string zName, int zOfficers, int caseNumber,int zSeverity, bool developed, int turnsToSolve, bool showCitizen = false)
     {
         popupType = PopupType.Incident;
         Body.text = "";
         if (developed)
             Body.text += Localization.Get("BASIC_TEXT_DEVELOPED") + "\n";
-        Body.text += string.Format(zName, zArea);
+        Body.text += zName;
         OfficerReqText.text = Localization.Get("BASIC_TEXT_OFFICERS_REQUIRED") + ": " + zOfficers + "\n" + Localization.Get("BASIC_TEXT_TURNS_REQUIRED") + ": " + turnsToSolve;
         LeftButton.text = Localization.Get("BASIC_TEXT_WAIT");
         
@@ -73,18 +73,23 @@ public class DialogBox : MonoBehaviour {
         }
         EmailNumber.text = caseNumber.ToString();
         SetSeverity(zSeverity);
+        if (showCitizen)
+        {
+            Body.text += "\n\n" + Localization.Get("CITIZEN_HELP_TEXT");
+        }
 
         yield return EmailAnim(-1f);
 
         SendOfficerButton.gameObject.SetActive(m_officerController.m_officers.Count >= zOfficers);
         waitButton.SetActive(true);
         m_citizenHelpButton.SetActive(showCitizen);
+        
     }
-    public IEnumerator ShowCaseClosedBox(int zCaseNumber, string zName, string zArea, bool positive = false, int zSeverity = 1)
+    public IEnumerator ShowCaseClosedBox(int zCaseNumber, string zName, bool positive = false, int zSeverity = 1)
     {
         popupType = PopupType.CaseClosed;
         Body.text = positive ? Localization.Get("BASIC_TEXT_ARREST_SUCCESS") : Localization.Get("BASIC_TEXT_ARREST_FAIL");
-        Body.text += "\n\n" + string.Format(zName, zArea);
+        Body.text += zName;
         OfficerReqText.text = "";
         SendOfficerButton.gameObject.SetActive(false);
         LeftButton.text = Localization.Get("BASIC_TEXT_OK");

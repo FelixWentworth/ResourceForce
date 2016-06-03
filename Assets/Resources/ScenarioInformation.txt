@@ -1,0 +1,27 @@
+{
+  "version": "0.1",
+  "Scenario1": {
+	"1":  ["Missing Person", "SCENARIO_1_INDEX_1", 6, 2, -1, 1, 1, 1],
+	"2":  ["Investigation", "SCENARIO_1_INDEX_2", 6, 5, 3, 3, 5, 3],
+	"3":  ["Citizen Help", "SCENARIO_1_INDEX_3", 3, 4, -1, 2, 1, 3],
+	"4":  ["Resolution", "SCENARIO_1_INDEX_4", -1, -1, -1, 0, 0, 0],
+	"5":  ["Resolution", "SCENARIO_1_INDEX_5", -1, -1, -1, 0, 0, 0],
+	"6":  ["Resolution", "SCENARIO_1_INDEX_6", -1, -1, -1, 0, 0, 0]
+  },
+  "Scenario2": {
+	"1":  ["Missing Person", "SCENARIO_2_INDEX_1", 3, 9, -1, 3, 5, 2],
+	"2":  ["Verbal Assault", "SCENARIO_2_INDEX_2", 4, 10, 6, 2, 1, 2],
+	"3":  ["Physical Assault", "SCENARIO_2_INDEX_3", 11, 12, 5, 5, 4, 3],
+	"4":  ["Physical Assault", "SCENARIO_2_INDEX_4", 5, 13, -1, 4, 2, 3],
+	"5":  ["Citizen Help", "SCENARIO_2_INDEX_5", 6, 14, -1, 1, 1, 2],
+	"6":  ["Citizen Help", "SCENARIO_2_INDEX_6", -1, -1, -1, 0, 0, 0],
+	"7":  ["Resolution", "SCENARIO_2_INDEX_7", -1, -1, -1, 0, 0, 0],
+	"8":  ["Resolution", "SCENARIO_2_INDEX_8", -1, -1, -1, 0, 0, 0],
+	"9":  ["Resolution", "SCENARIO_2_INDEX_9", -1, -1, -1, 0, 0, 0],
+	"10": ["Resolution", "SCENARIO_2_INDEX_10", -1, -1, -1, 0, 0, 0],
+	"11": ["Resolution", "SCENARIO_2_INDEX_11", -1, -1, -1, 0, 0, 0],
+	"12": ["Resolution", "SCENARIO_2_INDEX_12", -1, -1, -1, 0, 0, 0],
+	"13": ["Resolution", "SCENARIO_2_INDEX_13", -1, -1, -1, 0, 0, 0],
+	"14": ["Resolution", "SCENARIO_2_INDEX_14", -1, -1, -1, 0, 0, 0]
+  }
+}

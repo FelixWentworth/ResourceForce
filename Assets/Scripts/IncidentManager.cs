@@ -201,8 +201,20 @@ public class IncidentManager : MonoBehaviour
         m_dialogBox.currentIncident = currentIncident;
 #endif
         m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
-        GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
+        GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().WaitPressed(ref currentIncident);
+       // GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
         m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.Waiting);
+        //update our lists
+        NextIncident[0] = currentIncident;
+        for (int i = 0; i < incidents.Count; i++)
+        {
+            if (incidents[i].caseNumber == currentIncident.caseNumber)
+            {
+                incidents[i] = currentIncident;
+                break;
+            }
+        }
+
         ShowNext();
     }
     public void ResolvePressed()
@@ -220,9 +232,18 @@ public class IncidentManager : MonoBehaviour
 #endif
             m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
             m_OfficerController.RemoveOfficer(currentIncident.officer, currentIncident.turnsToAdd);
-            GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, false);
+            GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().OfficerPressed(ref currentIncident);
+            //GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, false);
             m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.OfficersSent);
-
+            NextIncident[0] = currentIncident;
+            for (int i = 0; i < incidents.Count; i++)
+            {
+                if (incidents[i].caseNumber == currentIncident.caseNumber)
+                {
+                    incidents[i] = currentIncident;
+                    break;
+                }
+            }
             ShowNext();
         }
     }
@@ -240,7 +261,16 @@ public class IncidentManager : MonoBehaviour
         m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.CitizenRequest);
         //make sure the incident is updated next turn, we will handle the citizen request result when we next show the incident
         currentIncident.turnToShow++;
-        currentIncident.citizenHelp = true;
+        GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().CitizenPressed(ref currentIncident);
+        NextIncident[0] = currentIncident;
+        for (int i = 0; i < incidents.Count; i++)
+        {
+            if (incidents[i].caseNumber == currentIncident.caseNumber)
+            {
+                incidents[i] = currentIncident;
+                break;
+            }
+        }
         ShowNext();
     }
     public void ShowNext()
@@ -293,7 +323,7 @@ public class IncidentManager : MonoBehaviour
     }
     public bool isGameOver()
     {
-        return happiness < 20f;
+        return Mathf.RoundToInt(happiness) < 10f;
     }
     public int GetHappiness()
     {
@@ -302,14 +332,17 @@ public class IncidentManager : MonoBehaviour
 }
 
 public class Incident {
+    public int scenarioNum;
     public int index;
     public int officer;
-    public string area;
     public string incidentName;
     public int turnToShow;
     public int turnsToAdd;
     public int severity;
     public int caseNumber;
+    public int waitIndex;
+    public int officerIndex;
+    public int citizenIndex;
 
     //values which are not set during setup
     public int turnToDevelop;
@@ -337,13 +370,13 @@ public class Incident {
         //use the dialog box to show the current incident
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-       m_dialogBox.Show(incidentName, area, officer, caseNumber, severity, developed, turnsToAdd, CitizenAvailable);
+       m_dialogBox.Show(incidentName, officer, caseNumber, severity, developed, turnsToAdd, CitizenAvailable);
     }
     public void ShowCaseClosed(ref Incident zIncident)
     {
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.Show(caseNumber, incidentName, area, zIncident.positiveResolution, severity);
+        m_dialogBox.Show(caseNumber, incidentName, zIncident.positiveResolution, severity);
     }
     public void ShowCitizenHelp(ref Incident zIncident)
     {
