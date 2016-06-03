@@ -22,7 +22,7 @@ public class DialogBox : MonoBehaviour {
     public GameObject m_citizenHelpButton;
     public GameObject SendOfficerButton;
     public GameObject waitButton;
-    public enum PopupType { Incident, Citizen, CaseClosed };
+    public enum PopupType { Incident, CaseClosed };
     public PopupType popupType = PopupType.Incident;
 
     private int caseNum;
@@ -39,30 +39,28 @@ public class DialogBox : MonoBehaviour {
         Body.text = "";
         OfficerReqText.text = "";
     }
-    public void Show(string zName, int zOfficers, int caseNumber, int zSeverity, bool developed, int turnsToSolve, bool showCitizen = false)
+    public void Show(Incident zIncident)
     {
-        //call this method so we can activate coroutines from incident class
-        StartCoroutine(ShowBox(zName, zOfficers, caseNumber, zSeverity, developed, turnsToSolve, showCitizen));
+        //pass through the relevant info to the dialog box
+        StartCoroutine(ShowIncident(zIncident.incidentName, zIncident.caseNumber, zIncident.officer, zIncident.turnsToAdd, zIncident.severity, zIncident.waitIndex, zIncident.officerIndex, zIncident.citizenIndex));
     }
-    public void Show(int zCaseNumber, string zName, bool zPositive, int zSeverity)
+    public IEnumerator ShowIncident(string zDescription, int zCaseNumber, int zOfficers, int zTurnsToSolve, int zSeverity, int zWaitIndex, int zOfficerIndex, int zCitizenIndex)
     {
-        StartCoroutine(ShowCaseClosedBox(zCaseNumber, zName, zPositive, zSeverity));
-    }
-    public void Show(int zCaseNumber, int zSeverity, int zOfficers, int zTurnsToSolve)
-    {
-        StartCoroutine(ShowCitizenHelp(zCaseNumber, zSeverity, zOfficers, zTurnsToSolve));
-    }
-    public IEnumerator ShowBox(string zName, int zOfficers, int caseNumber,int zSeverity, bool developed, int turnsToSolve, bool showCitizen = false)
-    {
-        popupType = PopupType.Incident;
-        Body.text = "";
-        if (developed)
-            Body.text += Localization.Get("BASIC_TEXT_DEVELOPED") + "\n";
-        Body.text += zName;
-        OfficerReqText.text = Localization.Get("BASIC_TEXT_OFFICERS_REQUIRED") + ": " + zOfficers + "\n" + Localization.Get("BASIC_TEXT_TURNS_REQUIRED") + ": " + turnsToSolve;
-        LeftButton.text = Localization.Get("BASIC_TEXT_WAIT");
+        bool endCase = (zWaitIndex == -1 && zOfficerIndex == -1 && zCitizenIndex == -1);
+        Body.text = Localization.Get(zDescription);
+        caseNum = zCaseNumber;
+        if (!endCase)
+        {
+            OfficerReqText.text = Localization.Get("BASIC_TEXT_OFFICERS_REQUIRED") + ": " + zOfficers + "\n" + Localization.Get("BASIC_TEXT_TURNS_REQUIRED") + ": " + zTurnsToSolve;
+            popupType = PopupType.Incident;
+        }
+        else
+        {
+            OfficerReqText.text = "";
+            popupType = PopupType.CaseClosed;
+        }
+        LeftButton.text = endCase ? Localization.Get("BASIC_TEXT_OK") : Localization.Get("BASIC_TEXT_WAIT");
         
-
         if (zOfficers == 1)
         {
             RightButton.text = Localization.Get("BASIC_TEXT_SEND_ONE");
@@ -71,60 +69,20 @@ public class DialogBox : MonoBehaviour {
         {
             RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
         }
-        EmailNumber.text = caseNumber.ToString();
+        EmailNumber.text = zCaseNumber.ToString();
         SetSeverity(zSeverity);
-        if (showCitizen)
+
+        //wait for anim to finish
+        yield return EmailAnim(-1f);
+
+        //now set which buttons should be active
+        waitButton.SetActive(zWaitIndex != -1 || endCase);
+        SendOfficerButton.SetActive(zOfficerIndex != -1);
+        m_citizenHelpButton.SetActive(zCitizenIndex != -1);
+        if (m_citizenHelpButton.activeSelf)
         {
             Body.text += "\n\n" + Localization.Get("CITIZEN_HELP_TEXT");
         }
-
-        yield return EmailAnim(-1f);
-
-        SendOfficerButton.gameObject.SetActive(m_officerController.m_officers.Count >= zOfficers);
-        waitButton.SetActive(true);
-        m_citizenHelpButton.SetActive(showCitizen);
-        
-    }
-    public IEnumerator ShowCaseClosedBox(int zCaseNumber, string zName, bool positive = false, int zSeverity = 1)
-    {
-        popupType = PopupType.CaseClosed;
-        Body.text = positive ? Localization.Get("BASIC_TEXT_ARREST_SUCCESS") : Localization.Get("BASIC_TEXT_ARREST_FAIL");
-        Body.text += zName;
-        OfficerReqText.text = "";
-        SendOfficerButton.gameObject.SetActive(false);
-        LeftButton.text = Localization.Get("BASIC_TEXT_OK");
-        caseNum = zCaseNumber;
-        EmailNumber.text = zCaseNumber.ToString();
-        SetSeverity(zSeverity);
-
-        yield return EmailAnim(-1f);
-
-        waitButton.SetActive(true);
-        m_citizenHelpButton.SetActive(false);
-    }
-    public IEnumerator ShowCitizenHelp(int zCaseNumber, int zSeverity, int zOfficers, int zTurnsToSolve)
-    {
-        popupType = PopupType.Citizen;
-        //now calculate if this was a success
-        int rand = UnityEngine.Random.Range(1, 101);
-        bool success = rand > 65;
-        Body.text = success ? Localization.Get("BASIC_TEXT_CITIZEN_SUCCESS"): Localization.Get("BASIC_TEXT_CITIZEN_FAIL");
-        if (!success)
-            OfficerReqText.text = Localization.Get("BASIC_TEXT_OFFICERS_REQUIRED") + ": " + zOfficers + "\n" + Localization.Get("BASIC_TEXT_TURNS_REQUIRED") + ": " + zTurnsToSolve;
-        
-        citizenSuccess = success;
-        if (citizenSuccess)
-            currentIncident.positiveResolution = true;
-        LeftButton.text = success ? Localization.Get("BASIC_TEXT_OK") : Localization.Get("BASIC_TEXT_WAIT");
-        caseNum = zCaseNumber;
-        EmailNumber.text = zCaseNumber.ToString();
-        SetSeverity(zSeverity);
-
-        yield return EmailAnim(-1f);
-
-        SendOfficerButton.gameObject.SetActive(!success && m_officerController.m_officers.Count >= currentIncident.officer);
-        waitButton.SetActive(true);
-        m_citizenHelpButton.SetActive(false);
     }
     public IEnumerator EmailAnim(float speed)
     {
@@ -163,20 +121,6 @@ public class DialogBox : MonoBehaviour {
                 break;
             case PopupType.Incident:
                 m_incidentManager.WaitPressed();
-                break;
-            case PopupType.Citizen:
-                if (citizenSuccess)
-                {
-                    //has the issue been resolved
-                    m_incidentManager.CloseCase(caseNum);
-                    citizenSuccess = false;
-                }
-                else
-                {
-                    //issue was not resolved now the player has chosen to wait
-                    m_incidentManager.WaitPressed();
-                    citizenSuccess = false;
-                }
                 break;
         }
     }

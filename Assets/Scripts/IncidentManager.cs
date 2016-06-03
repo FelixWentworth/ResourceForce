@@ -370,19 +370,19 @@ public class Incident {
         //use the dialog box to show the current incident
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-       m_dialogBox.Show(incidentName, officer, caseNumber, severity, developed, turnsToAdd, CitizenAvailable);
+       m_dialogBox.Show(zIncident);
     }
     public void ShowCaseClosed(ref Incident zIncident)
     {
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.Show(caseNumber, incidentName, zIncident.positiveResolution, severity);
+        m_dialogBox.Show(zIncident);
     }
     public void ShowCitizenHelp(ref Incident zIncident)
     {
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.Show(caseNumber, severity, zIncident.officer, zIncident.turnsToAdd);
+        m_dialogBox.Show(zIncident);
     }
     public void ClearDialogBox()
     {
