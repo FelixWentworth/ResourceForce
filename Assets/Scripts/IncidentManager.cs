@@ -119,14 +119,12 @@ public class IncidentManager : MonoBehaviour
         }
         if (currentIncident.citizenHelp)
         {
-            currentIncident.citizenHelp = false;  //make sure this is not repeated every turn
-            currentIncident.ShowCitizenHelp(ref currentIncident);
-
+            currentIncident.Show(ref currentIncident);
         }
         else if (currentIncident.resolved)
         {
             //show the case closed screen
-            currentIncident.ShowCaseClosed(ref currentIncident);
+            currentIncident.Show(ref currentIncident);
         }
         else
         {
@@ -361,8 +359,8 @@ public class Incident {
     public void NewTurn()
     {
         //decide if we should show the citizen help box
-        int rand = UnityEngine.Random.Range(0,5);
-        CitizenAvailable = rand == 1;
+        //int rand = UnityEngine.Random.Range(0,5);
+        //CitizenAvailable = rand == 1;
     }
 
     public void Show(ref Incident zIncident)
@@ -371,18 +369,6 @@ public class Incident {
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
        m_dialogBox.Show(zIncident);
-    }
-    public void ShowCaseClosed(ref Incident zIncident)
-    {
-        if (m_dialogBox == null)
-            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.Show(zIncident);
-    }
-    public void ShowCitizenHelp(ref Incident zIncident)
-    {
-        if (m_dialogBox == null)
-            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.Show(zIncident);
     }
     public void ClearDialogBox()
     {
