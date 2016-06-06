@@ -21,13 +21,18 @@ public class IncidentManager : MonoBehaviour
     protected int currentTurn;
     public Text ArrestsMade;
     protected int arrestsNum;
-    protected float happiness = 50f;
+    protected float happiness = 75f;
 
     public DialogBox m_dialogBox;
+    public SatisfactionSlider m_satisfactionSlider;
 
 #if SELECT_INCIDENTS
     private int incidentShowingIndex = 1;
 #endif
+    void Start()
+    {
+        m_satisfactionSlider.SetSlider(happiness);
+    }
     public void CreateNewIncident(int zTurn)
     {
 
@@ -156,33 +161,28 @@ public class IncidentManager : MonoBehaviour
     //    arrestsNum++;
     //    ArrestsMade.text = Localization.Get("BASIC_TEXT_RESOLVED_CASES") + "\n" + arrestsNum + "/" + (SimplifiedJson.identifier - 1);
     //}
-    public void CaseClosed(bool zArrestMade, int zSeverity = 1, bool expired = false)
+    public void CaseClosed(int impact, bool expired = false)
     {
         //update the citizen security/happiness
-        if (zArrestMade)
+        if (expired)
         {
-            happiness += 3f * zSeverity;
+
         }
         else
         {
-            if (expired)
-            {
-                happiness -= 3f * zSeverity;
-            }
-            else
-            {
-                happiness += 1f * zSeverity;
-            }
+            happiness += impact;
         }
         happiness = Mathf.Clamp(happiness, 0, 100);
         ArrestsMade.text = Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + ": " + Mathf.RoundToInt(happiness) + "%";
+        m_satisfactionSlider.SetSlider(happiness);
     }
     public void EndTurn()
     {
         //punish the player for having cases open, stopping players from just ignoring all cases
-        happiness -= 1.5f * incidents.Count;
+        happiness -= 1f * incidents.Count;
         happiness = Mathf.Clamp(happiness, 0, 100);
         ArrestsMade.text = Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + ": " + Mathf.RoundToInt(happiness) + "%";
+        m_satisfactionSlider.SetSlider(happiness);
     }
     public void ClearList()
     {
@@ -300,7 +300,7 @@ public class IncidentManager : MonoBehaviour
                 m_IncidentQueue.RemoveFromQueue(incidents[i].caseNumber);
                 //if (incidents[i].positiveResolution)
                 //    IncreaseArrestsMade();
-                CaseClosed(incidents[i].positiveResolution, incidents[i].severity, incidents[i].expired);
+                CaseClosed(incidents[i].satisfactionImpact, incidents[i].expired);
                 incidents.RemoveAt(i);
                 i--;
             }
@@ -342,6 +342,7 @@ public class Incident {
     public int waitIndex;
     public int officerIndex;
     public int citizenIndex;
+    public int satisfactionImpact;
 
     //values which are not set during setup
     public int turnToDevelop;

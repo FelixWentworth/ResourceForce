@@ -47,6 +47,8 @@ public class TurnManager : MonoBehaviour {
         }
         else
         {
+            //update at the end to give the player a chance to get citizen happiness over 20%
+            m_IncidentManager.EndTurn();
             //decide which incident to show this turn
             m_IncidentManager.IsIncidentWaitingToShow(turn);
             m_IncidentManager.CreateNewIncident(turn);
@@ -57,8 +59,7 @@ public class TurnManager : MonoBehaviour {
             m_IncidentManager.ShowIncident(turn);
 #endif
         }
-        //update at the end to give the player a chance to get citizen happiness over 20%
-        m_IncidentManager.EndTurn();
+        
     }
     IEnumerator ShowGameOver()
     {

@@ -65,6 +65,8 @@ public class SimplifiedJson : MonoBehaviour {
         int o = tmp.officerIndex = int.Parse(N[name][ind][3]);
         int c = tmp.citizenIndex = int.Parse(N[name][ind][4]);
 
+        tmp.satisfactionImpact = int.Parse(N[name][ind][8]);
+
         //this will count as being resolved when there are no buttons to tap on
         tmp.resolved = (w == -1 && o == -1 && c == -1);
 
