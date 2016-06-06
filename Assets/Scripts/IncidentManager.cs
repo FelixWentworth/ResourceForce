@@ -166,7 +166,9 @@ public class IncidentManager : MonoBehaviour
         //update the citizen security/happiness
         if (expired)
         {
-
+            if (impact > 0)
+                impact = (impact + 1) * -1;
+            happiness += impact;
         }
         else
         {
