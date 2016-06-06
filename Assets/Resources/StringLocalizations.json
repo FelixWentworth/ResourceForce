@@ -76,6 +76,7 @@
 {"key":"BASIC_TEXT_BEST","en-gb":"Best","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"CITIZEN_HELP_TEXT","en-gb":"A citizen has come forward saying that they can provide information","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_STATUS","en-gb":"Status","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_TYPE","en-gb":"Type","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_LOCATION","en-gb":"Location","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_DESCRIPTION","en-gb":"Description","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"SCENARIO_1_INDEX_1","en-gb":"Woman has been reported missing from her home","de":"XXXX","el":"XXXX","es":"XXXX"},

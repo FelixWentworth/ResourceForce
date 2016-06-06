@@ -47,7 +47,7 @@ public class DialogBox : MonoBehaviour {
     public IEnumerator ShowIncident(Incident zIncident)
     {
         bool endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
-        Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_LOCATION") + ": </color>" + zIncident.type + "\n\n<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
+        Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_TYPE") + ": </color>" + zIncident.type + "\n\n<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
         caseNum = zIncident.caseNumber;
         if (!endCase)
         {
