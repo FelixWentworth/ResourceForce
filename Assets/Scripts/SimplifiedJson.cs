@@ -6,7 +6,14 @@ public class SimplifiedJson : MonoBehaviour {
 
     string filePath = "ScenarioInformation";
     TextAsset myText;
+    TurnManager manager;
     public static int identifier = 1;
+
+    void Awake()
+    {
+        manager = this.GetComponent<TurnManager>();
+    }
+
     // Use this for initialization
     public void CreateNewIncident(ref Incident zIncident) {
         //select a new branching incident from our 
@@ -88,15 +95,16 @@ public class SimplifiedJson : MonoBehaviour {
         }
         //we haave chosen to wait, so check the wait index
         zIncident = GetIncidentAtIndex(index, zIncident.scenarioNum, zIncident.caseNumber);
-        zIncident.turnToShow += 1;
+        zIncident.turnToShow = manager.turn + 1;
     }
     public void OfficerPressed(ref Incident zIncident)
     {
         int index = zIncident.officerIndex;
+        int turnsToAdd = zIncident.turnsToAdd;
         if (index == -1)
             return;
         zIncident = GetIncidentAtIndex(index, zIncident.scenarioNum, zIncident.caseNumber);
-        zIncident.turnToShow += zIncident.turnsToAdd;
+        zIncident.turnToShow = manager.turn + turnsToAdd;
     }
     public void CitizenPressed(ref Incident zIncident)
     {
@@ -104,7 +112,7 @@ public class SimplifiedJson : MonoBehaviour {
         if (index == -1)
             return;
         zIncident = GetIncidentAtIndex(index, zIncident.scenarioNum, zIncident.caseNumber);
-        zIncident.turnToShow += 1;
+        zIncident.turnToShow = manager.turn + 1;
     }
     //public void DevelopIncident(ref Incident zIncident, bool waiting)
     //{

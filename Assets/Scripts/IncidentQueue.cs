@@ -11,7 +11,14 @@ public class IncidentQueue : MonoBehaviour {
     public IncidentCase[] allCases;
 
     private int cases = 0;
-
+    void Awake()
+    {
+        for (int i=0; i<allCases.Length; i++)
+        {
+            //ensure that all of the cases are disabled at the start of the game
+            allCases[i].gameObject.SetActive(false);
+        }
+    }
     public void MoveQueueUp(int index)
     {
         for (int i = index; i < cases-1; i++)
