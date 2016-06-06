@@ -42,16 +42,16 @@ public class DialogBox : MonoBehaviour {
     public void Show(Incident zIncident)
     {
         //pass through the relevant info to the dialog box
-        StartCoroutine(ShowIncident(zIncident.incidentName, zIncident.caseNumber, zIncident.officer, zIncident.turnsToAdd, zIncident.severity, zIncident.waitIndex, zIncident.officerIndex, zIncident.citizenIndex));
+        StartCoroutine(ShowIncident(zIncident));
     }
-    public IEnumerator ShowIncident(string zDescription, int zCaseNumber, int zOfficers, int zTurnsToSolve, int zSeverity, int zWaitIndex, int zOfficerIndex, int zCitizenIndex)
+    public IEnumerator ShowIncident(Incident zIncident)
     {
-        bool endCase = (zWaitIndex == -1 && zOfficerIndex == -1 && zCitizenIndex == -1);
-        Body.text = Localization.Get(zDescription);
-        caseNum = zCaseNumber;
+        bool endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
+        Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_LOCATION") + ": </color>" + zIncident.type + "\n\n<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
+        caseNum = zIncident.caseNumber;
         if (!endCase)
         {
-            OfficerReqText.text = Localization.Get("BASIC_TEXT_OFFICERS_REQUIRED") + ": " + zOfficers + "\n" + Localization.Get("BASIC_TEXT_TURNS_REQUIRED") + ": " + zTurnsToSolve;
+            OfficerReqText.text = Localization.Get("BASIC_TEXT_OFFICERS_REQUIRED") + ": " + zIncident.officer + "\n" + Localization.Get("BASIC_TEXT_TURNS_REQUIRED") + ": " + zIncident.turnsToAdd;
             popupType = PopupType.Incident;
         }
         else
@@ -61,7 +61,7 @@ public class DialogBox : MonoBehaviour {
         }
         LeftButton.text = endCase ? Localization.Get("BASIC_TEXT_OK") : Localization.Get("BASIC_TEXT_WAIT");
         
-        if (zOfficers == 1)
+        if (zIncident.officer == 1)
         {
             RightButton.text = Localization.Get("BASIC_TEXT_SEND_ONE");
         }
@@ -69,16 +69,16 @@ public class DialogBox : MonoBehaviour {
         {
             RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
         }
-        EmailNumber.text = zCaseNumber.ToString();
-        SetSeverity(zSeverity);
+        EmailNumber.text = caseNum.ToString();
+        SetSeverity(zIncident.severity);
 
         //wait for anim to finish
         yield return EmailAnim(-1f);
 
         //now set which buttons should be active
-        waitButton.SetActive(zWaitIndex != -1 || endCase);
-        SendOfficerButton.SetActive(zOfficerIndex != -1);
-        m_citizenHelpButton.SetActive(zCitizenIndex != -1);
+        waitButton.SetActive(zIncident.waitIndex != -1 || endCase);
+        SendOfficerButton.SetActive(zIncident.officerIndex != -1);
+        m_citizenHelpButton.SetActive(zIncident.citizenIndex != -1);
         if (m_citizenHelpButton.activeSelf)
         {
             Body.text += "\n\n" + Localization.Get("CITIZEN_HELP_TEXT");

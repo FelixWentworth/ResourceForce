@@ -45,7 +45,7 @@ public class SimplifiedJson : MonoBehaviour {
 
         Incident tmp = new Incident();
         string name = "Scenario" + scenarioNum;
-        
+
         tmp.scenarioNum = scenarioNum;
         tmp.index = index;
         string ind = index.ToString();
@@ -58,6 +58,7 @@ public class SimplifiedJson : MonoBehaviour {
 
         //set the name
         tmp.incidentName = N[name][ind][1];
+        tmp.type = N[name][ind][0];
 
         //set the indexes for the buttons
         int w = tmp.waitIndex = int.Parse(N[name][ind][2]);

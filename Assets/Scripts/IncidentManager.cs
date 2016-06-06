@@ -334,6 +334,7 @@ public class Incident {
     public int index;
     public int officer;
     public string incidentName;
+    public string type;
     public int turnToShow;
     public int turnsToAdd;
     public int severity;

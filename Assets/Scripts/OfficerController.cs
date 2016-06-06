@@ -11,6 +11,7 @@ public class OfficerController : MonoBehaviour {
     public List<officer> m_officersInUse = new List<officer>();
 
     public Text officersText;
+    public Text maxOfficersText;
     public Text officerStatus;
 
     public int StartingOfficers = 5;
@@ -31,11 +32,11 @@ public class OfficerController : MonoBehaviour {
         for (int i = 0; i< StartingOfficers; i++)
         {
             officer temp = new officer();
-            officerIndicators[i].gameObject.SetActive(true);
             m_officers.Add(temp);
         }
         m_officersInUse = new List<officer>();
-        officersText.text = Localization.Get("INCIDENT_OFFICERS") + "\n" + m_officers.Count + "/" + StartingOfficers;
+        officersText.text = m_officers.Count.ToString();
+        maxOfficersText.text = StartingOfficers.ToString();
         SetOfficerStatus();
         
     }
@@ -50,7 +51,7 @@ public class OfficerController : MonoBehaviour {
             removed.Use(turnsAway);
             m_officersInUse.Add(removed);
         }
-        officersText.text = Localization.Get("INCIDENT_OFFICERS") + "\n" + m_officers.Count + "/" + StartingOfficers;
+        officersText.text = m_officers.Count.ToString();
         SetOfficerStatus();
     }
     private void AddOfficer(officer zOfficer)
@@ -59,7 +60,7 @@ public class OfficerController : MonoBehaviour {
         officer removed = zOfficer;
         removed.Reset();
         m_officers.Add(removed);
-        officersText.text = Localization.Get("INCIDENT_OFFICERS") + "\n" + m_officers.Count + "/" + StartingOfficers;
+        officersText.text = m_officers.Count.ToString();
         SetOfficerStatus();
     }
     public void EndTurn()
@@ -76,7 +77,7 @@ public class OfficerController : MonoBehaviour {
                 i--; //reduce i as we removed one of the elements in the list
             }
         }
-        officersText.text = Localization.Get("INCIDENT_OFFICERS") + "\n" + m_officers.Count + "/" + StartingOfficers;
+        officersText.text = m_officers.Count.ToString();
         SetOfficerStatus();
     }
     private void SetOfficerStatus()
@@ -98,13 +99,15 @@ public class OfficerController : MonoBehaviour {
     private void UpdateOfficerIndicators()
     {
         int count = 0;
-        for (int i = 0; i < m_officers.Count; i++, count++)
-        {
-            officerIndicators[count].UpdateText("");
-        }
         for (int i = 0; i < m_officersInUse.Count; i++, count++)
         {
+            officerIndicators[count].gameObject.SetActive(true);
             officerIndicators[count].UpdateText(m_officersInUse[i].turnsTilAvailable.ToString());
+        }
+        for (int i = 0; i < m_officers.Count; i++, count++)
+        {
+            officerIndicators[count].gameObject.SetActive(false);
+            officerIndicators[count].UpdateText("");
         }
     }
 }
