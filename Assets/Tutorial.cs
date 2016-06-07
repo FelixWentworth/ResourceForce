@@ -49,6 +49,7 @@ public class Tutorial : MonoBehaviour {
             inputBlocker.SetActive(false);
             Screenshot.SetActive(false);
             GameObject.Find("TurnManager").GetComponent<TurnManager>().StartGame();
+            PlayerPrefs.SetInt("NewPlayer", 1);
         }
     }
 }
