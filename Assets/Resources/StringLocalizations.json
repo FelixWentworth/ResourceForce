@@ -46,6 +46,7 @@
 {"key":"START_SCREEN_TAP","en-gb":"Tap to start!","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_OK","en-gb":"OK!","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_WAIT","en-gb":"Wait!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_TRY_AGAIN","en-gb":"Try Again","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_SEND_ONE","en-gb":"Send officer","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_SEND_MANY","en-gb":"Send officers","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_DEVELOPED","en-gb":"Developed Case","de":"XXXX","el":"XXXX","es":"XXXX"},

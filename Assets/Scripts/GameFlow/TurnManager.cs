@@ -41,7 +41,7 @@ public class TurnManager : MonoBehaviour {
         if (m_IncidentManager.isGameOver())
         {
             //GAME OVER, too many incidents un resolved
-            StartCoroutine(ShowGameOver());
+            ShowGameOver();
         }
         else
         {
@@ -58,7 +58,7 @@ public class TurnManager : MonoBehaviour {
         }
         
     }
-    IEnumerator ShowGameOver()
+    private void ShowGameOver()
     {
         int zTurn = turn - 1;
         gameOverText.text = string.Format(Localization.Get("BASIC_TEXT_GAMEOVER_BODY"), zTurn);
@@ -71,12 +71,9 @@ public class TurnManager : MonoBehaviour {
         HighScoreText.text = Localization.Get("BASIC_TEXT_SCORE") + ": " + zTurn + "\n" + Localization.Get("BASIC_TEXT_BEST") + ": " + bestTurns;
         HighScoreText.text = HighScoreText.text.ToUpper();
         GameOver.SetActive(true);
-        
-        yield return new WaitForSeconds(5f);
-        Reset();
     }
-
-    void Reset()
+    
+    public void Reset()
     {
         //reset the case identifier to ensure that the case numbers are reset
         SimplifiedJson.identifier = 1;
