@@ -36,8 +36,10 @@ public class TurnManager : MonoBehaviour {
         turnsText.text = Localization.Get("BASIC_TEXT_TURN") + " " + turn;
         if (m_IncidentManager == null)
             m_IncidentManager = this.GetComponent<IncidentManager>();
-        m_IncidentManager.UpdateIncidents();
         
+        m_IncidentManager.UpdateIncidents();
+        m_IncidentManager.CheckExpiredIncidents(turn);
+
         if (m_IncidentManager.isGameOver())
         {
             //GAME OVER, too many incidents un resolved

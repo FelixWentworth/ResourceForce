@@ -37,6 +37,7 @@
 {"key":"BASIC_TEXT_TYPE","en-gb":"Type","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_LOCATION","en-gb":"Location","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_DESCRIPTION","en-gb":"Description","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_IGNORE_WARNING","en-gb":"WARNING! Selecting wait will cause the case to expire, reducing citizen satisfaction","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"SCENARIO_1_INDEX_1","en-gb":"Woman has been reported missing from her home","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"SCENARIO_1_INDEX_2","en-gb":"Officer sent to investigate and finds more information about the woman, and gets a recent photo","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"SCENARIO_1_INDEX_3","en-gb":"Photo uploaded to INSPEC2T app, a member of the public has informed local police she saw her on top of a bus stop","de":"XXXX","el":"XXXX","es":"XXXX"},

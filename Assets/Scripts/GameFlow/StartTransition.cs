@@ -46,7 +46,7 @@ public class StartTransition : MonoBehaviour {
         SetObjects(false);
         //now fade the background image
         //on completion notify the turn manager that the start transition is done
-        if (true || PlayerPrefs.GetInt("NewPlayer") == 0)
+        if (PlayerPrefs.GetInt("NewPlayer") == 0)
         {
             //player is new so show tutorial
             tut.ShowStep();
@@ -81,5 +81,9 @@ public class StartTransition : MonoBehaviour {
         {
             objectsToDisableOnStart[i].SetActive(enabled);
         }
+    }
+    public void GoToInspect()
+    {
+        Application.OpenURL("http://inspec2t-project.eu/en/");
     }
 }

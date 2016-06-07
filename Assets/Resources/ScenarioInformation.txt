@@ -19,7 +19,7 @@
 	"8":  ["Resolution", "SCENARIO_2_INDEX_8", -1, -1, -1, 0, 0, 1, 1],
 	"9":  ["Resolution", "SCENARIO_2_INDEX_9", -1, -1, -1, 0, 0, 2, 2],
 	"10": ["Resolution", "SCENARIO_2_INDEX_10", -1, -1, -1, 0, 0, 2, 2],
-	"11": ["Resolution", "SCENARIO_2_INDEX_11", -1, -1, -1, 0, 0, 2, -4],
+	"11": ["Resolution", "SCENARIO_2_INDEX_11", -1, -1, -1, 0, 0, 3, -4],
 	"12": ["Resolution", "SCENARIO_2_INDEX_12", -1, -1, -1, 0, 0, 3, 4],
 	"13": ["Resolution", "SCENARIO_2_INDEX_13", -1, -1, -1, 0, 0, 3, 4],
 	"14": ["Resolution", "SCENARIO_2_INDEX_14", -1, -1, -1, 0, 0, 2, 5]

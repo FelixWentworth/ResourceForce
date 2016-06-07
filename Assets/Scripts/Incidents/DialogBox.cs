@@ -19,6 +19,7 @@ public class DialogBox : MonoBehaviour {
 
     private IncidentManager m_incidentManager;
     public OfficerController m_officerController;
+    public TurnManager m_turnManager;
     public GameObject m_citizenHelpButton;
     public GameObject SendOfficerButton;
     public GameObject waitButton;
@@ -39,12 +40,14 @@ public class DialogBox : MonoBehaviour {
     public IEnumerator ShowIncident(Incident zIncident)
     {
         //check if this is a resolution, ie. no buttons will lead anywhere
-        bool endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
+        bool endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1) || zIncident.expired;
 
         Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_TYPE") + ": </color>" + zIncident.type + "\n\n<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
-        if (m_citizenHelpButton.activeSelf)
-            Body.text += "\n\n" + Localization.Get("CITIZEN_HELP_TEXT");
-
+        if (zIncident.turnToDevelop < m_turnManager.turn)
+        {
+            Body.text += "\n\n" + Localization.Get("BASIC_TEXT_IGNORE_WARNING");
+        }
+        
         caseNum = zIncident.caseNumber;
         EmailNumber.text = caseNum.ToString();
         SetSeverity(zIncident.severity);
@@ -60,7 +63,12 @@ public class DialogBox : MonoBehaviour {
             popupType = PopupType.CaseClosed;
         }
         //set the button text
-        LeftButton.text = endCase ? Localization.Get("BASIC_TEXT_OK") : Localization.Get("BASIC_TEXT_WAIT");
+        if (!zIncident.expired)
+        {
+            LeftButton.text = endCase ? Localization.Get("BASIC_TEXT_OK") : Localization.Get("BASIC_TEXT_WAIT");
+        }
+        else
+            LeftButton.text = Localization.Get("BASIC_TEXT_WAIT");
         RightButton.text = zIncident.officer == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
         //wait for anim to finish

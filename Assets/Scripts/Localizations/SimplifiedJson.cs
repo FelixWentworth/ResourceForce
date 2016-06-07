@@ -85,6 +85,8 @@ public class SimplifiedJson : MonoBehaviour {
     public void WaitPressed(ref Incident zIncident)
     {
         int index = zIncident.waitIndex;
+        int currentIndex = zIncident.index;
+        int turnToDevelop = zIncident.turnToDevelop;
         if (index == -1)
         {
             //we should not be able to press the button
@@ -93,6 +95,13 @@ public class SimplifiedJson : MonoBehaviour {
         //we haave chosen to wait, so check the wait index
         zIncident = GetIncidentAtIndex(index, zIncident.scenarioNum, zIncident.caseNumber);
         zIncident.turnToShow = manager.turn + 1;
+        if (index != currentIndex)
+        {
+            //new incident
+            zIncident.turnToDevelop = manager.turn + 3;
+        }
+        else
+            zIncident.turnToDevelop = turnToDevelop;
     }
     public void OfficerPressed(ref Incident zIncident)
     {
@@ -102,6 +111,7 @@ public class SimplifiedJson : MonoBehaviour {
             return;
         zIncident = GetIncidentAtIndex(index, zIncident.scenarioNum, zIncident.caseNumber);
         zIncident.turnToShow = manager.turn + turnsToAdd;
+        zIncident.turnToDevelop = manager.turn + 3;
     }
     public void CitizenPressed(ref Incident zIncident)
     {
@@ -110,5 +120,6 @@ public class SimplifiedJson : MonoBehaviour {
             return;
         zIncident = GetIncidentAtIndex(index, zIncident.scenarioNum, zIncident.caseNumber);
         zIncident.turnToShow = manager.turn + 1;
+        zIncident.turnToDevelop = manager.turn + 3;
     }
 }

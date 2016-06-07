@@ -45,7 +45,7 @@ public class IncidentManager : MonoBehaviour
 
         jsonReader.CreateNewIncident(ref newIncident);
         newIncident.turnToShow = zTurn;
-        newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd;
+        newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd+1;
         //our complete list of incidents
         incidents.Add(newIncident);
         //our list of incidents waiting to show this turn
@@ -80,6 +80,17 @@ public class IncidentManager : MonoBehaviour
         }
         CaseStatus.text = status;
         ArrestsMade.text = Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + ": " + Mathf.RoundToInt(happiness) + "%";
+    }
+    public void CheckExpiredIncidents(int turn)
+    {
+        for (int i=0; i<incidents.Count; i++)
+        {
+            if (incidents[i].turnToDevelop < turn)
+            {
+                incidents[i].expired = true;
+                incidents[i].satisfactionImpact = -1 * incidents[i].severity;
+            }
+        }
     }
     public void _showIncident(Text myText)
     {
@@ -149,7 +160,7 @@ public class IncidentManager : MonoBehaviour
         //update the citizen security/happiness
         if (expired)
         {
-            if (impact > 0)
+            if (impact >= 0)
                 impact = (impact + 1) * -1;
             happiness += impact;
         }
