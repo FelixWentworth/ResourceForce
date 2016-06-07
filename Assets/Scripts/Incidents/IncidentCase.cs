@@ -1,4 +1,4 @@
-﻿//#define SELECT_INCIDENTS
+﻿//#define SELECT_INCIDENTS //used to allow players to select incidents
 
 using UnityEngine;
 using System.Collections;
@@ -22,6 +22,7 @@ public class IncidentCase : MonoBehaviour {
 
     public void Setup(int zNumber, State zState = State.New, int zSeverity = 1)
     {
+        //set up the case to show the relevant info
         number.text = zNumber.ToString();
         caseNumber = zNumber;
         m_state = zState;
@@ -32,6 +33,7 @@ public class IncidentCase : MonoBehaviour {
     }
     public void SetSeverity(int zSeverity = 1)
     {
+        //set the alpha of the severity overlay
         float alpha = 0f;
         if (zSeverity == 2)
             alpha = 0.5f;
@@ -42,6 +44,7 @@ public class IncidentCase : MonoBehaviour {
     }
 	public void SetIcon()
     {
+        //set the icon of each incident based on the desicion made
         switch (m_state)
         {
             case State.New:
@@ -69,15 +72,8 @@ public class IncidentCase : MonoBehaviour {
     }
     public void ToggleHighlight(bool forceDefault = false)
     {
-        if (forceDefault)
-        {
-            //by default the highlight should be disabled
-            highlightObject.SetActive(false);
-        }
-        else
-        {
-            highlightObject.SetActive(true);
-        }
+        //by default the highligh should be disabled
+        highlightObject.SetActive(!forceDefault);
     }
     public void UpdateWarning(bool activated)
     {
@@ -86,6 +82,7 @@ public class IncidentCase : MonoBehaviour {
 
     public void Pressed(Text myText)
     {
+        //can be called through incident button if we want to have selectable cases
 #if SELECT_INCIDENTS
         GameObject.Find("TurnManager").GetComponent<IncidentManager>()._showIncident(myText);
 #endif

@@ -113,14 +113,14 @@ public class OfficerController : MonoBehaviour {
 }
 public class officer
 {
+    public bool available;
+    public int turnsTilAvailable;
+
     public officer()
     {
         available = true;
         turnsTilAvailable = 0;
     }
-    public bool available;
-    public int turnsTilAvailable;
-
     public void Use(int turns = 3)
     {
         available = false;

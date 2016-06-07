@@ -12,13 +12,11 @@ public class TurnManager : MonoBehaviour {
     public Text turnsText;
     public Text gameOverText;
     public Text HighScoreText;
-    public int GameOverLimit = 4;
 
     public GameObject startScreen;
-
     public GameObject GameOver;
     public GameObject NextTurnButton;
-	// Use this for initialization
+
 	void Start () {
         NextTurnButton.SetActive(false);
         GameOver.SetActive(false);
@@ -29,7 +27,7 @@ public class TurnManager : MonoBehaviour {
     {
         NextTurn();
     }
-	public void NextTurn()
+	private void NextTurn()
     {
         turn++;
         
@@ -50,9 +48,8 @@ public class TurnManager : MonoBehaviour {
             //update at the end to give the player a chance to get citizen happiness over 20%
             m_IncidentManager.EndTurn();
             //decide which incident to show this turn
-            m_IncidentManager.IsIncidentWaitingToShow(turn);
+            m_IncidentManager.IsIncidentWaitingToShow(turn);    //not using the bool callback to populate the next incident list
             m_IncidentManager.CreateNewIncident(turn);
-            m_IncidentManager.UpdateCitizens();
 #if SELECT_INCIDENTS
             GameObject.Find("IncidentDialog").GetComponent<DialogBox>().DeactivateAll();
 #else
@@ -81,20 +78,8 @@ public class TurnManager : MonoBehaviour {
 
     void Reset()
     {
+        //reset the case identifier to ensure that the case numbers are reset
         SimplifiedJson.identifier = 1;
-        Application.LoadLevel(0);
-    }
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            GameOverLimit++;
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            if (GameOverLimit > 1)
-                GameOverLimit--;
-        }
-
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }

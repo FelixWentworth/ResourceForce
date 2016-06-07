@@ -33,7 +33,7 @@ public class SimplifiedJson : MonoBehaviour {
         myText = Resources.Load(filePath) as TextAsset;
         var N = JSON.Parse(myText.text);
 
-        // get a random incident
+        // get a random incident -> todo change this value to represent the number of cases available
         int randIncident = UnityEngine.Random.Range(1, 3);
 
         zIncident = GetIncidentAtIndex(1, randIncident);
@@ -55,7 +55,6 @@ public class SimplifiedJson : MonoBehaviour {
         tmp.index = index;
         string ind = index.ToString();
         //get the officers, turns to add from officers and severity values
-
 
         tmp.officer = int.Parse(N[name][ind][5]);
         tmp.turnsToAdd = int.Parse(N[name][ind][6]);
@@ -111,13 +110,5 @@ public class SimplifiedJson : MonoBehaviour {
             return;
         zIncident = GetIncidentAtIndex(index, zIncident.scenarioNum, zIncident.caseNumber);
         zIncident.turnToShow = manager.turn + 1;
-    }
-    public string GetIncidentFromType(string Type)
-    {
-        string description = "";
-
-        description = Localization.GetRandomStringForType(Type);
-        
-        return description;
     }
 }

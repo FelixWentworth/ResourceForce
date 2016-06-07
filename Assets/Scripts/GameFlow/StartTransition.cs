@@ -14,6 +14,7 @@ public class StartTransition : MonoBehaviour {
 
     void Awake()
     {
+        //reset the start screen whilst taking note of the text that used to be used as the password
         passwordText = password.text;
         password.text = "";
         SetObjects(true);

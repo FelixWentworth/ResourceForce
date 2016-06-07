@@ -64,27 +64,6 @@ public class Localization : MonoBehaviour {
         txt = txt.Replace("*2n*", "\n\n");
         return txt;
     }
-    public static string GetRandomStringForType(string type)
-    {
-        //get the text asset ready to search through
-        jsonTextAsset = Resources.Load(filePath) as TextAsset;
-
-        var N = JSON.Parse(jsonTextAsset.text);
-        //get language index 
-        SetLanguageIndex();
-
-        //now search through our file for our type
-        int maxTexts = 0;
-        string num;
-        localizationDict.TryGetValue(type.ToUpper() + "_LENGTH", out num);
-
-        maxTexts = int.Parse(num);
-
-        //now set a random string to get from the max number
-        int rand = UnityEngine.Random.Range(1, maxTexts + 1);
-
-        return Get(type.ToUpper() + "_TEXT_" + rand);
-    }
     public static void SetLanguageIndex()
     {
         switch (Application.systemLanguage)

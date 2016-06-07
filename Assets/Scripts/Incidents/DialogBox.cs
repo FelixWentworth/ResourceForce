@@ -27,17 +27,9 @@ public class DialogBox : MonoBehaviour {
 
     private int caseNum;
 
-    private bool citizenSuccess = false;
-
     void Start()
     {
         m_incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
-    }
-    public void DeactivateAll()
-    {
-        DisableButtons();
-        Body.text = "";
-        OfficerReqText.text = "";
     }
     public void Show(Incident zIncident)
     {
@@ -46,9 +38,17 @@ public class DialogBox : MonoBehaviour {
     }
     public IEnumerator ShowIncident(Incident zIncident)
     {
+        //check if this is a resolution, ie. no buttons will lead anywhere
         bool endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
+
         Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_TYPE") + ": </color>" + zIncident.type + "\n\n<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
+        if (m_citizenHelpButton.activeSelf)
+            Body.text += "\n\n" + Localization.Get("CITIZEN_HELP_TEXT");
+
         caseNum = zIncident.caseNumber;
+        EmailNumber.text = caseNum.ToString();
+        SetSeverity(zIncident.severity);
+
         if (!endCase)
         {
             OfficerReqText.text = Localization.Get("BASIC_TEXT_OFFICERS_REQUIRED") + ": " + zIncident.officer + "\n" + Localization.Get("BASIC_TEXT_TURNS_REQUIRED") + ": " + zIncident.turnsToAdd;
@@ -59,45 +59,34 @@ public class DialogBox : MonoBehaviour {
             OfficerReqText.text = "";
             popupType = PopupType.CaseClosed;
         }
+        //set the button text
         LeftButton.text = endCase ? Localization.Get("BASIC_TEXT_OK") : Localization.Get("BASIC_TEXT_WAIT");
-        
-        if (zIncident.officer == 1)
-        {
-            RightButton.text = Localization.Get("BASIC_TEXT_SEND_ONE");
-        }
-        else
-        {
-            RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
-        }
-        EmailNumber.text = caseNum.ToString();
-        SetSeverity(zIncident.severity);
+        RightButton.text = zIncident.officer == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
         //wait for anim to finish
-        yield return EmailAnim(-1f);
+        yield return EmailAnim(-1f, "EmailShow");
 
         //now set which buttons should be active
         waitButton.SetActive(zIncident.waitIndex != -1 || endCase);
         SendOfficerButton.SetActive(zIncident.officerIndex != -1);
         m_citizenHelpButton.SetActive(zIncident.citizenIndex != -1);
-        if (m_citizenHelpButton.activeSelf)
-        {
-            Body.text += "\n\n" + Localization.Get("CITIZEN_HELP_TEXT");
-        }
     }
-    public IEnumerator EmailAnim(float speed)
+    public IEnumerator EmailAnim(float speed, string name)
     {
+        //play the anim at the speed specified
         Animation anim = EmailPanel.GetComponent<Animation>();
-        anim["EmailShow"].speed = speed;
-        float length = anim["EmailShow"].length;
-        if (speed == -1f)
-            anim["EmailShow"].time = length;
-        else
-            anim["EmailShow"].time = 0f;
+
+        //set up the speed ant time to make sure the aim plays in the correct direction
+        anim[name].speed = speed;
+        float length = anim[name].length;
+        anim[name].time = speed == -1f ? length : 0f;
+
         anim.Play();
         yield return new WaitForSeconds(length);
     }
     public void SetSeverity(int zSeverity=1)
     {
+        //set the alpha of the overlay to fade between yellow and red
         float alpha = 0f;
         if (zSeverity == 2)
             alpha = 0.5f;
@@ -112,7 +101,7 @@ public class DialogBox : MonoBehaviour {
     }
     IEnumerator LeftButtonWithAnim()
     {
-        yield return EmailAnim(1f);
+        yield return EmailAnim(1f, "EmailShow");
         //wait for more officers to become available
         switch (popupType)
         {
@@ -136,7 +125,7 @@ public class DialogBox : MonoBehaviour {
     IEnumerator RightButtonWithAnim()
     {
         //send officers to resolve issue
-        yield return EmailAnim(1f);
+        yield return EmailAnim(1f, "EmailShow");
         m_incidentManager.ResolvePressed();
     }
     public void CitizenButtonPressed()
@@ -147,9 +136,10 @@ public class DialogBox : MonoBehaviour {
     IEnumerator CitizenButtonWithAnim()
     {
         //removing citizen help popup and instead setting the delay to one turn
-        yield return EmailAnim(1f);
+        yield return EmailAnim(1f, "EmailShow");
         m_incidentManager.CitizenHelpPressed();
     }
+    //methods for clearing data
     public void ClearDialogBox()
     {
         Body.text = "";
@@ -160,5 +150,10 @@ public class DialogBox : MonoBehaviour {
         waitButton.SetActive(false);
         SendOfficerButton.SetActive(false);
         m_citizenHelpButton.SetActive(false);
+    }
+    public void DeactivateAll()
+    {
+        DisableButtons();
+        ClearDialogBox();
     }
 }
