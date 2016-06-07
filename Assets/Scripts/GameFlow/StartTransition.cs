@@ -11,6 +11,7 @@ public class StartTransition : MonoBehaviour {
     private Color fadedBackgroundColor;
 
     public GameObject[] objectsToDisableOnStart;
+    public Tutorial tut;
 
     void Awake()
     {
@@ -26,7 +27,7 @@ public class StartTransition : MonoBehaviour {
     public void StartGameTransition()
     {
         //start to transition from this screen to game screen, we will do this by filling in the password and then transition to the main game
-        StartCoroutine(ShowPassword());   
+        StartCoroutine(ShowPassword());
     }
     IEnumerator ShowPassword()
     {
@@ -45,7 +46,16 @@ public class StartTransition : MonoBehaviour {
         SetObjects(false);
         //now fade the background image
         //on completion notify the turn manager that the start transition is done
-        GameObject.Find("TurnManager").GetComponent<TurnManager>().StartGame();
+        if (true)
+        {
+            //player is new so show tutorial
+            tut.ShowStep();
+        }
+        else
+        {
+            GameObject.Find("TurnManager").GetComponent<TurnManager>().StartGame();
+        }
+        
         StartCoroutine(FadeBackground());
         
     }
