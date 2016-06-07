@@ -14,6 +14,7 @@ public class IncidentCase : MonoBehaviour {
     public Image severity;
 
     public GameObject warningIcon;
+    public GameObject newIncidentOverlay;
 
     public GameObject highlightObject;
 
@@ -74,10 +75,20 @@ public class IncidentCase : MonoBehaviour {
     {
         //by default the highligh should be disabled
         highlightObject.SetActive(!forceDefault);
+        if (!forceDefault)
+        {
+            SetSeverity(severityNumber);
+            DisableNewCase();
+        }
     }
     public void UpdateWarning(bool activated)
     {
         warningIcon.SetActive(activated);
+    }
+    public void DisableNewCase()
+    {
+
+        newIncidentOverlay.SetActive(false);
     }
 
     public void Pressed(Text myText)

@@ -90,7 +90,7 @@ public class IncidentQueue : MonoBehaviour {
     public void UpdateSeverity(int caseNum, int zSeverity)
     {
         IncidentCase current = GetCaseFromNum(caseNum);
-        current.SetSeverity(zSeverity);
+        current.severityNumber = zSeverity;
     }
     public void ChangeCaseState(int caseNum, IncidentCase.State newState)
     {
