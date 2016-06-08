@@ -17,6 +17,9 @@ public class Localization : MonoBehaviour {
 
     void Awake()
     {
+        //below code not original part of localization package
+        filePath = "StringLocalizations" + GameObject.Find("LocationMaster").GetComponent<Location>().GetExtension();
+        //above code not original part of localization package
         SetLanguageIndex();
         ConvertJsonToDict();
     }

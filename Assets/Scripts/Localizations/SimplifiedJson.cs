@@ -14,9 +14,9 @@ public class SimplifiedJson : MonoBehaviour {
      * 
      * [_INDEX_] : [ type=0, name=1, waitIndex=2. officerIndex=3, citizenIndex=4, officers=5, turnsRequired=6, severity=7, satisfactionImpact=8 ]
      * 
-     */ 
+     */
 
-    string filePath = "ScenarioInformation";
+    public Location m_location;
     TextAsset myText;
     TurnManager manager;
     public static int identifier = 1;
@@ -30,11 +30,11 @@ public class SimplifiedJson : MonoBehaviour {
     public void CreateNewIncident(ref Incident zIncident) {
         //select a new branching incident from our 
 
-        myText = Resources.Load(filePath) as TextAsset;
+        myText = Resources.Load(m_location.IncidentFilePath) as TextAsset;
         var N = JSON.Parse(myText.text);
 
         // get a random incident -> todo change this value to represent the number of cases available
-        int randIncident = UnityEngine.Random.Range(1, 3);
+        int randIncident = UnityEngine.Random.Range(1, m_location.numIncidents+1);
 
         zIncident = GetIncidentAtIndex(1, randIncident);
         
@@ -45,7 +45,7 @@ public class SimplifiedJson : MonoBehaviour {
     private Incident GetIncidentAtIndex(int index, int scenarioNum, int caseNum = 0)
     {
         if (myText == null)
-            myText = Resources.Load(filePath) as TextAsset;
+            myText = Resources.Load(m_location.IncidentFilePath) as TextAsset;
         var N = JSON.Parse(myText.text);
 
         Incident tmp = new Incident();
