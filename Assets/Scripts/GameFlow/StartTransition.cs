@@ -10,6 +10,8 @@ public class StartTransition : MonoBehaviour {
     private Color backgroundColor;
     private Color fadedBackgroundColor;
 
+    public GameObject SelectLocationScreen;
+
     public GameObject[] objectsToDisableOnStart;
     public Tutorial tut;
 
@@ -22,6 +24,10 @@ public class StartTransition : MonoBehaviour {
         background = this.GetComponent<Image>();
         backgroundColor = background.color;
         fadedBackgroundColor = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, 0f);
+
+        bool newLogIn = PlayerPrefs.GetInt("SetLocation") == 0;
+        SelectLocationScreen.SetActive(newLogIn);
+        this.gameObject.SetActive(!newLogIn);
     }
 
     public void StartGameTransition()
