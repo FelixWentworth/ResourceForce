@@ -29,19 +29,19 @@ public class Location : MonoBehaviour {
         switch (m_site)
         {
             case Site.Preston:
-                numIncidents = 2;
+                numIncidents = 12;
                 return "_Preston";
             case Site.Belfast:
                 numIncidents = 2;
                 return "_Belfast";
             case Site.Nicosia:
-                numIncidents = 2;
+                numIncidents = 3;
                 return "_Nicosia";
             case Site.Groningen:
                 numIncidents = 2;
                 return "_Groningen";
             case Site.Valencia:
-                numIncidents = 2;
+                numIncidents = 7;
                 return "_Valencia";
             default:
                 return "_Preston";

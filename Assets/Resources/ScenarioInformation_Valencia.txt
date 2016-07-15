@@ -11,12 +11,12 @@
   },
   "Scenario2": {
 	"1":  ["Drug Use", "SCENARIO_2_INDEX_1", 2, 8, 4, 1, 1, 2, 0],
-	"2":  ["Argument', "SCENARIO_2_INDEX_2", 3, 6, -1, 2, 2, 1, 0],
+	"2":  ["Argument", "SCENARIO_2_INDEX_2", 3, 6, -1, 2, 2, 1, 0],
 	"3":  ["Injury (Possibly Severe)", "SCENARIO_2_INDEX_3", 3, 5, -1, 2, 2, 2, 0],
 	"4":  ["Citizen Suppprt", "SCENARIO_2_INDEX_4", 4, -1, 5, 1, 1, 2, 0],
 	"5":  ["Resolution", "SCENARIO_2_INDEX_5", -1, -1, -1, 0, 0, 2, 3],
 	"6":  ["Resolution", "SCENARIO_2_INDEX_6", -1, -1, -1, 0, 0, 2, -1],
-	"6":  ["Resolution", "SCENARIO_2_INDEX_7", -1, -1, -1, 0, 0, 2, 1]
+	"7":  ["Resolution", "SCENARIO_2_INDEX_7", -1, -1, -1, 0, 0, 2, 1]
   },
   "Scenario3": {
 	"1":  ["Traffic Incident", "SCENARIO_3_INDEX_1", 2, 6, 4, 2, 1, 2, 0],
@@ -64,5 +64,5 @@
 	"6":  ["Resolution", "SCENARIO_7_INDEX_6", -1, -1, -1, 0, 0, 2, -2],
 	"7":  ["Resolution", "SCENARIO_7_INDEX_7", -1, -1, -1, 0, 0, 2, 2],
 	"8":  ["Resolution", "SCENARIO_7_INDEX_8", -1, -1, -1, 0, 0, 2, 1]
-  },
+  }
 }
