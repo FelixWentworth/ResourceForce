@@ -6,7 +6,7 @@ public class StartTransition : MonoBehaviour {
 
     public Text password;
     string passwordText;
-    private Image background;
+    public Image background;
     private Color backgroundColor;
     private Color fadedBackgroundColor;
 
@@ -21,7 +21,6 @@ public class StartTransition : MonoBehaviour {
         passwordText = password.text;
         password.text = "";
         SetObjects(true);
-        background = this.GetComponent<Image>();
         backgroundColor = background.color;
         fadedBackgroundColor = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, 0f);
 
