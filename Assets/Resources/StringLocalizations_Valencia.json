@@ -37,6 +37,7 @@
 {"key":"BASIC_TEXT_STATUS","en-gb":"Status","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_TYPE","en-gb":"Type","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_LOCATION","en-gb":"Location","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_DOWNLOAD","en-gb":"Download the INSPEC2T App Now!","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_DESCRIPTION","en-gb":"Description","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_IGNORE_WARNING","en-gb":"WARNING! Selecting wait will cause the case to expire, reducing citizen satisfaction","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"WELCOME_SCREEN_SET_LOCATION","en-gb":"Please set your location below to get the best experience!","de":"XXXX","el":"XXXX","es":"XXXX"},

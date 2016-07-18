@@ -32,7 +32,8 @@ public class StartTransition : MonoBehaviour {
     public void StartGameTransition()
     {
         //start to transition from this screen to game screen, we will do this by filling in the password and then transition to the main game
-        StartCoroutine(ShowPassword());
+        //StartCoroutine(ShowPassword());
+        StartCoroutine(DelayToGame());
     }
     IEnumerator ShowPassword()
     {
@@ -45,7 +46,11 @@ public class StartTransition : MonoBehaviour {
         //we have now filled the password text, so fade the background to show the main game
         FadeBackgrounds();
     }
-
+    IEnumerator DelayToGame()
+    {
+        yield return new WaitForSeconds(0.3f);
+        FadeBackgrounds();
+    }
     private void FadeBackgrounds()
     {
         SetObjects(false);
@@ -86,9 +91,5 @@ public class StartTransition : MonoBehaviour {
         {
             objectsToDisableOnStart[i].SetActive(enabled);
         }
-    }
-    public void GoToInspect()
-    {
-        Application.OpenURL("http://inspec2t-project.eu/en/");
     }
 }

@@ -11,6 +11,7 @@ public class TurnManager : MonoBehaviour {
 
     public Text turnsText;
     public Text gameOverText;
+    public Text GameScoreText;
     public Text HighScoreText;
 
     public GameObject startScreen;
@@ -70,8 +71,8 @@ public class TurnManager : MonoBehaviour {
             bestTurns = zTurn;
             PlayerPrefs.SetInt("BestTurns", bestTurns);
         }
-        HighScoreText.text = Localization.Get("BASIC_TEXT_SCORE") + ": " + zTurn + "\n" + Localization.Get("BASIC_TEXT_BEST") + ": " + bestTurns;
-        HighScoreText.text = HighScoreText.text.ToUpper();
+        GameScoreText.text = zTurn.ToString();
+        HighScoreText.text = bestTurns.ToString();
         GameOver.SetActive(true);
     }
     
@@ -80,5 +81,9 @@ public class TurnManager : MonoBehaviour {
         //reset the case identifier to ensure that the case numbers are reset
         SimplifiedJson.identifier = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+    public void GoToInspect()
+    {
+        Application.OpenURL("http://inspec2t-project.eu/en/");
     }
 }
