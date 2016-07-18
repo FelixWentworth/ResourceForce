@@ -11,6 +11,7 @@ public class DialogBox : MonoBehaviour {
     public Text LeftButton;
     public Text RightButton;
     public Text OfficerReqText;
+    public Text TurnReqText;
 
     public Text EmailNumber;
     public Image emailIconSeverityOverlay;
@@ -54,12 +55,14 @@ public class DialogBox : MonoBehaviour {
 
         if (!endCase)
         {
-            OfficerReqText.text = Localization.Get("BASIC_TEXT_OFFICERS_REQUIRED") + ": " + zIncident.officer + "\n" + Localization.Get("BASIC_TEXT_TURNS_REQUIRED") + ": " + zIncident.turnsToAdd;
+            OfficerReqText.text = zIncident.officer.ToString();
+            TurnReqText.text = zIncident.turnsToAdd.ToString();
             popupType = PopupType.Incident;
         }
         else
         {
             OfficerReqText.text = "";
+            TurnReqText.text = "";
             popupType = PopupType.CaseClosed;
         }
         //set the button text
@@ -152,6 +155,7 @@ public class DialogBox : MonoBehaviour {
     {
         Body.text = "";
         OfficerReqText.text = "";
+        TurnReqText.text = "";
     }
     public void DisableButtons()
     {
