@@ -4,6 +4,10 @@ using System.Collections;
 public class AudioManager : MonoBehaviour {
 
     //setup singleton
+    private bool muted = false;
+    public GameObject SoundOffIcon;
+    public GameObject SoundOnIcon;
+
     private static AudioManager instance = null;
 
     public static AudioManager Instance
@@ -16,6 +20,7 @@ public class AudioManager : MonoBehaviour {
 
     private void Awake()
     {
+        UpdateSoundIcons();
         PlayBackgroundMusic();
         SetBackgroundMusicBalance(75f);
         if (instance != null && instance != this)
@@ -33,6 +38,7 @@ public class AudioManager : MonoBehaviour {
     public AudioSource positiveButtonMusic;
     public AudioSource negativeButtonMusic;
     public AudioSource warningBoxMusic;
+    public AudioSource sendOfficerMusic;
     public AudioSource gameOverMusic;
     public AudioSource caseClosedMusic;
 
@@ -49,6 +55,7 @@ public class AudioManager : MonoBehaviour {
     public void PressOfficerButton()
     {
         //play officer button press audio
+        sendOfficerMusic.Play();
         positiveButtonMusic.Play();
     }
     public void NegativeButtonPress()
@@ -111,5 +118,19 @@ public class AudioManager : MonoBehaviour {
     {
         //play case closed audio
         //caseClosedMusic.Play();
+    }
+
+    public void ToggleMute()
+    {
+        muted = !muted;
+
+        UpdateSoundIcons();        
+
+        AudioListener.volume = muted ? 0 : 1;
+    }
+    private void UpdateSoundIcons()
+    {
+        SoundOffIcon.SetActive(muted);
+        SoundOnIcon.SetActive(!muted);
     }
 }
