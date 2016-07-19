@@ -30,6 +30,8 @@ public class TurnManager : MonoBehaviour {
     }
 	private void NextTurn()
     {
+        AudioManager.Instance.PlayNextTurn();
+
         turn++;
         
         NextTurnButton.SetActive(false);
@@ -63,6 +65,8 @@ public class TurnManager : MonoBehaviour {
     }
     private void ShowGameOver()
     {
+        AudioManager.Instance.PlayGameOver();
+
         int zTurn = turn - 1;
         gameOverText.text = string.Format(Localization.Get("BASIC_TEXT_GAMEOVER_BODY"), zTurn);
         int bestTurns = PlayerPrefs.GetInt("BestTurns");

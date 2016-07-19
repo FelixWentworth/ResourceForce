@@ -10,7 +10,7 @@
 	"7":  ["Resolution", "SCENARIO_1_INDEX_7", -1, -1, -1, 0, 4, 0, 3]
   },
   "Scenario2": {
-	"1":  ["Drug Use", "SCENARIO_2_INDEX_1", 2, 8, 4, 1, 1, 2, 0],
+	"1":  ["Drug Use", "SCENARIO_2_INDEX_1", 2, 7, 4, 1, 1, 2, 0],
 	"2":  ["Argument", "SCENARIO_2_INDEX_2", 3, 6, -1, 2, 2, 1, 0],
 	"3":  ["Injury (Possibly Severe)", "SCENARIO_2_INDEX_3", 3, 5, -1, 2, 2, 2, 0],
 	"4":  ["Citizen Suppprt", "SCENARIO_2_INDEX_4", 4, -1, 5, 1, 1, 2, 0],

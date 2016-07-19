@@ -33,6 +33,7 @@ public class StartTransition : MonoBehaviour {
     {
         //start to transition from this screen to game screen, we will do this by filling in the password and then transition to the main game
         //StartCoroutine(ShowPassword());
+        AudioManager.Instance.PlayNewGame();
         StartCoroutine(DelayToGame());
     }
     IEnumerator ShowPassword()

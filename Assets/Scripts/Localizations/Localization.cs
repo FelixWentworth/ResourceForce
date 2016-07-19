@@ -12,7 +12,8 @@ public class Localization : MonoBehaviour {
     public bool toUpper;
 
     public static string filePath = "StringLocalizations";
-    static TextAsset jsonTextAsset;
+    static TextAsset jsonTextAsset_Scenario;
+    static TextAsset jsonTextAsset_Basic;
     public static int languageIndex = 1;
 
     void Awake()
@@ -25,9 +26,21 @@ public class Localization : MonoBehaviour {
     }
     static void ConvertJsonToDict()
     {
-        jsonTextAsset = Resources.Load(filePath) as TextAsset;
+        jsonTextAsset_Scenario = Resources.Load(filePath) as TextAsset;
+        jsonTextAsset_Basic = Resources.Load("StringLocalizations_BasicText") as TextAsset;
+        var B = JSON.Parse(jsonTextAsset_Basic.text);
 
-        var N = JSON.Parse(jsonTextAsset.text);
+        for (int i = 0; B[i] != null; i++)
+        {
+            //go through the list and add the strings to the dictionary
+            string _key = B[i][0].ToString();
+            _key = _key.Replace("\"", "");
+            string _value = B[i][languageIndex].ToString();
+            _value = _value.Replace("\"", "");
+            localizationDict[_key] = _value;
+        }
+
+        var N = JSON.Parse(jsonTextAsset_Scenario.text);
 
         for (int i = 0; N[i] != null; i++)
         {

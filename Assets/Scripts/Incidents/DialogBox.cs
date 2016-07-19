@@ -27,6 +27,8 @@ public class DialogBox : MonoBehaviour {
     public enum PopupType { Incident, CaseClosed };
     public PopupType popupType = PopupType.Incident;
 
+    public WarningBox OfficerWarningBox;
+
     private int caseNum;
 
     void Start()
@@ -43,8 +45,11 @@ public class DialogBox : MonoBehaviour {
         //check if this is a resolution, ie. no buttons will lead anywhere
         bool endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1) || zIncident.expired;
 
+        //set the body of text with information
         Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_TYPE") + ": </color>" + zIncident.type + "\n\n<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
-        if (zIncident.turnToDevelop < m_turnManager.turn)
+
+        //if this is the last time a player can ignore a case before it expires, show a warning that they will lose large satisfaction
+        if (zIncident.turnToDevelop < m_turnManager.turn && !endCase) //check its not the end of a case as some cases can show as expiring when they take a long time to solve
         {
             Body.text += "\n\n" + Localization.Get("BASIC_TEXT_IGNORE_WARNING");
         }
@@ -109,6 +114,7 @@ public class DialogBox : MonoBehaviour {
     {
         DisableButtons();
         StartCoroutine(LeftButtonWithAnim());
+        AudioManager.Instance.PressWaitButton();
     }
     IEnumerator LeftButtonWithAnim()
     {
@@ -131,6 +137,11 @@ public class DialogBox : MonoBehaviour {
             //double check if we have enough officers otherwise the game will break
             DisableButtons();
             StartCoroutine(RightButtonWithAnim());
+            AudioManager.Instance.PressOfficerButton();
+        }
+        else
+        {
+            StartCoroutine(OfficerWarningBox.ShowWarning());
         }
     }
     IEnumerator RightButtonWithAnim()
@@ -143,6 +154,7 @@ public class DialogBox : MonoBehaviour {
     {
         DisableButtons();
         StartCoroutine(CitizenButtonWithAnim());
+        AudioManager.Instance.PressCitizenButton();
     }
     IEnumerator CitizenButtonWithAnim()
     {
