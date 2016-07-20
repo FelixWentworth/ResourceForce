@@ -137,20 +137,7 @@ public class IncidentManager : MonoBehaviour
         m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
 
         //set the subject text to show the status of the current case
-        CaseNumber.text = Localization.Get("INCIDENT_CASE_SUBJECT") + ": ";
-        if (currentIncident.isNew)
-        {
-            CaseNumber.text += Localization.Get("INCIDENT_NEW") + " ";
-        }
-        else if (currentIncident.resolved)
-        {
-            CaseNumber.text += Localization.Get("INCIDENT_RESOLVED") + " ";
-        }
-        else if (!currentIncident.isNew)
-        {
-            CaseNumber.text += Localization.Get("INCIDENT_ONGOING") + " ";
-        }
-        CaseNumber.text += Localization.Get("INCIDENT_CASE");
+        CaseNumber.text = Localization.Get("INCIDENT_CASE_SUBJECT") + ": " + currentIncident.type;
 
         //make sure the current incident is not showing as new as we now know the player has seen it
         currentIncident.isNew = false;
@@ -169,7 +156,7 @@ public class IncidentManager : MonoBehaviour
             happiness += impact;
         }
         happiness = Mathf.Clamp(happiness, 0, 100);
-        ArrestsMade.text = Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + ": " + Mathf.RoundToInt(happiness) + "%";
+        ArrestsMade.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + "</color> " + Mathf.RoundToInt(happiness) + "%";
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
     }
     public void EndTurn()
@@ -177,7 +164,7 @@ public class IncidentManager : MonoBehaviour
         //punish the player for having cases open, stopping players from just ignoring all cases
         happiness -= 1f * incidents.Count;
         happiness = Mathf.Clamp(happiness, 0, 100);
-        ArrestsMade.text = Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + ": " + Mathf.RoundToInt(happiness) + "%";
+        ArrestsMade.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + "</color> " + Mathf.RoundToInt(happiness) + "%";
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
     }
     public void ClearList()

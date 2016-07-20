@@ -8,7 +8,9 @@ public class DialogBox : MonoBehaviour {
     public Incident currentIncident;
     
     public Text Body;
-    public Text LeftButton;
+    //the ok and wait text objects are enabled based on which button to show as they have a different layout
+    public GameObject OkText;
+    public GameObject WaitText;
     public Text RightButton;
     public Text OfficerReqText;
     public Text TurnReqText;
@@ -46,7 +48,7 @@ public class DialogBox : MonoBehaviour {
         bool endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1) || zIncident.expired;
 
         //set the body of text with information
-        Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_TYPE") + ": </color>" + zIncident.type + "\n\n<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
+        Body.text = "\n\n<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
 
         //if this is the last time a player can ignore a case before it expires, show a warning that they will lose large satisfaction
         if (zIncident.turnToDevelop < m_turnManager.turn && !endCase) //check its not the end of a case as some cases can show as expiring when they take a long time to solve
@@ -73,10 +75,15 @@ public class DialogBox : MonoBehaviour {
         //set the button text
         if (!zIncident.expired)
         {
-            LeftButton.text = endCase ? Localization.Get("BASIC_TEXT_OK") : Localization.Get("BASIC_TEXT_WAIT");
+            OkText.SetActive(endCase);
+            WaitText.SetActive(!endCase);
         }
         else
-            LeftButton.text = Localization.Get("BASIC_TEXT_WAIT");
+        {
+            OkText.SetActive(false);
+            WaitText.SetActive(true);
+        }
+
         RightButton.text = zIncident.officer == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
         //wait for anim to finish

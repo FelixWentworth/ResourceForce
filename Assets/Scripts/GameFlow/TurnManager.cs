@@ -36,7 +36,7 @@ public class TurnManager : MonoBehaviour {
         
         NextTurnButton.SetActive(false);
         GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
-        turnsText.text = Localization.Get("BASIC_TEXT_TURN") + " " + turn;
+        turnsText.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_TURN") + "</color> " + turn;
         if (m_IncidentManager == null)
             m_IncidentManager = this.GetComponent<IncidentManager>();
         
