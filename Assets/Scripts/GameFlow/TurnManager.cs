@@ -15,12 +15,14 @@ public class TurnManager : MonoBehaviour {
     public Text HighScoreText;
 
     public GameObject startScreen;
+    public GameObject settingsScreen;
     public GameObject GameOver;
     public GameObject NextTurnButton;
 
 	void Start () {
         NextTurnButton.SetActive(false);
         GameOver.SetActive(false);
+        settingsScreen.SetActive(false);
         startScreen.SetActive(true);
         m_IncidentManager = this.GetComponent<IncidentManager>();
     }
@@ -87,9 +89,21 @@ public class TurnManager : MonoBehaviour {
         AudioManager.Instance.PlayBackgroundMusic();
         AudioManager.Instance.SetBackgroundMusicBalance(100f);
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        AudioManager.Instance.NegativeButtonPress();
     }
     public void GoToInspect()
     {
         Application.OpenURL("http://inspec2t-project.eu/en/");
+    }
+    public void PauseGame()
+    {
+        //we could set Time.scale to 0 but there is little need so we will just show the pause screen
+        AudioManager.Instance.PositiveButtonPress();
+        settingsScreen.SetActive(!settingsScreen.activeSelf);
+    }
+    public void ResumeGame()
+    {
+        AudioManager.Instance.PositiveButtonPress();
+        settingsScreen.SetActive(false);
     }
 }

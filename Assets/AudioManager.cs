@@ -5,8 +5,6 @@ public class AudioManager : MonoBehaviour {
 
     //setup singleton
     private bool muted = false;
-    public GameObject SoundOffIcon;
-    public GameObject SoundOnIcon;
 
     private static AudioManager instance = null;
 
@@ -20,13 +18,13 @@ public class AudioManager : MonoBehaviour {
 
     private void Awake()
     {
-        UpdateSoundIcons();
         PlayBackgroundMusic();
         SetBackgroundMusicBalance(75f);
         if (instance != null && instance != this)
         {
             //if the singleton has already been created
             Destroy(this.gameObject);
+            return;
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
@@ -62,6 +60,7 @@ public class AudioManager : MonoBehaviour {
     {
         //play negative button press audio
         //negativeButtonMusic.Play();
+        positiveButtonMusic.Play();
     }
     public void PositiveButtonPress()
     {
@@ -119,18 +118,8 @@ public class AudioManager : MonoBehaviour {
         //play case closed audio
         //caseClosedMusic.Play();
     }
-
-    public void ToggleMute()
+    public void SetVolume(UnityEngine.UI.Slider slider)
     {
-        muted = !muted;
-
-        UpdateSoundIcons();        
-
-        AudioListener.volume = muted ? 0 : 1;
-    }
-    private void UpdateSoundIcons()
-    {
-        SoundOffIcon.SetActive(muted);
-        SoundOnIcon.SetActive(!muted);
+        AudioListener.volume = slider.value;
     }
 }
