@@ -83,14 +83,16 @@ public class AudioManager : MonoBehaviour {
     {
         //set the volumes of the background music based on the satisfaction level
         //only play the endagered music when the satisfaction is lower than 70%
-        if (satisfaction < 70f)
-        {
-            float volume = Mathf.Clamp01(satisfaction / 70f);
+        //if (satisfaction < 70f)
+        //{
+        //    float volume = Mathf.Clamp01(satisfaction / 70f);
 
-            backgroundMusic.volume = volume/2f;
-            endangerMusic.volume = 1 - volume;
-            
-        }
+        //    backgroundMusic.volume = volume/2f;
+        //    endangerMusic.volume = 1 - volume;
+
+        //}
+        backgroundMusic.volume = 1;
+        endangerMusic.volume = 0;
     }
     public void ShowWarningMessage()
     {
