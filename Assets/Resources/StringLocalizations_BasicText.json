@@ -15,6 +15,7 @@
 {"key":"BASIC_TEXT_NO_MORE_INCIDENTS","en-gb":"No more incidents to check this turn","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_GO","en-gb":"Go","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_NEXT_TURN","en-gb":"Next Turn","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_BACK","en-gb":"Back","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"INCIDENT_NEW","en-gb":"New","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"INCIDENT_ONGOING","en-gb":"Ongoing","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"INCIDENT_RESOLVED","en-gb":"Resolved","de":"XXXX","el":"XXXX","es":"XXXX"},
