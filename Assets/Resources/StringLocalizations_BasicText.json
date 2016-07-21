@@ -45,6 +45,7 @@
 {"key":"BASIC_TEXT_QUIT","en-gb":"Quit to Menu","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_SOUND","en-gb":"Sound","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"WELCOME_SCREEN_SET_LOCATION","en-gb":"Please set your location below to get the best experience!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"START_SCREEN_INSPECT_TEXT","en-gb":"Help your local police force to solve real crimes with the Inspec2t app","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"TUTORIAL_TEXT_TAP","en-gb":"Tap to continue…","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"TUTORIAL_TEXT_TOP_BAR","en-gb":"The top of the screen shows the current satisfaction status, the further into red you go, the closer you are to losing. Solve cases to stay out of the red","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"TUTORIAL_TEXT_STATUS_BAR","en-gb":"The status bar shows the actual satisfaction, try to keep this above 10% for as many turns as you can","de":"XXXX","el":"XXXX","es":"XXXX"},
