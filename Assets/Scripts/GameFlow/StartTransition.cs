@@ -63,8 +63,8 @@ public class StartTransition : MonoBehaviour {
         if (PlayerPrefs.GetInt("NewPlayer") == 0)
         {
             //player is new so show tutorial
-            //tut.ShowStep();
-            GameObject.Find("TurnManager").GetComponent<TurnManager>().StartGame();
+            tut.gameObject.SetActive(true);
+            tut.ShowStep();
         }
         else
         {
