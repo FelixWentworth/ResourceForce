@@ -15,7 +15,8 @@ public class DeviceLocation : MonoBehaviour {
         if (value == 0)
             return;
 
-        loc.SetFilePath(dropdown.value-1);
+        loc.SetFilePath(dropdown.value - 1);
+
         startScreen.SetActive(true);
         this.gameObject.SetActive(false);
     }

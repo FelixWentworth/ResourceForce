@@ -18,6 +18,10 @@ public class Localization : MonoBehaviour {
 
     void Awake()
     {
+        UpdateTextFile();
+    }
+    public static void UpdateTextFile()
+    {
         //below code not original part of localization package
         filePath = "StringLocalizations" + GameObject.Find("LocationMaster").GetComponent<Location>().GetExtension();
         //above code not original part of localization package
@@ -82,6 +86,9 @@ public class Localization : MonoBehaviour {
     }
     public static void SetLanguageIndex()
     {
+        //override to always use english for beta release 0.2
+        languageIndex = 1;
+        /*
         switch (Application.systemLanguage)
         {
             case SystemLanguage.English:
@@ -97,6 +104,7 @@ public class Localization : MonoBehaviour {
                 languageIndex = 4;
                 break;
         }
+        */
     }
 
 }

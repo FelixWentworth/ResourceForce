@@ -55,7 +55,7 @@ public class IncidentCase : MonoBehaviour {
                 icon.sprite = Resources.Load<Sprite>("Sprites/Wait");
                 break;
             case State.OfficersSent:
-                icon.sprite = Resources.Load<Sprite>("Sprites/Officer");
+                icon.sprite = Resources.Load<Sprite>("Sprites/Siren");
                 break;
             case State.CitizenRequest:
                 icon.sprite = Resources.Load<Sprite>("Sprites/Inspec2t");
