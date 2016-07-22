@@ -10,6 +10,8 @@ public class StartTransition : MonoBehaviour {
     private Color backgroundColor;
     private Color fadedBackgroundColor;
 
+    public static bool overrideShowLocation;
+
     public GameObject SelectLocationScreen;
 
     public GameObject[] objectsToDisableOnStart;
@@ -24,7 +26,8 @@ public class StartTransition : MonoBehaviour {
         backgroundColor = background.color;
         fadedBackgroundColor = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, 0f);
 
-        bool newLogIn = PlayerPrefs.GetInt("SetLocation") == 0;
+        bool newLogIn = PlayerPrefs.GetInt("SetLocation") == 0 || overrideShowLocation;
+        overrideShowLocation = false;
         SelectLocationScreen.SetActive(newLogIn);
         this.gameObject.SetActive(!newLogIn);
     }

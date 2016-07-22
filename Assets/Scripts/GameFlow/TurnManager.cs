@@ -106,4 +106,11 @@ public class TurnManager : MonoBehaviour {
         AudioManager.Instance.PositiveButtonPress();
         settingsScreen.SetActive(false);
     }
+    public void ChangeLocation()
+    {
+        //tell the start screen to show the location when it loads
+        StartTransition.overrideShowLocation = true;
+        //reset the game
+        Reset();
+    }
 }
