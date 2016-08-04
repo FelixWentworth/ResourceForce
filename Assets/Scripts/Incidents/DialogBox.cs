@@ -29,6 +29,8 @@ public class DialogBox : MonoBehaviour {
     public enum PopupType { Incident, CaseClosed };
     public PopupType popupType = PopupType.Incident;
 
+    public GameObject SoundWaves;
+
     public WarningBox OfficerWarningBox;
 
     private int caseNum;
@@ -41,6 +43,7 @@ public class DialogBox : MonoBehaviour {
     {
         //pass through the relevant info to the dialog box
         StartCoroutine(ShowIncident(zIncident));
+        SoundWaves.SetActive(true);
     }
     public IEnumerator ShowIncident(Incident zIncident)
     {
@@ -175,12 +178,16 @@ public class DialogBox : MonoBehaviour {
         Body.text = "";
         OfficerReqText.text = "";
         TurnReqText.text = "";
+
+        SoundWaves.SetActive(false);
     }
     public void DisableButtons()
     {
         waitButton.SetActive(false);
         SendOfficerButton.SetActive(false);
         m_citizenHelpButton.SetActive(false);
+
+        SoundWaves.SetActive(false);
     }
     public void DeactivateAll()
     {
