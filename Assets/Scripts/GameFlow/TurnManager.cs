@@ -93,7 +93,19 @@ public class TurnManager : MonoBehaviour {
     }
     public void GoToInspect()
     {
-        Application.OpenURL("http://inspec2t-project.eu/en/");
+        SendEmail();
+        //Application.OpenURL("http://inspec2t-project.eu/en/");
+    }
+    void SendEmail()
+    {
+        string email = "felix@playgen.com";
+        string subject = MyEscapeURL("Resource Force Feedback");
+        string body = MyEscapeURL("");
+        Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + body);
+    }
+    string MyEscapeURL(string url)
+    {
+        return WWW.EscapeURL(url).Replace("+", "%20");
     }
     public void PauseGame()
     {
