@@ -19,7 +19,6 @@ public class AudioManager : MonoBehaviour {
 
     //get slider so that we can update the position to match the volume
     public Slider slider;
-
     private void Awake()
     {
         if (PlayerPrefs.GetInt("VolumeSet") == 1)

@@ -10,7 +10,11 @@ public class DialogBox : MonoBehaviour {
     public Text Body;
     //the ok and wait text objects are enabled based on which button to show as they have a different layout
     public GameObject OkText;
+    public Text satisfaction;
     public GameObject WaitText;
+
+    public GameObject officerRequiredInformation;
+
     public Text RightButton;
     public Text OfficerReqText;
     public Text TurnReqText;
@@ -34,6 +38,12 @@ public class DialogBox : MonoBehaviour {
     public WarningBox OfficerWarningBox;
 
     private int caseNum;
+
+    public GameObject Border_Incident;
+    public GameObject Border_Resolution;
+    public GameObject WarningIcon;
+    public Image titleBackground;
+    public Color ResolutionTint;
 
     void Start()
     {
@@ -65,20 +75,37 @@ public class DialogBox : MonoBehaviour {
 
         if (!endCase)
         {
+            officerRequiredInformation.SetActive(true);
             OfficerReqText.text = zIncident.officer.ToString();
             TurnReqText.text = zIncident.turnsToAdd.ToString();
+            WarningIcon.SetActive(true);
+            Border_Incident.SetActive(true);
+            Border_Resolution.SetActive(false);
+            titleBackground.color = Color.white;
             popupType = PopupType.Incident;
+            
         }
         else
         {
             OfficerReqText.text = "";
             TurnReqText.text = "";
+            officerRequiredInformation.SetActive(false);
+            WarningIcon.SetActive(false);
+            Border_Incident.SetActive(false);
+            Border_Resolution.SetActive(true);
+            titleBackground.color = ResolutionTint;
             popupType = PopupType.CaseClosed;
         }
         //set the button text
         if (!zIncident.expired)
         {
             OkText.SetActive(endCase);
+            string satisfactionText = Localization.Get("BASIC_TEXT_SATISFACTION");
+            if (zIncident.satisfactionImpact >= 0)
+            {
+                satisfactionText = satisfactionText.Insert(0, "+");
+            }
+            satisfaction.text = string.Format(satisfactionText, zIncident.satisfactionImpact);
             WaitText.SetActive(!endCase);
         }
         else
@@ -178,7 +205,11 @@ public class DialogBox : MonoBehaviour {
         Body.text = "";
         OfficerReqText.text = "";
         TurnReqText.text = "";
-
+        WarningIcon.SetActive(false);
+        Border_Incident.SetActive(false);
+        Border_Resolution.SetActive(true);
+        officerRequiredInformation.SetActive(false);
+        titleBackground.color = Color.white;
         SoundWaves.SetActive(false);
     }
     public void DisableButtons()

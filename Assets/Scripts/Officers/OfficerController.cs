@@ -11,7 +11,6 @@ public class OfficerController : MonoBehaviour {
     public List<officer> m_officersInUse = new List<officer>();
 
     public Text officersText;
-    public Text maxOfficersText;
     public Text officerStatus;
 
     public int StartingOfficers = 5;
@@ -36,7 +35,6 @@ public class OfficerController : MonoBehaviour {
         }
         m_officersInUse = new List<officer>();
         officersText.text = m_officers.Count.ToString();
-        maxOfficersText.text = StartingOfficers.ToString();
         SetOfficerStatus();
         
     }

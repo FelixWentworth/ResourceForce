@@ -12,6 +12,7 @@ public class IncidentCase : MonoBehaviour {
     public Image icon;
     public Text number;
     public Image severity;
+    public Image highlightSeverity;
 
     public GameObject warningIcon;
     public GameObject newIncidentOverlay;
@@ -41,6 +42,7 @@ public class IncidentCase : MonoBehaviour {
         else if (zSeverity == 3)
             alpha = 1.0f;
         severity.color = new Color(1f, 0f, 0f, alpha);
+        highlightSeverity.color = new Color(1f, 0f, 0f, alpha);
         severityNumber = zSeverity;
     }
 	public void SetIcon()

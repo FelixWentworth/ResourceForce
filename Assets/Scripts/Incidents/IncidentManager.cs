@@ -162,7 +162,7 @@ public class IncidentManager : MonoBehaviour
     public void EndTurn()
     {
         //punish the player for having cases open, stopping players from just ignoring all cases
-        happiness -= 1f * incidents.Count;
+        happiness -= 1f * GetTotalSeverity();
         happiness = Mathf.Clamp(happiness, 0, 100);
         ArrestsMade.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + "</color> " + Mathf.RoundToInt(happiness) + "%";
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
@@ -256,6 +256,8 @@ public class IncidentManager : MonoBehaviour
     }
     public void ShowNext()
     {
+        //hide the highlight on all objects
+        m_IncidentQueue.RemoveAllHighlights();
 #if SELECT_INCIDENTS
         NextIncident.RemoveAt(incidentShowingIndex);
         incidentShowingIndex = 0;
@@ -265,7 +267,18 @@ public class IncidentManager : MonoBehaviour
 
         if (NextIncident.Count == 0)//no more incidents to show
         {
-            this.gameObject.GetComponent<TurnManager>().NextTurnButton.SetActive(true);
+            TurnManager tmp = this.gameObject.GetComponent<TurnManager>();
+            tmp.NextTurnButton.SetActive(true);
+            int ignored = GetIgnoredCasesCount();
+            if (ignored > 0)
+            {
+                string satisfactionText = Localization.Get("BASIC_TEXT_SATISFACTION_END_TURN");
+                tmp.endTurnSatisfaction.text = string.Format(satisfactionText, ignored, incidents.Count > 1 ? "s" : "", GetTotalSeverity());
+            }
+            else
+            {
+                tmp.endTurnSatisfaction.text = Localization.Get("BASIC_TEXT_NO_IGNORED_CASES");
+            }
             CaseNumber.text = "";
         }
         else
@@ -294,6 +307,30 @@ public class IncidentManager : MonoBehaviour
     public int GetHappiness()
     {
         return Mathf.RoundToInt(happiness);
+    }
+    public int GetTotalSeverity()
+    {
+        int total = 0;
+        foreach(IncidentCase i in m_IncidentQueue.allCases)
+        {
+            if (i.severityNumber != 0 && i.gameObject.activeSelf && i.m_state == IncidentCase.State.Waiting)
+            {
+                total += i.severityNumber;
+            }
+        }
+        return total;
+    }
+    public int GetIgnoredCasesCount()
+    {
+        int total = 0;
+        foreach (IncidentCase i in m_IncidentQueue.allCases)
+        {
+            if (i.m_state == IncidentCase.State.Waiting)
+            {
+                total += 1;
+            }
+        }
+        return total;
     }
 }
 

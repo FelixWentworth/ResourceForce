@@ -79,6 +79,14 @@ public class IncidentQueue : MonoBehaviour {
             }
         }
     }
+    public void RemoveAllHighlights()
+    {
+        //remove all highlight object from cases
+        for (int i = 0; i< allCases.Length; i++)
+        {
+            allCases[i].ToggleHighlight(true);
+        }
+    }
     public void RemoveWarningIcon(int caseNum)
     {
         for (int i=0; i<cases; i++)

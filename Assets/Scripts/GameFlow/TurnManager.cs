@@ -18,6 +18,7 @@ public class TurnManager : MonoBehaviour {
     public GameObject settingsScreen;
     public GameObject GameOver;
     public GameObject NextTurnButton;
+    public Text endTurnSatisfaction;
 
 	void Start () {
         NextTurnButton.SetActive(false);

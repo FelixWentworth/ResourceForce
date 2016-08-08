@@ -32,12 +32,12 @@ public class WarningBox : MonoBehaviour {
     {
         while (myTransform.anchoredPosition.y < height)
         {
-            this.transform.position += Vector3.up * 80f * Time.deltaTime;
+            this.transform.position += Vector3.up * 120f * Time.deltaTime;
             yield return null;
         }
         while (myTransform.anchoredPosition.y > 0)
         {
-            this.transform.position += Vector3.down * 80f * Time.deltaTime;
+            this.transform.position += Vector3.down * 120f * Time.deltaTime;
             yield return null;
         }
     }

@@ -60,4 +60,8 @@
 {"key":"TUTORIAL_TEXT_INCIDENTS","en-gb":"Here you will see all your active incidents, they are colour coordinated by severity. Red being most severe","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"TUTORIAL_TEXT_BUTTONS","en-gb":"Each case can have up to 3 options, wait for more officers, send the required officers or ask citizens for help when available","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"START_SCREEN_FEEDBACK_TEXT","en-gb":"Help us to make the app better, by sending us your feedback!","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"START_SCREEN_SEND_FEEDBACK","en-gb":"Send Feedback!","de":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"START_SCREEN_SEND_FEEDBACK","en-gb":"Send Feedback!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"INCIDENT_AVAILABLE","en-gb":"Available","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_SATISFACTION","en-gb":"{0}% Satisfaction","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_SATISFACTION_END_TURN","en-gb":"{0} Ignored Case{1}, -{2}% Satisfaction","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_NO_IGNORED_CASES","en-gb":"0 Ignored Cases, No Satisfaction Change","de":"XXXX","el":"XXXX","es":"XXXX"}]
