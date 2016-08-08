@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class AudioManager : MonoBehaviour {
@@ -16,8 +17,22 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
+    //get slider so that we can update the position to match the volume
+    public Slider slider;
+
     private void Awake()
     {
+        if (PlayerPrefs.GetInt("VolumeSet") == 1)
+        {
+            //the volume has previously been set, get the volume the player has chosen
+            AudioListener.volume = PlayerPrefs.GetFloat("Volume");
+        }
+        else
+        {
+            //set the volume to full as default
+            AudioListener.volume = 1.0f;
+        }
+        slider.value = AudioListener.volume;
         PlayBackgroundMusic();
         SetBackgroundMusicBalance(75f);
         if (instance != null && instance != this)
@@ -120,8 +135,14 @@ public class AudioManager : MonoBehaviour {
         //play case closed audio
         //caseClosedMusic.Play();
     }
-    public void SetVolume(UnityEngine.UI.Slider slider)
+    public void SetVolume()
     {
         AudioListener.volume = slider.value;
+        SaveVolume(slider.value);
+    }
+    private void SaveVolume(float vol)
+    {
+        PlayerPrefs.SetFloat("Volume", vol);
+        PlayerPrefs.SetInt("VolumeSet", 1);
     }
 }
