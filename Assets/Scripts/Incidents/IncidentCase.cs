@@ -22,7 +22,7 @@ public class IncidentCase : MonoBehaviour {
     [HideInInspector]public int caseNumber;
     [HideInInspector]public int severityNumber;
 
-    public void Setup(int zNumber, State zState = State.New, int zSeverity = 1)
+    public void Setup(int zNumber, State zState = State.New, int zSeverity = 1, Image severityHighlight = null, bool isNew = false)
     {
         //set up the case to show the relevant info
         number.text = zNumber.ToString();
@@ -30,6 +30,16 @@ public class IncidentCase : MonoBehaviour {
         m_state = zState;
 
         SetSeverity(zSeverity);
+        
+        if (severityHighlight != null)
+        {
+            highlightSeverity.color = severityHighlight.color;
+            if (isNew)
+            {
+                newIncidentOverlay.SetActive(true);
+            }
+        }
+        
         SetIcon();
         highlightObject.SetActive(false);
     }
