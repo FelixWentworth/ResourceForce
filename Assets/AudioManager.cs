@@ -121,18 +121,18 @@ public class AudioManager : MonoBehaviour {
     }
     public void PlayNewGame()
     {
-        //play new game jingle
+        // play new game jingle
         positiveButtonMusic.Play();
     }
     public void PlayNextTurn()
     {
-        //play the next turn music
+        // play the next turn music
         positiveButtonMusic.Play();
     }
     public void CaseClosed()
     {
-        //play case closed audio
-        //caseClosedMusic.Play();
+        // play case closed audio
+        // caseClosedMusic.Play();
     }
     public void SetVolume()
     {

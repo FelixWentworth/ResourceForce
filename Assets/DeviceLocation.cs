@@ -11,7 +11,7 @@ public class DeviceLocation : MonoBehaviour {
     {
         int value = dropdown.value;
 
-        //check a location has been set
+        // check a location has been set
         if (value == 0)
             return;
 

@@ -30,16 +30,14 @@ public class IncidentCase : MonoBehaviour {
         m_state = zState;
 
         SetSeverity(zSeverity);
-        
         if (severityHighlight != null)
         {
-            highlightSeverity.color = severityHighlight.color;
+            severity.color = severityHighlight.color;
             if (isNew)
             {
                 newIncidentOverlay.SetActive(true);
             }
         }
-        
         SetIcon();
         highlightObject.SetActive(false);
     }
@@ -99,7 +97,6 @@ public class IncidentCase : MonoBehaviour {
     }
     public void DisableNewCase()
     {
-
         newIncidentOverlay.SetActive(false);
     }
 
