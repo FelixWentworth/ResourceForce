@@ -42,7 +42,10 @@ public class DialogBox : MonoBehaviour {
     public GameObject Border_Incident;
     public GameObject Border_Resolution;
     public GameObject WarningIcon;
+	[Header("Resolution")]
     public Image titleBackground;
+	public Image OuterBorder;
+	public Image InnerBorder;
     public Color ResolutionTint;
 
     void Start()
@@ -82,6 +85,8 @@ public class DialogBox : MonoBehaviour {
             Border_Incident.SetActive(true);
             Border_Resolution.SetActive(false);
             titleBackground.color = Color.white;
+			InnerBorder.color = Color.white;
+			OuterBorder.color = Color.white;
             popupType = PopupType.Incident;
             
         }
@@ -94,6 +99,8 @@ public class DialogBox : MonoBehaviour {
             Border_Incident.SetActive(false);
             Border_Resolution.SetActive(true);
             titleBackground.color = ResolutionTint;
+			InnerBorder.color = ResolutionTint;
+			OuterBorder.color = ResolutionTint;
             popupType = PopupType.CaseClosed;
         }
         //set the button text
@@ -210,6 +217,8 @@ public class DialogBox : MonoBehaviour {
         Border_Resolution.SetActive(true);
         officerRequiredInformation.SetActive(false);
         titleBackground.color = Color.white;
+		InnerBorder.color = Color.white;
+		OuterBorder.color = Color.white;
         SoundWaves.SetActive(false);
     }
     public void DisableButtons()
