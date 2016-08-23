@@ -8,6 +8,7 @@ public class DialogBox : MonoBehaviour {
     public Incident currentIncident;
     
     public Text Body;
+	public Text Tips;
     //the ok and wait text objects are enabled based on which button to show as they have a different layout
     public GameObject OkText;
     public Text satisfaction;
@@ -65,7 +66,7 @@ public class DialogBox : MonoBehaviour {
 
         //set the body of text with information
         Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
-
+	    Tips.text = "";
         //if this is the last time a player can ignore a case before it expires, show a warning that they will lose large satisfaction
         if (zIncident.turnToDevelop < m_turnManager.turn && !endCase) //check its not the end of a case as some cases can show as expiring when they take a long time to solve
         {
@@ -156,12 +157,19 @@ public class DialogBox : MonoBehaviour {
     }
     public void LeftButtonPressed()
     {
+		// Check if the citizen option was available
+	    var isCitizensAvailable = m_citizenHelpButton.activeSelf;
         DisableButtons();
-        StartCoroutine(LeftButtonWithAnim());
+        StartCoroutine(LeftButtonWithAnim(isCitizensAvailable));
         AudioManager.Instance.PressWaitButton();
     }
-    IEnumerator LeftButtonWithAnim()
+    IEnumerator LeftButtonWithAnim(bool citizensAvailable = false)
     {
+	    if (citizensAvailable)
+	    {
+		    yield return ShowCitizenTip();
+	    }
+
         yield return EmailAnim(1f, "EmailShow");
         //wait for more officers to become available
         switch (popupType)
@@ -174,13 +182,23 @@ public class DialogBox : MonoBehaviour {
                 break;
         }
     }
+
+	IEnumerator ShowCitizenTip()
+	{
+		// Get a tip to show before closing the email box
+		var num = UnityEngine.Random.RandomRange(1, 6);
+		var text = Localization.Get("TIPS_CITIZEN_" + num);
+		Tips.text = text;
+		yield return new WaitForSeconds(3.5f);
+	}
     public void RightButtonPressed()
     {
         if (m_officerController.m_officers.Count >= currentIncident.officer)
         {
-            //double check if we have enough officers otherwise the game will break
-            DisableButtons();
-            StartCoroutine(RightButtonWithAnim());
+			var isCitizensAvailable = m_citizenHelpButton.activeSelf;
+			//double check if we have enough officers otherwise the game will break
+			DisableButtons();
+            StartCoroutine(RightButtonWithAnim(isCitizensAvailable));
             AudioManager.Instance.PressOfficerButton();
         }
         else
@@ -188,10 +206,14 @@ public class DialogBox : MonoBehaviour {
             StartCoroutine(OfficerWarningBox.ShowWarning());
         }
     }
-    IEnumerator RightButtonWithAnim()
+    IEnumerator RightButtonWithAnim(bool citizensAvailable = false)
     {
-        //send officers to resolve issue
-        yield return EmailAnim(1f, "EmailShow");
+		if (citizensAvailable)
+		{
+			yield return ShowCitizenTip();
+		}
+		//send officers to resolve issue
+		yield return EmailAnim(1f, "EmailShow");
         m_incidentManager.ResolvePressed();
     }
     public void CitizenButtonPressed()
@@ -210,6 +232,7 @@ public class DialogBox : MonoBehaviour {
     public void ClearDialogBox()
     {
         Body.text = "";
+	    Tips.text = "";
         OfficerReqText.text = "";
         TurnReqText.text = "";
         WarningIcon.SetActive(false);

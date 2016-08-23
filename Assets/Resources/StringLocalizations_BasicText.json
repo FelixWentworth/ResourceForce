@@ -64,4 +64,9 @@
 {"key":"INCIDENT_AVAILABLE","en-gb":"Available","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_SATISFACTION","en-gb":"{0}% Satisfaction","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_SATISFACTION_END_TURN","en-gb":"{0} Ignored Case{1}, -{2}% Satisfaction","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"BASIC_TEXT_NO_IGNORED_CASES","en-gb":"0 Ignored Cases, No Satisfaction Change","de":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"BASIC_TEXT_NO_IGNORED_CASES","en-gb":"0 Ignored Cases, No Satisfaction Change","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_CITIZEN_1","en-gb":"TIP:*n*You can save resources by asking citizens for more information!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_CITIZEN_2","en-gb":"TIP:*n*Citizens using the INSPEC2T app can help to identify key suspects","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_CITIZEN_3","en-gb":"TIP:*n*Citizens may be able to help with cases with information or evidence, make the most of the option","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_CITIZEN_4","en-gb":"TIP:*n*Maybe next time ask citizens for information, it could cut down the required officers","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_CITIZEN_5","en-gb":"TIP:*n*Maybe next time ask for citizen help from the INSPEC2T app, it could reduce the number of turns required","de":"XXXX","el":"XXXX","es":"XXXX"}]
