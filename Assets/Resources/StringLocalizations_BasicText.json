@@ -75,6 +75,14 @@
 {"key":"TIPS_WAIT_3","en-gb":"Ignoring incidents is more likely to give negative resolutions for incidents, try not to ignore cases","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"TIPS_WAIT_4","en-gb":"Some incidents will develop less than others, remember to evaluate the information provided carefully","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"TIPS_WAIT_5","en-gb":"Be Careful, sometimes ignoring incidents will cause them to develop.","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TIPS_OFFICER_1","en-gb":"Officers sent to incidents requiring just 1 turn will return at the start of the next turn","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TIPS_OFFICER_2","en-gb":"Remember to keep an eye on upcoming incidents to keep officers for potentially more severe incidents","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TIPS_OFFICER_3","en-gb":"Sending officers will always lead to a positive resolution, but at the cost of resources, make decisions carefully","de":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"TIPS_OFFICER_1","en-gb":"Remember to keep an eye on upcoming incidents to keep officers for potentially more severe incidents","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_OFFICER_2","en-gb":"Sending officers will always lead to a positive resolution, but at the cost of resources, make decisions carefully","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_OFFICER_ONE_TURN_NEGATIVE_1","en-gb":"Remember thet officers sent to incidents requiring just 1 turn will return at the start of the next turn","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_OFFICER_ONE_TURN_NEGATIVE_2","en-gb":"Sending officers to incidents that only require 1 turn is a great way to clear active cases","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_OFFICER_HIGH_SEVERITY_NEGATIVE_1","en-gb":"Ignoring high severity cases will have a large impact on satisfaction.","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_OFFICER_HIGH_SEVERITY_NEGATIVE_2","en-gb":"Make sure to give high severity cases priority, failing to resolve will give a big satisfaction penalty!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_POSITIVE_1","en-gb":"Well Done!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_POSITIVE_2","en-gb":"Good Choice!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_POSITIVE_3","en-gb":"Great Job!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_POSITIVE_4","en-gb":"Awesome!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_POSITIVE_5","en-gb":"Nice!","de":"XXXX","el":"XXXX","es":"XXXX"}]

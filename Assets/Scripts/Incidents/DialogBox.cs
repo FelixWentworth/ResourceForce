@@ -49,11 +49,14 @@ public class DialogBox : MonoBehaviour {
 	public Image InnerBorder;
     public Color ResolutionTint;
 
-	private const float _TIP_TIME = 3.5f;
+	private const float _TIP_TIME = 2.75f;
+	private const float _TIP_TIME_QUICK = 0.6f;
 	private const int _CITIZEN_TIPS = 5;
 	private const int _WAIT_TIPS = 5;
 	private const int _OFFICER_TIPS = 2;
+	private const int _POSITIVE_TIPS = 5;
 	private int turnsRequired;
+	private int severity;
 
     void Start()
     {
@@ -82,8 +85,9 @@ public class DialogBox : MonoBehaviour {
         caseNum = zIncident.caseNumber;
         EmailNumber.text = caseNum.ToString();
         SetSeverity(zIncident.severity);
+	    severity = zIncident.severity;
 
-        if (!endCase)
+		if (!endCase)
         {
             officerRequiredInformation.SetActive(true);
             OfficerReqText.text = zIncident.officer.ToString();
@@ -181,7 +185,11 @@ public class DialogBox : MonoBehaviour {
 			// dont show any tips with the case closed information
 			if (turnsRequired == 1)
 			{
-				yield return ShowTip(1, "TIPS_OFFICER_NEGATIVE_", _TIP_TIME);
+				yield return ShowTip(2, "TIPS_OFFICER_ONE_TURN_NEGATIVE_", _TIP_TIME);
+			}
+			else if (severity == 3)
+			{
+				yield return ShowTip(2, "TIPS_OFFICER_HIGH_SEVERITY_NEGATIVE_", _TIP_TIME);
 			}
 			else
 			{
@@ -233,9 +241,9 @@ public class DialogBox : MonoBehaviour {
 		}
 		else
 		{
-			if (turnsRequired == 1)
+			if (turnsRequired == 1 || severity == 3)
 			{
-				yield return ShowTip(1, "TIPS_OFFICER_POSITIVE_", 1.0f);
+				yield return ShowTip(_POSITIVE_TIPS, "TIPS_POSITIVE_", _TIP_TIME_QUICK);
 			}
 			else
 			{
@@ -254,6 +262,7 @@ public class DialogBox : MonoBehaviour {
     }
     IEnumerator CitizenButtonWithAnim()
     {
+	    yield return ShowTip(_POSITIVE_TIPS, "TIPS_POSITIVE_", _TIP_TIME_QUICK);
         //removing citizen help popup and instead setting the delay to one turn
         yield return EmailAnim(1f, "EmailShow");
         m_incidentManager.CitizenHelpPressed();
