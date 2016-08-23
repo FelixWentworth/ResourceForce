@@ -49,6 +49,12 @@ public class DialogBox : MonoBehaviour {
 	public Image InnerBorder;
     public Color ResolutionTint;
 
+	private const float _TIP_TIME = 3.5f;
+	private const int _CITIZEN_TIPS = 5;
+	private const int _WAIT_TIPS = 5;
+	private const int _OFFICER_TIPS = 2;
+	private int turnsRequired;
+
     void Start()
     {
         m_incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
@@ -82,7 +88,8 @@ public class DialogBox : MonoBehaviour {
             officerRequiredInformation.SetActive(true);
             OfficerReqText.text = zIncident.officer.ToString();
             TurnReqText.text = zIncident.turnsToAdd.ToString();
-            WarningIcon.SetActive(true);
+	        turnsRequired = zIncident.turnsToAdd;
+			WarningIcon.SetActive(true);
             Border_Incident.SetActive(true);
             Border_Resolution.SetActive(false);
             titleBackground.color = Color.white;
@@ -167,10 +174,22 @@ public class DialogBox : MonoBehaviour {
     {
 	    if (citizensAvailable)
 	    {
-		    yield return ShowCitizenTip();
+		    yield return ShowTip(_CITIZEN_TIPS, "TIPS_CITIZEN_", _TIP_TIME);
 	    }
+	    else if (popupType == PopupType.Incident)
+	    {
+			// dont show any tips with the case closed information
+			if (turnsRequired == 1)
+			{
+				yield return ShowTip(1, "TIPS_OFFICER_NEGATIVE_", _TIP_TIME);
+			}
+			else
+			{
+				yield return ShowTip(_WAIT_TIPS, "TIPS_WAIT_", _TIP_TIME);
+			}
+		}
 
-        yield return EmailAnim(1f, "EmailShow");
+		yield return EmailAnim(1f, "EmailShow");
         //wait for more officers to become available
         switch (popupType)
         {
@@ -183,13 +202,13 @@ public class DialogBox : MonoBehaviour {
         }
     }
 
-	IEnumerator ShowCitizenTip()
+	private IEnumerator ShowTip(int max, string preText, float waitTime)
 	{
-		// Get a tip to show before closing the email box
-		var num = UnityEngine.Random.RandomRange(1, 6);
-		var text = Localization.Get("TIPS_CITIZEN_" + num);
+		// Get the tip to show before closing the box
+		var num = Random.Range(1, max + 1);
+		var text = Localization.Get(preText + num);
 		Tips.text = text;
-		yield return new WaitForSeconds(3.5f);
+		yield return new WaitForSeconds(waitTime);
 	}
     public void RightButtonPressed()
     {
@@ -210,7 +229,18 @@ public class DialogBox : MonoBehaviour {
     {
 		if (citizensAvailable)
 		{
-			yield return ShowCitizenTip();
+			yield return ShowTip(_CITIZEN_TIPS, "TIPS_CITIZEN_", _TIP_TIME);
+		}
+		else
+		{
+			if (turnsRequired == 1)
+			{
+				yield return ShowTip(1, "TIPS_OFFICER_POSITIVE_", 1.0f);
+			}
+			else
+			{
+				yield return ShowTip(_OFFICER_TIPS, "TIPS_OFFICER_", _TIP_TIME);
+			}
 		}
 		//send officers to resolve issue
 		yield return EmailAnim(1f, "EmailShow");
