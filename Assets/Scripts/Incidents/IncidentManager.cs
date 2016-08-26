@@ -37,20 +37,25 @@ public class IncidentManager : MonoBehaviour
             //we do not have the space for any more incidents
             return;
         }
-        Incident newIncident = new Incident();
-
         //now get a random incident data from JSON file
         if (jsonReader == null)
             jsonReader = this.GetComponent<SimplifiedJson>();
-
-        jsonReader.CreateNewIncident(ref newIncident);
-        newIncident.turnToShow = zTurn;
-        newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd+1;
-        //our complete list of incidents
-        incidents.Add(newIncident);
-        //our list of incidents waiting to show this turn
-        NextIncident.Add(newIncident);
-        m_IncidentQueue.AddToQueue(newIncident);
+		// create new incidents, randome amount between 1 and 3
+	    var num = UnityEngine.Random.Range(1, 4);
+	    for (int i = 0; i < num; i++)
+	    {
+			Incident newIncident = new Incident();
+			if (incidents.Count == 10)
+			    return;
+		    jsonReader.CreateNewIncident(ref newIncident);
+		    newIncident.turnToShow = zTurn;
+		    newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd + 1;
+		    //our complete list of incidents
+		    incidents.Add(newIncident);
+		    //our list of incidents waiting to show this turn
+		    NextIncident.Add(newIncident);
+		    m_IncidentQueue.AddToQueue(newIncident);
+	    }
     }
     public bool IsIncidentWaitingToShow(int zTurn)
     {
