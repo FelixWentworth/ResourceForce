@@ -71,7 +71,7 @@ public class DialogBox : MonoBehaviour {
     public IEnumerator ShowIncident(Incident zIncident)
     {
         //check if this is a resolution, ie. no buttons will lead anywhere
-        bool endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1) || zIncident.expired;
+        var endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1) || zIncident.expired;
 
         //set the body of text with information
         Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
@@ -146,11 +146,11 @@ public class DialogBox : MonoBehaviour {
     public IEnumerator EmailAnim(float speed, string name)
     {
         //play the anim at the speed specified
-        Animation anim = EmailPanel.GetComponent<Animation>();
+        var anim = EmailPanel.GetComponent<Animation>();
 
         //set up the speed ant time to make sure the aim plays in the correct direction
         anim[name].speed = speed;
-        float length = anim[name].length;
+        var length = anim[name].length;
         anim[name].time = speed == -1f ? length : 0f;
 
         anim.Play();
@@ -159,7 +159,7 @@ public class DialogBox : MonoBehaviour {
     public void SetSeverity(int zSeverity=1)
     {
         //set the alpha of the overlay to fade between yellow and red
-        float alpha = 0f;
+        var alpha = 0f;
         if (zSeverity == 2)
             alpha = 0.5f;
         else if (zSeverity == 3)
