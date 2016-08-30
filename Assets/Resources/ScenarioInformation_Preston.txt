@@ -52,7 +52,7 @@
 	"1":  ["Possible Assault", "SCENARIO_6_INDEX_1", 2, 8, 6, 1, 2, 1, 0],
 	"2":  ["Assault", "SCENARIO_6_INDEX_2", 3, 4, -1, 1, 2, 2, 0],
 	"3":  ["Resolution", "SCENARIO_6_INDEX_3", -1, -1, -1, 0, 0, 3, -4],
-	"4":  ["Assailt", "SCENARIO_6_INDEX_4", 4, 5, -1, 5, 6, 2, 0],
+	"4":  ["Assailt", "SCENARIO_6_INDEX_4", 4, 5, -1, 5, 3, 2, 0],
 	"5":  ["Resolution", "SCENARIO_6_INDEX_5", -1, -1, -1, 0, 0, 2, 4],
 	"6":  ["Possible Assault", "SCENARIO_6_INDEX_6", 6, 7, -1, 1, 4, 2, 0],
 	"7":  ["Resolution", "SCENARIO_6_INDEX_7", -1, -1, -1, 0, 0, 2, 2],

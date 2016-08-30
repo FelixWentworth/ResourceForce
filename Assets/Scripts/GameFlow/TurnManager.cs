@@ -18,11 +18,12 @@ public class TurnManager : MonoBehaviour {
     public GameObject settingsScreen;
     public GameObject GameOver;
     public GameObject NextTurnButton;
-    public Text endTurnSatisfaction;
+    public Text EndTurnSatisfaction;
 
 	void Start () {
         NextTurnButton.SetActive(false);
-        GameOver.SetActive(false);
+		EndTurnSatisfaction.gameObject.SetActive(false);
+		GameOver.SetActive(false);
         settingsScreen.SetActive(false);
         startScreen.SetActive(true);
         m_IncidentManager = this.GetComponent<IncidentManager>();
@@ -38,13 +39,14 @@ public class TurnManager : MonoBehaviour {
         turn++;
         
         NextTurnButton.SetActive(false);
-        GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
+		EndTurnSatisfaction.gameObject.SetActive(false);
+		GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
         turnsText.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_TURN") + "</color> " + turn;
         if (m_IncidentManager == null)
             m_IncidentManager = this.GetComponent<IncidentManager>();
         
         m_IncidentManager.UpdateIncidents();
-        m_IncidentManager.CheckExpiredIncidents(turn);
+        //m_IncidentManager.CheckExpiredIncidents(turn);
 
         if (m_IncidentManager.isGameOver())
         {

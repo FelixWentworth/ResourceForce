@@ -92,7 +92,6 @@ public class IncidentManager : MonoBehaviour
         {
             if (incidents[i].turnToDevelop < turn)
             {
-                incidents[i].expired = true;
                 incidents[i].satisfactionImpact = -1 * incidents[i].severity;
             }
         }
@@ -274,15 +273,16 @@ public class IncidentManager : MonoBehaviour
         {
             TurnManager tmp = this.gameObject.GetComponent<TurnManager>();
             tmp.NextTurnButton.SetActive(true);
+			tmp.EndTurnSatisfaction.gameObject.SetActive(true);
             int ignored = GetIgnoredCasesCount();
             if (ignored > 0)
             {
-                string satisfactionText = Localization.Get("BASIC_TEXT_SATISFACTION_END_TURN");
-                tmp.endTurnSatisfaction.text = string.Format(satisfactionText, ignored, incidents.Count > 1 ? "s" : "", GetTotalSeverity());
+                var satisfactionText = Localization.Get("BASIC_TEXT_SATISFACTION_END_TURN");
+                tmp.EndTurnSatisfaction.text = string.Format(satisfactionText, ignored, ignored > 1 ? "s" : "", GetTotalSeverity());
             }
             else
             {
-                tmp.endTurnSatisfaction.text = Localization.Get("BASIC_TEXT_NO_IGNORED_CASES");
+                tmp.EndTurnSatisfaction.text = Localization.Get("BASIC_TEXT_NO_IGNORED_CASES");
             }
             CaseNumber.text = "";
         }
@@ -298,7 +298,7 @@ public class IncidentManager : MonoBehaviour
                 //we have found the case to remove
                 m_IncidentQueue.RemoveFromQueue(incidents[i].caseNumber);
 
-                CaseClosed(incidents[i].satisfactionImpact, incidents[i].expired);
+                CaseClosed(incidents[i].satisfactionImpact);
                 incidents.RemoveAt(i);
                 i--;
             }
@@ -359,7 +359,6 @@ public class Incident {
     public string nameBeforeDeveloped;
     public bool developed;
     public bool resolved;
-    public bool expired = false;
     public bool positiveResolution = false;
     public bool isNew = true;
 

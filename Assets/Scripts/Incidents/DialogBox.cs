@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Timers;
 using UnityEngine.UI;
 
 public class DialogBox : MonoBehaviour {
@@ -71,7 +72,7 @@ public class DialogBox : MonoBehaviour {
     public IEnumerator ShowIncident(Incident zIncident)
     {
         //check if this is a resolution, ie. no buttons will lead anywhere
-        var endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1) || zIncident.expired;
+        var endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
 
         //set the body of text with information
         Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
@@ -89,49 +90,49 @@ public class DialogBox : MonoBehaviour {
 
 		if (!endCase)
         {
-            officerRequiredInformation.SetActive(true);
+			// Our Text
             OfficerReqText.text = zIncident.officer.ToString();
             TurnReqText.text = zIncident.turnsToAdd.ToString();
 	        turnsRequired = zIncident.turnsToAdd;
+			// Our Game Objects
 			WarningIcon.SetActive(true);
             Border_Incident.SetActive(true);
             Border_Resolution.SetActive(false);
-            titleBackground.color = Color.white;
+			officerRequiredInformation.SetActive(true);
+			// Our colours
+			titleBackground.color = Color.white;
 			InnerBorder.color = Color.white;
 			OuterBorder.color = Color.white;
+			// The Popup Type
             popupType = PopupType.Incident;
             
         }
         else
         {
+			// Our Text
             OfficerReqText.text = "";
             TurnReqText.text = "";
+			// Our GameObjects
             officerRequiredInformation.SetActive(false);
             WarningIcon.SetActive(false);
             Border_Incident.SetActive(false);
             Border_Resolution.SetActive(true);
+			// Our Colours
             titleBackground.color = ResolutionTint;
 			InnerBorder.color = ResolutionTint;
 			OuterBorder.color = ResolutionTint;
+			// The Popup Type
             popupType = PopupType.CaseClosed;
         }
-        //set the button text
-        if (!zIncident.expired)
-        {
-            OkText.SetActive(endCase);
-            string satisfactionText = Localization.Get("BASIC_TEXT_SATISFACTION");
-            if (zIncident.satisfactionImpact >= 0)
-            {
-                satisfactionText = satisfactionText.Insert(0, "+");
-            }
-            satisfaction.text = string.Format(satisfactionText, zIncident.satisfactionImpact);
-            WaitText.SetActive(!endCase);
-        }
-        else
-        {
-            OkText.SetActive(false);
-            WaitText.SetActive(true);
-        }
+		// Our Buttons
+		OkText.SetActive(endCase);
+		var satisfactionText = Localization.Get("BASIC_TEXT_SATISFACTION");
+		if (zIncident.satisfactionImpact >= 0)
+		{
+			satisfactionText = satisfactionText.Insert(0, "+");
+		}
+		satisfaction.text = string.Format(satisfactionText, zIncident.satisfactionImpact);
+		WaitText.SetActive(!endCase);
 
         RightButton.text = zIncident.officer == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
@@ -212,11 +213,18 @@ public class DialogBox : MonoBehaviour {
 
 	private IEnumerator ShowTip(int max, string preText, float waitTime)
 	{
-		// Get the tip to show before closing the box
+		// Set the text to show on screen
 		var num = Random.Range(1, max + 1);
 		var text = Localization.Get(preText + num);
 		Tips.text = text;
-		yield return new WaitForSeconds(waitTime);
+		// Wait for certain time or if the player taps the screen
+		var time = 0.0f;
+		while (time < waitTime && !Input.GetMouseButtonDown(0))
+		{
+			time += Time.deltaTime;
+			
+			yield return null;
+		}
 	}
     public void RightButtonPressed()
     {
