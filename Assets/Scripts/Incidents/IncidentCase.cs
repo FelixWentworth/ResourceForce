@@ -71,13 +71,9 @@ public class IncidentCase : MonoBehaviour {
                 icon.sprite = Resources.Load<Sprite>("Sprites/Inspec2t");
                 break;
             case State.Resolved:
-                icon.sprite = Resources.Load<Sprite>("Sprites/Resolved");
-                break;
             case State.Escalated:
-                icon.sprite = Resources.Load<Sprite>("Sprites/Escalated");
-                break;
             case State.InProgress:
-                icon.sprite = Resources.Load<Sprite>("Sprites/InProgress");
+                icon.sprite = Resources.Load<Sprite>("Sprites/Wait");
                 break;
         }
     }
