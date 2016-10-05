@@ -86,7 +86,7 @@ public class ExcelToJsonConverterWindow : EditorWindow
 	}
 }
 
-[InitializeOnLoad]
+//[InitializeOnLoad]
 public class ExcelToJsonAutoConverter 
 {	
 	/// <summary>

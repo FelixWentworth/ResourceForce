@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-public class ScenarioExcelToJsonWindow : EditorWindow
+public class ScenarioExcelToTextWindow : EditorWindow
 {
     public static string InputPathPrefsName_Preston = "Scenario.Preston.InputPath";
     public static string OutputPathPrefsName_Preston = "Scenario.Preston.OutputPath";
@@ -33,19 +33,19 @@ public class ScenarioExcelToJsonWindow : EditorWindow
     private string _inputPathGroningen;
     private string _outputPathGroningen;
 
-    private ScenarioExcelToJsonConverter _excelProcessor;
+    private ScenarioExcelToTextConverter _excelProcessor;
 
     [MenuItem("Tools/Scenario Excel To text Converter")]
     public static void ShowWindow()
     {
-        EditorWindow.GetWindow(typeof(ScenarioExcelToJsonWindow), true, "Scenario Excel To text Converter", true);
+        EditorWindow.GetWindow(typeof(ScenarioExcelToTextWindow), true, "Scenario Excel To text Converter", true);
     }
 
     public void OnEnable()
     {
         if (_excelProcessor == null)
         {
-            _excelProcessor = new ScenarioExcelToJsonConverter();
+            _excelProcessor = new ScenarioExcelToTextConverter();
         }
 
         LoadPaths();
@@ -59,11 +59,11 @@ public class ScenarioExcelToJsonWindow : EditorWindow
 
     void OnGUI()
     {
-        GenerateGUIRow(ref _inputPathPreston, ref _outputPathPreston, ScenarioExcelToJsonConverter.ScenarioSite.Preston);
-        GenerateGUIRow(ref _inputPathBelfast, ref _outputPathBelfast, ScenarioExcelToJsonConverter.ScenarioSite.Belfast);
-        GenerateGUIRow(ref _inputPathValencia, ref _outputPathValencia, ScenarioExcelToJsonConverter.ScenarioSite.Valencia);
-        GenerateGUIRow(ref _inputPathGroningen, ref _outputPathGroningen, ScenarioExcelToJsonConverter.ScenarioSite.Groningen);
-        GenerateGUIRow(ref _inputPathNicosia, ref _outputPathNicosia, ScenarioExcelToJsonConverter.ScenarioSite.Nicosia);
+        GenerateGUIRow(ref _inputPathPreston, ref _outputPathPreston, ScenarioExcelToTextConverter.ScenarioSite.Preston);
+        GenerateGUIRow(ref _inputPathBelfast, ref _outputPathBelfast, ScenarioExcelToTextConverter.ScenarioSite.Belfast);
+        GenerateGUIRow(ref _inputPathValencia, ref _outputPathValencia, ScenarioExcelToTextConverter.ScenarioSite.Valencia);
+        GenerateGUIRow(ref _inputPathGroningen, ref _outputPathGroningen, ScenarioExcelToTextConverter.ScenarioSite.Groningen);
+        GenerateGUIRow(ref _inputPathNicosia, ref _outputPathNicosia, ScenarioExcelToTextConverter.ScenarioSite.Nicosia);
 
         GUI.enabled = true;
     }
@@ -104,7 +104,7 @@ public class ScenarioExcelToJsonWindow : EditorWindow
         EditorPrefs.SetString(OutputPathPrefsName_Groningen, _outputPathGroningen);
     }
 
-    private void GenerateGUIRow(ref string inputPath, ref string outputPath, ScenarioExcelToJsonConverter.ScenarioSite site)
+    private void GenerateGUIRow(ref string inputPath, ref string outputPath, ScenarioExcelToTextConverter.ScenarioSite site)
     {
         GUILayout.BeginHorizontal();
 
@@ -151,20 +151,4 @@ public class ScenarioExcelToJsonWindow : EditorWindow
         GUILayout.EndHorizontal();
     }
 
-}
-
-[InitializeOnLoad]
-public class ScenarioExcelToJsonAutoConverter
-{
-    /// <summary>
-    /// Class attribute [InitializeOnLoad] triggers calling the static constructor on every refresh.
-    /// </summary>
-    static ScenarioExcelToJsonAutoConverter()
-    {
-        //string inputPath = EditorPrefs.GetString(ExcelToJsonConverterWindow.kExcelToJsonConverterInputPathPrefsName, Application.dataPath);
-        //string outputPath = EditorPrefs.GetString(ExcelToJsonConverterWindow.kExcelToJsonConverterOuputPathPrefsName, Application.dataPath);
-
-        //ScenarioExcelToJsonConverter excelProcessor = new ScenarioExcelToJsonConverter();
-        //excelProcessor.ConvertExcelFilesToJson(inputPath, outputPath);
-    }
 }

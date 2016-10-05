@@ -2,14 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using Excel;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class ScenarioExcelToJsonConverter : MonoBehaviour {
+public class ScenarioExcelToTextConverter  {
 
     public enum ScenarioSite { Belfast, Groningen, Valencia, Preston, Nicosia }
 
@@ -26,6 +23,7 @@ public class ScenarioExcelToJsonConverter : MonoBehaviour {
         var outputFileName = "ScenarioInformation_" + scenarioSite;
 
         Console.WriteLine("Excel To Json Converter: Processing: " + filePath);
+
         var excelData = GetExcelDataSet(filePath);
 
         if (excelData == null)
@@ -44,19 +42,17 @@ public class ScenarioExcelToJsonConverter : MonoBehaviour {
 	/// </summary>
 	/// <param name="inputPath">Input path.</param>
 	/// <param name="outputPath">Output path.</param>
-	/// <param name="recentlyModifiedOnly">If set to <c>true</c>, will only process recently modified files only.</param>
+	/// <param name="site">The site that the data relates to.</param>
 	public void ConvertExcelFilesToJson(string inputPath, string outputPath, ScenarioSite site)
     {
-        List<string> excelFiles = GetExcelFileNamesInDirectory(inputPath);
-        Console.WriteLine("Excel To Json Converter: " + excelFiles.Count.ToString() + " excel files found.");
+        var excelFiles = GetExcelFileNamesInDirectory(inputPath);
+        Console.WriteLine("Excel To Json Converter: " + excelFiles.Count + " excel files found.");
 
-        bool succeeded = true;
 
-        for (int i = 0; i < excelFiles.Count; i++)
+        foreach (var file in excelFiles)
         {
-            if (!ConvertExcelFileToText(excelFiles[i], outputPath, site))
+            if (!ConvertExcelFileToText(file, outputPath, site))
             {
-                succeeded = false;
                 break;
             }
         }
@@ -69,20 +65,20 @@ public class ScenarioExcelToJsonConverter : MonoBehaviour {
 	/// <param name="directory">Directory.</param>
 	private List<string> GetExcelFileNamesInDirectory(string directory)
     {
-        string[] directoryFiles = Directory.GetFiles(directory);
-        List<string> excelFiles = new List<string>();
+        var directoryFiles = Directory.GetFiles(directory);
+        var excelFiles = new List<string>();
 
         // Regular expression to match against 2 excel file types (xls & xlsx), ignoring
         // files with extension .meta and starting with ~$ (temp file created by excel when fie
-        Regex excelRegex = new Regex(@"^((?!(~\$)).*\.(xlsx|xls$))$");
+        var excelRegex = new Regex(@"^((?!(~\$)).*\.(xlsx|xls$))$");
 
-        for (int i = 0; i < directoryFiles.Length; i++)
+        foreach (string file in directoryFiles)
         {
-            string fileName = directoryFiles[i].Substring(directoryFiles[i].LastIndexOf('/') + 1);
+            var fileName = file.Substring(file.LastIndexOf('/') + 1);
 
             if (excelRegex.IsMatch(fileName))
             {
-                excelFiles.Add(directoryFiles[i]);
+                excelFiles.Add(file);
             }
         }
 
@@ -97,14 +93,14 @@ public class ScenarioExcelToJsonConverter : MonoBehaviour {
 	/// <param name="filePath">File path.</param>
 	private IExcelDataReader GetExcelDataReaderForFile(string filePath)
     {
-        FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
+        var stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
 
         // Create the excel data reader
         IExcelDataReader excelReader;
 
         // Create regular expressions to detect the type of excel file
-        Regex xlsRegex = new Regex(@"^(.*\.(xls$))");
-        Regex xlsxRegex = new Regex(@"^(.*\.(xlsx$))");
+        var xlsRegex = new Regex(@"^(.*\.(xls$))");
+        var xlsxRegex = new Regex(@"^(.*\.(xlsx$))");
 
         // Read the excel file depending on it's type
         if (xlsRegex.IsMatch(filePath))
@@ -140,14 +136,9 @@ public class ScenarioExcelToJsonConverter : MonoBehaviour {
 	private string GetExcelDataSet(string filePath)
     {
         // Get the excel data reader with the excel data
-        IExcelDataReader excelReader = GetExcelDataReaderForFile(filePath);
+        var excelReader = GetExcelDataReaderForFile(filePath);
 
-        if (excelReader == null)
-        {
-            return null;
-        }
-
-        return GetExcelSheetData(excelReader);
+        return excelReader == null ? null : GetExcelSheetData(excelReader);
     }
     /// <summary>
 	/// Gets the Excel data from current spreadsheet
@@ -165,17 +156,16 @@ public class ScenarioExcelToJsonConverter : MonoBehaviour {
         var allScenarios = "{";
 
         // Ignore sheets which start with ~
-        Regex sheetNameRegex = new Regex(@"^~.*$");
+        var sheetNameRegex = new Regex(@"^~.*$");
         if (sheetNameRegex.IsMatch(excelReader.Name))
         {
             return null;
         }
 
         // Create the table with the spreadsheet name
-        DataTable table = new DataTable(excelReader.Name);
+        var table = new DataTable(excelReader.Name);
         table.Clear();
 
-        string value = "";
         var scenarioNum = "";
 
         var scenarioString = "";
@@ -194,10 +184,8 @@ public class ScenarioExcelToJsonConverter : MonoBehaviour {
                     continue;
                 }
                 
-                value = excelReader.IsDBNull(i) ? "" : excelReader.GetString(i);
+                var value = excelReader.IsDBNull(i) ? "" : excelReader.GetString(i);
 
-                
-               
                 if (excelReader.Depth <= 2)
                 {
                     //first 2 rows of the data are titles
@@ -223,7 +211,7 @@ public class ScenarioExcelToJsonConverter : MonoBehaviour {
                         if (rowString == "")
                         {
                             rowString += "\"" + value + "\"" + ": [";
-                            rowNumber = Int32.Parse(value);
+                            rowNumber = int.Parse(value);
                         }
                         else
                         {
