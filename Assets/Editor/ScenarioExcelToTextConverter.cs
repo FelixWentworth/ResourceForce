@@ -72,7 +72,7 @@ public class ScenarioExcelToTextConverter  {
         // files with extension .meta and starting with ~$ (temp file created by excel when fie
         var excelRegex = new Regex(@"^((?!(~\$)).*\.(xlsx|xls$))$");
 
-        foreach (string file in directoryFiles)
+        foreach (var file in directoryFiles)
         {
             var fileName = file.Substring(file.LastIndexOf('/') + 1);
 
@@ -174,7 +174,7 @@ public class ScenarioExcelToTextConverter  {
         {
             var rowString = "";
             var rowNumber = 0;
-            for (int i = 0; i < excelReader.FieldCount; i++)
+            for (var i = 0; i < excelReader.FieldCount; i++)
             {
                 // If the column is null and this is the first row, skip
                 // to next iteration (do not want to include empty columns)
@@ -183,16 +183,17 @@ public class ScenarioExcelToTextConverter  {
                 {
                     continue;
                 }
-                
-                var value = excelReader.IsDBNull(i) ? "" : excelReader.GetString(i);
-
                 if (excelReader.Depth <= 2)
                 {
-                    //first 2 rows of the data are titles
+                    // first 2 rows of the data are titles
                     continue;
                 }
+                var value = excelReader.IsDBNull(i) ? "" : excelReader.GetString(i);
+                
+                // We are not interested in the first column if it matches the current scenario we are reading data for
                 if (value != scenarioNum)
                 {
+                    // New scenario number
                     if (value.Contains("Scenario_"))
                     {
                         if (scenarioString != "")
@@ -203,11 +204,13 @@ public class ScenarioExcelToTextConverter  {
                             allScenarios += scenarioString + ",";
 
                         }
+
                         scenarioNum = value;
                         scenarioString = "\"" + scenarioNum + "\": {";
                     }
                     else
                     {
+                        // Scenario data
                         if (rowString == "")
                         {
                             rowString += "\"" + value + "\"" + ": [";
@@ -217,12 +220,12 @@ public class ScenarioExcelToTextConverter  {
                         {
                             if (i == 2)
                             {
-                                // This value should be stored as a string
+                                // This value is the title of the incident, store as a string
                                 rowString += "\"" + value + "\"";
                             }
                             else if (i == 3)
                             {
-                                //this string is the localized string, add the key value
+                                // this string is the localized string, add the key value as a string
                                 rowString += "\"" + scenarioNum.ToUpper() + "_INDEX_" + rowNumber + "\"";
                             }
                             else
