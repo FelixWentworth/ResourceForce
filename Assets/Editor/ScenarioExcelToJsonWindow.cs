@@ -35,10 +35,10 @@ public class ScenarioExcelToJsonWindow : EditorWindow
 
     private ScenarioExcelToJsonConverter _excelProcessor;
 
-    [MenuItem("Tools/Scenario Excel To Json Converter")]
+    [MenuItem("Tools/Scenario Excel To text Converter")]
     public static void ShowWindow()
     {
-        EditorWindow.GetWindow(typeof(ScenarioExcelToJsonWindow), true, "Scenario Excel To Json Converter", true);
+        EditorWindow.GetWindow(typeof(ScenarioExcelToJsonWindow), true, "Scenario Excel To text Converter", true);
     }
 
     public void OnEnable()
