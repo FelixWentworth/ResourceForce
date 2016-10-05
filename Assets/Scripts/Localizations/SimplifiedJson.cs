@@ -49,7 +49,7 @@ public class SimplifiedJson : MonoBehaviour {
         var N = JSON.Parse(myText.text);
 
         Incident tmp = new Incident();
-        string name = "Scenario" + scenarioNum;
+        string name = "Scenario_" + scenarioNum;
 
         tmp.scenarioNum = scenarioNum;
         tmp.index = index;
