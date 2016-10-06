@@ -5,40 +5,28 @@ using UnityEngine.UI;
 public class WarningBox : MonoBehaviour {
 
     ///This class will show and hide the warning box when called by the dialogBox class
+    private bool _showingPopup;
+    private Text _warningText;
 
-    private float height;
-    private bool showingPopup = false;
-    private RectTransform myTransform;
-
-    void Start()
+    public IEnumerator ShowWarning(string message)
     {
-        //get our height as this is what we will offset by
-        myTransform = this.GetComponent<RectTransform>();
-        height = myTransform.rect.height;
-    }
-    public IEnumerator ShowWarning()
-    {
-        if (!showingPopup)
+        if (!_showingPopup)
         {
+            if (_warningText == null)
+            {
+                _warningText = transform.FindChild("Text").GetComponent<Text>();
+            }
+            _warningText.text = message.ToUpper();
+
             AudioManager.Instance.ShowWarningMessage();
-            showingPopup = true;
 
-            yield return ShowWarningPopup();
-            showingPopup = false;
-        }
-    }
+            _showingPopup = true;
 
-    IEnumerator ShowWarningPopup()
-    {
-        while (myTransform.anchoredPosition.y < height)
-        {
-            this.transform.position += Vector3.up * 120f * Time.deltaTime;
-            yield return null;
-        }
-        while (myTransform.anchoredPosition.y > 0)
-        {
-            this.transform.position += Vector3.down * 120f * Time.deltaTime;
-            yield return null;
+            var anim = this.GetComponent<Animation>();
+            anim.Play();
+            yield return anim.clip.length;
+
+            _showingPopup = false;
         }
     }
 }

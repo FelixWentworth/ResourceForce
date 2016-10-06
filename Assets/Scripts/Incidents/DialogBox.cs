@@ -33,11 +33,12 @@ public class DialogBox : MonoBehaviour {
     public GameObject SendOfficerButton;
     public GameObject waitButton;
     public enum PopupType { Incident, CaseClosed };
+    [HideInInspector]
     public PopupType popupType = PopupType.Incident;
 
     public GameObject SoundWaves;
 
-    public WarningBox OfficerWarningBox;
+    public WarningBox WarningBox;
 
     private int caseNum;
 
@@ -238,7 +239,7 @@ public class DialogBox : MonoBehaviour {
         }
         else
         {
-            StartCoroutine(OfficerWarningBox.ShowWarning());
+            StartCoroutine(WarningBox.ShowWarning(Localization.Get("BASIC_TEXT_NO_OFFICERS")));
         }
     }
     IEnumerator RightButtonWithAnim(bool citizensAvailable = false)
