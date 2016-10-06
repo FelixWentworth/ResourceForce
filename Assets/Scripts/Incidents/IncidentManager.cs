@@ -1,4 +1,5 @@
 ﻿//#define SELECT_INCIDENTS
+#define ALLOW_DUPLICATE_INCIDENTS
 
 using UnityEngine;
 using System.Collections;
@@ -47,8 +48,12 @@ public class IncidentManager : MonoBehaviour
 			Incident newIncident = new Incident();
 			if (incidents.Count == 10)
 			    return;
-		    jsonReader.CreateNewIncident(ref newIncident);
-		    newIncident.turnToShow = zTurn;
+#if ALLOW_DUPLICATE_INCIDENTS
+            jsonReader.CreateNewIncident(ref newIncident);
+#else
+            jsonReader.CreateNewIncident(ref newIncident, incidents);
+#endif
+            newIncident.turnToShow = zTurn;
 		    newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd + 1;
 		    //our complete list of incidents
 		    incidents.Add(newIncident);

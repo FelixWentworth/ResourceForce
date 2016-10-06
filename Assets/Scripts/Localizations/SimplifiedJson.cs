@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using SimpleJSON;
 
 public class SimplifiedJson : MonoBehaviour {
@@ -27,20 +29,31 @@ public class SimplifiedJson : MonoBehaviour {
     }
 
     // Use this for initialization
-    public void CreateNewIncident(ref Incident zIncident) {
-        //select a new branching incident from our 
+    public void CreateNewIncident(ref Incident zIncident, List<Incident> incidents = null ) {
 
         myText = Resources.Load(m_location.IncidentFilePath) as TextAsset;
         var N = JSON.Parse(myText.text);
 
-        // get a random incident -> todo change this value to represent the number of cases available
-        int randIncident = UnityEngine.Random.Range(1, m_location.numIncidents+1);
+        var randIncident = Random.Range(1, m_location.numIncidents+1);
+
+        // Should be hidden behind ALLOW_DUPLICATE_INCIDENTS flag in incident manager
+        if (incidents != null)
+        {
+            // We have provided the list of incidents to make sure that the incident is not duplicated, now get a random incident index that is not currently in use
+            var indexesInUse = incidents.Select(i => i.scenarioNum).ToList();
+            while (indexesInUse.Contains(randIncident) && indexesInUse.Count() < m_location.numIncidents)
+            {
+                // Keep looking for an incident that is not used, and we have other incidents we can show
+                randIncident = Random.Range(1, m_location.numIncidents + 1);
+            }
+        }
 
         zIncident = GetIncidentAtIndex(1, randIncident);
         
         //add the case number to help the player keep track of it throughout its life
         zIncident.caseNumber = identifier;
         identifier++;
+
     }
     private Incident GetIncidentAtIndex(int index, int scenarioNum, int caseNum = 0)
     {
