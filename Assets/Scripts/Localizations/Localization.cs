@@ -16,6 +16,8 @@ public class Localization : MonoBehaviour {
     static TextAsset jsonTextAsset_Basic;
     public static int languageIndex = 1;
 
+    private SystemLanguage defaultLanguage = SystemLanguage.English;
+
     void Awake()
     {
         UpdateTextFile();
@@ -25,13 +27,25 @@ public class Localization : MonoBehaviour {
         //below code not original part of localization package
         filePath = "StringLocalizations" + GameObject.Find("LocationMaster").GetComponent<Location>().GetExtension();
         //above code not original part of localization package
-        SetLanguageIndex();
+        languageIndex = GetLanguageIndex();
         ConvertJsonToDict();
     }
     static void ConvertJsonToDict()
     {
         jsonTextAsset_Scenario = Resources.Load(filePath) as TextAsset;
         jsonTextAsset_Basic = Resources.Load("StringLocalizations_BasicText") as TextAsset;
+        var N = JSON.Parse(jsonTextAsset_Scenario.text);
+
+        for (int i = 0; N[i] != null; i++)
+        {
+            //go through the list and add the strings to the dictionary
+            string _key = N[i][0].ToString();
+            _key = _key.Replace("\"", "");
+            string _value = N[i][languageIndex].ToString();
+            _value = _value.Replace("\"", "");
+            localizationDict[_key] = _value;
+        }
+
         var B = JSON.Parse(jsonTextAsset_Basic.text);
 
         for (int i = 0; B[i] != null; i++)
@@ -44,17 +58,7 @@ public class Localization : MonoBehaviour {
             localizationDict[_key] = _value;
         }
 
-        var N = JSON.Parse(jsonTextAsset_Scenario.text);
-
-        for (int i = 0; N[i] != null; i++)
-        {
-            //go through the list and add the strings to the dictionary
-            string _key = N[i][0].ToString();
-            _key = _key.Replace("\"", "");
-            string _value = N[i][languageIndex].ToString();
-            _value = _value.Replace("\"", "");
-            localizationDict[_key] = _value;
-        }
+        
     }
     void OnEnable()
     {
@@ -70,12 +74,27 @@ public class Localization : MonoBehaviour {
             _text.text = _text.text.ToUpper();
     }
     
-    public static string Get(string key)
+    public static string Get(string key, bool shouldOverrideLanguage = false, SystemLanguage overrideLanguage = SystemLanguage.English)
     {
-        string txt = "";
+        var txt = "";
         key = key.ToUpper();
+        if (shouldOverrideLanguage)
+        {
+            int index = 0;
+            foreach (KeyValuePair<string, string> entry in localizationDict)
+            {
+                if (entry.Key == key)
+                {
+                    txt = GetOverrideText(index, overrideLanguage);
+                }
+                index++;
+            }
+        }
+        else
+        {
+            localizationDict.TryGetValue(key, out txt);
+        }
         
-        localizationDict.TryGetValue(key, out txt);
         //new line character in spreadsheet is *n*
         if (txt == null)
         {
@@ -85,27 +104,49 @@ public class Localization : MonoBehaviour {
         txt = txt.Replace("*2n*", "\n\n");
         return txt;
     }
-    public static void SetLanguageIndex()
+    public static int GetLanguageIndex(bool overriding = false, SystemLanguage overridingLanguage = SystemLanguage.English)
     {
         //override to always use english for beta release 0.2
-        languageIndex = 1;
-        /*
-        switch (Application.systemLanguage)
+        if (!overriding)
         {
-            case SystemLanguage.English:
-                languageIndex = 1;
-                break;
-            case SystemLanguage.Dutch:
-                languageIndex = 2;
-                break;
-            case SystemLanguage.Greek:
-                languageIndex = 3;
-                break;
-            case SystemLanguage.Spanish:
-                languageIndex = 4;
-                break;
+            return 1;
+            /*
+            switch (Application.systemLanguage)
+            {
+                case SystemLanguage.English:
+                    return 1;
+                case SystemLanguage.Dutch:
+                    return 2;
+                case SystemLanguage.Greek:
+                    return 3;
+                case SystemLanguage.Spanish:
+                    return 4;
+            }
+            */
         }
-        */
+        else
+        {
+            switch (overridingLanguage)
+            {
+                case SystemLanguage.English:
+                    return 1;
+                case SystemLanguage.Dutch:
+                    return 2;
+                case SystemLanguage.Greek:
+                    return 3;
+                case SystemLanguage.Spanish:
+                    return 4;
+                default:
+                    return 1;
+            }
+        }        
     }
 
+    private static string GetOverrideText(int dataRow, SystemLanguage language)
+    {
+        var jsonText = Resources.Load("StringLocalizations" + GameObject.Find("LocationMaster").GetComponent<Location>().GetExtension()) as TextAsset;
+        var N = JSON.Parse(jsonText.text);
+        var overridingIndex = GetLanguageIndex(true, language);
+        return N[dataRow][overridingIndex];
+    }
 }

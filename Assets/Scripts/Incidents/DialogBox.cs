@@ -67,16 +67,18 @@ public class DialogBox : MonoBehaviour {
     public void Show(Incident zIncident)
     {
         //pass through the relevant info to the dialog box
-        StartCoroutine(ShowIncident(zIncident));
+        StartCoroutine(ShowIncident(zIncident, DeviceLocation.shouldOverrideIncidentLanguage, DeviceLocation.overrideLanguage));
         SoundWaves.SetActive(true);
     }
-    public IEnumerator ShowIncident(Incident zIncident)
+    public IEnumerator ShowIncident(Incident zIncident, bool shouldOverrideLanguage = false, SystemLanguage overrideLanguage = SystemLanguage.English)
     {
         //check if this is a resolution, ie. no buttons will lead anywhere
         var endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
 
         //set the body of text with information
-        Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>" + Localization.Get(zIncident.incidentName);
+        Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>";
+        Body.text += Localization.Get(zIncident.incidentName, shouldOverrideLanguage, overrideLanguage);
+
 	    Tips.text = "";
         //if this is the last time a player can ignore a case before it expires, show a warning that they will lose large satisfaction
         if (zIncident.turnToDevelop < m_turnManager.turn && !endCase) //check its not the end of a case as some cases can show as expiring when they take a long time to solve
