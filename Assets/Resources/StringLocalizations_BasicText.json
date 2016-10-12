@@ -86,4 +86,7 @@
 {"key":"TIPS_POSITIVE_2","en-gb":"Good Choice!","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"TIPS_POSITIVE_3","en-gb":"Great Job!","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"TIPS_POSITIVE_4","en-gb":"Awesome!","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TIPS_POSITIVE_5","en-gb":"Nice!","de":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"TIPS_POSITIVE_5","en-gb":"Nice!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_SELECT_LANGUAGE","en-gb":"Multiple Scenario Languages available. Select a language","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_ENGLISH","en-gb":"English","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_SPANISH","en-gb":"Español","de":"XXXX","el":"XXXX","es":"XXXX"}]
