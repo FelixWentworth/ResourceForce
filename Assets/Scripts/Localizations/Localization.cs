@@ -74,26 +74,11 @@ public class Localization : MonoBehaviour {
             _text.text = _text.text.ToUpper();
     }
     
-    public static string Get(string key, bool shouldOverrideLanguage = false, SystemLanguage overrideLanguage = SystemLanguage.English)
+    public static string Get(string key)
     {
         var txt = "";
         key = key.ToUpper();
-        if (shouldOverrideLanguage)
-        {
-            int index = 0;
-            foreach (KeyValuePair<string, string> entry in localizationDict)
-            {
-                if (entry.Key == key)
-                {
-                    txt = GetOverrideText(index, overrideLanguage);
-                }
-                index++;
-            }
-        }
-        else
-        {
-            localizationDict.TryGetValue(key, out txt);
-        }
+        localizationDict.TryGetValue(key, out txt);
         
         //new line character in spreadsheet is *n*
         if (txt == null)
@@ -104,10 +89,10 @@ public class Localization : MonoBehaviour {
         txt = txt.Replace("*2n*", "\n\n");
         return txt;
     }
-    public static int GetLanguageIndex(bool overriding = false, SystemLanguage overridingLanguage = SystemLanguage.English)
+    public static int GetLanguageIndex()
     {
         //override to always use english for beta release 0.2
-        if (!overriding)
+        if (!DeviceLocation.shouldOverrideLanguage)
         {
             return 1;
             /*
@@ -126,7 +111,7 @@ public class Localization : MonoBehaviour {
         }
         else
         {
-            switch (overridingLanguage)
+            switch (DeviceLocation.overrideLanguage)
             {
                 case SystemLanguage.English:
                     return 1;
@@ -140,13 +125,5 @@ public class Localization : MonoBehaviour {
                     return 1;
             }
         }        
-    }
-
-    private static string GetOverrideText(int dataRow, SystemLanguage language)
-    {
-        var jsonText = Resources.Load("StringLocalizations" + GameObject.Find("LocationMaster").GetComponent<Location>().GetExtension()) as TextAsset;
-        var N = JSON.Parse(jsonText.text);
-        var overridingIndex = GetLanguageIndex(true, language);
-        return N[dataRow][overridingIndex];
     }
 }

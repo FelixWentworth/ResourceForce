@@ -13,7 +13,7 @@ public class Location : MonoBehaviour {
 	// Use this for initialization
 	void Awake() {
         int siteNum = PlayerPrefs.GetInt("site");
-        SetFilePath((int)m_site);
+        SetFilePath(siteNum);
     }
     public void SetFilePath(int siteIndex)
     {
@@ -21,8 +21,6 @@ public class Location : MonoBehaviour {
         IncidentFilePath = "ScenarioInformation";
         IncidentFilePath += GetExtension();
         PlayerPrefs.SetInt("site", siteIndex);
-        // player has set location so dont show the screen unless requested
-        PlayerPrefs.SetInt("SetLocation", 1);
     }
     public string GetExtension()
     {
