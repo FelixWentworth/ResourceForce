@@ -4,6 +4,7 @@ using System.Collections;
 public class IncidentHistoryElement
 {
     public string Type;
+    public string Description;
     public int FeedbackRating;
     public string Feedback;
 

@@ -358,6 +358,7 @@ public class IncidentManager : MonoBehaviour
         var historyElement = new IncidentHistoryElement
         {
             Type = type,
+            Description = incident.incidentName,
             Feedback = feedback,
             FeedbackRating = feedbackRating,
             PlayerDecision = decision
