@@ -24,6 +24,8 @@ public class IncidentManager : MonoBehaviour
     public DialogBox m_dialogBox;
     public SatisfactionDisplays m_satisfactionDisplay;
 
+    private Dictionary<int, IncidentHistory> _incidentHistories = new Dictionary<int, IncidentHistory>();
+
 #if SELECT_INCIDENTS
     private int incidentShowingIndex = 1;
 #endif
@@ -183,6 +185,7 @@ public class IncidentManager : MonoBehaviour
     }
     public void WaitPressed()
     {
+        AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Ignore);
 #if SELECT_INCIDENTS
         Incident currentIncident = NextIncident[incidentShowingIndex];
         m_dialogBox.currentIncident = currentIncident;
@@ -212,7 +215,8 @@ public class IncidentManager : MonoBehaviour
         if (m_OfficerController == null)
             m_OfficerController = GameObject.Find("OfficerManager").GetComponent<OfficerController>();
         if (m_OfficerController.m_officers.Count >= NextIncident[0].officer)
-        {       
+        {
+            AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Officer);
 #if SELECT_INCIDENTS
             Incident currentIncident = NextIncident[incidentShowingIndex];
             m_dialogBox.currentIncident = currentIncident;
@@ -240,6 +244,7 @@ public class IncidentManager : MonoBehaviour
 
     public void CitizenHelpPressed()
     {
+        AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Citizen);
 #if SELECT_INCIDENTS
         Incident currentIncident = NextIncident[incidentShowingIndex];
         m_dialogBox.currentIncident = currentIncident;
@@ -341,6 +346,54 @@ public class IncidentManager : MonoBehaviour
             }
         }
         return total;
+    }
+
+    private void AddIncidentHistory(Incident incident, IncidentHistoryElement.Decision decision)
+    {
+        var type = incident.type;
+        var feedbackRating = 1;
+        var feedback = "";
+
+        var b = new Incident();
+        var historyElement = new IncidentHistoryElement
+        {
+            Type = type,
+            Feedback = feedback,
+            FeedbackRating = feedbackRating,
+            PlayerDecision = decision
+        };
+
+        UpdateHistory(incident, historyElement);
+    }
+    private void UpdateHistory(Incident incident, IncidentHistoryElement element)
+    {
+        var incidentHistory = new IncidentHistory();
+
+        if (_incidentHistories.ContainsKey(incident.caseNumber))
+        {
+            _incidentHistories.TryGetValue(incident.caseNumber, out incidentHistory);
+        }
+
+        incidentHistory.IncidentHistoryElements.Add(element);
+        if (incidentHistory.IncidentHistoryElements.Count > 1)
+        {
+            _incidentHistories[incident.caseNumber] = incidentHistory;
+
+        }
+        else
+        {
+            _incidentHistories.Add(incident.caseNumber, incidentHistory);
+        }
+    }
+
+    private List<IncidentHistoryElement> GetIncidentHistory(int caseNumber)
+    {
+        IncidentHistory incidentHistory;
+
+        return _incidentHistories.TryGetValue(caseNumber, out incidentHistory) ? 
+            incidentHistory.IncidentHistoryElements 
+            : 
+            new List<IncidentHistoryElement>();
     }
 }
 
