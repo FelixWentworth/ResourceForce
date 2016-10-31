@@ -12,6 +12,10 @@ public class IncidentInformationDisplay : MonoBehaviour
     private int _totalElements;
     private int _shownElement;
     private float _offset;
+
+    public Sprite WaitSprite;
+    public Sprite OfficerSprite;
+    public Sprite CitizenSprite;
     public void Show(List<IncidentHistoryElement> elements, IncidentHistoryElement currentElement)
     {
         ClearChildren();
@@ -27,7 +31,7 @@ public class IncidentInformationDisplay : MonoBehaviour
 
         foreach (var incidentHistory in elements)
         {
-            CreateElement(incidentHistory, _offset);
+            CreateElement(incidentHistory, _offset, false);
             _totalElements++;
         }
         CreateElement(currentElement, _offset);
@@ -91,7 +95,7 @@ public class IncidentInformationDisplay : MonoBehaviour
         }
         transform.anchoredPosition3D = position;
     }
-    private void CreateElement(IncidentHistoryElement element, float offset)
+    private void CreateElement(IncidentHistoryElement element, float offset, bool isCurrent = true)
     {
         var go = GameObject.Instantiate(IncidentHistoryElement);
 
@@ -108,9 +112,32 @@ public class IncidentInformationDisplay : MonoBehaviour
 
         rectTransform.localScale = Vector3.one;
 
-        setup.Setup(element.Type, Localization.Get(element.Description), null, _totalElements);
-        setup.Header.anchoredPosition3D = new Vector3(0f, offset, 0f);
+        var sprite = setup.Icon.sprite;
+        if (!isCurrent)
+        {
+            setup.Icon.gameObject.SetActive(true);
+            switch (element.PlayerDecision)
+            {
+                case global::IncidentHistoryElement.Decision.Ignore:
+                    sprite = WaitSprite;
+                    break;
+                case global::IncidentHistoryElement.Decision.Citizen:
+                    sprite = CitizenSprite;
+                    break;
+                case global::IncidentHistoryElement.Decision.Officer:
+                    sprite = OfficerSprite;
+                    break;
+            }
+        }
+        else
+        {
+            setup.Icon.gameObject.SetActive(false);
+        }
 
+
+        setup.Setup(element.Type, element.Description, sprite, _totalElements);
+        setup.Header.anchoredPosition3D = new Vector3(0f, offset, 0f);
+        
         _setupObjects.Add(setup);
         _offset -= setup.Header.rect.height;
     }

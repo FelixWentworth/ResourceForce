@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Runtime.InteropServices;
 using UnityEngine.UI;
 
 public class WarningBox : MonoBehaviour {
@@ -8,7 +9,7 @@ public class WarningBox : MonoBehaviour {
     private bool _showingPopup;
     private Text _warningText;
 
-    public IEnumerator ShowWarning(string message)
+    public IEnumerator ShowWarning(string message, float pauseTime)
     {
         if (!_showingPopup)
         {
@@ -23,8 +24,19 @@ public class WarningBox : MonoBehaviour {
             _showingPopup = true;
 
             var anim = this.GetComponent<Animation>();
-            anim.Play();
-            yield return anim.clip.length;
+
+
+            anim.Play("WarningPopup");
+            yield return anim["WarningPopup"].clip.length;
+
+            while (pauseTime >= 0f && !Input.GetMouseButtonDown(0))
+            {
+                pauseTime -= Time.deltaTime;
+                yield return null;
+            }
+
+            anim.Play("WarningPopupExit");
+            yield return anim["WarningPopupExit"].clip.length;
 
             _showingPopup = false;
         }

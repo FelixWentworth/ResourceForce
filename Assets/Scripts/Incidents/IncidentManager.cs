@@ -15,7 +15,6 @@ public class IncidentManager : MonoBehaviour
     OfficerController m_OfficerController;
 
     public Text CaseStatus;
-    public Text CaseNumber;
     public IncidentQueue m_IncidentQueue;
     protected int currentTurn;
     public Text ArrestsMade;
@@ -146,9 +145,6 @@ public class IncidentManager : MonoBehaviour
         currentIncident.Show(ref currentIncident);
 
         m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
-
-        //set the subject text to show the status of the current case
-        CaseNumber.text = Localization.Get("INCIDENT_CASE_SUBJECT") + ": " + currentIncident.type;
 
         //make sure the current incident is not showing as new as we now know the player has seen it
         currentIncident.isNew = false;
@@ -294,7 +290,6 @@ public class IncidentManager : MonoBehaviour
             {
                 tmp.EndTurnSatisfaction.text = Localization.Get("BASIC_TEXT_NO_IGNORED_CASES");
             }
-            CaseNumber.text = "";
         }
         else
             ShowIncident(currentTurn);
@@ -358,7 +353,7 @@ public class IncidentManager : MonoBehaviour
         var historyElement = new IncidentHistoryElement
         {
             Type = type,
-            Description = incident.incidentName,
+            Description = Localization.Get(incident.incidentName) + "\n\n" + "<color=yellow>" + m_dialogBox.GetTip() + "</color>",
             Feedback = feedback,
             FeedbackRating = feedbackRating,
             PlayerDecision = decision
@@ -422,11 +417,5 @@ public class Incident {
         if (m_dialogBox == null)
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
        m_dialogBox.Show(zIncident);
-    }
-    public void ClearDialogBox()
-    {
-        if (m_dialogBox == null)
-            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        m_dialogBox.ClearDialogBox();
     }
 }

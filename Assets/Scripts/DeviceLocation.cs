@@ -100,13 +100,13 @@ public class DeviceLocation : MonoBehaviour {
         if (_locationIndex == 0)
         {
             // Notify the player to select a location
-            StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LOCATION")));
+            StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LOCATION"), 2f));
 
         } 
         if (!IsAnyLanguageSelected())
         {
             // notify the player they need to select a language
-            StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LANGUAGE")));
+            StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LANGUAGE"), 2f));
         }
         else
         {

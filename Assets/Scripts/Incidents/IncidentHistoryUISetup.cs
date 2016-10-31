@@ -16,11 +16,11 @@ public class IncidentHistoryUISetup : MonoBehaviour
         Header = this.transform.FindChild("Header").GetComponent<RectTransform>();
     }
 
-    public void Setup(string titleText, string descriptionText, Image icon, int listPoition)
+    public void Setup(string titleText, string descriptionText, Sprite icon, int listPoition)
     {
         TitleText.text = titleText;
         DescriptionText.text = descriptionText;
-        Icon = icon;
+        Icon.sprite = icon;
         ListPoition = listPoition;
     }
 

@@ -91,4 +91,8 @@
 {"key":"BASIC_TEXT_ENGLISH","en-gb":"English","de":"English","el":"English","es":"English"},
 {"key":"BASIC_TEXT_SPANISH","en-gb":"Español","de":"Español","el":"Español","es":"Español"},
 {"key":"WARNING_TEXT_LOCATION","en-gb":"Set a location","de":"XXXX","el":"XXXX","es":"establecer una posición"},
-{"key":"WARNING_TEXT_LANGUAGE","en-gb":"Set a language","de":"XXXX","el":"XXXX","es":"establecer un idioma"}]
+{"key":"WARNING_TEXT_LANGUAGE","en-gb":"Set a language","de":"XXXX","el":"XXXX","es":"establecer un idioma"},
+{"key":"BASIC_TEXT_REQUIREMENT_SINGULAR","en-gb":"Requrires 1 officer for 1 turn","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_REQUIREMENT_PLURAL","en-gb":"Requrires {0} officers for {1} turns","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_REQUIREMENT_OFFICER_PLURAL","en-gb":"Requires {0} officers for 1 turn","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_REQUIREMENT_TURN_PLURAL","en-gb":"Requires 1 officer for {0} turns","de":"XXXX","el":"XXXX","es":"XXXX"}]
