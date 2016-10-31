@@ -104,7 +104,7 @@ public class IncidentQueue : MonoBehaviour {
     {
         IncidentCase current = GetCaseFromNum(caseNum);
         current.m_state = newState;
-        current.SetIcon();
+        //current.SetIcon();
     }
     public IncidentCase GetCaseFromNum(int n)
     {

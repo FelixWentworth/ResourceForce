@@ -9,8 +9,6 @@ public class IncidentCase : MonoBehaviour {
     public enum State { New, Waiting, OfficersSent, CitizenRequest, Resolved, Escalated, InProgress };
     public State m_state = State.New;
 
-    public Image icon;
-    public Text number;
     public Image severity;
     public Image highlightSeverity;
 
@@ -25,7 +23,6 @@ public class IncidentCase : MonoBehaviour {
     public void Setup(int zNumber, State zState = State.New, int zSeverity = 1, Image severityHighlight = null, bool isNew = false)
     {
         //set up the case to show the relevant info
-        number.text = zNumber.ToString();
         caseNumber = zNumber;
         m_state = zState;
 
@@ -38,7 +35,7 @@ public class IncidentCase : MonoBehaviour {
                 newIncidentOverlay.SetActive(true);
             }
         }
-        SetIcon();
+        //SetIcon();
         highlightObject.SetActive(false);
     }
     public void SetSeverity(int zSeverity = 1)
@@ -53,30 +50,30 @@ public class IncidentCase : MonoBehaviour {
         highlightSeverity.color = new Color(1f, 0f, 0f, alpha);
         severityNumber = zSeverity;
     }
-	public void SetIcon()
-    {
-        //set the icon of each incident based on the desicion made
-        switch (m_state)
-        {
-            case State.New:
-                icon.sprite = Resources.Load<Sprite>("Sprites/New");
-                break;
-            case State.Waiting:
-                icon.sprite = Resources.Load<Sprite>("Sprites/Wait");
-                break;
-            case State.OfficersSent:
-                icon.sprite = Resources.Load<Sprite>("Sprites/Siren");
-                break;
-            case State.CitizenRequest:
-                icon.sprite = Resources.Load<Sprite>("Sprites/Inspec2t");
-                break;
-            case State.Resolved:
-            case State.Escalated:
-            case State.InProgress:
-                icon.sprite = Resources.Load<Sprite>("Sprites/Wait");
-                break;
-        }
-    }
+	//public void SetIcon()
+ //   {
+ //       //set the icon of each incident based on the desicion made
+ //       switch (m_state)
+ //       {
+ //           case State.New:
+ //               icon.sprite = Resources.Load<Sprite>("Sprites/New");
+ //               break;
+ //           case State.Waiting:
+ //               icon.sprite = Resources.Load<Sprite>("Sprites/Wait");
+ //               break;
+ //           case State.OfficersSent:
+ //               icon.sprite = Resources.Load<Sprite>("Sprites/Siren");
+ //               break;
+ //           case State.CitizenRequest:
+ //               icon.sprite = Resources.Load<Sprite>("Sprites/Inspec2t");
+ //               break;
+ //           case State.Resolved:
+ //           case State.Escalated:
+ //           case State.InProgress:
+ //               icon.sprite = Resources.Load<Sprite>("Sprites/Wait");
+ //               break;
+ //       }
+ //   }
     public void ToggleHighlight(bool forceDefault = false)
     {
         //by default the highligh should be disabled

@@ -177,7 +177,7 @@ public class IncidentManager : MonoBehaviour
     }
     public void WaitPressed()
     {
-        AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Ignore);
+        
 #if SELECT_INCIDENTS
         Incident currentIncident = NextIncident[incidentShowingIndex];
         m_dialogBox.currentIncident = currentIncident;
@@ -200,6 +200,8 @@ public class IncidentManager : MonoBehaviour
             }
         }
 
+        AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Ignore);
+
         ShowNext();
     }
     public void ResolvePressed()
@@ -208,7 +210,7 @@ public class IncidentManager : MonoBehaviour
             m_OfficerController = GameObject.Find("OfficerManager").GetComponent<OfficerController>();
         if (m_OfficerController.m_officers.Count >= NextIncident[0].officer)
         {
-            AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Officer);
+            
 #if SELECT_INCIDENTS
             Incident currentIncident = NextIncident[incidentShowingIndex];
             m_dialogBox.currentIncident = currentIncident;
@@ -230,13 +232,16 @@ public class IncidentManager : MonoBehaviour
                     break;
                 }
             }
+
+            AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Officer);
+
             ShowNext();
         }
     }
 
     public void CitizenHelpPressed()
     {
-        AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Citizen);
+        
 #if SELECT_INCIDENTS
         Incident currentIncident = NextIncident[incidentShowingIndex];
         m_dialogBox.currentIncident = currentIncident;
@@ -258,6 +263,9 @@ public class IncidentManager : MonoBehaviour
                 break;
             }
         }
+
+        AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Citizen);
+
         ShowNext();
     }
     public void ShowNext()

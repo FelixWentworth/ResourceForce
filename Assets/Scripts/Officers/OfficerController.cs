@@ -18,6 +18,9 @@ public class OfficerController : MonoBehaviour {
     public RectTransform OfficerPanel;
     private float _offset = 0f;
 
+    public Color AvailableOfficerColor;
+    public Color InUseOfficerColor;
+
     public int GetAvailable()
     {
         return m_officers.Count;
@@ -107,10 +110,11 @@ public class OfficerController : MonoBehaviour {
         {
             if (officersInUse > 0)
             {
-                inUseOffset -= officerIndicators[i].GetComponent<RectTransform>().rect.width;
                 officerIndicators[i].gameObject.SetActive(true);
                 officerIndicators[i].UpdateText(m_officersInUse[inUseIndex].turnsTilAvailable.ToString());
-                officerIndicators[i].UpdateColor(Color.red);
+                officerIndicators[i].UpdateColor(InUseOfficerColor);
+
+                inUseOffset -= officerIndicators[i].GetComponent<RectTransform>().rect.width;
                 StartCoroutine(TransitionToPosition(officerIndicators[i].GetComponent<RectTransform>(),
                     new Vector3(inUseOffset, 0f, 0f), 0.5f));
 
@@ -119,12 +123,12 @@ public class OfficerController : MonoBehaviour {
             }
             else
             {
+                officerIndicators[i].UpdateText("");
+                officerIndicators[i].UpdateColor(AvailableOfficerColor);
+
                 availableOffset = i * officerIndicators[i].GetComponent<RectTransform>().rect.width;
                 StartCoroutine(TransitionToPosition(officerIndicators[i].GetComponent<RectTransform>(),
-                    new Vector3(availableOffset, 0f, 0f), 0.5f));
-
-                officerIndicators[i].UpdateText("");
-                officerIndicators[i].UpdateColor(Color.blue);
+                    new Vector3(availableOffset, 0f, 0f), 0.5f));              
             }
         }
     }

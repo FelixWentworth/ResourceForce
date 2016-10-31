@@ -96,7 +96,7 @@ public class DialogBox : MonoBehaviour {
             PlayerDecision = IncidentHistoryElement.Decision.Ignore
         };
 
-        IncidentInformationDisplay.Show(history, currentInformation);
+        IncidentInformationDisplay.Show(history, currentInformation, zIncident.severity);
         
         caseNum = zIncident.caseNumber;
         SetSeverity(zIncident.severity);

@@ -16,11 +16,12 @@ public class IncidentInformationDisplay : MonoBehaviour
     public Sprite WaitSprite;
     public Sprite OfficerSprite;
     public Sprite CitizenSprite;
-    public void Show(List<IncidentHistoryElement> elements, IncidentHistoryElement currentElement)
+    public void Show(List<IncidentHistoryElement> elements, IncidentHistoryElement currentElement, int severity)
     {
         ClearChildren();
-        
-        
+
+        var alpha = GetSeverityTransparency(severity);
+
         _totalElements = 0;
 
         _incidentElements = new List<IncidentHistoryElement>();
@@ -31,10 +32,10 @@ public class IncidentInformationDisplay : MonoBehaviour
 
         foreach (var incidentHistory in elements)
         {
-            CreateElement(incidentHistory, _offset, false);
+            CreateElement(incidentHistory, _offset, alpha, false);
             _totalElements++;
         }
-        CreateElement(currentElement, _offset);
+        CreateElement(currentElement, _offset, alpha);
         _totalElements++;
         _shownElement = _totalElements-1;
     }
@@ -95,7 +96,7 @@ public class IncidentInformationDisplay : MonoBehaviour
         }
         transform.anchoredPosition3D = position;
     }
-    private void CreateElement(IncidentHistoryElement element, float offset, bool isCurrent = true)
+    private void CreateElement(IncidentHistoryElement element, float offset, float severityAlpha, bool isCurrent = true)
     {
         var go = GameObject.Instantiate(IncidentHistoryElement);
 
@@ -135,10 +136,24 @@ public class IncidentInformationDisplay : MonoBehaviour
         }
 
 
-        setup.Setup(element.Type, element.Description, sprite, _totalElements);
+        setup.Setup(element.Type, element.Description, sprite, _totalElements, severityAlpha);
         setup.Header.anchoredPosition3D = new Vector3(0f, offset, 0f);
         
         _setupObjects.Add(setup);
         _offset -= setup.Header.rect.height;
+    }
+
+    public float GetSeverityTransparency(int severity)
+    {
+        //set the alpha of the severity overlay
+        switch (severity)
+        {
+            case 3:
+                return 1f;
+            case 2:
+                return 0.5f;
+            default:
+                return 0f;
+        }
     }
 }
