@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -62,13 +63,15 @@ public class IncidentInformationDisplay : MonoBehaviour
            
             if (!foundPos)
             {
-                _setupObjects[i].Header.anchoredPosition3D = new Vector3(0f, _offset * i, 0f);
+                StartCoroutine(TransitionToPosition(_setupObjects[i].Header, new Vector3(0f, _offset * i, 0f), 0.5f));
+                //_setupObjects[i].Header.anchoredPosition3D = new Vector3(0f, _offset * i, 0f);
                 foundPos = i == pos;
             }
             else
             {
                 var offsetFromBottom = rectHeight + (_offset * (_setupObjects.Count - (i) ) );
-                _setupObjects[i].Header.anchoredPosition3D = new Vector3(0f, offsetFromBottom * -1f , 0f);
+                StartCoroutine(TransitionToPosition(_setupObjects[i].Header, new Vector3(0f, offsetFromBottom * -1f, 0f), 0.5f));
+                //_setupObjects[i].Header.anchoredPosition3D = new Vector3(0f, offsetFromBottom * -1f , 0f);
             }
             
             _offset = _setupObjects[i].Header.rect.height * -1f;
@@ -76,6 +79,18 @@ public class IncidentInformationDisplay : MonoBehaviour
         _shownElement = pos;
     }
 
+    private IEnumerator TransitionToPosition(RectTransform transform, Vector3 position, float time)
+    {
+        var deltaTime = 0f;
+        var startPos = transform.anchoredPosition3D;
+        while (deltaTime <= time)
+        {
+            transform.anchoredPosition3D = Vector3.Lerp(startPos, position, deltaTime/time);
+            deltaTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.anchoredPosition3D = position;
+    }
     private void CreateElement(IncidentHistoryElement element, float offset)
     {
         var go = GameObject.Instantiate(IncidentHistoryElement);
