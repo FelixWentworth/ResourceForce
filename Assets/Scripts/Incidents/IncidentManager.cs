@@ -376,18 +376,10 @@ public class IncidentManager : MonoBehaviour
         }
 
         incidentHistory.IncidentHistoryElements.Add(element);
-        if (incidentHistory.IncidentHistoryElements.Count > 1)
-        {
-            _incidentHistories[incident.caseNumber] = incidentHistory;
-
-        }
-        else
-        {
-            _incidentHistories.Add(incident.caseNumber, incidentHistory);
-        }
+        _incidentHistories[incident.caseNumber] = incidentHistory;
     }
 
-    private List<IncidentHistoryElement> GetIncidentHistory(int caseNumber)
+    public List<IncidentHistoryElement> GetIncidentHistory(int caseNumber)
     {
         IncidentHistory incidentHistory;
 

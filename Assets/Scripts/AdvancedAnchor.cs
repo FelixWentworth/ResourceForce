@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.VR;
 
+[ExecuteInEditMode]
 public class AdvancedAnchor : MonoBehaviour {
 
     public enum AnchorAlignment

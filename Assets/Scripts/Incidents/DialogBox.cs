@@ -36,8 +36,6 @@ public class DialogBox : MonoBehaviour {
     [HideInInspector]
     public PopupType popupType = PopupType.Incident;
 
-    public GameObject SoundWaves;
-
     public WarningBox WarningBox;
 
     private int caseNum;
@@ -60,6 +58,8 @@ public class DialogBox : MonoBehaviour {
 	private int turnsRequired;
 	private int severity;
 
+    public IncidentInformationDisplay IncidentInformationDisplay;
+
     void Start()
     {
         m_incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
@@ -68,12 +68,24 @@ public class DialogBox : MonoBehaviour {
     {
         //pass through the relevant info to the dialog box
         StartCoroutine(ShowIncident(zIncident));
-        SoundWaves.SetActive(true);
     }
     public IEnumerator ShowIncident(Incident zIncident)
     {
         //check if this is a resolution, ie. no buttons will lead anywhere
         var endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
+
+        var history = m_incidentManager.GetIncidentHistory(zIncident.caseNumber);
+
+        var currentInformation = new IncidentHistoryElement()
+        {
+            Description = zIncident.incidentName,
+            Type = zIncident.type,
+            Feedback = "",
+            FeedbackRating = 0,
+            PlayerDecision = IncidentHistoryElement.Decision.Ignore
+        };
+
+        IncidentInformationDisplay.Show(history, currentInformation);
 
         //set the body of text with information
         Body.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_DESCRIPTION") + ": </color>";
@@ -140,7 +152,8 @@ public class DialogBox : MonoBehaviour {
         RightButton.text = zIncident.officer == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
         //wait for anim to finish
-        yield return EmailAnim(-1f, "EmailShow");
+        //yield return EmailAnim(-1f, "EmailShow");
+        yield return new WaitForSeconds(0.0f);
 
         //now set which buttons should be active
         waitButton.SetActive(zIncident.waitIndex != -1 || endCase);
@@ -149,16 +162,17 @@ public class DialogBox : MonoBehaviour {
     }
     public IEnumerator EmailAnim(float speed, string name)
     {
+        yield return new WaitForSeconds(0.0f);
         //play the anim at the speed specified
-        var anim = EmailPanel.GetComponent<Animation>();
+        //var anim = EmailPanel.GetComponent<Animation>();
 
-        //set up the speed ant time to make sure the aim plays in the correct direction
-        anim[name].speed = speed;
-        var length = anim[name].length;
-        anim[name].time = speed == -1f ? length : 0f;
+        ////set up the speed ant time to make sure the aim plays in the correct direction
+        //anim[name].speed = speed;
+        //var length = anim[name].length;
+        //anim[name].time = speed == -1f ? length : 0f;
 
-        anim.Play();
-        yield return new WaitForSeconds(length);
+        //anim.Play();
+        //yield return new WaitForSeconds(length);
     }
     public void SetSeverity(int zSeverity=1)
     {
@@ -292,15 +306,12 @@ public class DialogBox : MonoBehaviour {
         titleBackground.color = Color.white;
 		InnerBorder.color = Color.white;
 		OuterBorder.color = Color.white;
-        SoundWaves.SetActive(false);
     }
     public void DisableButtons()
     {
         waitButton.SetActive(false);
         SendOfficerButton.SetActive(false);
         m_citizenHelpButton.SetActive(false);
-
-        SoundWaves.SetActive(false);
     }
     public void DeactivateAll()
     {
