@@ -17,7 +17,6 @@ public class IncidentManager : MonoBehaviour
     public Text CaseStatus;
     public IncidentQueue m_IncidentQueue;
     protected int currentTurn;
-    public Text ArrestsMade;
     protected float happiness = 75f;
 
     public DialogBox m_dialogBox;
@@ -90,7 +89,6 @@ public class IncidentManager : MonoBehaviour
             }
         }
         CaseStatus.text = status;
-        ArrestsMade.text = Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + ": " + Mathf.RoundToInt(happiness) + "%";
     }
     public void CheckExpiredIncidents(int turn)
     {
@@ -163,7 +161,6 @@ public class IncidentManager : MonoBehaviour
             happiness += impact;
         }
         happiness = Mathf.Clamp(happiness, 0, 100);
-        ArrestsMade.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + "</color> " + Mathf.RoundToInt(happiness) + "%";
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
     }
     public void EndTurn()
@@ -171,7 +168,6 @@ public class IncidentManager : MonoBehaviour
         //punish the player for having cases open, stopping players from just ignoring all cases
         happiness -= 1f * GetTotalSeverity();
         happiness = Mathf.Clamp(happiness, 0, 100);
-        ArrestsMade.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_CITIZEN_HAPPINESS") + "</color> " + Mathf.RoundToInt(happiness) + "%";
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
     }
     public void ClearList()

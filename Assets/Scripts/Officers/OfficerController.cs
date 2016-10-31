@@ -10,12 +10,13 @@ public class OfficerController : MonoBehaviour {
     public List<officer> m_officers = new List<officer>();
     public List<officer> m_officersInUse = new List<officer>();
 
-    public Text officersText;
     public Text officerStatus;
 
     public int StartingOfficers = 5;
 
     public OfficerIndicator[] officerIndicators;
+    public RectTransform OfficerPanel;
+    private float _offset = 0f;
 
     public int GetAvailable()
     {
@@ -25,8 +26,11 @@ public class OfficerController : MonoBehaviour {
     void Awake () {
         for (int i = 0; i<officerIndicators.Length; i++)
         {
+            officerIndicators[i].gameObject.SetActive(true);
             officerIndicators[i].UpdateText("");
-            officerIndicators[i].gameObject.SetActive(false);
+            var rectTransform = officerIndicators[i].GetComponent<RectTransform>();
+            rectTransform.anchoredPosition3D = new Vector3(_offset, 0f, 0f);
+            _offset += rectTransform.rect.width;
         }
         for (int i = 0; i< StartingOfficers; i++)
         {
@@ -34,7 +38,6 @@ public class OfficerController : MonoBehaviour {
             m_officers.Add(temp);
         }
         m_officersInUse = new List<officer>();
-        officersText.text = m_officers.Count.ToString();
         SetOfficerStatus();
         
     }
@@ -49,7 +52,6 @@ public class OfficerController : MonoBehaviour {
             removed.Use(turnsAway);
             m_officersInUse.Add(removed);
         }
-        officersText.text = m_officers.Count.ToString();
         SetOfficerStatus();
     }
     private void AddOfficer(officer zOfficer)
@@ -58,7 +60,6 @@ public class OfficerController : MonoBehaviour {
         officer removed = zOfficer;
         removed.Reset();
         m_officers.Add(removed);
-        officersText.text = m_officers.Count.ToString();
         SetOfficerStatus();
     }
     public void EndTurn()
@@ -75,18 +76,17 @@ public class OfficerController : MonoBehaviour {
                 i--; //reduce i as we removed one of the elements in the list
             }
         }
-        officersText.text = m_officers.Count.ToString();
         SetOfficerStatus();
     }
     private void SetOfficerStatus()
     {
-        string status = "";
-        int count = 1;
-        for (int i = 0; i < m_officers.Count; i++, count++)
+        var status = "";
+        var count = 1;
+        for (var i = 0; i < m_officers.Count; i++, count++)
         {
             status += count + " - " + Localization.Get("BASIC_TEXT_AVAILABLE") + "\n";
         }
-        for (int i = 0; i< m_officersInUse.Count; i++, count++)
+        for (var i = 0; i< m_officersInUse.Count; i++, count++)
         {
             status += count + " - " + m_officersInUse[i].turnsTilAvailable + Localization.Get("BASIC_TEXT_TURNS_UNTIL_AVAILABLE") + "\n";
         }
@@ -96,17 +96,49 @@ public class OfficerController : MonoBehaviour {
 
     private void UpdateOfficerIndicators()
     {
-        int count = 0;
-        for (int i = 0; i < m_officersInUse.Count; i++, count++)
+        var officersInUse = m_officersInUse.Count;
+
+        var inUseIndex = 0;
+
+        var inUseOffset = OfficerPanel.rect.width;
+        var availableOffset = 0f;
+
+        for (var i = StartingOfficers - 1; i >= 0; i--)
         {
-            officerIndicators[count].gameObject.SetActive(true);
-            officerIndicators[count].UpdateText(m_officersInUse[i].turnsTilAvailable.ToString());
+            if (officersInUse > 0)
+            {
+                inUseOffset -= officerIndicators[i].GetComponent<RectTransform>().rect.width;
+                officerIndicators[i].gameObject.SetActive(true);
+                officerIndicators[i].UpdateText(m_officersInUse[inUseIndex].turnsTilAvailable.ToString());
+                officerIndicators[i].UpdateColor(Color.red);
+                StartCoroutine(TransitionToPosition(officerIndicators[i].GetComponent<RectTransform>(),
+                    new Vector3(inUseOffset, 0f, 0f), 0.5f));
+
+                officersInUse--;
+                inUseIndex++;
+            }
+            else
+            {
+                availableOffset = i * officerIndicators[i].GetComponent<RectTransform>().rect.width;
+                StartCoroutine(TransitionToPosition(officerIndicators[i].GetComponent<RectTransform>(),
+                    new Vector3(availableOffset, 0f, 0f), 0.5f));
+
+                officerIndicators[i].UpdateText("");
+                officerIndicators[i].UpdateColor(Color.blue);
+            }
         }
-        for (int i = 0; i < m_officers.Count; i++, count++)
+    }
+    private IEnumerator TransitionToPosition(RectTransform transform, Vector3 position, float time)
+    {
+        var deltaTime = 0f;
+        var startPos = transform.anchoredPosition3D;
+        while (deltaTime <= time)
         {
-            officerIndicators[count].gameObject.SetActive(false);
-            officerIndicators[count].UpdateText("");
+            transform.anchoredPosition3D = Vector3.Lerp(startPos, position, deltaTime / time);
+            deltaTime += Time.deltaTime;
+            yield return null;
         }
+        transform.anchoredPosition3D = position;
     }
 }
 public class officer
