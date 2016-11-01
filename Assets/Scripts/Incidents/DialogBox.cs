@@ -221,7 +221,7 @@ public class DialogBox : MonoBehaviour {
 		var num = Random.Range(1, max + 1);
 		_tip = Localization.Get(preText + num);
         
-	    yield return WarningBox.ShowWarning(_tip, 5f);
+	    yield return WarningBox.ShowWarning(_tip, 5f, Color.green);
 	}
 
     public string GetTip()
@@ -240,7 +240,7 @@ public class DialogBox : MonoBehaviour {
         }
         else
         {
-            StartCoroutine(WarningBox.ShowWarning(Localization.Get("BASIC_TEXT_NO_OFFICERS"), 2f));
+            StartCoroutine(WarningBox.ShowWarning(Localization.Get("BASIC_TEXT_NO_OFFICERS"), 2f, Color.yellow));
         }
     }
 

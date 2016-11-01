@@ -11,9 +11,11 @@ public class WarningBox : MonoBehaviour
     ///This class will show and hide the warning box when called by the dialogBox class
     private bool _showingPopup;
     private Text _warningText;
+    private Image _borderImage;
 
-    public IEnumerator ShowWarning(string message, float pauseTime)
+    public IEnumerator ShowWarning(string message, float pauseTime, Color color)
     {
+        SetColor(color);
         if (!_showingPopup)
         {
             ScreenFade.SetActive(true);
@@ -45,5 +47,19 @@ public class WarningBox : MonoBehaviour
             _showingPopup = false;
             ScreenFade.SetActive(false);
         }
+    }
+
+    private void SetColor(Color color)
+    {
+        if (_borderImage == null)
+        {
+            _borderImage = transform.FindChild("Border").GetComponent<Image>();
+        }
+        if (_warningText == null)
+        {
+            _warningText = transform.FindChild("Text").GetComponent<Text>();
+        }
+        _warningText.color = color;
+        _borderImage.color = color;
     }
 }
