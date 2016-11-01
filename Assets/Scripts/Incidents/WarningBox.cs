@@ -3,7 +3,10 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine.UI;
 
-public class WarningBox : MonoBehaviour {
+public class WarningBox : MonoBehaviour
+{
+
+    public GameObject ScreenFade;
 
     ///This class will show and hide the warning box when called by the dialogBox class
     private bool _showingPopup;
@@ -13,6 +16,7 @@ public class WarningBox : MonoBehaviour {
     {
         if (!_showingPopup)
         {
+            ScreenFade.SetActive(true);
             if (_warningText == null)
             {
                 _warningText = transform.FindChild("Text").GetComponent<Text>();
@@ -39,6 +43,7 @@ public class WarningBox : MonoBehaviour {
             yield return anim["WarningPopupExit"].clip.length;
 
             _showingPopup = false;
+            ScreenFade.SetActive(false);
         }
     }
 }
