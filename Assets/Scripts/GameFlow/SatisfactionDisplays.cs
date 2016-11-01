@@ -11,10 +11,13 @@ public class SatisfactionDisplays : MonoBehaviour {
 
     public Color FadeGB;
 
+    private const float SlideTime = 0.6f;
+
     public void SetSatisfactionDisplays(float satisfaction)
     {
         // set the slider and the background image alpha based off of the satisfaction
-        mySlider.anchoredPosition = new Vector2(myRect.rect.width - ((myRect.rect.width / 100f) * satisfaction),0f);
+        StartCoroutine(MoveSlider(new Vector2(myRect.rect.width - ((myRect.rect.width / 100f) * satisfaction), 0f)));
+        //mySlider.anchoredPosition = new Vector2(myRect.rect.width - ((myRect.rect.width / 100f) * satisfaction),0f);
         warningBG.color = new Color(FadeGB.r, FadeGB.g, FadeGB.b, 1f - (satisfaction / 100f));
         AudioManager.Instance.SetBackgroundMusicBalance(satisfaction);
 
@@ -24,9 +27,10 @@ public class SatisfactionDisplays : MonoBehaviour {
     {
         var deltaTime = 0f;
         var startPos = myTransform.position;
+
         while (deltaTime <= time)
         {
-            myTransform.position = Vector3.Lerp(startPos, mySlider.transform.position, deltaTime / time);
+            myTransform.position = Vector3.Slerp(startPos, mySlider.transform.position, deltaTime / time);
             deltaTime += Time.deltaTime;
             yield return null;
         }
@@ -34,9 +38,22 @@ public class SatisfactionDisplays : MonoBehaviour {
 
         Destroy(myTransform.gameObject);
 
-        mySlider.anchoredPosition = new Vector2(myRect.rect.width - ((myRect.rect.width / 100f) * value), 0f);
+        StartCoroutine(MoveSlider(new Vector2(myRect.rect.width - ((myRect.rect.width/100f)*value), 0f)));
         warningBG.color = new Color(FadeGB.r, FadeGB.g, FadeGB.b, 1f - (value / 100f));
         AudioManager.Instance.SetBackgroundMusicBalance(value);
 
+    }
+
+    private IEnumerator MoveSlider(Vector2 targetVector2)
+    {
+        var deltaTime = 0f;
+        var startPos = mySlider.anchoredPosition;
+        while (deltaTime <= SlideTime)
+        {
+            mySlider.anchoredPosition = Vector2.Lerp(startPos,targetVector2, deltaTime / SlideTime);
+            deltaTime += Time.deltaTime;
+            yield return null;
+        }
+        mySlider.anchoredPosition = targetVector2;
     }
 }

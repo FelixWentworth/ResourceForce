@@ -146,7 +146,7 @@ public class IncidentManager : MonoBehaviour
         //make sure the current incident is not showing as new as we now know the player has seen it
         currentIncident.isNew = false;
     }
-    public void CaseClosed(int impact, bool expired = false)
+    public void CaseClosed(int impact, float transitionTime, bool expired = false)
     {
         //update the citizen security/happiness
         if (expired)
@@ -166,7 +166,7 @@ public class IncidentManager : MonoBehaviour
         foreach (var feedbackTransform in ratingObjects)
         {
             feedbackTransform.parent = GameObject.Find("Canvas").transform;
-            StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, 1.0f, happiness));
+            StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, transitionTime, happiness));
         }
     }
     public void EndTurn()
@@ -304,7 +304,7 @@ public class IncidentManager : MonoBehaviour
         else
             ShowIncident(currentTurn);
     }
-    public void CloseCase(int caseNumber)
+    public void CloseCase(int caseNumber, float transitionTime)
     {
         for (int i = 0; i < incidents.Count; i++)
         {
@@ -313,12 +313,11 @@ public class IncidentManager : MonoBehaviour
                 //we have found the case to remove
                 m_IncidentQueue.RemoveFromQueue(incidents[i].caseNumber);
 
-                CaseClosed(incidents[i].satisfactionImpact);
+                CaseClosed(incidents[i].satisfactionImpact, transitionTime);
                 incidents.RemoveAt(i);
                 i--;
             }
         }
-        ShowNext();
     }
     public bool isGameOver()
     {

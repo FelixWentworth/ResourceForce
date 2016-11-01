@@ -28,7 +28,9 @@ public class DialogBox : MonoBehaviour {
 
     private int _caseNum;
 
-	private const int CitizenTips = 5;
+    private const float TransitionTime = 0.75f;
+
+    private const int CitizenTips = 5;
 	private const int WaitTips = 5;
 	private const int OfficerTips = 2;
 	private const int PositiveTips = 5;
@@ -113,8 +115,7 @@ public class DialogBox : MonoBehaviour {
         RightButton.text = zIncident.officer == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
         //wait for anim to finish
-        //yield return EmailAnim(-1f, "EmailShow");
-        yield return new WaitForSeconds(0.0f);
+        yield return EmailAnim(-1f, "EmailShow");
 
         //now set which buttons should be active
         _waitButton.SetActive(zIncident.waitIndex != -1);
@@ -158,15 +159,15 @@ public class DialogBox : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.0f);
         //play the anim at the speed specified
-        //var anim = EmailPanel.GetComponent<Animation>();
+        var anim = EmailPanel.GetComponent<Animation>();
 
-        ////set up the speed ant time to make sure the aim plays in the correct direction
-        //anim[name].speed = speed;
-        //var length = anim[name].length;
-        //anim[name].time = speed == -1f ? length : 0f;
+        //set up the speed ant time to make sure the aim plays in the correct direction
+        anim[name].speed = speed;
+        var length = anim[name].length;
+        anim[name].time = speed == -1f ? length : 0f;
 
-        //anim.Play();
-        //yield return new WaitForSeconds(length);
+        anim.Play();
+        yield return new WaitForSeconds(length);
     }
     public void SetSeverity(int zSeverity=1)
     {
@@ -267,16 +268,23 @@ public class DialogBox : MonoBehaviour {
 
     public void OkButtonPressed()
     {
-        DisableButtons();
         StartCoroutine(OkButtonPressedWithAnim());
         AudioManager.Instance.PressCaseCloseButton();
     }
 
     private IEnumerator OkButtonPressedWithAnim()
     {
+        
+        _incidentManager.CloseCase(_caseNum, TransitionTime);
+        //wait for the objects to move to the top of the screen
+        yield return new WaitForSeconds(TransitionTime);
+
+        DisableButtons();
+
         // animate our satisfaction objects to the satisfaction bar at the top of the screen
         yield return EmailAnim(1f, "EmailShow");
-        _incidentManager.CloseCase(_caseNum);
+
+        _incidentManager.ShowNext();
     }
 
     public void CitizenButtonPressed()
