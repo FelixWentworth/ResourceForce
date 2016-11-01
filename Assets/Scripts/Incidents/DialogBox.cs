@@ -246,7 +246,8 @@ public class DialogBox : MonoBehaviour {
 
     private IEnumerator RightButtonWithAnim(bool citizensAvailable = false)
     {
-		if (citizensAvailable)
+        _incidentManager.RemoveOfficer(CurrentIncident);
+        if (citizensAvailable)
 		{
 			yield return ShowTip(CitizenTips, "TIPS_CITIZEN_");
 		}
@@ -261,8 +262,9 @@ public class DialogBox : MonoBehaviour {
 				yield return ShowTip(OfficerTips, "TIPS_OFFICER_");
 			}
 		}
-		//send officers to resolve issue
-		yield return EmailAnim(1f, "EmailShow");
+        
+        //send officers to resolve issue
+        yield return EmailAnim(1f, "EmailShow");
         _incidentManager.ResolvePressed();
     }
 

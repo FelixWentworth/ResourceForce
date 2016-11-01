@@ -227,7 +227,7 @@ public class IncidentManager : MonoBehaviour
             m_dialogBox.CurrentIncident = currentIncident;
 #endif
             m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
-            m_OfficerController.RemoveOfficer(currentIncident.officer, currentIncident.turnsToAdd);
+            
             GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().OfficerPressed(ref currentIncident);
 
             m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.OfficersSent);
@@ -245,6 +245,14 @@ public class IncidentManager : MonoBehaviour
 
             ShowNext();
         }
+    }
+
+
+    public void RemoveOfficer(Incident currentIncident)
+    {
+        if (m_OfficerController == null)
+            m_OfficerController = GameObject.Find("OfficerManager").GetComponent<OfficerController>();
+        m_OfficerController.RemoveOfficer(currentIncident.officer, currentIncident.turnsToAdd);
     }
 
     public void CitizenHelpPressed()
