@@ -115,7 +115,7 @@ public class IncidentManager : MonoBehaviour
             CreateNewIncident(turn);
 
         Incident currentIncident = NextIncident[0];
-        m_dialogBox.currentIncident = currentIncident;
+        m_dialogBox.CurrentIncident = currentIncident;
 #if SELECT_INCIDENTS
         incidentShowingIndex = 0;
 #endif
@@ -129,7 +129,7 @@ public class IncidentManager : MonoBehaviour
                 if (NextIncident[i].caseNumber == zCaseNumber)
                 {
                     currentIncident = NextIncident[i];
-                    m_dialogBox.currentIncident = currentIncident;
+                    m_dialogBox.CurrentIncident = currentIncident;
 #if SELECT_INCIDENTS
                     incidentShowingIndex = i;
 #endif
@@ -161,7 +161,14 @@ public class IncidentManager : MonoBehaviour
             happiness += impact;
         }
         happiness = Mathf.Clamp(happiness, 0, 100);
-        m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
+       // m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
+        var ratingObjects = m_dialogBox.GetRatingObjects();
+
+        foreach (var feedbackTransform in ratingObjects)
+        {
+            feedbackTransform.parent = GameObject.Find("Canvas").transform;
+            StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, 1.0f, happiness));
+        }
     }
     public void EndTurn()
     {
@@ -183,7 +190,7 @@ public class IncidentManager : MonoBehaviour
         m_dialogBox.currentIncident = currentIncident;
 #else
         Incident currentIncident = NextIncident[0];
-        m_dialogBox.currentIncident = currentIncident;
+        m_dialogBox.CurrentIncident = currentIncident;
 #endif
         m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().WaitPressed(ref currentIncident);
@@ -200,7 +207,7 @@ public class IncidentManager : MonoBehaviour
             }
         }
 
-        AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Ignore);
+        AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Ignore);
 
         ShowNext();
     }
@@ -216,7 +223,7 @@ public class IncidentManager : MonoBehaviour
             m_dialogBox.currentIncident = currentIncident;
 #else
             Incident currentIncident = NextIncident[0];
-            m_dialogBox.currentIncident = currentIncident;
+            m_dialogBox.CurrentIncident = currentIncident;
 #endif
             m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
             m_OfficerController.RemoveOfficer(currentIncident.officer, currentIncident.turnsToAdd);
@@ -233,7 +240,7 @@ public class IncidentManager : MonoBehaviour
                 }
             }
 
-            AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Officer);
+            AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Officer);
 
             ShowNext();
         }
@@ -246,8 +253,8 @@ public class IncidentManager : MonoBehaviour
         Incident currentIncident = NextIncident[incidentShowingIndex];
         m_dialogBox.currentIncident = currentIncident;
 #else
-        Incident currentIncident = NextIncident[0];
-        m_dialogBox.currentIncident = currentIncident;
+        var currentIncident = NextIncident[0];
+        m_dialogBox.CurrentIncident = currentIncident;
 #endif
         m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
         m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.CitizenRequest);
@@ -255,7 +262,7 @@ public class IncidentManager : MonoBehaviour
         currentIncident.turnToShow++;
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().CitizenPressed(ref currentIncident);
         NextIncident[0] = currentIncident;
-        for (int i = 0; i < incidents.Count; i++)
+        for (var i = 0; i < incidents.Count; i++)
         {
             if (incidents[i].caseNumber == currentIncident.caseNumber)
             {
@@ -264,7 +271,7 @@ public class IncidentManager : MonoBehaviour
             }
         }
 
-        AddIncidentHistory(m_dialogBox.currentIncident, IncidentHistoryElement.Decision.Citizen);
+        AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Citizen);
 
         ShowNext();
     }
@@ -336,8 +343,8 @@ public class IncidentManager : MonoBehaviour
     }
     public int GetIgnoredCasesCount()
     {
-        int total = 0;
-        foreach (IncidentCase i in m_IncidentQueue.allCases)
+        var total = 0;
+        foreach (var i in m_IncidentQueue.allCases)
         {
             if (i.m_state == IncidentCase.State.Waiting)
             {

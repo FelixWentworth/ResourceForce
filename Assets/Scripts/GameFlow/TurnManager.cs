@@ -41,7 +41,7 @@ public class TurnManager : MonoBehaviour {
         NextTurnButton.SetActive(false);
 		EndTurnSatisfaction.gameObject.SetActive(false);
 		GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
-        turnsText.text = "<color=#00F3FFFF>" + Localization.Get("BASIC_TEXT_TURN") + "</color> " + turn;
+        turnsText.text = turn.ToString();
         if (m_IncidentManager == null)
             m_IncidentManager = this.GetComponent<IncidentManager>();
         
@@ -50,7 +50,7 @@ public class TurnManager : MonoBehaviour {
 
         if (m_IncidentManager.isGameOver())
         {
-            //GAME OVER, too many incidents un resolved
+            //GAME OVER
             ShowGameOver();
         }
         else

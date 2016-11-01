@@ -70,6 +70,11 @@ public class AudioManager : MonoBehaviour {
         //sendOfficerMusic.Play();
         positiveButtonMusic.Play();
     }
+
+    public void PressCaseCloseButton()
+    {
+        positiveButtonMusic.Play();
+    }
     public void NegativeButtonPress()
     {
         //play negative button press audio

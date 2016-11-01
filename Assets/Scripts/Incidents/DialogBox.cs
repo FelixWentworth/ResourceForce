@@ -1,50 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Timers;
 using UnityEngine.UI;
 
 public class DialogBox : MonoBehaviour {
 
     [HideInInspector]
-    public Incident currentIncident;
+    public Incident CurrentIncident;
     
     //the ok and wait text objects are enabled based on which button to show as they have a different layout
-    public GameObject OkText;
-    public Text satisfaction;
-    public GameObject WaitText;
-
     public Text RightButton;
 
     public GameObject EmailPanel;
 
-    private IncidentManager m_incidentManager;
-    public OfficerController m_officerController;
-    public TurnManager m_turnManager;
-    public GameObject m_citizenHelpButton;
-    public GameObject SendOfficerButton;
-    public GameObject waitButton;
-    public enum PopupType { Incident, CaseClosed };
-    [HideInInspector]
-    public PopupType popupType = PopupType.Incident;
+    private IncidentManager _incidentManager;
+    public OfficerController OfficerController;
+    public TurnManager TurnManager;
+    public Transform ButtonPanel;
+
+    public Sprite PlusSprite;
+    public Sprite MinusSprite;
 
     public WarningBox WarningBox;
 
-    private int caseNum;
+    public IncidentInformationDisplay IncidentInformationDisplay;
 
-	private const int _CITIZEN_TIPS = 5;
-	private const int _WAIT_TIPS = 5;
-	private const int _OFFICER_TIPS = 2;
-	private const int _POSITIVE_TIPS = 5;
-	private int turnsRequired;
-	private int severity;
+    private int _caseNum;
+
+	private const int CitizenTips = 5;
+	private const int WaitTips = 5;
+	private const int OfficerTips = 2;
+	private const int PositiveTips = 5;
+	private int _turnsRequired;
+	private int _severity;
     private string _tip = "";
 
+    private GameObject _citizenHelpButton;
+    private GameObject _sendOfficerButton;
+    private GameObject _waitButton;
+    private GameObject _caseClosedButton;
 
-    public IncidentInformationDisplay IncidentInformationDisplay;
+    private List<Transform> _ratingTransforms;
 
     void Start()
     {
-        m_incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
+        _citizenHelpButton = ButtonPanel.FindChild("CitizenHelpButton").gameObject;
+        _sendOfficerButton = ButtonPanel.FindChild("SendOfficersButton").gameObject;
+        _waitButton = ButtonPanel.FindChild("WaitButton").gameObject;
+        _caseClosedButton = ButtonPanel.FindChild("CaseClosedButton").gameObject;
+
+        _incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
     }
     public void Show(Incident zIncident)
     {
@@ -56,7 +62,7 @@ public class DialogBox : MonoBehaviour {
         //check if this is a resolution, ie. no buttons will lead anywhere
         var endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
 
-        var history = m_incidentManager.GetIncidentHistory(zIncident.caseNumber);
+        var history = _incidentManager.GetIncidentHistory(zIncident.caseNumber);
 
         var requirements = "";
 
@@ -86,6 +92,8 @@ public class DialogBox : MonoBehaviour {
             }
         }
 
+        _turnsRequired = zIncident.turnsToAdd;
+
         requirements = "<size=35><b>" + requirements + "</b></size>";
         var currentInformation = new IncidentHistoryElement()
         {
@@ -98,31 +106,9 @@ public class DialogBox : MonoBehaviour {
 
         IncidentInformationDisplay.Show(history, currentInformation, zIncident.severity);
         
-        caseNum = zIncident.caseNumber;
+        _caseNum = zIncident.caseNumber;
         SetSeverity(zIncident.severity);
-	    severity = zIncident.severity;
-
-		if (!endCase)
-        {
-	        turnsRequired = zIncident.turnsToAdd;
-			// The Popup Type
-            popupType = PopupType.Incident;
-            
-        }
-        else
-        {
-			// The Popup Type
-            popupType = PopupType.CaseClosed;
-        }
-		// Our Buttons
-		OkText.SetActive(endCase);
-		var satisfactionText = Localization.Get("BASIC_TEXT_SATISFACTION");
-		if (zIncident.satisfactionImpact >= 0)
-		{
-			satisfactionText = satisfactionText.Insert(0, "+");
-		}
-		satisfaction.text = string.Format(satisfactionText, zIncident.satisfactionImpact);
-		WaitText.SetActive(!endCase);
+	    _severity = zIncident.severity;
 
         RightButton.text = zIncident.officer == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
@@ -131,10 +117,43 @@ public class DialogBox : MonoBehaviour {
         yield return new WaitForSeconds(0.0f);
 
         //now set which buttons should be active
-        waitButton.SetActive(zIncident.waitIndex != -1 || endCase);
-        SendOfficerButton.SetActive(zIncident.officerIndex != -1);
-        m_citizenHelpButton.SetActive(zIncident.citizenIndex != -1);
+        _waitButton.SetActive(zIncident.waitIndex != -1);
+        _sendOfficerButton.SetActive(zIncident.officerIndex != -1);
+        _citizenHelpButton.SetActive(zIncident.citizenIndex != -1);
+
+        _caseClosedButton.SetActive(endCase);
+        if (_caseClosedButton.activeSelf)
+        {
+            // populate the button with feedback elements
+            var satisfaction = zIncident.satisfactionImpact;
+
+            var ratingPanel = _caseClosedButton.transform.FindChild("RatingPanel").transform;
+            DestroyChildren(ratingPanel);
+            _ratingTransforms = new List<Transform>();
+
+            // satisfaction ranges from +3 to -3
+            var spriteToUse = satisfaction > 0 ? PlusSprite : MinusSprite;
+            var increment = satisfaction > 0 ? 1 : -1;
+
+            for (int i = 0; i != satisfaction; i += increment)
+            {
+                var go = new GameObject();
+                go.transform.parent = ratingPanel.transform;
+                var img = go.AddComponent<Image>();
+                img.sprite = spriteToUse;
+                img.preserveAspect = true;
+
+                _ratingTransforms.Add(go.transform);
+            }
+
+        }
     }
+
+    public List<Transform> GetRatingObjects()
+    {
+        return _ratingTransforms;
+    }
+
     public IEnumerator EmailAnim(float speed, string name)
     {
         yield return new WaitForSeconds(0.0f);
@@ -161,45 +180,38 @@ public class DialogBox : MonoBehaviour {
     public void LeftButtonPressed()
     {
 		// Check if the citizen option was available
-	    var isCitizensAvailable = m_citizenHelpButton.activeSelf;
+	    var isCitizensAvailable = _citizenHelpButton.activeSelf;
         DisableButtons();
         StartCoroutine(LeftButtonWithAnim(isCitizensAvailable));
         AudioManager.Instance.PressWaitButton();
     }
-    IEnumerator LeftButtonWithAnim(bool citizensAvailable = false)
+
+    private IEnumerator LeftButtonWithAnim(bool citizensAvailable = false)
     {
 	    if (citizensAvailable)
 	    {
-		    yield return ShowTip(_CITIZEN_TIPS, "TIPS_CITIZEN_");
+		    yield return ShowTip(CitizenTips, "TIPS_CITIZEN_");
 	    }
-	    else if (popupType == PopupType.Incident)
-	    {
+	    else
+        {
 			// dont show any tips with the case closed information
-			if (turnsRequired == 1)
+			if (_turnsRequired == 1)
 			{
 				yield return ShowTip(2, "TIPS_OFFICER_ONE_TURN_NEGATIVE_");
 			}
-			else if (severity == 3)
+			else if (_severity == 3)
 			{
 				yield return ShowTip(2, "TIPS_OFFICER_HIGH_SEVERITY_NEGATIVE_");
 			}
 			else
 			{
-				yield return ShowTip(_WAIT_TIPS, "TIPS_WAIT_");
+				yield return ShowTip(WaitTips, "TIPS_WAIT_");
 			}
 		}
 
 		yield return EmailAnim(1f, "EmailShow");
         //wait for more officers to become available
-        switch (popupType)
-        {
-            case PopupType.CaseClosed:
-                m_incidentManager.CloseCase(caseNum);
-                break;
-            case PopupType.Incident:
-                m_incidentManager.WaitPressed();
-                break;
-        }
+        _incidentManager.WaitPressed();
     }
 
 	private IEnumerator ShowTip(int max, string preText)
@@ -217,9 +229,9 @@ public class DialogBox : MonoBehaviour {
     }
     public void RightButtonPressed()
     {
-        if (m_officerController.m_officers.Count >= currentIncident.officer)
+        if (OfficerController.m_officers.Count >= CurrentIncident.officer)
         {
-			var isCitizensAvailable = m_citizenHelpButton.activeSelf;
+			var isCitizensAvailable = _citizenHelpButton.activeSelf;
 			//double check if we have enough officers otherwise the game will break
 			DisableButtons();
             StartCoroutine(RightButtonWithAnim(isCitizensAvailable));
@@ -230,48 +242,74 @@ public class DialogBox : MonoBehaviour {
             StartCoroutine(WarningBox.ShowWarning(Localization.Get("BASIC_TEXT_NO_OFFICERS"), 2f));
         }
     }
-    IEnumerator RightButtonWithAnim(bool citizensAvailable = false)
+
+    private IEnumerator RightButtonWithAnim(bool citizensAvailable = false)
     {
 		if (citizensAvailable)
 		{
-			yield return ShowTip(_CITIZEN_TIPS, "TIPS_CITIZEN_");
+			yield return ShowTip(CitizenTips, "TIPS_CITIZEN_");
 		}
 		else
 		{
-			if (turnsRequired == 1 || severity == 3)
+			if (_turnsRequired == 1 || _severity == 3)
 			{
-				yield return ShowTip(_POSITIVE_TIPS, "TIPS_POSITIVE_");
+				yield return ShowTip(PositiveTips, "TIPS_POSITIVE_");
 			}
 			else
 			{
-				yield return ShowTip(_OFFICER_TIPS, "TIPS_OFFICER_");
+				yield return ShowTip(OfficerTips, "TIPS_OFFICER_");
 			}
 		}
 		//send officers to resolve issue
 		yield return EmailAnim(1f, "EmailShow");
-        m_incidentManager.ResolvePressed();
+        _incidentManager.ResolvePressed();
     }
+
+    public void OkButtonPressed()
+    {
+        DisableButtons();
+        StartCoroutine(OkButtonPressedWithAnim());
+        AudioManager.Instance.PressCaseCloseButton();
+    }
+
+    private IEnumerator OkButtonPressedWithAnim()
+    {
+        // animate our satisfaction objects to the satisfaction bar at the top of the screen
+        yield return EmailAnim(1f, "EmailShow");
+        _incidentManager.CloseCase(_caseNum);
+    }
+
     public void CitizenButtonPressed()
     {
         DisableButtons();
         StartCoroutine(CitizenButtonWithAnim());
         AudioManager.Instance.PressCitizenButton();
     }
-    IEnumerator CitizenButtonWithAnim()
+
+    private IEnumerator CitizenButtonWithAnim()
     {
-	    yield return ShowTip(_POSITIVE_TIPS, "TIPS_POSITIVE_");
+	    yield return ShowTip(PositiveTips, "TIPS_POSITIVE_");
         //removing citizen help popup and instead setting the delay to one turn
         yield return EmailAnim(1f, "EmailShow");
-        m_incidentManager.CitizenHelpPressed();
+        _incidentManager.CitizenHelpPressed();
     }
     public void DisableButtons()
     {
-        waitButton.SetActive(false);
-        SendOfficerButton.SetActive(false);
-        m_citizenHelpButton.SetActive(false);
+        _waitButton.SetActive(false);
+        _caseClosedButton.SetActive(false);
+        _sendOfficerButton.SetActive(false);
+        _citizenHelpButton.SetActive(false);
     }
     public void DeactivateAll()
     {
         DisableButtons();
+    }
+
+    private void DestroyChildren(Transform targetTransform)
+    {
+        foreach (Transform t in targetTransform)
+        {
+            Destroy(t.gameObject);
+        }
     }
 }
