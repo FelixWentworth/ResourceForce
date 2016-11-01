@@ -93,11 +93,11 @@ public class IncidentCase : MonoBehaviour {
         newIncidentOverlay.SetActive(false);
     }
 
-    public void Pressed(Text myText)
+    public void Pressed()
     {
         //can be called through incident button if we want to have selectable cases
 #if SELECT_INCIDENTS
-        GameObject.Find("TurnManager").GetComponent<IncidentManager>()._showIncident(myText);
+        GameObject.Find("TurnManager").GetComponent<IncidentManager>().ShowIncidentWithCaseNumber(caseNumber);
 #endif
     }
 }

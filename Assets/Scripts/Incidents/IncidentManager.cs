@@ -100,12 +100,11 @@ public class IncidentManager : MonoBehaviour
             }
         }
     }
-    public void _showIncident(Text myText)
+    public void ShowIncidentWithCaseNumber(int caseNum)
     {
         //used in button driven incidents
-        int _caseNumer = int.Parse(myText.text);
-        int turn = GameObject.Find("TurnManager").GetComponent<TurnManager>().turn;
-        ShowIncident(turn, _caseNumer);
+        var turn = GameObject.Find("TurnManager").GetComponent<TurnManager>().turn;
+        ShowIncident(turn, caseNum);
     }
     public void ShowIncident(int turn, int zCaseNumber = -1)
     {
@@ -187,7 +186,7 @@ public class IncidentManager : MonoBehaviour
         
 #if SELECT_INCIDENTS
         Incident currentIncident = NextIncident[incidentShowingIndex];
-        m_dialogBox.currentIncident = currentIncident;
+        m_dialogBox.CurrentIncident = currentIncident;
 #else
         Incident currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
@@ -220,7 +219,7 @@ public class IncidentManager : MonoBehaviour
             
 #if SELECT_INCIDENTS
             Incident currentIncident = NextIncident[incidentShowingIndex];
-            m_dialogBox.currentIncident = currentIncident;
+            m_dialogBox.CurrentIncident = currentIncident;
 #else
             Incident currentIncident = NextIncident[0];
             m_dialogBox.CurrentIncident = currentIncident;
@@ -251,7 +250,7 @@ public class IncidentManager : MonoBehaviour
         
 #if SELECT_INCIDENTS
         Incident currentIncident = NextIncident[incidentShowingIndex];
-        m_dialogBox.currentIncident = currentIncident;
+        m_dialogBox.CurrentIncident = currentIncident;
 #else
         var currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
