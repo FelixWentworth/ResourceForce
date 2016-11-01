@@ -168,6 +168,7 @@ public class IncidentManager : MonoBehaviour
             feedbackTransform.parent = GameObject.Find("Canvas").transform;
             StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, transitionTime, happiness));
         }
+        m_satisfactionDisplay.SetPulseAnim(isGameOver());
     }
     public void EndTurn()
     {
@@ -175,6 +176,7 @@ public class IncidentManager : MonoBehaviour
         happiness -= 1f * GetTotalSeverity();
         happiness = Mathf.Clamp(happiness, 0, 100);
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
+        m_satisfactionDisplay.SetPulseAnim(isGameOver());
     }
     public void ClearList()
     {

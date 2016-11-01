@@ -100,6 +100,7 @@ GameObject:
   - 224: {fileID: 6018742}
   - 222: {fileID: 6018744}
   - 114: {fileID: 6018743}
+  - 111: {fileID: 6018745}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -113,18 +114,18 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 6018741}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 1809764027}
+  m_Father: {fileID: 2140557054}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 75, y: 100}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6018743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +159,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 6018741}
+--- !u!111 &6018745
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 6018741}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 20298caaecc2dc94891d69b66dcdfef4, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 20298caaecc2dc94891d69b66dcdfef4, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &19170097
 GameObject:
   m_ObjectHideFlags: 0
@@ -16372,7 +16388,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 6018742}
+  - {fileID: 2140557054}
   m_Father: {fileID: 838166686}
   m_RootOrder: 0
   m_AnchorMin: {x: 0.15, y: 0.1}
@@ -16424,7 +16440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 943e32ff52fd2f64da1921b0e91872d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRect: {fileID: 1809764027}
+  myRect: {fileID: 2140557054}
   mySlider: {fileID: 6018742}
   warningBG: {fileID: 1099127497}
   FadeGB: {r: 0.93725497, g: 0.42352945, b: 0.40000004, a: 1}
@@ -20334,6 +20350,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Key: TUTORIAL_TEXT_BUTTONS
   toUpper: 0
+--- !u!1 &2140557053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 2140557054}
+  - 222: {fileID: 2140557055}
+  m_Layer: 5
+  m_Name: SliderPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2140557054
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2140557053}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 6018742}
+  m_Father: {fileID: 1809764027}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.045, y: 0}
+  m_AnchorMax: {x: 0.955, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2140557055
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2140557053}
 --- !u!1 &2146300775
 GameObject:
   m_ObjectHideFlags: 0

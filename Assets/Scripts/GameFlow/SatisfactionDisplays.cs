@@ -30,7 +30,7 @@ public class SatisfactionDisplays : MonoBehaviour {
 
         while (deltaTime <= time)
         {
-            myTransform.position = Vector3.Slerp(startPos, mySlider.transform.position, deltaTime / time);
+            myTransform.position = Vector3.Lerp(startPos, mySlider.transform.position, deltaTime / time);
             deltaTime += Time.deltaTime;
             yield return null;
         }
@@ -44,10 +44,25 @@ public class SatisfactionDisplays : MonoBehaviour {
 
     }
 
+    public void SetPulseAnim(bool danger)
+    {
+        var anim = mySlider.GetComponent<Animation>();
+        if (danger)
+        {
+            anim.Play();
+        }
+        else
+        {
+            anim.Stop();
+            mySlider.localScale = Vector3.one;
+        }
+    }
+
     private IEnumerator MoveSlider(Vector2 targetVector2)
     {
         var deltaTime = 0f;
         var startPos = mySlider.anchoredPosition;
+
         while (deltaTime <= SlideTime)
         {
             mySlider.anchoredPosition = Vector2.Lerp(startPos,targetVector2, deltaTime / SlideTime);
