@@ -221,7 +221,7 @@ public class DialogBox : MonoBehaviour {
 		var num = Random.Range(1, max + 1);
 		_tip = Localization.Get(preText + num);
         
-	    yield return WarningBox.ShowWarning(_tip, 5f, Color.green);
+	    yield return WarningBox.ShowWarning(_tip, 5f, Color.cyan);
 	}
 
     public string GetTip()
@@ -246,26 +246,29 @@ public class DialogBox : MonoBehaviour {
 
     private IEnumerator RightButtonWithAnim(bool citizensAvailable = false)
     {
-        _incidentManager.RemoveOfficer(CurrentIncident);
-        if (citizensAvailable)
-		{
-			yield return ShowTip(CitizenTips, "TIPS_CITIZEN_");
-		}
-		else
-		{
-			if (_turnsRequired == 1 || _severity == 3)
-			{
-				yield return ShowTip(PositiveTips, "TIPS_POSITIVE_");
-			}
-			else
-			{
-				yield return ShowTip(OfficerTips, "TIPS_OFFICER_");
-			}
-		}
-        
-        //send officers to resolve issue
-        yield return EmailAnim(1f, "EmailShow");
-        _incidentManager.ResolvePressed();
+        if (OfficerController.m_officers.Count >= CurrentIncident.officer)
+        {
+            OfficerController.RemoveOfficer(CurrentIncident.officer, CurrentIncident.turnsToAdd);
+            if (citizensAvailable)
+            {
+                yield return ShowTip(CitizenTips, "TIPS_CITIZEN_");
+            }
+            else
+            {
+                if (_turnsRequired == 1 || _severity == 3)
+                {
+                    yield return ShowTip(PositiveTips, "TIPS_POSITIVE_");
+                }
+                else
+                {
+                    yield return ShowTip(OfficerTips, "TIPS_OFFICER_");
+                }
+            }
+
+            //send officers to resolve issue
+            yield return EmailAnim(1f, "EmailShow");
+            _incidentManager.ResolvePressed();
+        }
     }
 
     public void OkButtonPressed()

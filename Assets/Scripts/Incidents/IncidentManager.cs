@@ -187,10 +187,10 @@ public class IncidentManager : MonoBehaviour
     {
         
 #if SELECT_INCIDENTS
-        Incident currentIncident = NextIncident[incidentShowingIndex];
+        var currentIncident = NextIncident[incidentShowingIndex];
         m_dialogBox.CurrentIncident = currentIncident;
 #else
-        Incident currentIncident = NextIncident[0];
+        var currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
 #endif
         m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
@@ -199,7 +199,7 @@ public class IncidentManager : MonoBehaviour
         m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.Waiting);
         //update our lists
         NextIncident[0] = currentIncident;
-        for (int i = 0; i < incidents.Count; i++)
+        for (var i = 0; i < incidents.Count; i++)
         {
             if (incidents[i].caseNumber == currentIncident.caseNumber)
             {
@@ -214,45 +214,32 @@ public class IncidentManager : MonoBehaviour
     }
     public void ResolvePressed()
     {
-        if (m_OfficerController == null)
-            m_OfficerController = GameObject.Find("OfficerManager").GetComponent<OfficerController>();
-        if (m_OfficerController.m_officers.Count >= NextIncident[0].officer)
-        {
-            
 #if SELECT_INCIDENTS
-            Incident currentIncident = NextIncident[incidentShowingIndex];
-            m_dialogBox.CurrentIncident = currentIncident;
+        var currentIncident = NextIncident[incidentShowingIndex];
+        m_dialogBox.CurrentIncident = currentIncident;
 #else
-            Incident currentIncident = NextIncident[0];
-            m_dialogBox.CurrentIncident = currentIncident;
+        var currentIncident = NextIncident[0];
+        m_dialogBox.CurrentIncident = currentIncident;
 #endif
-            m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
+        m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
             
-            GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().OfficerPressed(ref currentIncident);
+        GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().OfficerPressed(ref currentIncident);
 
-            m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.OfficersSent);
-            NextIncident[0] = currentIncident;
-            for (int i = 0; i < incidents.Count; i++)
+        m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.OfficersSent);
+        NextIncident[0] = currentIncident;
+
+        for (var i = 0; i < incidents.Count; i++)
+        {
+            if (incidents[i].caseNumber == currentIncident.caseNumber)
             {
-                if (incidents[i].caseNumber == currentIncident.caseNumber)
-                {
-                    incidents[i] = currentIncident;
-                    break;
-                }
+                incidents[i] = currentIncident;
+                break;
             }
-
-            AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Officer);
-
-            ShowNext();
         }
-    }
 
+        AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Officer);
 
-    public void RemoveOfficer(Incident currentIncident)
-    {
-        if (m_OfficerController == null)
-            m_OfficerController = GameObject.Find("OfficerManager").GetComponent<OfficerController>();
-        m_OfficerController.RemoveOfficer(currentIncident.officer, currentIncident.turnsToAdd);
+        ShowNext();
     }
 
     public void CitizenHelpPressed()

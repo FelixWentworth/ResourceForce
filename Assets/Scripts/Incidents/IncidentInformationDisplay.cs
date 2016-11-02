@@ -54,7 +54,7 @@ public class IncidentInformationDisplay : MonoBehaviour
         if (pos == _shownElement)
         {
             // out early as there is no animating to do here
-            return;
+            pos = _setupObjects.Count-1;
         }
         // move the Header objects to expose the selected element
 
@@ -65,12 +65,16 @@ public class IncidentInformationDisplay : MonoBehaviour
 
         for (var i =0; i < _setupObjects.Count; i++)
         {
-           
+           _setupObjects[i].DropDownImage.localRotation = Quaternion.Euler(0f, 0f, 0f);
             if (!foundPos)
             {
                 StartCoroutine(TransitionToPosition(_setupObjects[i].Header, new Vector3(0f, _offset * i, 0f), 0.5f));
                 //_setupObjects[i].Header.anchoredPosition3D = new Vector3(0f, _offset * i, 0f);
                 foundPos = i == pos;
+                if (foundPos)
+                {
+                    _setupObjects[i].DropDownImage.localRotation = Quaternion.Euler(0f, 0f, 270f);
+                }
             }
             else
             {
@@ -133,6 +137,7 @@ public class IncidentInformationDisplay : MonoBehaviour
         else
         {
             setup.Icon.gameObject.SetActive(false);
+            setup.DropDownImage.localRotation = Quaternion.Euler(0f, 0f, 270f);
         }
 
 

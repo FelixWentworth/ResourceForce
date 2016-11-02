@@ -14,6 +14,8 @@ public class IncidentHistoryUISetup : MonoBehaviour
     public Image HeaderImageOverlay;
     public Image BorderImageOverlay;
 
+    public RectTransform DropDownImage;
+
     void Awake()
     {
         Header = this.transform.FindChild("Header").GetComponent<RectTransform>();
