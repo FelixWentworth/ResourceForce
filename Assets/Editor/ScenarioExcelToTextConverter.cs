@@ -233,7 +233,7 @@ public class ScenarioExcelToTextConverter  {
                                 rowString += value;
                             }
                         }
-                        if (!rowString.EndsWith("[") && rowString != "" && i != 10) // index 10 is the last information we require
+                        if (!rowString.EndsWith("[") && rowString != "" && i != 16) // index 10 is the last information we require
                         {
                             rowString += ", ";
                         }

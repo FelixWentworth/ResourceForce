@@ -20,7 +20,7 @@ public class TurnManager : MonoBehaviour {
     public GameObject NextTurnButton;
     public Text EndTurnSatisfaction;
 
-	void Start () {
+	void Start () {        
         NextTurnButton.SetActive(false);
 		EndTurnSatisfaction.gameObject.SetActive(false);
 		GameOver.SetActive(false);

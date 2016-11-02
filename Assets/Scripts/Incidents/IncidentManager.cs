@@ -139,7 +139,11 @@ public class IncidentManager : MonoBehaviour
             if (!incidentFound) //clicked on a case that has since been removed
                 return;
         }
-        currentIncident.Show(ref currentIncident);
+        if (m_dialogBox == null)
+        {
+            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
+        }
+        currentIncident.Show(ref currentIncident, m_dialogBox);
 
         m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
 
@@ -388,49 +392,5 @@ public class IncidentManager : MonoBehaviour
             incidentHistory.IncidentHistoryElements 
             : 
             new List<IncidentHistoryElement>();
-    }
-}
-
-public class Incident {
-    public int scenarioNum;
-    public int index;
-    public int officer;
-    public string incidentName;
-    public string type;
-    public int turnToShow;
-    public int turnsToAdd;
-    public int severity;
-    public int caseNumber;
-    public int waitIndex;
-    public int officerIndex;
-    public int citizenIndex;
-    public int satisfactionImpact;
-
-    public int feedbackRatingWait;
-    public string feedbackWait;
-
-    public int feedbackRatingCitizen;
-    public string feedbackCitizen;
-
-    public int feedbackRatingOfficer;
-    public string feedbackOfficer;
-
-    //values which are not set during setup
-    public int turnToDevelop;
-    public string nameBeforeDeveloped;
-    public bool developed;
-    public bool resolved;
-    public bool positiveResolution = false;
-    public bool isNew = true;
-
-    private TurnManager m_turnManager;
-    private DialogBox m_dialogBox;
-
-    public void Show(ref Incident zIncident)
-    {
-        //use the dialog box to show the current incident
-        if (m_dialogBox == null)
-            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-       m_dialogBox.Show(zIncident);
     }
 }

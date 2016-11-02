@@ -9,8 +9,8 @@ public class Tutorial : MonoBehaviour {
     public GameObject inputBlocker;
     public GameObject Screenshot;
     public GameObject[] tutorialObjects;
-    public enum TutorialPoint { TopBar = 0, StatusBar = 1, Officers = 2, Information = 3, Incidents = 4, Buttons = 6}
-    public TutorialPoint currentPoint = TutorialPoint.TopBar;
+    public enum TutorialPoint { TopBar = 0, IncidentBar = 1, Information = 2, OfficerBar = 3, WaitButton = 4, CitizenButton = 5, OfficerButton = 6}
+    public TutorialPoint currentPoint = (TutorialPoint)0;
 
     void Awake()
     {
@@ -31,7 +31,7 @@ public class Tutorial : MonoBehaviour {
         DeactivateAll();
         inputBlocker.SetActive(true);
         Screenshot.SetActive(true);
-        int step = (int)currentPoint;
+        var step = (int)currentPoint;
         tutorialObjects[step].SetActive(true);
     }
     public void NextStep()

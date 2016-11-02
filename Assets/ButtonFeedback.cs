@@ -25,33 +25,43 @@ public class ButtonFeedback : MonoBehaviour {
 
     public IEnumerator ShowFeedback(int rating, Transform buttonPressed)
     {
-        var activeObject = GetActiveObject(rating);
-        activeObject.SetActive(true);
-        // Set position to the top of the button pressed
-        transform.position = buttonPressed.position;
-
-        // Animate the object
-        _animation.Play();
-        yield return new WaitForSeconds(_animation.clip.length);
-
-        // Fade out the feedback objects
-        var children = activeObject.GetComponentsInChildren<UnityEngine.UI.Image>();
-        var childAnimLength = 0.0f;
-        foreach (var child in children)
+        if (rating != -1)
         {
-            childAnimLength = child.GetComponent<Animation>().clip.length;
-            child.GetComponent<Animation>().Play();
+            // if rating == -1 then either the rating has not been set or this button should not have been possible to press
+
+            var activeObject = GetActiveObject(rating);
+            activeObject.SetActive(true);
+            // Set position to the top of the button pressed
+            transform.position = buttonPressed.position;
+
+            // Animate the object
+            _animation.Play();
+            yield return new WaitForSeconds(_animation.clip.length);
+
+            // Fade out the feedback objects
+            var children = activeObject.GetComponentsInChildren<UnityEngine.UI.Image>();
+            var childAnimLength = 0.0f;
+            foreach (var child in children)
+            {
+                childAnimLength = child.GetComponent<Animation>().clip.length;
+                child.GetComponent<Animation>().Play();
+            }
+
+            yield return new WaitForSeconds(childAnimLength);
+
+            // Disable All objects
+            DisableAll();
+
+            // Reset for use later
+            foreach (var child in children)
+            {
+                child.color = new Color(1f, 1f, 1f, 1f);
+            }
         }
-
-        yield return new WaitForSeconds(childAnimLength);
-
-        // Disable All objects
-        DisableAll();
-
-        // Reset for use later
-        foreach (var child in children)
+        else
         {
-            child.color = new Color(1f, 1f, 1f, 1f);
+            // This object would normally be set active before it is used, so lets force it to be inactive
+            this.gameObject.SetActive(false);
         }
     }
 

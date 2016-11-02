@@ -58,6 +58,8 @@ public class DialogBox : MonoBehaviour {
         _buttonFade = ButtonPanel.FindChild("ButtonFade").gameObject;
         _buttonFade.SetActive(false);
 
+        DisableButtons();
+
         _incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
     }
     public void Show(Incident zIncident)
@@ -205,26 +207,33 @@ public class DialogBox : MonoBehaviour {
 
     private IEnumerator LeftButtonWithAnim(bool citizensAvailable = false)
     {
-	    if (citizensAvailable)
-	    {
-		    yield return ShowTip(CitizenTips, "TIPS_CITIZEN_");
-	    }
-	    else
+        if (CurrentIncident.feedbackWait != "-1")
         {
-			// dont show any tips with the case closed information
-			if (_turnsRequired == 1)
-			{
-				yield return ShowTip(2, "TIPS_OFFICER_ONE_TURN_NEGATIVE_");
-			}
-			else if (_severity == 3)
-			{
-				yield return ShowTip(2, "TIPS_OFFICER_HIGH_SEVERITY_NEGATIVE_");
-			}
-			else
-			{
-				yield return ShowTip(WaitTips, "TIPS_WAIT_");
-			}
-		}
+            yield return WarningBox.ShowWarning(CurrentIncident.feedbackWait, 5f, Color.cyan);
+        }
+        else
+        { 
+            if (citizensAvailable)
+            {
+                yield return ShowTip(CitizenTips, "TIPS_CITIZEN_");
+            }
+            else
+            {
+                // dont show any tips with the case closed information
+                if (_turnsRequired == 1)
+                {
+                    yield return ShowTip(2, "TIPS_OFFICER_ONE_TURN_NEGATIVE_");
+                }
+                else if (_severity == 3)
+                {
+                    yield return ShowTip(2, "TIPS_OFFICER_HIGH_SEVERITY_NEGATIVE_");
+                }
+                else
+                {
+                    yield return ShowTip(WaitTips, "TIPS_WAIT_");
+                }
+            }
+        }
         DisableButtons();
 
 
@@ -270,19 +279,26 @@ public class DialogBox : MonoBehaviour {
         if (OfficerController.m_officers.Count >= CurrentIncident.officer)
         {
             OfficerController.RemoveOfficer(CurrentIncident.officer, CurrentIncident.turnsToAdd);
-            if (citizensAvailable)
+            if (CurrentIncident.feedbackOfficer != "-1")
             {
-                yield return ShowTip(CitizenTips, "TIPS_CITIZEN_");
+                yield return WarningBox.ShowWarning(CurrentIncident.feedbackOfficer, 5f, Color.cyan);
             }
             else
             {
-                if (_turnsRequired == 1 || _severity == 3)
+                if (citizensAvailable)
                 {
-                    yield return ShowTip(PositiveTips, "TIPS_POSITIVE_");
+                    yield return ShowTip(CitizenTips, "TIPS_CITIZEN_");
                 }
                 else
                 {
-                    yield return ShowTip(OfficerTips, "TIPS_OFFICER_");
+                    if (_turnsRequired == 1 || _severity == 3)
+                    {
+                        yield return ShowTip(PositiveTips, "TIPS_POSITIVE_");
+                    }
+                    else
+                    {
+                        yield return ShowTip(OfficerTips, "TIPS_OFFICER_");
+                    }
                 }
             }
             DisableButtons();
@@ -326,7 +342,14 @@ public class DialogBox : MonoBehaviour {
 
     private IEnumerator CitizenButtonWithAnim()
     {
-	    yield return ShowTip(PositiveTips, "TIPS_POSITIVE_");
+        if (CurrentIncident.feedbackCitizen != "-1")
+        {
+            yield return WarningBox.ShowWarning(CurrentIncident.feedbackCitizen, 5f, Color.cyan);
+        }
+        else
+        {
+            yield return ShowTip(PositiveTips, "TIPS_POSITIVE_");
+        }
         DisableButtons();
         //removing citizen help popup and instead setting the delay to one turn
         yield return EmailAnim(1f, "EmailShow");

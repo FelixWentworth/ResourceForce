@@ -97,6 +97,15 @@ public class SimplifiedJson : MonoBehaviour {
             tmp.caseNumber = caseNum;
         }
 
+        tmp.feedbackRatingWait = int.Parse(N[name][i][9]);
+        tmp.feedbackWait = N[name][i][10];
+
+        tmp.feedbackRatingOfficer = int.Parse(N[name][i][11]);
+        tmp.feedbackOfficer = N[name][i][12];
+
+        tmp.feedbackRatingCitizen = int.Parse(N[name][i][13]);
+        tmp.feedbackCitizen = N[name][i][14];
+
         return tmp;
     }
     public void WaitPressed(ref Incident zIncident)
