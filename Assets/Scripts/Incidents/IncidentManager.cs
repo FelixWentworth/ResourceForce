@@ -406,6 +406,15 @@ public class Incident {
     public int citizenIndex;
     public int satisfactionImpact;
 
+    public int feedbackRatingWait;
+    public string feedbackWait;
+
+    public int feedbackRatingCitizen;
+    public string feedbackCitizen;
+
+    public int feedbackRatingOfficer;
+    public string feedbackOfficer;
+
     //values which are not set during setup
     public int turnToDevelop;
     public string nameBeforeDeveloped;

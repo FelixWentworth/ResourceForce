@@ -88,7 +88,7 @@ public class TurnManager : MonoBehaviour {
     public void Reset()
     {
         //reset the case identifier to ensure that the case numbers are reset
-        SimplifiedJson.identifier = 1;
+        SimplifiedJson.Identifier = 1;
         AudioManager.Instance.PlayBackgroundMusic();
         AudioManager.Instance.SetBackgroundMusicBalance(100f);
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);

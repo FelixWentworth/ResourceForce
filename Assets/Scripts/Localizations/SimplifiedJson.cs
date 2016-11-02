@@ -19,20 +19,22 @@ public class SimplifiedJson : MonoBehaviour {
      */
 
     public Location m_location;
-    TextAsset myText;
-    TurnManager manager;
-    public static int identifier = 1;
+
+    private TextAsset _myText;
+    private TurnManager _manager;
+
+    public static int Identifier = 1;
 
     void Awake()
     {
-        manager = this.GetComponent<TurnManager>();
+        _manager = this.GetComponent<TurnManager>();
     }
 
     // Use this for initialization
     public void CreateNewIncident(ref Incident zIncident, List<Incident> incidents = null ) {
 
-        myText = Resources.Load(m_location.IncidentFilePath) as TextAsset;
-        var N = JSON.Parse(myText.text);
+        _myText = Resources.Load(m_location.IncidentFilePath) as TextAsset;
+        var N = JSON.Parse(_myText.text);
 
         var randIncident = Random.Range(1, m_location.numIncidents+1);
 
@@ -51,38 +53,40 @@ public class SimplifiedJson : MonoBehaviour {
         zIncident = GetIncidentAtIndex(1, randIncident);
         
         //add the case number to help the player keep track of it throughout its life
-        zIncident.caseNumber = identifier;
-        identifier++;
+        zIncident.caseNumber = Identifier;
+        Identifier++;
 
     }
     private Incident GetIncidentAtIndex(int index, int scenarioNum, int caseNum = 0)
     {
-        if (myText == null)
-            myText = Resources.Load(m_location.IncidentFilePath) as TextAsset;
-        var N = JSON.Parse(myText.text);
+        if (_myText == null)
+            _myText = Resources.Load(m_location.IncidentFilePath) as TextAsset;
+        var N = JSON.Parse(_myText.text);
 
-        Incident tmp = new Incident();
-        string name = "Scenario_" + scenarioNum;
+        var tmp = new Incident();
+        var name = "Scenario_" + scenarioNum;
 
         tmp.scenarioNum = scenarioNum;
         tmp.index = index;
-        string ind = index.ToString();
+        var i = index.ToString();
+
+
         //get the officers, turns to add from officers and severity values
 
-        tmp.officer = int.Parse(N[name][ind][5]);
-        tmp.turnsToAdd = int.Parse(N[name][ind][6]);
-        tmp.severity = int.Parse(N[name][ind][7]);
+        tmp.officer = int.Parse(N[name][i][5]);
+        tmp.turnsToAdd = int.Parse(N[name][i][6]);
+        tmp.severity = int.Parse(N[name][i][7]);
 
         //set the name
-        tmp.incidentName = N[name][ind][1];
-        tmp.type = N[name][ind][0];
+        tmp.incidentName = N[name][i][1];
+        tmp.type = N[name][i][0];
 
         //set the indexes for the buttons
-        int w = tmp.waitIndex = int.Parse(N[name][ind][2]);
-        int o = tmp.officerIndex = int.Parse(N[name][ind][3]);
-        int c = tmp.citizenIndex = int.Parse(N[name][ind][4]);
+        var w = tmp.waitIndex = int.Parse(N[name][i][2]);
+        var o = tmp.officerIndex = int.Parse(N[name][i][3]);
+        var c = tmp.citizenIndex = int.Parse(N[name][i][4]);
 
-        tmp.satisfactionImpact = int.Parse(N[name][ind][8]);
+        tmp.satisfactionImpact = int.Parse(N[name][i][8]);
 
         //this will count as being resolved when there are no buttons to tap on
         tmp.resolved = (w == -1 && o == -1 && c == -1);
@@ -97,9 +101,9 @@ public class SimplifiedJson : MonoBehaviour {
     }
     public void WaitPressed(ref Incident zIncident)
     {
-        int index = zIncident.waitIndex;
-        int currentIndex = zIncident.index;
-        int turnToDevelop = zIncident.turnToDevelop;
+        var index = zIncident.waitIndex;
+        var currentIndex = zIncident.index;
+        var turnToDevelop = zIncident.turnToDevelop;
         if (index == -1)
         {
             //we should not be able to press the button
@@ -107,32 +111,32 @@ public class SimplifiedJson : MonoBehaviour {
         }
         //we haave chosen to wait, so check the wait index
         zIncident = GetIncidentAtIndex(index, zIncident.scenarioNum, zIncident.caseNumber);
-        zIncident.turnToShow = manager.turn + 1;
+        zIncident.turnToShow = _manager.turn + 1;
         if (index != currentIndex)
         {
             //new incident
-            zIncident.turnToDevelop = manager.turn + 3;
+            zIncident.turnToDevelop = _manager.turn + 3;
         }
         else
             zIncident.turnToDevelop = turnToDevelop;
     }
     public void OfficerPressed(ref Incident zIncident)
     {
-        int index = zIncident.officerIndex;
-        int turnsToAdd = zIncident.turnsToAdd;
+        var index = zIncident.officerIndex;
+        var turnsToAdd = zIncident.turnsToAdd;
         if (index == -1)
             return;
         zIncident = GetIncidentAtIndex(index, zIncident.scenarioNum, zIncident.caseNumber);
-        zIncident.turnToShow = manager.turn + turnsToAdd;
-        zIncident.turnToDevelop = manager.turn + 3;
+        zIncident.turnToShow = _manager.turn + turnsToAdd;
+        zIncident.turnToDevelop = _manager.turn + 3;
     }
     public void CitizenPressed(ref Incident zIncident)
     {
-        int index = zIncident.citizenIndex;
+        var index = zIncident.citizenIndex;
         if (index == -1)
             return;
         zIncident = GetIncidentAtIndex(index, zIncident.scenarioNum, zIncident.caseNumber);
-        zIncident.turnToShow = manager.turn + 1;
-        zIncident.turnToDevelop = manager.turn + 3;
+        zIncident.turnToShow = _manager.turn + 1;
+        zIncident.turnToDevelop = _manager.turn + 3;
     }
 }

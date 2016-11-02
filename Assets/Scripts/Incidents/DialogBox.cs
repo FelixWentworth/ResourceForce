@@ -42,6 +42,8 @@ public class DialogBox : MonoBehaviour {
     private GameObject _sendOfficerButton;
     private GameObject _waitButton;
     private GameObject _caseClosedButton;
+    private ButtonFeedback _buttonFeedback;
+    private GameObject _buttonFade;
 
     private List<Transform> _ratingTransforms;
 
@@ -51,6 +53,10 @@ public class DialogBox : MonoBehaviour {
         _sendOfficerButton = ButtonPanel.FindChild("SendOfficersButton").gameObject;
         _waitButton = ButtonPanel.FindChild("WaitButton").gameObject;
         _caseClosedButton = ButtonPanel.FindChild("CaseClosedButton").gameObject;
+        _buttonFeedback = ButtonPanel.FindChild("FeedbackPanel").GetComponent<ButtonFeedback>();
+        _buttonFeedback.gameObject.SetActive(false);
+        _buttonFade = ButtonPanel.FindChild("ButtonFade").gameObject;
+        _buttonFade.SetActive(false);
 
         _incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
     }
@@ -187,7 +193,12 @@ public class DialogBox : MonoBehaviour {
     {
 		// Check if the citizen option was available
 	    var isCitizensAvailable = _citizenHelpButton.activeSelf;
-        DisableButtons();
+
+        _buttonFade.SetActive(true);
+
+        
+        ShowImmediateFeedback(CurrentIncident.feedbackRatingWait, _waitButton.transform);
+
         StartCoroutine(LeftButtonWithAnim(isCitizensAvailable));
         AudioManager.Instance.PressWaitButton();
     }
@@ -214,8 +225,10 @@ public class DialogBox : MonoBehaviour {
 				yield return ShowTip(WaitTips, "TIPS_WAIT_");
 			}
 		}
+        DisableButtons();
 
-		yield return EmailAnim(1f, "EmailShow");
+
+        yield return EmailAnim(1f, "EmailShow");
         //wait for more officers to become available
         _incidentManager.WaitPressed();
     }
@@ -239,8 +252,11 @@ public class DialogBox : MonoBehaviour {
         {
 			var isCitizensAvailable = _citizenHelpButton.activeSelf;
 			//double check if we have enough officers otherwise the game will break
-			DisableButtons();
+			_buttonFade.SetActive(true);
             StartCoroutine(RightButtonWithAnim(isCitizensAvailable));
+
+            ShowImmediateFeedback(CurrentIncident.feedbackRatingOfficer, _sendOfficerButton.transform);
+
             AudioManager.Instance.PressOfficerButton();
         }
         else
@@ -269,7 +285,7 @@ public class DialogBox : MonoBehaviour {
                     yield return ShowTip(OfficerTips, "TIPS_OFFICER_");
                 }
             }
-
+            DisableButtons();
             //send officers to resolve issue
             yield return EmailAnim(1f, "EmailShow");
             _incidentManager.ResolvePressed();
@@ -279,6 +295,7 @@ public class DialogBox : MonoBehaviour {
     public void OkButtonPressed()
     {
         _caseClosedButton.GetComponent<Button>().interactable = false;
+
         StartCoroutine(OkButtonPressedWithAnim());
         AudioManager.Instance.PressCaseCloseButton();
     }
@@ -300,7 +317,9 @@ public class DialogBox : MonoBehaviour {
 
     public void CitizenButtonPressed()
     {
-        DisableButtons();
+        _buttonFade.SetActive(true);
+
+        ShowImmediateFeedback(CurrentIncident.feedbackRatingCitizen, _citizenHelpButton.transform);
         StartCoroutine(CitizenButtonWithAnim());
         AudioManager.Instance.PressCitizenButton();
     }
@@ -308,16 +327,20 @@ public class DialogBox : MonoBehaviour {
     private IEnumerator CitizenButtonWithAnim()
     {
 	    yield return ShowTip(PositiveTips, "TIPS_POSITIVE_");
+        DisableButtons();
         //removing citizen help popup and instead setting the delay to one turn
         yield return EmailAnim(1f, "EmailShow");
         _incidentManager.CitizenHelpPressed();
     }
+
     public void DisableButtons()
     {
         _waitButton.SetActive(false);
         _caseClosedButton.SetActive(false);
         _sendOfficerButton.SetActive(false);
         _citizenHelpButton.SetActive(false);
+
+        _buttonFade.SetActive(false);
     }
     public void DeactivateAll()
     {
@@ -330,5 +353,12 @@ public class DialogBox : MonoBehaviour {
         {
             Destroy(t.gameObject);
         }
+    }
+
+    private void ShowImmediateFeedback(int rating, Transform button)
+    {
+        _buttonFeedback.gameObject.SetActive(true);
+
+        StartCoroutine(_buttonFeedback.ShowFeedback(rating, button));
     }
 }
