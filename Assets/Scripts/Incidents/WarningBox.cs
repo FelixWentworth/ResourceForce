@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine.UI;
@@ -12,6 +13,12 @@ public class WarningBox : MonoBehaviour
     private bool _showingPopup;
     private Text _warningText;
     private Image _borderImage;
+
+    void Awake()
+    {
+        // make sure the fade is disabled
+        ScreenFade.SetActive(false);
+    }
 
     public IEnumerator ShowWarning(string message, float pauseTime, Color color)
     {
