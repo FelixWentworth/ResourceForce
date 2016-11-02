@@ -117,13 +117,7 @@ public class DialogBox : MonoBehaviour {
         //wait for anim to finish
         yield return EmailAnim(-1f, "EmailShow");
 
-        //now set which buttons should be active
-        _waitButton.SetActive(zIncident.waitIndex != -1);
-        _sendOfficerButton.SetActive(zIncident.officerIndex != -1);
-        _citizenHelpButton.SetActive(zIncident.citizenIndex != -1);
-
-        _caseClosedButton.SetActive(endCase);
-        if (_caseClosedButton.activeSelf)
+        if (endCase)
         {
             // populate the button with feedback elements
             var satisfaction = zIncident.satisfactionImpact;
@@ -148,6 +142,17 @@ public class DialogBox : MonoBehaviour {
             }
 
         }
+
+        yield return new WaitForSeconds(0.25f);
+        //now set which buttons should be active
+        _waitButton.SetActive(zIncident.waitIndex != -1);
+        _sendOfficerButton.SetActive(zIncident.officerIndex != -1);
+        _citizenHelpButton.SetActive(zIncident.citizenIndex != -1);
+
+        _caseClosedButton.SetActive(endCase);
+
+       
+
     }
 
     public List<Transform> GetRatingObjects()
@@ -273,6 +278,7 @@ public class DialogBox : MonoBehaviour {
 
     public void OkButtonPressed()
     {
+        _caseClosedButton.GetComponent<Button>().interactable = false;
         StartCoroutine(OkButtonPressedWithAnim());
         AudioManager.Instance.PressCaseCloseButton();
     }
@@ -285,7 +291,7 @@ public class DialogBox : MonoBehaviour {
         yield return new WaitForSeconds(TransitionTime);
 
         DisableButtons();
-
+        _caseClosedButton.GetComponent<Button>().interactable = true;
         // animate our satisfaction objects to the satisfaction bar at the top of the screen
         yield return EmailAnim(1f, "EmailShow");
 
