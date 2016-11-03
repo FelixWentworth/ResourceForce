@@ -28,10 +28,38 @@ public class GameOver : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highScore);
         }
 
-        TurnsText.text = turns.ToString();
-        CasesText.text = cases.ToString();
+        StartCoroutine(ShowScores(turns, cases, totalScore, highScore));
+    }
 
-        ScoreText.text = totalScore.ToString();
+    private IEnumerator ShowScores(int turns, int cases, int score, int highScore)
+    {
+        TurnsText.text = "";
+        CasesText.text = "";
+        ScoreText.text = "";
         HighScoreText.text = highScore.ToString();
+        // We want to display the scores one at a time to make the page more interesting
+        yield return new WaitForSeconds(0.5f);
+        yield return IncrementTextNumber(TurnsText, 0, turns);
+        yield return IncrementTextNumber(CasesText, 0, cases);
+        yield return IncrementTextNumber(ScoreText, 0, score);
+        //yield return IncrementTextNumber(HighScoreText, 0, highScore);
+    }
+
+    private IEnumerator IncrementTextNumber(Text text, int start, int end)
+    {
+        var num = start;
+        var speed = 0.4f;
+
+        var t = 0f;
+
+        while (t < 1)
+        {
+            t += speed*Time.deltaTime;
+            num = (int)Mathf.Lerp(start, end, t);
+            text.text = num.ToString();
+            
+
+            yield return null;
+        }
     }
 }
