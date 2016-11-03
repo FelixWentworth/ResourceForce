@@ -17,12 +17,4 @@
 {"key":"SCENARIO_2_INDEX_11","en-gb":"Man has been left on the street until paramedics arrive, no arrests made, general public happiness decreases","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"SCENARIO_2_INDEX_12","en-gb":"Offender has been arrested by police after finding him in a shed nearby","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"SCENARIO_2_INDEX_13","en-gb":"Officers clean up and a man is arrested for the assault","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"SCENARIO_2_INDEX_14","en-gb":"Using citizen information, the officers manage to locate the man and arrest him","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TUTORIAL_TEXT_TAP","en-gb":"Tap to continue…","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TUTORIAL_TEXT_TOP_BAR","en-gb":"The top of the screen shows the current satisfaction status, the further into red you go, the closer you are to losing. Solve cases to stay out of the red","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TUTORIAL_TEXT_STATUS_BAR","en-gb":"The status bar shows the actual satisfaction, try to keep this above 10% for as many turns as you can","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TUTORIAL_TEXT_OFFICERS","en-gb":"The officer indicator informs you how many officers are available and how many turns until officers in the field return and become available again","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TUTORIAL_TEXT_INFORMATION","en-gb":"This box will give you information on the current case and keep you updated on its status","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TUTORIAL_TEXT_OFFICER_REQ","en-gb":"Each case will need a number of officers to attend  for a set number of turns","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TUTORIAL_TEXT_INCIDENTS","en-gb":"Here you will see all your active incidents, they are colour coordinated by severity. Red being most severe","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TUTORIAL_TEXT_BUTTONS","en-gb":"Each case can have up to 3 options, wait for more officers, send the required officers or ask citizens for help when available","de":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"SCENARIO_2_INDEX_14","en-gb":"Using citizen information, the officers manage to locate the man and arrest him","de":"XXXX","el":"XXXX","es":"XXXX"}]

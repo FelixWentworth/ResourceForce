@@ -9,88 +9,49 @@ public class IncidentCase : MonoBehaviour {
     public enum State { New, Waiting, OfficersSent, CitizenRequest, Resolved, Escalated, InProgress };
     public State m_state = State.New;
 
-    public Image severity;
-    public Image highlightSeverity;
+    public Image CaseImage;
+    public Image ActiveCaseImage;
 
     public GameObject warningIcon;
-    public GameObject newIncidentOverlay;
 
     public GameObject highlightObject;
+
+    private IncidentManager _incidentManager;
 
     [HideInInspector]public int caseNumber;
     [HideInInspector]public int severityNumber;
 
-    public void Setup(int zNumber, State zState = State.New, int zSeverity = 1, Image severityHighlight = null, bool isNew = false)
+    public void Setup(int zNumber, State zState = State.New, int zSeverity = 1)
     {
+        if (_incidentManager == null)
+        {
+            _incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
+        }
         //set up the case to show the relevant info
         caseNumber = zNumber;
         m_state = zState;
+        severityNumber = zSeverity;
 
-        SetSeverity(zSeverity);
-        if (severityHighlight != null)
-        {
-            severity.color = severityHighlight.color;
-            if (isNew)
-            {
-                newIncidentOverlay.SetActive(true);
-            }
-        }
-        //SetIcon();
+        CaseImage.color = m_state == State.New
+            ? _incidentManager.GetSeverityColor(0)
+            : _incidentManager.GetSeverityColor(severityNumber); 
+
         highlightObject.SetActive(false);
     }
-    public void SetSeverity(int zSeverity = 1)
-    {
-        //set the alpha of the severity overlay
-        float alpha = 0f;
-        if (zSeverity == 2)
-            alpha = 0.5f;
-        else if (zSeverity == 3)
-            alpha = 1.0f;
-        severity.color = new Color(1f, 0f, 0f, alpha);
-        highlightSeverity.color = new Color(1f, 0f, 0f, alpha);
-        severityNumber = zSeverity;
-    }
-	//public void SetIcon()
- //   {
- //       //set the icon of each incident based on the desicion made
- //       switch (m_state)
- //       {
- //           case State.New:
- //               icon.sprite = Resources.Load<Sprite>("Sprites/New");
- //               break;
- //           case State.Waiting:
- //               icon.sprite = Resources.Load<Sprite>("Sprites/Wait");
- //               break;
- //           case State.OfficersSent:
- //               icon.sprite = Resources.Load<Sprite>("Sprites/Siren");
- //               break;
- //           case State.CitizenRequest:
- //               icon.sprite = Resources.Load<Sprite>("Sprites/Inspec2t");
- //               break;
- //           case State.Resolved:
- //           case State.Escalated:
- //           case State.InProgress:
- //               icon.sprite = Resources.Load<Sprite>("Sprites/Wait");
- //               break;
- //       }
- //   }
-    public void ToggleHighlight(bool forceDefault = false)
+
+    public void ToggleHighlight(bool highlighted = false)
     {
         //by default the highligh should be disabled
-        highlightObject.SetActive(!forceDefault);
-        if (!forceDefault)
+        highlightObject.SetActive(!highlighted);
+        if (!highlighted)
         {
-            SetSeverity(severityNumber);
-            DisableNewCase();
+            CaseImage.color = _incidentManager.GetSeverityColor(severityNumber);
+            ActiveCaseImage.color = _incidentManager.GetSeverityColor(severityNumber);
         }
     }
     public void UpdateWarning(bool activated)
     {
         warningIcon.SetActive(activated);
-    }
-    public void DisableNewCase()
-    {
-        newIncidentOverlay.SetActive(false);
     }
 
     public void Pressed()

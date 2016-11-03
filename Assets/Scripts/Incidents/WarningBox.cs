@@ -20,7 +20,7 @@ public class WarningBox : MonoBehaviour
         ScreenFade.SetActive(false);
     }
 
-    public IEnumerator ShowWarning(string message, float pauseTime, Color color)
+    public IEnumerator ShowWarning(string message, Color color, bool upperCase = false)
     {
         SetColor(color);
         if (!_showingPopup)
@@ -30,7 +30,8 @@ public class WarningBox : MonoBehaviour
             {
                 _warningText = transform.FindChild("Text").GetComponent<Text>();
             }
-            _warningText.text = message.ToUpper();
+
+            _warningText.text = upperCase ? message.ToUpper() : message;
 
             AudioManager.Instance.ShowWarningMessage();
 
@@ -42,9 +43,8 @@ public class WarningBox : MonoBehaviour
             anim.Play("WarningPopup");
             yield return anim["WarningPopup"].clip.length;
 
-            while (pauseTime >= 0f && !Input.GetMouseButtonDown(0))
+            while (!Input.GetMouseButtonDown(0))
             {
-                pauseTime -= Time.deltaTime;
                 yield return null;
             }
 

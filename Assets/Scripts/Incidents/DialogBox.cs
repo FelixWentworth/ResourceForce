@@ -104,13 +104,14 @@ public class DialogBox : MonoBehaviour {
 
         _turnsRequired = zIncident.turnsToAdd;
 
-        requirements = "<size=35><b>" + requirements + "</b></size>";
+        requirements = "<b>" + requirements + "</b>";
         var currentInformation = new IncidentHistoryElement()
         {
             Description = Localization.Get(zIncident.incidentName) + "\n\n" + requirements,
             Type = zIncident.type,
             Feedback = "",
             FeedbackRating = 0,
+            Severity = zIncident.severity,
             PlayerDecision = IncidentHistoryElement.Decision.Ignore
         };
 
@@ -198,7 +199,6 @@ public class DialogBox : MonoBehaviour {
 
         _buttonFade.SetActive(true);
 
-        
         ShowImmediateFeedback(CurrentIncident.feedbackRatingWait, _waitButton.transform);
 
         StartCoroutine(LeftButtonWithAnim(isCitizensAvailable));
@@ -209,7 +209,7 @@ public class DialogBox : MonoBehaviour {
     {
         if (CurrentIncident.feedbackWait != "-1")
         {
-            yield return WarningBox.ShowWarning(CurrentIncident.feedbackWait, 5f, Color.cyan);
+            yield return WarningBox.ShowWarning(CurrentIncident.feedbackWait, Color.cyan);
         }
         else
         { 
@@ -248,7 +248,7 @@ public class DialogBox : MonoBehaviour {
 		var num = Random.Range(1, max + 1);
 		_tip = Localization.Get(preText + num);
         
-	    yield return WarningBox.ShowWarning(_tip, 5f, Color.cyan);
+	    yield return WarningBox.ShowWarning(_tip, Color.cyan);
 	}
 
     public string GetTip()
@@ -270,7 +270,7 @@ public class DialogBox : MonoBehaviour {
         }
         else
         {
-            StartCoroutine(WarningBox.ShowWarning(Localization.Get("BASIC_TEXT_NO_OFFICERS"), 2f, Color.yellow));
+            StartCoroutine(WarningBox.ShowWarning(Localization.Get("BASIC_TEXT_NO_OFFICERS"), Color.yellow, true));
         }
     }
 
@@ -281,7 +281,7 @@ public class DialogBox : MonoBehaviour {
             OfficerController.RemoveOfficer(CurrentIncident.officer, CurrentIncident.turnsToAdd);
             if (CurrentIncident.feedbackOfficer != "-1")
             {
-                yield return WarningBox.ShowWarning(CurrentIncident.feedbackOfficer, 5f, Color.cyan);
+                yield return WarningBox.ShowWarning(CurrentIncident.feedbackOfficer, Color.cyan);
             }
             else
             {
@@ -344,7 +344,7 @@ public class DialogBox : MonoBehaviour {
     {
         if (CurrentIncident.feedbackCitizen != "-1")
         {
-            yield return WarningBox.ShowWarning(CurrentIncident.feedbackCitizen, 5f, Color.cyan);
+            yield return WarningBox.ShowWarning(CurrentIncident.feedbackCitizen, Color.cyan);
         }
         else
         {

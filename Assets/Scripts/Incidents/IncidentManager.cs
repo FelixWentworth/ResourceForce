@@ -22,6 +22,11 @@ public class IncidentManager : MonoBehaviour
     public DialogBox m_dialogBox;
     public SatisfactionDisplays m_satisfactionDisplay;
 
+    public Color LowSeverity;
+    public Color MidSeverity;
+    public Color HighSeverity;
+    public Color UnknownSeverity;
+
     private Dictionary<int, IncidentHistory> _incidentHistories = new Dictionary<int, IncidentHistory>();
 
 #if SELECT_INCIDENTS
@@ -152,6 +157,9 @@ public class IncidentManager : MonoBehaviour
     }
     public void CaseClosed(int impact, float transitionTime, bool expired = false)
     {
+        impact = impact < 0
+            ? impact*2
+            : impact/2;
         //update the citizen security/happiness
         if (expired)
         {
@@ -177,7 +185,7 @@ public class IncidentManager : MonoBehaviour
     public void EndTurn()
     {
         //punish the player for having cases open, stopping players from just ignoring all cases
-        happiness -= 1f * GetTotalSeverity();
+        happiness -= GetEndTurnSatisfactionDeduction();
         happiness = Mathf.Clamp(happiness, 0, 100);
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
         m_satisfactionDisplay.SetPulseAnim(isGameOver());
@@ -295,7 +303,7 @@ public class IncidentManager : MonoBehaviour
             if (ignored > 0)
             {
                 var satisfactionText = Localization.Get("BASIC_TEXT_SATISFACTION_END_TURN");
-                tmp.EndTurnSatisfaction.text = string.Format(satisfactionText, ignored, ignored > 1 ? "s" : "", GetTotalSeverity());
+                tmp.EndTurnSatisfaction.text = string.Format(satisfactionText, ignored, ignored > 1 ? "s" : "", GetEndTurnSatisfactionDeduction());
             }
             else
             {
@@ -353,6 +361,26 @@ public class IncidentManager : MonoBehaviour
         return total;
     }
 
+    public int GetEndTurnSatisfactionDeduction()
+    {
+        return GetTotalSeverity()*2;
+    }
+
+    public Color GetSeverityColor(int severity)
+    {
+        switch (severity)
+        {
+            case 1:
+                return LowSeverity;
+            case 2:
+                return MidSeverity;
+            case 3:
+                return HighSeverity;
+            default:
+                return UnknownSeverity;
+        }
+    }
+
     private void AddIncidentHistory(Incident incident, IncidentHistoryElement.Decision decision)
     {
         var type = incident.type;
@@ -366,6 +394,7 @@ public class IncidentManager : MonoBehaviour
             Description = Localization.Get(incident.incidentName) + "\n\n" + "<color=yellow>" + m_dialogBox.GetTip() + "</color>",
             Feedback = feedback,
             FeedbackRating = feedbackRating,
+            Severity = incident.severity,
             PlayerDecision = decision
         };
 

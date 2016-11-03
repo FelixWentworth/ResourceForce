@@ -7,6 +7,7 @@ public class IncidentHistoryElement
     public string Description;
     public int FeedbackRating;
     public string Feedback;
+    public int Severity;
 
     public enum Decision
     {

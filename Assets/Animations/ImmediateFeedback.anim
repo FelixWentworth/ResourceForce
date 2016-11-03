@@ -20,13 +20,13 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: {x: 0.8, y: 0.8, z: 0.8}
-        inSlope: {x: 1.6000001, y: 1.6000001, z: 1.6000001}
-        outSlope: {x: 1.6000001, y: 1.6000001, z: 1.6000001}
+        inSlope: {x: 2.1, y: 2.1, z: 2.1}
+        outSlope: {x: 2.1, y: 2.1, z: 2.1}
         tangentMode: 0
-      - time: 0.25
-        value: {x: 1.2, y: 1.2, z: 1.2}
-        inSlope: {x: 1.6000001, y: 1.6000001, z: 1.6000001}
-        outSlope: {x: 1.6000001, y: 1.6000001, z: 1.6000001}
+      - time: 0.33333334
+        value: {x: 1.5, y: 1.5, z: 1.5}
+        inSlope: {x: 2.1, y: 2.1, z: 2.1}
+        outSlope: {x: 2.1, y: 2.1, z: 2.1}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -38,18 +38,38 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 0
-        inSlope: 320
-        outSlope: 320
+        inSlope: 336
+        outSlope: 336
         tangentMode: 10
-      - time: 0.25
-        value: 80
-        inSlope: 320
-        outSlope: 320
+      - time: 0.33333334
+        value: 112
+        inSlope: 336
+        outSlope: 336
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
+    path: 
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 80
+        inSlope: 21
+        outSlope: 21
+        tangentMode: 10
+      - time: 0.33333334
+        value: 87
+        inSlope: 21
+        outSlope: 21
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SizeDelta.y
     path: 
     classID: 224
     script: {fileID: 0}
@@ -67,7 +87,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -88,13 +108,13 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 0
-        inSlope: 320
-        outSlope: 320
+        inSlope: 336
+        outSlope: 336
         tangentMode: 10
-      - time: 0.25
-        value: 80
-        inSlope: 320
-        outSlope: 320
+      - time: 0.33333334
+        value: 112
+        inSlope: 336
+        outSlope: 336
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -108,13 +128,13 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 0.8
-        inSlope: 1.6000001
-        outSlope: 1.6000001
+        inSlope: 2.1
+        outSlope: 2.1
         tangentMode: 10
-      - time: 0.25
-        value: 1.2
-        inSlope: 1.6000001
-        outSlope: 1.6000001
+      - time: 0.33333334
+        value: 1.5
+        inSlope: 2.1
+        outSlope: 2.1
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -128,13 +148,13 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 0.8
-        inSlope: 1.6000001
-        outSlope: 1.6000001
+        inSlope: 2.1
+        outSlope: 2.1
         tangentMode: 10
-      - time: 0.25
-        value: 1.2
-        inSlope: 1.6000001
-        outSlope: 1.6000001
+      - time: 0.33333334
+        value: 1.5
+        inSlope: 2.1
+        outSlope: 2.1
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -148,18 +168,38 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 0.8
-        inSlope: 1.6000001
-        outSlope: 1.6000001
+        inSlope: 2.1
+        outSlope: 2.1
         tangentMode: 10
-      - time: 0.25
-        value: 1.2
-        inSlope: 1.6000001
-        outSlope: 1.6000001
+      - time: 0.33333334
+        value: 1.5
+        inSlope: 2.1
+        outSlope: 2.1
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
+    path: 
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 80
+        inSlope: 21
+        outSlope: 21
+        tangentMode: 10
+      - time: 0.33333334
+        value: 87
+        inSlope: 21
+        outSlope: 21
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SizeDelta.y
     path: 
     classID: 224
     script: {fileID: 0}

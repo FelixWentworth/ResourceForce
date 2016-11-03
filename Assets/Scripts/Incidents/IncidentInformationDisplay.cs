@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class IncidentInformationDisplay : MonoBehaviour
 {
     public GameObject IncidentHistoryElement;
+    private IncidentManager _incidentManager;
 
     private List<IncidentHistoryElement> _incidentElements;
     private List<IncidentHistoryUISetup> _setupObjects;
@@ -26,16 +27,15 @@ public class IncidentInformationDisplay : MonoBehaviour
 
         _incidentElements = new List<IncidentHistoryElement>();
         _incidentElements = elements;
-        //_incidentElements.Add(currentElement);
 
         _offset = 0f;
 
         foreach (var incidentHistory in elements)
         {
-            CreateElement(incidentHistory, _offset, alpha, false);
+            CreateElement(incidentHistory, _offset, false);
             _totalElements++;
         }
-        CreateElement(currentElement, _offset, alpha);
+        CreateElement(currentElement, _offset);
         _totalElements++;
         _shownElement = _totalElements-1;
     }
@@ -100,7 +100,7 @@ public class IncidentInformationDisplay : MonoBehaviour
         }
         transform.anchoredPosition3D = position;
     }
-    private void CreateElement(IncidentHistoryElement element, float offset, float severityAlpha, bool isCurrent = true)
+    private void CreateElement(IncidentHistoryElement element, float offset, bool isCurrent = true)
     {
         var go = GameObject.Instantiate(IncidentHistoryElement);
 
@@ -139,9 +139,12 @@ public class IncidentInformationDisplay : MonoBehaviour
             setup.Icon.gameObject.SetActive(false);
             setup.DropDownImage.localRotation = Quaternion.Euler(0f, 0f, 270f);
         }
+        if (_incidentManager == null)
+        {
+            _incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
+        }
 
-
-        setup.Setup(element.Type, element.Description, sprite, _totalElements, severityAlpha);
+        setup.Setup(element.Type, element.Description, sprite, _totalElements, _incidentManager.GetSeverityColor(element.Severity));
         setup.Header.anchoredPosition3D = new Vector3(0f, offset, 0f);
         
         _setupObjects.Add(setup);

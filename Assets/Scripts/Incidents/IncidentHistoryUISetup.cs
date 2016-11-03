@@ -21,13 +21,13 @@ public class IncidentHistoryUISetup : MonoBehaviour
         Header = this.transform.FindChild("Header").GetComponent<RectTransform>();
     }
 
-    public void Setup(string titleText, string descriptionText, Sprite icon, int listPoition, float backgroundAlpha)
+    public void Setup(string titleText, string descriptionText, Sprite icon, int listPoition, Color severity)
     {
         TitleText.text = titleText;
         DescriptionText.text = descriptionText;
         Icon.sprite = icon;
         ListPoition = listPoition;
-        SetColor(backgroundAlpha);
+        SetColor(severity);
     }
 
     public void Selected()
@@ -35,9 +35,9 @@ public class IncidentHistoryUISetup : MonoBehaviour
         transform.parent.GetComponent<IncidentInformationDisplay>().ElementSelected(ListPoition);
     }
 
-    private void SetColor(float alpha)
+    private void SetColor(Color severity)
     {
-        HeaderImageOverlay.color = new Color(1f, 0f, 0f, alpha);
-        BorderImageOverlay.color = new Color(1f, 0f, 0f, alpha);
+        HeaderImageOverlay.color = severity;
+        BorderImageOverlay.color = severity;
     }
 }

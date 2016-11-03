@@ -24,7 +24,7 @@ public class IncidentQueue : MonoBehaviour {
         for (int i = index; i < cases-1; i++)
         {
             //move the data from the current case and move it up
-            allCases[i].Setup(allCases[i+1].caseNumber, allCases[i+1].m_state, allCases[i+1].severityNumber, allCases[i+1].highlightSeverity, allCases[i+1].newIncidentOverlay.activeSelf);
+            allCases[i].Setup(allCases[i+1].caseNumber, allCases[i+1].m_state, allCases[i+1].severityNumber);
             allCases[i].UpdateWarning(allCases[i + 1].warningIcon.activeSelf);
         }
     }
