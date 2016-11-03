@@ -101,4 +101,9 @@
 {"key":"BASIC_TEXT_REQUIREMENT_SINGULAR","en-gb":"Requrires 1 officer for 1 turn","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_REQUIREMENT_PLURAL","en-gb":"Requrires {0} officers for {1} turns","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BASIC_TEXT_REQUIREMENT_OFFICER_PLURAL","en-gb":"Requires {0} officers for 1 turn","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"BASIC_TEXT_REQUIREMENT_TURN_PLURAL","en-gb":"Requires 1 officer for {0} turns","de":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"BASIC_TEXT_REQUIREMENT_TURN_PLURAL","en-gb":"Requires 1 officer for {0} turns","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_SATISFACTION","en-gb":"{0}% Citizen Satisfaction*n*Keep the badge out of the red area by making good choices","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_INCIDENT","en-gb":"{0} Active Case*n*Close cases by making good choices to make a big difference to citizen satisfaction","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_INCIDENTS","en-gb":"{0} Active Cases*n*Close cases by making good choices to make a big difference to citizen satisfaction","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_OFFICER","en-gb":"{0} Available Officer*n*A limited number available so be careful, you never know when a severe incident may occur","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_OFFICERS","en-gb":"{0} Available Officers*n*A limited number available so be careful, you never know when a severe incident may occur","de":"XXXX","el":"XXXX","es":"XXXX"}]

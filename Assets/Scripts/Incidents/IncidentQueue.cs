@@ -123,4 +123,17 @@ public class IncidentQueue : MonoBehaviour {
                 allCases[i].UpdateWarning(true);
         }
     }
+
+    public int GetActiveCases()
+    {
+        var count = 0;
+        foreach (var c in allCases)
+        {
+            if (c.gameObject.activeSelf)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
 }
