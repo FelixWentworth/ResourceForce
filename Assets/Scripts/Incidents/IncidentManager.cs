@@ -29,12 +29,16 @@ public class IncidentManager : MonoBehaviour
 
     private Dictionary<int, IncidentHistory> _incidentHistories = new Dictionary<int, IncidentHistory>();
 
+    private int _casesClosed;
+
 #if SELECT_INCIDENTS
     private int incidentShowingIndex = 1;
 #endif
     void Start()
     {
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
+        _casesClosed = 0;
+
     }
     public void CreateNewIncident(int zTurn)
     {
@@ -181,6 +185,7 @@ public class IncidentManager : MonoBehaviour
             StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, transitionTime, happiness));
         }
         m_satisfactionDisplay.SetPulseAnim(isGameOver());
+        _casesClosed++;
     }
     public void EndTurn()
     {
@@ -296,10 +301,10 @@ public class IncidentManager : MonoBehaviour
 
         if (NextIncident.Count == 0)//no more incidents to show
         {
-            TurnManager tmp = this.gameObject.GetComponent<TurnManager>();
+            var tmp = this.gameObject.GetComponent<TurnManager>();
             tmp.NextTurnButton.SetActive(true);
 			tmp.EndTurnSatisfaction.gameObject.SetActive(true);
-            int ignored = GetIgnoredCasesCount();
+            var ignored = GetIgnoredCasesCount();
             if (ignored > 0)
             {
                 var satisfactionText = Localization.Get("BASIC_TEXT_SATISFACTION_END_TURN");
@@ -336,10 +341,15 @@ public class IncidentManager : MonoBehaviour
     {
         return Mathf.RoundToInt(happiness);
     }
+
+    public int GetTotalCasesClosed()
+    {
+        return _casesClosed;
+    }
     public int GetTotalSeverity()
     {
-        int total = 0;
-        foreach(IncidentCase i in m_IncidentQueue.allCases)
+        var total = 0;
+        foreach(var i in m_IncidentQueue.allCases)
         {
             if (i.severityNumber != 0 && i.gameObject.activeSelf && i.m_state == IncidentCase.State.Waiting)
             {

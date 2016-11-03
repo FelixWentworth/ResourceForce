@@ -8,6 +8,7 @@ public class TurnManager : MonoBehaviour {
 
     public int turn = 0;
     IncidentManager m_IncidentManager;
+    public GameOver GameOver;
 
     public Text turnsText;
     public Text gameOverText;
@@ -16,14 +17,13 @@ public class TurnManager : MonoBehaviour {
 
     public GameObject startScreen;
     public GameObject settingsScreen;
-    public GameObject GameOver;
     public GameObject NextTurnButton;
     public Text EndTurnSatisfaction;
 
 	void Start () {        
         NextTurnButton.SetActive(false);
 		EndTurnSatisfaction.gameObject.SetActive(false);
-		GameOver.SetActive(false);
+		GameOver.gameObject.SetActive(false);
         settingsScreen.SetActive(false);
         startScreen.SetActive(true);
         m_IncidentManager = this.GetComponent<IncidentManager>();
@@ -51,7 +51,8 @@ public class TurnManager : MonoBehaviour {
         if (m_IncidentManager.isGameOver())
         {
             //GAME OVER
-            ShowGameOver();
+            GameOver.gameObject.SetActive(true);
+            GameOver.ShowGameOver(turn, m_IncidentManager.GetTotalCasesClosed());
         }
         else
         {
@@ -67,22 +68,6 @@ public class TurnManager : MonoBehaviour {
 #endif
         }
         
-    }
-    private void ShowGameOver()
-    {
-        AudioManager.Instance.PlayGameOver();
-
-        int zTurn = turn - 1;
-        gameOverText.text = string.Format(Localization.Get("BASIC_TEXT_GAMEOVER_BODY"), zTurn);
-        int bestTurns = PlayerPrefs.GetInt("BestTurns");
-        if (zTurn > bestTurns)
-        {
-            bestTurns = zTurn;
-            PlayerPrefs.SetInt("BestTurns", bestTurns);
-        }
-        GameScoreText.text = zTurn.ToString();
-        HighScoreText.text = bestTurns.ToString();
-        GameOver.SetActive(true);
     }
     
     public void Reset()
