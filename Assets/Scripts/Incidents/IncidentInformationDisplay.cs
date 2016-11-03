@@ -146,7 +146,7 @@ public class IncidentInformationDisplay : MonoBehaviour
 
         setup.Setup(element.Type, element.Description, sprite, _totalElements, _incidentManager.GetSeverityColor(element.Severity));
         setup.Header.anchoredPosition3D = new Vector3(0f, offset, 0f);
-        
+
         _setupObjects.Add(setup);
         _offset -= setup.Header.rect.height;
     }

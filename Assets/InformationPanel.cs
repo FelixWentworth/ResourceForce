@@ -10,13 +10,16 @@ public class InformationPanel : MonoBehaviour
     public GameObject SatifactionInfo;
     public GameObject IncidentInfo;
     public GameObject OfficerInfo;
+    public GameObject TurnInfo;
 
     private Text _satisfactionText;
     private Text _incidenText;
     private Text _officerText;
+    private Text _turnText;
 
     private IncidentManager _incidentManager;
     private OfficerController _officerController;
+    private TurnManager _turnManager;
 
     private const string satisfaction = "TIPS_SATISFACTION";
 
@@ -28,11 +31,16 @@ public class InformationPanel : MonoBehaviour
 
     private const string officers = "TIPS_OFFICERS";
 
+    private const string turn = "TIPS_TURN";
+
+    private const string turns = "TIPS_TURNS";
+
     void Awake()
     {
         _satisfactionText = SatifactionInfo.GetComponentInChildren<Text>();
         _incidenText = IncidentInfo.GetComponentInChildren<Text>();
         _officerText = OfficerInfo.GetComponentInChildren<Text>();
+        _turnText = TurnInfo.GetComponentInChildren<Text>();
 
         DisableAll();
     }
@@ -40,6 +48,7 @@ public class InformationPanel : MonoBehaviour
     void Start()
     {
         _incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
+        _turnManager = _incidentManager.gameObject.GetComponent<TurnManager>();
         _officerController = GameObject.Find("OfficerManager").GetComponent<OfficerController>();
     }
     public void DisableAll()
@@ -47,6 +56,7 @@ public class InformationPanel : MonoBehaviour
         SatifactionInfo.SetActive(false);
         IncidentInfo.SetActive(false);
         OfficerInfo.SetActive(false);
+        TurnInfo.SetActive(false);
         InputBlocker.SetActive(false);
     }
 
@@ -100,6 +110,24 @@ public class InformationPanel : MonoBehaviour
 
         InputBlocker.SetActive(true);
         OfficerInfo.SetActive(true);
+    }
+
+    public void TurnPressed()
+    {
+        if (InputBlocker.activeSelf)
+        {
+            DisableAll();
+            return;
+        }
+        DisableAll();
+        var num = _turnManager.turn;
+
+        _turnText.text = num == 1
+            ? string.Format(Localization.Get(turn), num)
+            : string.Format(Localization.Get(turns), num);
+
+        InputBlocker.SetActive(true);
+        TurnInfo.SetActive(true);
     }
 
 }

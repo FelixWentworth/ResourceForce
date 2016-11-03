@@ -106,4 +106,6 @@
 {"key":"TIPS_INCIDENT","en-gb":"{0} Active Case*n*Close cases by making good choices to make a big difference to citizen satisfaction","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"TIPS_INCIDENTS","en-gb":"{0} Active Cases*n*Close cases by making good choices to make a big difference to citizen satisfaction","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"TIPS_OFFICER","en-gb":"{0} Available Officer*n*A limited number available so be careful, you never know when a severe incident may occur","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"TIPS_OFFICERS","en-gb":"{0} Available Officers*n*A limited number available so be careful, you never know when a severe incident may occur","de":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"TIPS_OFFICERS","en-gb":"{0} Available Officers*n*A limited number available so be careful, you never know when a severe incident may occur","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_TURN","en-gb":"{0} Turn Survived*n*Each turn will consist of a number of cases with choices to make","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"TIPS_TURNS","en-gb":"{0} Turns Survived*n*Each turn will consist of a number of cases with choices to make","de":"XXXX","el":"XXXX","es":"XXXX"}]
