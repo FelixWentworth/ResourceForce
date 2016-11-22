@@ -39,7 +39,7 @@ public class Location : MonoBehaviour {
                 numIncidents = 2;
                 return "_Groningen";
             case Site.Valencia:
-                numIncidents = 7;
+                numIncidents = 20;
                 return "_Valencia";
             default:
                 return "_Preston";
