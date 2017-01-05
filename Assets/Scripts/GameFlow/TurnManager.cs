@@ -55,7 +55,7 @@ public class TurnManager : MonoBehaviour {
         {
             //GAME OVER
             GameOver.gameObject.SetActive(true);
-            GameOver.ShowGameOver(turn, m_IncidentManager.GetTotalCasesClosed());
+            GameOver.ShowGameOver(turn-1, m_IncidentManager.GetTotalCasesClosed());
         }
         else
         {

@@ -36,12 +36,13 @@ public class GameOver : MonoBehaviour
         TurnsText.text = "";
         CasesText.text = "";
         ScoreText.text = "";
-        HighScoreText.text = highScore.ToString();
+        HighScoreText.text = "";
         // We want to display the scores one at a time to make the page more interesting
         yield return new WaitForSeconds(0.5f);
         yield return IncrementTextNumber(TurnsText, 0, turns);
         yield return IncrementTextNumber(CasesText, 0, cases);
         yield return IncrementTextNumber(ScoreText, 0, score);
+        HighScoreText.text = highScore.ToString();
         //yield return IncrementTextNumber(HighScoreText, 0, highScore);
     }
 
