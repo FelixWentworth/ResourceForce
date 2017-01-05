@@ -41,7 +41,7 @@ namespace GameWork.Unity.Editor.Build
                     case BuildTarget.PSM:
                     case BuildTarget.XboxOne:
                     case BuildTarget.SamsungTV:
-                    case BuildTarget.Nintendo3DS:
+                    case BuildTarget.N3DS:
                     case BuildTarget.WiiU:
                     case BuildTarget.tvOS:
                         throw new NotImplementedException();

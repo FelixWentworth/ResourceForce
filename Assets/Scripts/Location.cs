@@ -33,7 +33,7 @@ public class Location : MonoBehaviour {
                 numIncidents = 2;
                 return "_Belfast";
             case Site.Nicosia:
-                numIncidents = 3;
+                numIncidents = 10;
                 return "_Nicosia";
             case Site.Groningen:
                 numIncidents = 2;
