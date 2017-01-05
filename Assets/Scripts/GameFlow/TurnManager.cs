@@ -126,4 +126,12 @@ public class TurnManager : MonoBehaviour {
         //reset the game
         Reset();
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
+    }
 }
