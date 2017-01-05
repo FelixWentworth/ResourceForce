@@ -11,6 +11,8 @@ public class DialogBox : MonoBehaviour {
     
     //the ok and wait text objects are enabled based on which button to show as they have a different layout
     public Text RightButton;
+    public Text OfficerButtonTurns;
+    public Text OfficerButtonRequired;
 
     public GameObject EmailPanel;
 
@@ -74,40 +76,11 @@ public class DialogBox : MonoBehaviour {
 
         var history = _incidentManager.GetIncidentHistory(zIncident.caseNumber);
 
-        var requirements = "";
-
-        if (!endCase)
-        {
-            var officerPlural = zIncident.officer > 1;
-            var turnPlural = zIncident.turnsToAdd > 1;
-
-            if (!officerPlural && !turnPlural)
-            {
-                requirements = Localization.Get("BASIC_TEXT_REQUIREMENT_SINGULAR");
-            }
-            else if (officerPlural && turnPlural)
-            {
-                requirements = Localization.Get("BASIC_TEXT_REQUIREMENT_PLURAL");
-                requirements = string.Format(requirements, zIncident.officer, zIncident.turnsToAdd);
-            }
-            else if (officerPlural && !turnPlural)
-            {
-                requirements = Localization.Get("BASIC_TEXT_REQUIREMENT_OFFICER_PLURAL");
-                requirements = string.Format(requirements, zIncident.officer);
-            }
-            else
-            {
-                requirements = Localization.Get("BASIC_TEXT_REQUIREMENT_TURN_PLURAL");
-                requirements = string.Format(requirements, zIncident.turnsToAdd);
-            }
-        }
-
         _turnsRequired = zIncident.turnsToAdd;
 
-        requirements = "<b>" + requirements + "</b>";
         var currentInformation = new IncidentHistoryElement()
         {
-            Description = Localization.Get(zIncident.incidentName) + "\n\n" + requirements,
+            Description = Localization.Get(zIncident.incidentName),
             Type = zIncident.type,
             Feedback = "",
             FeedbackRating = 0,
@@ -121,6 +94,8 @@ public class DialogBox : MonoBehaviour {
         SetSeverity(zIncident.severity);
 	    _severity = zIncident.severity;
 
+        OfficerButtonTurns.text = zIncident.turnsToAdd.ToString();
+        OfficerButtonRequired.text = zIncident.officer.ToString();
         RightButton.text = zIncident.officer == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
         //wait for anim to finish

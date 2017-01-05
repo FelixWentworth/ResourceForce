@@ -17,8 +17,11 @@ public class TurnManager : MonoBehaviour {
 
     public GameObject startScreen;
     public GameObject settingsScreen;
+    public GameObject SettingsScreenQuitToMenuOption;
     public GameObject NextTurnButton;
     public Text EndTurnSatisfaction;
+
+    public Tutorial Tutorial;
 
 	void Start () {        
         NextTurnButton.SetActive(false);
@@ -99,11 +102,20 @@ public class TurnManager : MonoBehaviour {
     {
         //we could set Time.scale to 0 but there is little need so we will just show the pause screen
         AudioManager.Instance.PositiveButtonPress();
+        SettingsScreenQuitToMenuOption.SetActive(!startScreen.activeSelf);
         settingsScreen.SetActive(!settingsScreen.activeSelf);
     }
     public void ResumeGame()
     {
         AudioManager.Instance.PositiveButtonPress();
+        settingsScreen.SetActive(false);
+    }
+
+    public void ReplayTutorial()
+    {
+        AudioManager.Instance.PositiveButtonPress();
+        Tutorial.gameObject.SetActive(true);
+        Tutorial.ShowStep();
         settingsScreen.SetActive(false);
     }
 
