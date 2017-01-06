@@ -228,6 +228,21 @@ public class ScenarioExcelToTextConverter  {
                                 // this string is the localized string, add the key value as a string
                                 rowString += "\"" + scenarioNum.ToUpper() + "_INDEX_" + rowNumber + "\"";
                             }
+                            else if (i == 12)
+                            {
+                                // Wait feedback
+                                rowString += "\"" + scenarioNum.ToUpper() + "_WAIT_FEEDBACK_" + rowNumber + "\"";
+                            }
+                            else if (i == 14)
+                            {
+                                // Officer Feedback
+                                rowString += "\"" + scenarioNum.ToUpper() + "_OFFICER_FEEDBACK_" + rowNumber + "\"";
+                            }
+                            else if (i == 16)
+                            {
+                                // Citizen Feedback
+                                rowString += "\"" + scenarioNum.ToUpper() + "_CITIZEN_FEEDBACK_" + rowNumber + "\"";
+                            }
                             else
                             {
                                 rowString += value;

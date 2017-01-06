@@ -184,7 +184,7 @@ public class DialogBox : MonoBehaviour {
     {
         if (CurrentIncident.feedbackWait != "-1")
         {
-            yield return WarningBox.ShowWarning(CurrentIncident.feedbackWait, Color.cyan);
+            yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackWait), Color.cyan);
         }
         else
         { 
@@ -256,7 +256,7 @@ public class DialogBox : MonoBehaviour {
             OfficerController.RemoveOfficer(CurrentIncident.officer, CurrentIncident.turnsToAdd);
             if (CurrentIncident.feedbackOfficer != "-1")
             {
-                yield return WarningBox.ShowWarning(CurrentIncident.feedbackOfficer, Color.cyan);
+                yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackOfficer), Color.cyan);
             }
             else
             {
@@ -319,7 +319,7 @@ public class DialogBox : MonoBehaviour {
     {
         if (CurrentIncident.feedbackCitizen != "-1")
         {
-            yield return WarningBox.ShowWarning(CurrentIncident.feedbackCitizen, Color.cyan);
+            yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackCitizen), Color.cyan);
         }
         else
         {
