@@ -182,7 +182,7 @@ public class DialogBox : MonoBehaviour {
 
     private IEnumerator LeftButtonWithAnim(bool citizensAvailable = false)
     {
-        if (CurrentIncident.feedbackWait != "-1")
+        if (CurrentIncident.feedbackRatingWait != -1)
         {
             yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackWait), Color.cyan);
         }
@@ -254,7 +254,7 @@ public class DialogBox : MonoBehaviour {
         if (OfficerController.m_officers.Count >= CurrentIncident.officer)
         {
             OfficerController.RemoveOfficer(CurrentIncident.officer, CurrentIncident.turnsToAdd);
-            if (CurrentIncident.feedbackOfficer != "-1")
+            if (CurrentIncident.feedbackRatingOfficer != -1)
             {
                 yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackOfficer), Color.cyan);
             }
@@ -317,7 +317,7 @@ public class DialogBox : MonoBehaviour {
 
     private IEnumerator CitizenButtonWithAnim()
     {
-        if (CurrentIncident.feedbackCitizen != "-1")
+        if (CurrentIncident.feedbackRatingCitizen != -1)
         {
             yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackCitizen), Color.cyan);
         }

@@ -27,7 +27,7 @@ public class Location : MonoBehaviour {
         switch (m_site)
         {
             case Site.Preston:
-                numIncidents = 12;
+                numIncidents = 20;
                 return "_Preston";
             case Site.Belfast:
                 numIncidents = 2;
