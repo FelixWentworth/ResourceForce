@@ -81,7 +81,7 @@ public class DialogBox : MonoBehaviour {
         var currentInformation = new IncidentHistoryElement()
         {
             Description = Localization.Get(zIncident.incidentName),
-            Type = zIncident.type,
+            Type = endCase ? "SCENARIO_TITLE_RESOLUTION" : zIncident.type,
             Feedback = "",
             FeedbackRating = 0,
             Severity = zIncident.severity,
@@ -94,8 +94,8 @@ public class DialogBox : MonoBehaviour {
         SetSeverity(zIncident.severity);
 	    _severity = zIncident.severity;
 
-        OfficerButtonTurns.text = zIncident.turnsToAdd.ToString();
-        OfficerButtonRequired.text = zIncident.officer.ToString();
+        OfficerButtonTurns.text = "x" + zIncident.turnsToAdd.ToString();
+        OfficerButtonRequired.text = "x" + zIncident.officer.ToString();
         RightButton.text = zIncident.officer == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
         //wait for anim to finish

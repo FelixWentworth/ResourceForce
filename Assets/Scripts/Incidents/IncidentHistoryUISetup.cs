@@ -23,7 +23,7 @@ public class IncidentHistoryUISetup : MonoBehaviour
 
     public void Setup(string titleText, string descriptionText, Sprite icon, int listPoition, Color severity)
     {
-        TitleText.text = titleText;
+        TitleText.text = Localization.Get(titleText);
         DescriptionText.text = descriptionText;
         Icon.sprite = icon;
         ListPoition = listPoition;

@@ -26,6 +26,12 @@ public class Tutorial : MonoBehaviour {
             tutorialObjects[i].SetActive(false);
         }
     }
+
+    public void StartTutorial()
+    {
+        currentPoint = (TutorialPoint) 0;
+        ShowStep();
+    }
     public void ShowStep()
     {
         DeactivateAll();
@@ -48,7 +54,6 @@ public class Tutorial : MonoBehaviour {
             DeactivateAll();
             inputBlocker.SetActive(false);
             Screenshot.SetActive(false);
-            GameObject.Find("TurnManager").GetComponent<TurnManager>().StartGame();
             PlayerPrefs.SetInt("NewPlayer", 1);
         }
     }

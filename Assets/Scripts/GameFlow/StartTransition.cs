@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class StartTransition : MonoBehaviour {
 
     public Text password;
-    string passwordText;
     public Image background;
     private Color backgroundColor;
     private Color fadedBackgroundColor;
@@ -20,8 +19,6 @@ public class StartTransition : MonoBehaviour {
     void Awake()
     {
         //reset the start screen whilst taking note of the text that used to be used as the password
-        passwordText = password.text;
-        password.text = "";
         SetObjects(true);
         backgroundColor = background.color;
         fadedBackgroundColor = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, 0f);
@@ -41,17 +38,6 @@ public class StartTransition : MonoBehaviour {
         AudioManager.Instance.PlayNewGame();
         StartCoroutine(DelayToGame());
     }
-    IEnumerator ShowPassword()
-    {
-        foreach (char c in passwordText)
-        {
-            password.text += c;
-            yield return new WaitForSeconds(0.05f);
-        }
-
-        //we have now filled the password text, so fade the background to show the main game
-        FadeBackgrounds();
-    }
     IEnumerator DelayToGame()
     {
         yield return new WaitForSeconds(0.3f);
@@ -66,7 +52,7 @@ public class StartTransition : MonoBehaviour {
         {
             //player is new so show tutorial
             tut.gameObject.SetActive(true);
-            tut.ShowStep();
+            tut.StartTutorial();
         }
         else
         {

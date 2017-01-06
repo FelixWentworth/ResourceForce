@@ -221,7 +221,7 @@ public class ScenarioExcelToTextConverter  {
                             if (i == 2)
                             {
                                 // This value is the title of the incident, store as a string
-                                rowString += "\"" + value + "\"";
+                                rowString += "\"" + scenarioNum.ToUpper() + "_TITLE_" + rowNumber + "\""; ;
                             }
                             else if (i == 3)
                             {

@@ -115,7 +115,7 @@ public class TurnManager : MonoBehaviour {
     {
         AudioManager.Instance.PositiveButtonPress();
         Tutorial.gameObject.SetActive(true);
-        Tutorial.ShowStep();
+        Tutorial.StartTutorial();
         settingsScreen.SetActive(false);
     }
 
