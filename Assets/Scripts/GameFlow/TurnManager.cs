@@ -19,13 +19,13 @@ public class TurnManager : MonoBehaviour {
     public GameObject settingsScreen;
     public GameObject SettingsScreenQuitToMenuOption;
     public GameObject NextTurnButton;
-    public Text EndTurnSatisfaction;
+    public GameObject EndTurnSatisfaction;
 
     public Tutorial Tutorial;
 
 	void Start () {        
         NextTurnButton.SetActive(false);
-		EndTurnSatisfaction.gameObject.SetActive(false);
+		EndTurnSatisfaction.SetActive(false);
 		GameOver.gameObject.SetActive(false);
         settingsScreen.SetActive(false);
         startScreen.SetActive(true);
@@ -42,7 +42,7 @@ public class TurnManager : MonoBehaviour {
         turn++;
         
         NextTurnButton.SetActive(false);
-		EndTurnSatisfaction.gameObject.SetActive(false);
+		EndTurnSatisfaction.SetActive(false);
 		GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
         turnsText.text = turn.ToString();
         if (m_IncidentManager == null)

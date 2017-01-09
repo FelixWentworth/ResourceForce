@@ -308,7 +308,7 @@ public class IncidentManager : MonoBehaviour
         {
             var tmp = this.gameObject.GetComponent<TurnManager>();
             tmp.NextTurnButton.SetActive(true);
-			tmp.EndTurnSatisfaction.gameObject.SetActive(true);
+			tmp.EndTurnSatisfaction.SetActive(true);
 
             // Get our updated statistics
             var total = GetTotalCasesCount();
@@ -321,17 +321,7 @@ public class IncidentManager : MonoBehaviour
 
             var satisfactionImpact = GetEndTurnSatisfactionDeduction();
 
-            
-            var text = "";
-            text += "<size=75>" + Localization.Get("BASIC_TEXT_STATUS_UPDATE") + "</size>";
-            text += "\n<size=60>" + Localization.Get("BASIC_TEXT_CASES") + ": " + total;
-            text += "\n" + Localization.Get("BASIC_TEXT_CLOSED") + ": " + casesClosed + "</size>";
-            text += casesClosed > 0 ? "\n" + Localization.Get("BASIC_TEXT_THIS_TURN") + ": " + casesClosedThisTurn : "";
-            text += "\n<size=60>" + Localization.Get("BASIC_TEXT_ACTIVE") + ": " + active + "</size>";
-            text += "\n" + Localization.Get("BASIC_TEXT_ACTION_TAKEN") + ": " + actionTaken;
-            text += "\n" + Localization.Get("BASIC_TEXT_IGNORED") + ": " + ignored;
-
-            tmp.EndTurnSatisfaction.text = text;
+            tmp.EndTurnSatisfaction.GetComponent<EndTurnSatisfaction>().SetText(total, casesClosed, casesClosedThisTurn, active, actionTaken, ignored);
             ShowSatisfactionImpact(-satisfactionImpact);
         }
         else
