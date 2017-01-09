@@ -27,10 +27,13 @@ public class IncidentManager : MonoBehaviour
     public Color HighSeverity;
     public Color UnknownSeverity;
 
+    public GameObject SatisfactionImpactGameObject;
+
     private Dictionary<int, IncidentHistory> _incidentHistories = new Dictionary<int, IncidentHistory>();
 
     private int _casesClosed;
     private int _casesClosedThisTurn;
+   
 #if SELECT_INCIDENTS
     private int incidentShowingIndex = 1;
 #endif
@@ -38,8 +41,7 @@ public class IncidentManager : MonoBehaviour
     {
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
         _casesClosed = 0;
-        _casesClosedThisTurn = 0;
-
+        _casesClosedThisTurn = 0; 
     }
     public void CreateNewIncident(int zTurn)
     {
@@ -125,6 +127,7 @@ public class IncidentManager : MonoBehaviour
 
         Incident currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
+        SatisfactionImpactGameObject.SetActive(false);
 #if SELECT_INCIDENTS
         incidentShowingIndex = 0;
 #endif
@@ -301,7 +304,6 @@ public class IncidentManager : MonoBehaviour
 #else
         NextIncident.RemoveAt(0);
 #endif
-
         if (NextIncident.Count == 0)//no more incidents to show
         {
             var tmp = this.gameObject.GetComponent<TurnManager>();
@@ -319,6 +321,7 @@ public class IncidentManager : MonoBehaviour
 
             var satisfactionImpact = GetEndTurnSatisfactionDeduction();
 
+            
             var text = "";
             text += "<size=75>" + Localization.Get("BASIC_TEXT_STATUS_UPDATE") + "</size>";
             text += "\n<size=60>" + Localization.Get("BASIC_TEXT_CASES") + ": " + total;
@@ -327,12 +330,20 @@ public class IncidentManager : MonoBehaviour
             text += "\n<size=60>" + Localization.Get("BASIC_TEXT_ACTIVE") + ": " + active + "</size>";
             text += "\n" + Localization.Get("BASIC_TEXT_ACTION_TAKEN") + ": " + actionTaken;
             text += "\n" + Localization.Get("BASIC_TEXT_IGNORED") + ": " + ignored;
-            text += "\n" + Localization.Get("BASIC_TEXT_SATISFACTION_IMPACT") + ": " + (satisfactionImpact > 0 ? "-" + satisfactionImpact: "0");
 
             tmp.EndTurnSatisfaction.text = text;
+            ShowSatisfactionImpact(-satisfactionImpact);
         }
         else
             ShowIncident(currentTurn);
+    }
+
+    public void ShowSatisfactionImpact(int impact)
+    {
+        SatisfactionImpactGameObject.SetActive(true);
+        var satisfactionText = "";
+        satisfactionText += Localization.Get("BASIC_TEXT_SATISFACTION_IMPACT") + ": " + impact;
+        SatisfactionImpactGameObject.GetComponentInChildren<Text>().text = satisfactionText;
     }
     public void CloseCase(int caseNumber, float transitionTime)
     {

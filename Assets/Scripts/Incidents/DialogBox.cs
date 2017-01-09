@@ -114,6 +114,8 @@ public class DialogBox : MonoBehaviour {
             var spriteToUse = satisfaction > 0 ? PlusSprite : MinusSprite;
             var increment = satisfaction > 0 ? 1 : -1;
 
+            _incidentManager.ShowSatisfactionImpact(satisfaction);
+
             for (int i = 0; i != satisfaction; i += increment)
             {
                 var go = new GameObject();
