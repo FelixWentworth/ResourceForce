@@ -20,6 +20,8 @@ public class SatisfactionDisplays : MonoBehaviour {
     private List<Image> _segments;
     private int _numSegments = 20;
 
+    private float _satisfaction = -1f;
+
     public void SetSatisfactionDisplays(float satisfaction)
     {
         //mySlider.anchoredPosition = new Vector2(myRect.rect.width - ((myRect.rect.width / 100f) * satisfaction),0f);
@@ -37,7 +39,7 @@ public class SatisfactionDisplays : MonoBehaviour {
         _numSegments = numSegments;
 
         var _fadeOffset = 0f;
-        var _fadeOffsetIncrement = 0.1f;
+        var _fadeOffsetIncrement = 5f / _numSegments;
         _segmentColor = new Color(BackgroundColor.r, BackgroundColor.g, BackgroundColor.b, 0f);
         if (_segments == null || _segments.Count != _numSegments)
         {
@@ -60,10 +62,17 @@ public class SatisfactionDisplays : MonoBehaviour {
                 _segments.Add(go.GetComponent<Image>());
             }
         }
-       
+
+        if (_satisfaction == -1f)
+        {
+            _satisfaction = satisfaction;
+        }
+        var increment = _satisfaction >= satisfaction ? 1 : -1;
+        var startValue = _satisfaction >= satisfaction ? 0 : _numSegments - 1;
+
         // disable segments
         var segmentsToDisable = _numSegments - ((satisfaction/100f)*_numSegments);
-        for (var i = 0; i < _numSegments; i++)
+        for (var i = startValue; i < _numSegments && i >= 0; i += increment)
         {
             var toDisable = i <= segmentsToDisable;
             // Check the segment should be the color as the background - Faded out
