@@ -24,7 +24,6 @@ public class DeviceLocation : MonoBehaviour {
 
     private enum LanguageMapping { Preston = 1, Belfast = 2, Nicosia = 3, Groningen = 4, Valencia = 5 }
     private LocationConfig _config;
-    private Image[] _images;
     private int _locationIndex;
     private GridLayoutGroup _gridLayout;
 
@@ -33,12 +32,6 @@ public class DeviceLocation : MonoBehaviour {
         _gridLayout = grid.GetComponent<GridLayoutGroup>();
         _config = this.GetComponent<LocationConfig>();
         _locationIndex = 0;
-        _images = new []{
-            EnglishButton.transform.GetChild(0).GetComponent<Image>(),
-            DutchButton.transform.GetChild(0).GetComponent<Image>(),
-            GreekButton.transform.GetChild(0).GetComponent<Image>(),
-            SpanishButton.transform.GetChild(0).GetComponent<Image>()
-        };
 
         SetButtonClicks();
 
@@ -71,31 +64,31 @@ public class DeviceLocation : MonoBehaviour {
     {
         shouldOverrideLanguage = true;
         overrideLanguage = SystemLanguage.English;
-        UpdateSelected(EnglishButton.transform);
+        LanguageSelectd();
     }
 
     private void SpanishSelected()
     {
         shouldOverrideLanguage = true;
         overrideLanguage = SystemLanguage.Spanish;
-        UpdateSelected(SpanishButton.transform);
+        LanguageSelectd();
     }
 
     private void DutchSelected()
     {
         shouldOverrideLanguage = true;
         overrideLanguage = SystemLanguage.Dutch;
-        UpdateSelected(DutchButton.transform);
+        LanguageSelectd();
     }
 
     private void GreekSelected()
     {
         shouldOverrideLanguage = true;
         overrideLanguage = SystemLanguage.Greek;
-        UpdateSelected(GreekButton.transform);
+        LanguageSelectd();
     }
 
-    public void OKSelected()
+    public void LanguageSelectd()
     {
         if (_locationIndex == 0)
         {
@@ -103,11 +96,6 @@ public class DeviceLocation : MonoBehaviour {
             StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LOCATION"), Color.yellow, true));
 
         } 
-        if (!IsAnyLanguageSelected())
-        {
-            // notify the player they need to select a language
-            StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LANGUAGE"), Color.yellow, true));
-        }
         else
         {
             //player has successfully set the location, no need to show the popup on load anymore
@@ -125,10 +113,6 @@ public class DeviceLocation : MonoBehaviour {
         var spanishParent = SpanishButton.transform.parent.gameObject;
 
         _locationIndex = locationSelected;
-        foreach (var image in _images)
-        {
-            image.enabled = false;
-        }
         if (locationSelected == 0)
         {
             // no language chosen, disable all language choices
@@ -174,27 +158,7 @@ public class DeviceLocation : MonoBehaviour {
                     break;
             }
             _gridLayout.cellSize = new Vector2(grid.rect.width/2f, grid.rect.height/2f);
-            UpdateSelected(EnglishButton.transform);
             TitleText.gameObject.SetActive(true);
         }
-    }
-
-    private void UpdateSelected(Transform selectedButton)
-    {
-        foreach (var image in _images)
-        {
-            image.enabled = image.transform.parent == selectedButton;
-        }
-    }
-
-    private bool IsAnyLanguageSelected()
-    {
-        // Check at least one of the buttons which is interactable has an active selected image
-        var languageSelected = false;
-        foreach (var image in _images)
-        {
-            languageSelected |= image.enabled && image.transform.parent.GetComponent<Button>().interactable;
-        }
-        return languageSelected;
     }
 }
