@@ -51,7 +51,7 @@ public class TurnManager : MonoBehaviour {
         m_IncidentManager.UpdateIncidents();
         //m_IncidentManager.CheckExpiredIncidents(turn);
 
-        if (m_IncidentManager.isGameOver())
+        if (m_IncidentManager.IsGameOver())
         {
             //GAME OVER
             GameOver.gameObject.SetActive(true);

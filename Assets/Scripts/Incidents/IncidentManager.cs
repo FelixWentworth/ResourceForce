@@ -30,7 +30,7 @@ public class IncidentManager : MonoBehaviour
     private Dictionary<int, IncidentHistory> _incidentHistories = new Dictionary<int, IncidentHistory>();
 
     private int _casesClosed;
-
+    private int _casesClosedThisTurn;
 #if SELECT_INCIDENTS
     private int incidentShowingIndex = 1;
 #endif
@@ -38,6 +38,7 @@ public class IncidentManager : MonoBehaviour
     {
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
         _casesClosed = 0;
+        _casesClosedThisTurn = 0;
 
     }
     public void CreateNewIncident(int zTurn)
@@ -184,8 +185,8 @@ public class IncidentManager : MonoBehaviour
             feedbackTransform.parent = GameObject.Find("Canvas").transform;
             StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, transitionTime, happiness));
         }
-        m_satisfactionDisplay.SetPulseAnim(isGameOver());
         _casesClosed++;
+        _casesClosedThisTurn++;
     }
     public void EndTurn()
     {
@@ -193,7 +194,9 @@ public class IncidentManager : MonoBehaviour
         happiness -= GetEndTurnSatisfactionDeduction();
         happiness = Mathf.Clamp(happiness, 0, 100);
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
-        m_satisfactionDisplay.SetPulseAnim(isGameOver());
+
+        // reset the number of cases closed this turn
+        _casesClosedThisTurn = 0;
     }
     public void ClearList()
     {
@@ -304,16 +307,29 @@ public class IncidentManager : MonoBehaviour
             var tmp = this.gameObject.GetComponent<TurnManager>();
             tmp.NextTurnButton.SetActive(true);
 			tmp.EndTurnSatisfaction.gameObject.SetActive(true);
+
+            // Get our updated statistics
+            var total = GetTotalCasesCount();
             var ignored = GetIgnoredCasesCount();
-            if (ignored > 0)
-            {
-                var satisfactionText = Localization.Get("BASIC_TEXT_SATISFACTION_END_TURN");
-                tmp.EndTurnSatisfaction.text = string.Format(satisfactionText, ignored, ignored > 1 ? "s" : "", GetEndTurnSatisfactionDeduction());
-            }
-            else
-            {
-                tmp.EndTurnSatisfaction.text = Localization.Get("BASIC_TEXT_NO_IGNORED_CASES");
-            }
+            var active = GetActiveCaseCount();
+            var actionTaken = GetDeployedCaseCount();
+
+            var casesClosed = GetTotalCasesClosed();
+            var casesClosedThisTurn = GetTurnClosedCaseCount();
+
+            var satisfactionImpact = GetEndTurnSatisfactionDeduction();
+
+            var text = "";
+            text += "<size=75>" + Localization.Get("BASIC_TEXT_STATUS_UPDATE") + "</size>";
+            text += "\n<size=60>" + Localization.Get("BASIC_TEXT_CASES") + ": " + total;
+            text += "\n" + Localization.Get("BASIC_TEXT_CLOSED") + ": " + casesClosed + "</size>";
+            text += casesClosed > 0 ? "\n" + Localization.Get("BASIC_TEXT_THIS_TURN") + ": " + casesClosedThisTurn : "";
+            text += "\n<size=60>" + Localization.Get("BASIC_TEXT_ACTIVE") + ": " + active + "</size>";
+            text += "\n" + Localization.Get("BASIC_TEXT_ACTION_TAKEN") + ": " + actionTaken;
+            text += "\n" + Localization.Get("BASIC_TEXT_IGNORED") + ": " + ignored;
+            text += "\n" + Localization.Get("BASIC_TEXT_SATISFACTION_IMPACT") + ": " + (satisfactionImpact > 0 ? "-" + satisfactionImpact: "0");
+
+            tmp.EndTurnSatisfaction.text = text;
         }
         else
             ShowIncident(currentTurn);
@@ -333,7 +349,7 @@ public class IncidentManager : MonoBehaviour
             }
         }
     }
-    public bool isGameOver()
+    public bool IsGameOver()
     {
         return GetHappiness() < 10f;
     }
@@ -342,10 +358,11 @@ public class IncidentManager : MonoBehaviour
         return Mathf.RoundToInt(happiness);
     }
 
-    public int GetTotalCasesClosed()
-    {
-        return _casesClosed;
-    }
+   
+    /// <summary>
+    /// Gets the total severity of all active cases
+    /// </summary>
+    /// <returns></returns>
     public int GetTotalSeverity()
     {
         var total = 0;
@@ -358,6 +375,10 @@ public class IncidentManager : MonoBehaviour
         }
         return total;
     }
+    /// <summary>
+    /// The number of cases that the player has chosen to ignore this turn
+    /// </summary>
+    /// <returns></returns>
     public int GetIgnoredCasesCount()
     {
         var total = 0;
@@ -371,6 +392,75 @@ public class IncidentManager : MonoBehaviour
         return total;
     }
 
+    /// <summary>
+    /// The total number of cases that are currently active
+    /// </summary>
+    /// <returns></returns>
+    public int GetActiveCaseCount()
+    {
+        var total = 0;
+        foreach (var i in m_IncidentQueue.allCases)
+        {
+            if (i.m_state == IncidentCase.State.Waiting 
+                || i.m_state == IncidentCase.State.CitizenRequest 
+                || i.m_state == IncidentCase.State.OfficersSent)
+            {
+                total += 1;
+            }
+        }
+        return total;
+    }
+
+    /// <summary>
+    /// The number of cases that are active and have an action taken (that is not ignore)
+    /// </summary>
+    /// <returns></returns>
+    public int GetDeployedCaseCount()
+    {
+        var total = 0;
+
+        foreach (var incidentCase in m_IncidentQueue.allCases)
+        {
+            if (incidentCase.m_state == IncidentCase.State.OfficersSent ||
+                incidentCase.m_state == IncidentCase.State.CitizenRequest)
+            {
+                total++;
+            }
+        }
+        return total;
+    }
+
+    /// <summary>
+    /// Gets the total number of cases closed
+    /// </summary>
+    /// <returns></returns>
+    public int GetTotalCasesClosed()
+    {
+        return _casesClosed;
+    }
+
+    /// <summary>
+    /// Gets a total number of cases closed this turn
+    /// </summary>
+    /// <returns></returns>
+    public int GetTurnClosedCaseCount()
+    {
+        return _casesClosedThisTurn;
+    }
+
+    /// <summary>
+    /// Gets the total number of cases that there have been
+    /// </summary>
+    /// <returns></returns>
+    public int GetTotalCasesCount()
+    {
+        return _casesClosed + GetActiveCaseCount();
+    }
+
+    /// <summary>
+    /// Gets the amount of satisfaction a player loses through ignored cases
+    /// </summary>
+    /// <returns></returns>
     public int GetEndTurnSatisfactionDeduction()
     {
         return GetTotalSeverity()*2;
