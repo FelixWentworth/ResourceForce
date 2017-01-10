@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Specialized;
 using System.Net;
 using System.Net.Security;
@@ -11,27 +12,47 @@ public class ElasticEmail : MonoBehaviour {
     private const string ApiKey = "cdcae26d-1fb8-4565-9b8f-1495d1023c26";
     private const string Address = "https://api.elasticemail.com/v2/email/send";
 
-    public static void Send(string subject, string bodyText)
+    private static EmailHandler _emailHandlerInstance;
+
+    public static WWWForm GetForm(string subject, string bodyText)
     {
-        var values = new NameValueCollection
-            {
-                {"apikey", ApiKey},
-                {"from", "inspec2t-feedback@playgen.com"},
-                {"fromName", "Resource Force Feedback"},
-                {"to", "inspec2t-feedback@playgen.com"},
-                {"subject", subject},
-                {"bodyText", bodyText},
-                {"isTransactional", "true"}
-            };
+        var form = new WWWForm();
+        form.AddField("apiKey", ApiKey);
+        form.AddField("from", "inspec2t-feedback@playgen.com");
+        form.AddField("fromName", "Resource Force");
+        form.AddField("to", "inspec2t-feedback@playgen.com");
+        form.AddField("subject", subject);
+        form.AddField("bodyText", bodyText);
+        form.AddField("isTransactional", "true");
 
-        // Fix for authentication decryption failure: found here http://stackoverflow.com/questions/4926676/mono-https-webrequest-fails-with-the-authentication-or-decryption-has-failed
-        ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
-
-        var response = SendEmail(Address, values);
-
-        Debug.Log(response);
+        return form;
     }
 
+    public static string GetAddress()
+    {
+        return Address;
+    }
+    public static void Send(string subject, string bodyText)
+    {
+
+        //var values = new NameValueCollection
+        //    {
+        //        {"apikey", ApiKey},
+        //        {"from", "inspec2t-feedback@playgen.com"},
+        //        {"fromName", "Resource Force"},
+        //        {"to", "inspec2t-feedback@playgen.com"},
+        //        {"subject", subject},
+        //        {"bodyText", bodyText},
+        //        {"isTransactional", "true"}
+        //    };
+
+        // Fix for authentication decryption failure: found here http://stackoverflow.com/questions/4926676/mono-https-webrequest-fails-with-the-authentication-or-decryption-has-failed
+        //ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
+
+        //var response = SendEmail(Address, values);
+
+        //Debug.Log(response);
+    }
     private static string SendEmail(string address, NameValueCollection values)
     {
         using (var client = new WebClient())
@@ -72,5 +93,18 @@ public class ElasticEmail : MonoBehaviour {
             }
         }
         return isOk;
+    }
+}
+
+public class EmailHandler : MonoBehaviour
+{
+    public void SendEmail(string address, WWWForm form)
+    {
+        StartCoroutine(Send(address, form));
+    }
+    public IEnumerator Send(string address, WWWForm form)
+    {
+        var www = new WWW(address, form);
+        yield return www;
     }
 }

@@ -46,7 +46,7 @@ public class ScenarioTracker : MonoBehaviour {
 
     #region Reporting Scenario Issues
 
-    public static void ReportScenarioIssue(string subject, string body, string currentScenarioNum, string currentScenarioIndex, string currentTestSite, string currentLanguage)
+    public static string GetScenarioHistory(string body, string currentScenarioNum, string currentScenarioIndex, string currentTestSite, string currentLanguage)
     {
         // before we send the report we want to attach incident after body text
 
@@ -63,8 +63,10 @@ public class ScenarioTracker : MonoBehaviour {
             + "Scenario History" + "\n\n" + scenarioData;
 
         // Send the report
-        ElasticEmail.Send(subject, body);
+        return body;
     }
+
+    
 
     #endregion
 

@@ -144,40 +144,56 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
+#region send emails
     public void Report()
     {
-        FeedbackObject.Setup(SendReport);
+        FeedbackObject.Setup(SendReportEmail);
         FeedbackObject.gameObject.SetActive(true);
     }
 
-    public void SendReport(string body)
+    public void SendReportEmail(string body)
+    {
+        StartCoroutine(SendReport(body));
+    }
+    public IEnumerator SendReport(string body)
     {
         FeedbackObject.gameObject.SetActive(false);
         var currentIncident = m_IncidentManager.NextIncident[0];
         var subject = "SCENARIO ISSUE";
+
+        var bodyWithScenarioHistory = "";
         if (currentIncident != null)
         {
-
-            ScenarioTracker.ReportScenarioIssue(subject, body, currentIncident.scenarioNum.ToString(),
+            bodyWithScenarioHistory = ScenarioTracker.GetScenarioHistory(body, currentIncident.scenarioNum.ToString(),
                 currentIncident.index.ToString(), Location.CurrentLocation,
                 (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
         }
         else
         {
-            ScenarioTracker.ReportScenarioIssue(subject, body, "", "", "", "");
+            bodyWithScenarioHistory = ScenarioTracker.GetScenarioHistory(body, "", "", "", "");
         }
+
+        var www = new WWW(ElasticEmail.GetAddress(), ElasticEmail.GetForm(subject, bodyWithScenarioHistory));
+        yield return www;
     }
 
     public void SendFeedback()
     {
-        FeedbackObject.Setup(SendFeedback);
+        FeedbackObject.Setup(SendFeedbackEmail);
         FeedbackObject.gameObject.SetActive(true);
     }
 
-    public void SendFeedback( string body)
+    public void SendFeedbackEmail(string body)
+    {
+        StartCoroutine(SendFeedback(body));
+    }
+    public IEnumerator SendFeedback( string body)
     {
         FeedbackObject.gameObject.SetActive(false);
         var subject = "FEEDBACK";
-        ElasticEmail.Send(subject, body);
+
+        var www = new WWW(ElasticEmail.GetAddress(), ElasticEmail.GetForm(subject, body));
+        yield return www;
     }
+#endregion
 }
