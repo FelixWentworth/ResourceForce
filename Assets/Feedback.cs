@@ -15,14 +15,14 @@ public class Feedback : MonoBehaviour
 
     private UnityAction<string> _sendAction;
 
-    private Text _feedbackText;
+    private InputField _feedbackText;
 
     public void Setup(UnityAction<string> action)
     {
         _cancelButton = transform.FindChild("Panel/FooterPanel/CancelButton").GetComponent<Button>();
         _sendButton = transform.FindChild("Panel/FooterPanel/SendButton").GetComponent<Button>();
 
-        _feedbackText = transform.FindChild("Panel/BodyPanel/Feedback/Text").GetComponent<Text>();
+        _feedbackText = transform.FindChild("Panel/BodyPanel/Feedback").GetComponent<InputField>();
 
         _feedbackText.text = "";
 
