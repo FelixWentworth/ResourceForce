@@ -60,6 +60,7 @@
 {"key":"BASIC_TEXT_IGNORED","en-gb":"Ignored","de":"XXXX","el":"XXXX","es":"Ignorado"},
 {"key":"BASIC_TEXT_SATISFACTION_IMPACT","en-gb":"Satisfaction Impact","de":"XXXX","el":"XXXX","es":"Impacto de satisfacción"},
 {"key":"BASIC_TEXT_STATUS_UPDATE","en-gb":"Status Update","de":"XXXX","el":"XXXX","es":"actualización de estado"},
+{"key":"BASIC_TEXT_SKIP","en-gb":"Skip","de":"XXXX","el":"XXXX","es":"Omitir"},
 {"key":"WELCOME_SCREEN_SET_LOCATION","en-gb":"Please set your location below to get the best experience!","de":"XXXX","el":"XXXX","es":"Por favor, establezca su ubicación a continuación para obtener la mejor experiencia!"},
 {"key":"START_SCREEN_INSPECT_TEXT","en-gb":"Help your local police force to solve real crimes with the Inspec2t app","de":"XXXX","el":"XXXX","es":"Ayude a su policía local a resolver crímenes reales con la aplicación Inspec2t"},
 {"key":"TUTORIAL_TEXT_HOW_TO_PLAY","en-gb":"How To Play","de":"XXXX","el":"XXXX","es":"Cómo jugar"},

@@ -42,7 +42,7 @@ public class Tutorial : MonoBehaviour {
     }
     public void NextStep()
     {
-        int step = (int)currentPoint;
+        var step = (int)currentPoint;
         step++;
         if (step <= tutorialObjects.Length - 1)
         {
@@ -51,10 +51,23 @@ public class Tutorial : MonoBehaviour {
         }
         else
         {
-            DeactivateAll();
-            inputBlocker.SetActive(false);
-            Screenshot.SetActive(false);
-            PlayerPrefs.SetInt("NewPlayer", 1);
+            CloseTutorial();
         }
+    }
+
+    public void Skip()
+    {
+        CloseTutorial();
+    }
+
+    private void CloseTutorial()
+    {
+        DeactivateAll();
+        inputBlocker.SetActive(false);
+        Screenshot.SetActive(false);
+
+        this.gameObject.SetActive(false);
+
+        PlayerPrefs.SetInt("NewPlayer", 1);
     }
 }
