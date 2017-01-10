@@ -28,7 +28,7 @@ public class SatisfactionDisplays : MonoBehaviour {
         warningBG.color = new Color(FadeGB.r, FadeGB.g, FadeGB.b, 1f - (satisfaction / 100f));
         AudioManager.Instance.SetBackgroundMusicBalance(satisfaction);
 
-        _numSegments = 50;
+        _numSegments = 25;
         SetSegments(satisfaction, _numSegments);
     }
 

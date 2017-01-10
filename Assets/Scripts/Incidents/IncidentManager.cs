@@ -216,6 +216,8 @@ public class IncidentManager : MonoBehaviour
         var currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
 #endif
+        ScenarioTracker.AddDecision(currentIncident.scenarioNum.ToString(), currentIncident.index.ToString(), "Ignore", Location.CurrentLocation, (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
+
         m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().WaitPressed(ref currentIncident);
        // GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
@@ -233,6 +235,7 @@ public class IncidentManager : MonoBehaviour
 
         AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Ignore);
 
+
         ShowNext();
     }
     public void ResolvePressed()
@@ -244,6 +247,8 @@ public class IncidentManager : MonoBehaviour
         var currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
 #endif
+        ScenarioTracker.AddDecision(currentIncident.scenarioNum.ToString(), currentIncident.index.ToString(), "Officer", Location.CurrentLocation, (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
+
         m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
             
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().OfficerPressed(ref currentIncident);
@@ -262,6 +267,7 @@ public class IncidentManager : MonoBehaviour
 
         AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Officer);
 
+
         ShowNext();
     }
 
@@ -275,6 +281,8 @@ public class IncidentManager : MonoBehaviour
         var currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
 #endif
+        ScenarioTracker.AddDecision(currentIncident.scenarioNum.ToString(), currentIncident.index.ToString(), "Citizen", Location.CurrentLocation, (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
+
         m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
         m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.CitizenRequest);
         //make sure the incident is updated next turn, we will handle the citizen request result when we next show the incident
@@ -291,6 +299,7 @@ public class IncidentManager : MonoBehaviour
         }
 
         AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Citizen);
+
 
         ShowNext();
     }

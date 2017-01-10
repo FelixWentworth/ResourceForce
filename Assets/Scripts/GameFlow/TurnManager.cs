@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour {
@@ -18,8 +19,11 @@ public class TurnManager : MonoBehaviour {
     public GameObject startScreen;
     public GameObject settingsScreen;
     public GameObject SettingsScreenQuitToMenuOption;
+    public GameObject SettingsScreenScenarioReportOption;
     public GameObject NextTurnButton;
     public GameObject EndTurnSatisfaction;
+
+    public Feedback FeedbackObject;
 
     public Tutorial Tutorial;
 
@@ -28,11 +32,14 @@ public class TurnManager : MonoBehaviour {
 		EndTurnSatisfaction.SetActive(false);
 		GameOver.gameObject.SetActive(false);
         settingsScreen.SetActive(false);
+        FeedbackObject.gameObject.SetActive(false);
         startScreen.SetActive(true);
         m_IncidentManager = this.GetComponent<IncidentManager>();
     }
 	public void StartGame()
     {
+        ScenarioTracker.ClearHistory();
+
         NextTurn();
     }
 	private void NextTurn()
@@ -84,13 +91,14 @@ public class TurnManager : MonoBehaviour {
     }
     public void GoToInspect()
     {
-        SendEmail();
+        SendFeedback();
+        //SendEmail();
         //Application.OpenURL("http://inspec2t-project.eu/en/");
     }
     void SendEmail()
     {
         string email = "felix@playgen.com";
-        string subject = MyEscapeURL("Resource Force Feedback");
+        string subject = MyEscapeURL("Resource Force");
         string body = MyEscapeURL("");
         Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + body);
     }
@@ -103,6 +111,7 @@ public class TurnManager : MonoBehaviour {
         //we could set Time.scale to 0 but there is little need so we will just show the pause screen
         AudioManager.Instance.PositiveButtonPress();
         SettingsScreenQuitToMenuOption.SetActive(!startScreen.activeSelf);
+        SettingsScreenScenarioReportOption.SetActive(!startScreen.activeSelf);
         settingsScreen.SetActive(!settingsScreen.activeSelf);
     }
     public void ResumeGame()
@@ -133,5 +142,42 @@ public class TurnManager : MonoBehaviour {
         {
             PauseGame();
         }
+    }
+
+    public void Report()
+    {
+        FeedbackObject.Setup(SendReport);
+        FeedbackObject.gameObject.SetActive(true);
+    }
+
+    public void SendReport(string body)
+    {
+        FeedbackObject.gameObject.SetActive(false);
+        var currentIncident = m_IncidentManager.NextIncident[0];
+        var subject = "SCENARIO ISSUE";
+        if (currentIncident != null)
+        {
+
+            ScenarioTracker.ReportScenarioIssue(subject, body, currentIncident.scenarioNum.ToString(),
+                currentIncident.index.ToString(), Location.CurrentLocation,
+                (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
+        }
+        else
+        {
+            ScenarioTracker.ReportScenarioIssue(subject, body, "", "", "", "");
+        }
+    }
+
+    public void SendFeedback()
+    {
+        FeedbackObject.Setup(SendFeedback);
+        FeedbackObject.gameObject.SetActive(true);
+    }
+
+    public void SendFeedback( string body)
+    {
+        FeedbackObject.gameObject.SetActive(false);
+        var subject = "FEEDBACK";
+        ElasticEmail.Send(subject, body);
     }
 }

@@ -119,4 +119,9 @@
 {"key":"TIPS_OFFICERS","en-gb":"{0} Officers Available*n*A limited number available so be careful, you never know when a severe incident may occur","de":"XXXX","el":"XXXX","es":"{0} Oficiales Disponibles *n* Un número limitado disponible, así que ten cuidado, nunca se sabe cuándo puede ocurrir un incidente grave"},
 {"key":"TIPS_TURN","en-gb":"{0} Turn Survived*n*Each turn will consist of a number of cases with choices to make","de":"XXXX","el":"XXXX","es":"{0} Turn Survived *n* Cada turno consistirá en un número de casos con opciones para hacer"},
 {"key":"TIPS_TURNS","en-gb":"{0} Turns Survived*n*Each turn will consist of a number of cases with choices to make","de":"XXXX","el":"XXXX","es":"{0} Turnos Sobrevividos *n* Cada turno consistirá en un número de casos con opciones para hacer"},
-{"key":"SCENARIO_TITLE_RESOLUTION","en-gb":"Resolution","de":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"SCENARIO_TITLE_RESOLUTION","en-gb":"Resolution","de":"XXXX","el":"XXXX","es":"Resolución"},
+{"key":"BASIC_TEXT_SEND_FEEDBACK","en-gb":"Send Feedback","de":"XXXX","el":"XXXX","es":"Enviar comentarios"},
+{"key":"BASIC_TEXT_SUBJECT","en-gb":"Subject","de":"XXXX","el":"XXXX","es":"Tema"},
+{"key":"BASIC_TEXT_CANCEL","en-gb":"Cancel","de":"XXXX","el":"XXXX","es":"Cancelar"},
+{"key":"BASIC_TEXT_SEND","en-gb":"Send","de":"XXXX","el":"XXXX","es":"Enviar"},
+{"key":"BASIC_TEXT_REPORT_SCENARIO","en-gb":"Report Scenario problem","de":"XXXX","el":"XXXX","es":"Problema del escenario del informe"}]

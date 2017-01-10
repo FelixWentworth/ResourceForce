@@ -10,6 +10,8 @@ public class Location : MonoBehaviour {
 
     public int numIncidents { get; private set; }
 
+    public static string CurrentLocation { get; private set; }
+
 	// Use this for initialization
 	void Awake() {
         int siteNum = PlayerPrefs.GetInt("site");
@@ -28,20 +30,26 @@ public class Location : MonoBehaviour {
         {
             case Site.Preston:
                 numIncidents = 20;
+                CurrentLocation = "Preston";
                 return "_Preston";
             case Site.Belfast:
                 numIncidents = 2;
+                CurrentLocation = "Belfast";
                 return "_Belfast";
             case Site.Nicosia:
                 numIncidents = 10;
+                CurrentLocation = "Nicosia";
                 return "_Nicosia";
             case Site.Groningen:
                 numIncidents = 2;
+                CurrentLocation = "Groningen";
                 return "_Groningen";
             case Site.Valencia:
                 numIncidents = 20;
+                CurrentLocation = "Valencia";
                 return "_Valencia";
             default:
+                CurrentLocation = "Preston";
                 return "_Preston";
         }
         
