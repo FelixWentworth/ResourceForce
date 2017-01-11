@@ -133,6 +133,13 @@ public class IncidentDifficultyManager : MonoBehaviour
         return incident;
     }
 
+    /// <summary>
+    /// Determine if the game should award the player more officers
+    /// </summary>
+    /// <param name="target">The target number of officers needed</param>
+    /// <param name="available">The number of available officers</param>
+    /// <param name="turnNumber">The current turn number</param>
+    /// <returns></returns>
     private bool ShouldAwardMoreOfficers(int target, int available, int turnNumber)
     {
         var chanceOfNewOfficer = GetChanceForExtraOfficer(target - available, turnNumber);
@@ -143,6 +150,15 @@ public class IncidentDifficultyManager : MonoBehaviour
         return random > chanceOfNewOfficer;
     }
 
+    /// <summary>
+    /// Get a list of new incidents to show at the new turn stage
+    /// </summary>
+    /// <param name="currentIncidents">List of current incidents</param>
+    /// <param name="totalOfficers">The total officers available</param>
+    /// <param name="turnNumber">The current turn number</param>
+    /// <param name="availableOfficers">The number of available officers</param>
+    /// <param name="AddOfficersAction">An action to call if the player is awarded more officers</param>
+    /// <returns></returns>
     public List<Incident> GetNewIncidents(List<Incident> currentIncidents, int totalOfficers, int turnNumber, int availableOfficers, UnityAction<int> AddOfficersAction)
     {
         var incidentList = new List<Incident>();
