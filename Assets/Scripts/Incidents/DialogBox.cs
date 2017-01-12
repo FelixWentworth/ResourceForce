@@ -216,7 +216,7 @@ public class DialogBox : MonoBehaviour {
 
         yield return EmailAnim(1f, "EmailShow");
         //wait for more officers to become available
-        _incidentManager.WaitPressed();
+        _incidentManager.WaitPressed(); 
     }
 
 	private IEnumerator ShowTip(int max, string preText)

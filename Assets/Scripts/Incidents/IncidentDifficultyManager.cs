@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -127,7 +128,7 @@ public class IncidentDifficultyManager : MonoBehaviour
         {
             _incidentLoader.CreateNewIncident(ref incident);
         }
-        while (incident == null || incident.officerIndex == -1 || incident.officer > officerRequirementLimit);
+        while (incident.officerIndex == -1 || incident.officer > officerRequirementLimit);
 
         return incident;
     }
@@ -158,7 +159,7 @@ public class IncidentDifficultyManager : MonoBehaviour
     /// <param name="availableOfficers">The number of available officers</param>
     /// <param name="AddOfficersAction">An action to call if the player is awarded more officers</param>
     /// <returns></returns>
-    public List<Incident> GetNewIncidents(List<Incident> currentIncidents, int totalOfficers, int turnNumber, int availableOfficers, UnityAction<int> AddOfficersAction)
+    public List<Incident> GetNewIncidents(List<Incident> currentIncidents, int maximumIncidentx, int totalOfficers, int turnNumber, int availableOfficers, UnityAction<int> AddOfficersAction)
     {
         var incidentList = new List<Incident>();
 
@@ -168,6 +169,7 @@ public class IncidentDifficultyManager : MonoBehaviour
         var newIncidentOfficerLimit = GetTotalOfficersRequiredForNewIncidents(totalOfficers, turnNumber,
             worstOfficerUsage, bestOfficerUsage);
 
+        var currentIncidentsShowing = currentIncidents.Count;
 
         if (newIncidentOfficerLimit == 0)
         {
@@ -175,7 +177,7 @@ public class IncidentDifficultyManager : MonoBehaviour
         }
         else
         {
-            while (newIncidentOfficerLimit > 0)
+            while (newIncidentOfficerLimit > 0 ) 
             {
                 var newIncident = GetNewIncident(newIncidentOfficerLimit);
                 newIncidentOfficerLimit -= newIncident.officer;
@@ -184,7 +186,17 @@ public class IncidentDifficultyManager : MonoBehaviour
             }
         }
 
-        incidentList.Sort((a, b) => a.citizenIndex.CompareTo(b.citizenIndex));
+        //select the most officer intensive 
+        incidentList.Sort((a, b) => a.officer.CompareTo(b.officer));
+
+        var countNewIncidents = maximumIncidentx - currentIncidentsShowing;
+
+        if (incidentList.Count > countNewIncidents)
+        {
+            incidentList = incidentList.Take(countNewIncidents).ToList();
+        }
+
+        //incidentList.Sort((a, b) => a.citizenIndex.CompareTo(b.citizenIndex));
 
         // Check the player has enough officers to complete the round
         var officersRequired = newIncidentOfficerLimit > availableOfficers;

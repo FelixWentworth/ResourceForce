@@ -97,7 +97,7 @@ public class IncidentManager : MonoBehaviour
         var totalOfficersAvailable = OfficerController.TotalOfficers;
         var currentOfficersAvailable = OfficerController.GetAvailable();
 
-        var newIncidents = _incidentDifficultyManager.GetNewIncidents(ongoingIncidents, totalOfficersAvailable, turn +1,
+        var newIncidents = _incidentDifficultyManager.GetNewIncidents(ongoingIncidents, MaxIncidents, totalOfficersAvailable, turn +1,
            currentOfficersAvailable, null);
 
         if (newIncidents != null)
@@ -233,6 +233,8 @@ public class IncidentManager : MonoBehaviour
             feedbackTransform.parent = GameObject.Find("Canvas").transform;
             StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, transitionTime, happiness));
         }
+
+
         _casesClosed++;
         _casesClosedThisTurn++;
     }
@@ -396,11 +398,15 @@ public class IncidentManager : MonoBehaviour
             if (incidents[i].caseNumber == caseNumber)
             {
                 //we have found the case to remove
+                m_IncidentQueue.ChangeCaseState(caseNumber, IncidentCase.State.Resolved);
                 m_IncidentQueue.RemoveFromQueue(incidents[i].caseNumber);
 
                 CaseClosed(incidents[i].satisfactionImpact, transitionTime);
+
                 incidents.RemoveAt(i);
                 i--;
+
+
             }
         }
     }
