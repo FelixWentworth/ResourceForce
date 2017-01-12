@@ -170,9 +170,6 @@ public class IncidentDifficultyManager : MonoBehaviour
         var newIncidentOfficerLimit = GetTotalOfficersRequiredForNewIncidents(totalOfficers, turnNumber,
             worstOfficerUsage, bestOfficerUsage);
 
-
-        Debug.Log("Target officers for players to use this turn: " + newIncidentOfficerLimit);
-
         var currentIncidentsShowing = currentIncidents.Count;
 
         if (newIncidentOfficerLimit == 0)
