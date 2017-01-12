@@ -169,7 +169,7 @@ public class IncidentManager : MonoBehaviour
         }
         //CreateNewIncident(turn);
 
-        Incident currentIncident = NextIncident[0];
+        var currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
         SatisfactionImpactGameObject.SetActive(false);
 #if SELECT_INCIDENTS
@@ -580,7 +580,7 @@ public class IncidentManager : MonoBehaviour
 
     private void AddHappiness(int value)
     {
-        value *= 2;
+        // value *= 2;
 
         happiness += value;
     }

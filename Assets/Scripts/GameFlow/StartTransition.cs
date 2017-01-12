@@ -45,7 +45,7 @@ public class StartTransition : MonoBehaviour {
     }
     private void FadeBackgrounds()
     {
-        SetObjects(false);
+       
         //now fade the background image
         //on completion notify the turn manager that the start transition is done
         if (PlayerPrefs.GetInt("NewPlayer") == 0)
@@ -56,11 +56,10 @@ public class StartTransition : MonoBehaviour {
         }
         else
         {
+            SetObjects(false);
             GameObject.Find("TurnManager").GetComponent<TurnManager>().StartGame();
+            StartCoroutine(FadeBackground());
         }
-        
-        StartCoroutine(FadeBackground());
-        
     }
     IEnumerator FadeBackground()
     {

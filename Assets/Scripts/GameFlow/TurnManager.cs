@@ -72,7 +72,7 @@ public class TurnManager : MonoBehaviour {
             _incidentManager.IsIncidentWaitingToShow(turn);    //not using the bool callback to populate the next incident list
             //_incidentManager.CreateNewIncident(turn);
 
-            _incidentManager.AddNewIncidents(_incidentManager.incidents, turn);
+            _incidentManager.AddNewIncidents(_incidentManager.NextIncident, turn);
 
 #if SELECT_INCIDENTS
             GameObject.Find("IncidentDialog").GetComponent<DialogBox>().DeactivateAll();
@@ -97,13 +97,6 @@ public class TurnManager : MonoBehaviour {
         SendFeedback();
         //SendEmail();
         //Application.OpenURL("http://inspec2t-project.eu/en/");
-    }
-    void SendEmail()
-    {
-        string email = "felix@playgen.com";
-        string subject = MyEscapeURL("Resource Force");
-        string body = MyEscapeURL("");
-        Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + body);
     }
     string MyEscapeURL(string url)
     {

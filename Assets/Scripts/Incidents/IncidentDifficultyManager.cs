@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.VR.WSA.Input;
 
 public class IncidentDifficultyManager : MonoBehaviour
 {
-    private const float MaxOfficerUsePercentage = 0.8f;
-    private const int TurnsToMaxOfficer = 5;
+    private const float MaxOfficerUsePercentage = 1.0f;
+    private const int TurnsToMaxOfficer = 3;
 
     private SimplifiedJson _incidentLoader;
 
@@ -184,6 +183,8 @@ public class IncidentDifficultyManager : MonoBehaviour
                 incidentList.Add(newIncident);
             }
         }
+
+        incidentList.Sort((a, b) => a.citizenIndex.CompareTo(b.citizenIndex));
 
         // Check the player has enough officers to complete the round
         var officersRequired = newIncidentOfficerLimit > availableOfficers;

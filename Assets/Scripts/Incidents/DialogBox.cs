@@ -50,7 +50,7 @@ public class DialogBox : MonoBehaviour {
     private List<Transform> _ratingTransforms;
 
     void Start()
-    {
+    {        
         _citizenHelpButton = ButtonPanel.FindChild("CitizenHelpButton").gameObject;
         _sendOfficerButton = ButtonPanel.FindChild("SendOfficersButton").gameObject;
         _waitButton = ButtonPanel.FindChild("WaitButton").gameObject;

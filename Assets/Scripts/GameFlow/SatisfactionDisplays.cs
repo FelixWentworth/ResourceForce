@@ -22,11 +22,15 @@ public class SatisfactionDisplays : MonoBehaviour {
 
     private float _satisfaction = -1f;
 
+    private Text _satisfactionValue;
+
     public void SetSatisfactionDisplays(float satisfaction)
     {
         //mySlider.anchoredPosition = new Vector2(myRect.rect.width - ((myRect.rect.width / 100f) * satisfaction),0f);
         warningBG.color = new Color(FadeGB.r, FadeGB.g, FadeGB.b, 1f - (satisfaction / 100f));
         AudioManager.Instance.SetBackgroundMusicBalance(satisfaction);
+
+        SetSatisfactionText(Mathf.RoundToInt(satisfaction));
 
         _numSegments = 25;
         SetSegments(satisfaction, _numSegments);
@@ -95,6 +99,8 @@ public class SatisfactionDisplays : MonoBehaviour {
                
             }
         }
+
+        SetSatisfactionText(Mathf.RoundToInt(satisfaction));
     }
 
     public IEnumerator TransitionTo(Transform myTransform, float time, float value)
@@ -134,5 +140,15 @@ public class SatisfactionDisplays : MonoBehaviour {
         }
 
         image.color = endColor;
+    }
+
+    private void SetSatisfactionText(int satisfaction)
+    {
+        if (_satisfactionValue == null)
+        {
+            _satisfactionValue = transform.FindChild("SatisfactionValueText").GetComponent<Text>();
+        }
+
+        _satisfactionValue.text = satisfaction + "%";
     }
 }
