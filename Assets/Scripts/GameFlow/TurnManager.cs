@@ -154,12 +154,13 @@ public class TurnManager : MonoBehaviour {
     public IEnumerator SendReport(string body)
     {
         FeedbackObject.gameObject.SetActive(false);
-        var currentIncident = _incidentManager.NextIncident[0];
+       
         var subject = "SCENARIO ISSUE";
-
         var bodyWithScenarioHistory = "";
-        if (currentIncident != null)
+        if (_incidentManager.NextIncident.Count > 0)
         {
+            var currentIncident = _incidentManager.NextIncident[0];
+        
             bodyWithScenarioHistory = ScenarioTracker.GetScenarioHistory(body, currentIncident.scenarioNum.ToString(),
                 currentIncident.index.ToString(), Location.CurrentLocation,
                 (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));

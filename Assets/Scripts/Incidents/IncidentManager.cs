@@ -524,7 +524,7 @@ public class IncidentManager : MonoBehaviour
     /// <returns></returns>
     public int GetEndTurnSatisfactionDeduction()
     {
-        return GetTotalSeverity()*2;
+        return GetTotalSeverity()*4;
     }
 
     public Color GetSeverityColor(int severity)
