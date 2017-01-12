@@ -10,9 +10,10 @@ public class IncidentManager : MonoBehaviour
 {
     public List<Incident> incidents = new List<Incident>();
     private SimplifiedJson jsonReader;
+    private IncidentDifficultyManager _incidentDifficultyManager;
 
     public List<Incident> NextIncident = new List<Incident>();
-    OfficerController m_OfficerController;
+    public OfficerController OfficerController;
 
     public Text CaseStatus;
     public IncidentQueue m_IncidentQueue;
@@ -33,6 +34,8 @@ public class IncidentManager : MonoBehaviour
 
     private int _casesClosed;
     private int _casesClosedThisTurn;
+
+    private const int MaxIncidents = 5;
    
 #if SELECT_INCIDENTS
     private int incidentShowingIndex = 1;
@@ -45,35 +48,73 @@ public class IncidentManager : MonoBehaviour
     }
     public void CreateNewIncident(int zTurn)
     {
-        if (incidents.Count == 10)
-        {
-            //we do not have the space for any more incidents
-            return;
-        }
         //now get a random incident data from JSON file
         if (jsonReader == null)
             jsonReader = this.GetComponent<SimplifiedJson>();
-		// create new incidents, randome amount between 1 and 3
-	    var num = UnityEngine.Random.Range(1, 4);
-	    for (int i = 0; i < num; i++)
-	    {
-			Incident newIncident = new Incident();
-			if (incidents.Count == 10)
-			    return;
+        if (_incidentDifficultyManager == null)
+        {
+            _incidentDifficultyManager = this.GetComponent<IncidentDifficultyManager>();
+        }
+        // create new incidents, randome amount between 1 and 3
+
+        var num = UnityEngine.Random.Range(1, 4);
+        for (int i = 0; i < num; i++)
+        {
+            if (incidents.Count >= MaxIncidents)
+            {
+                return;
+            }
+            var newIncident = new Incident();
 #if ALLOW_DUPLICATE_INCIDENTS
             jsonReader.CreateNewIncident(ref newIncident);
 #else
             jsonReader.CreateNewIncident(ref newIncident, incidents);
 #endif
             newIncident.turnToShow = zTurn;
-		    newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd + 1;
-		    //our complete list of incidents
-		    incidents.Add(newIncident);
-		    //our list of incidents waiting to show this turn
-		    NextIncident.Add(newIncident);
-		    m_IncidentQueue.AddToQueue(newIncident);
-	    }
+            newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd + 1;
+            //our complete list of incidents
+            incidents.Add(newIncident);
+            //our list of incidents waiting to show this turn
+            NextIncident.Add(newIncident);
+            m_IncidentQueue.AddToQueue(newIncident);
+        }
+
+
     }
+
+    public void AddNewIncidents(List<Incident> ongoingIncidents, int turn)
+    {
+        if (incidents.Count >= MaxIncidents)
+        {
+            return;
+        }
+
+        if (_incidentDifficultyManager == null)
+        {
+            _incidentDifficultyManager = this.GetComponent<IncidentDifficultyManager>();
+        }
+
+        var totalOfficersAvailable = OfficerController.TotalOfficers;
+        var currentOfficersAvailable = OfficerController.GetAvailable();
+
+        var newIncidents = _incidentDifficultyManager.GetNewIncidents(ongoingIncidents, totalOfficersAvailable, turn +1,
+           currentOfficersAvailable, null);
+
+        if (newIncidents != null)
+        {
+            foreach (var newIncident in newIncidents)
+            {
+                newIncident.turnToShow = turn;
+                newIncident.turnToDevelop = turn + newIncident.turnsToAdd + 1;
+                //our complete list of incidents
+                incidents.Add(newIncident);
+
+                NextIncident.Add(newIncident);
+                m_IncidentQueue.AddToQueue(newIncident);
+            }
+        }
+    }
+
     public bool IsIncidentWaitingToShow(int zTurn)
     {
         NextIncident.Clear();
@@ -123,7 +164,10 @@ public class IncidentManager : MonoBehaviour
         currentTurn = turn;
 
         if (NextIncident == null)
-            CreateNewIncident(turn);
+        {
+            AddNewIncidents(incidents, turn + 1);
+        }
+        //CreateNewIncident(turn);
 
         Incident currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
@@ -165,19 +209,20 @@ public class IncidentManager : MonoBehaviour
     }
     public void CaseClosed(int impact, float transitionTime, bool expired = false)
     {
-        impact = impact < 0
-            ? impact*2
-            : impact/2;
+        // Balancing against player winning
+        //impact = impact < 0
+        //    ? impact*2
+        //    : impact/2;
         //update the citizen security/happiness
         if (expired)
         {
             if (impact >= 0)
                 impact = (impact + 1) * -1;
-            happiness += impact;
+            AddHappiness(impact);
         }
         else
         {
-            happiness += impact;
+            AddHappiness(impact);
         }
         happiness = Mathf.Clamp(happiness, 0, 100);
        // m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
@@ -194,7 +239,7 @@ public class IncidentManager : MonoBehaviour
     public void EndTurn()
     {
         //punish the player for having cases open, stopping players from just ignoring all cases
-        happiness -= GetEndTurnSatisfactionDeduction();
+        AddHappiness(GetEndTurnSatisfactionDeduction() * -1);
         happiness = Mathf.Clamp(happiness, 0, 100);
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
 
@@ -531,5 +576,12 @@ public class IncidentManager : MonoBehaviour
             incidentHistory.IncidentHistoryElements 
             : 
             new List<IncidentHistoryElement>();
+    }
+
+    private void AddHappiness(int value)
+    {
+        value *= 2;
+
+        happiness += value;
     }
 }

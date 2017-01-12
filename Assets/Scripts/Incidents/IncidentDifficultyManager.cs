@@ -121,7 +121,7 @@ public class IncidentDifficultyManager : MonoBehaviour
 
         if (_incidentLoader == null)
         {
-            GameObject.Find("TurnManager").GetComponent<SimplifiedJson>();
+            _incidentLoader = GameObject.Find("TurnManager").GetComponent<SimplifiedJson>();
         }
 
         do
