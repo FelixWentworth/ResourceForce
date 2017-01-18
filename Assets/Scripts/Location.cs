@@ -41,7 +41,7 @@ public class Location : MonoBehaviour {
                 CurrentLocation = "Nicosia";
                 return "_Nicosia";
             case Site.Groningen:
-                numIncidents = 2;
+                numIncidents = 10;
                 CurrentLocation = "Groningen";
                 return "_Groningen";
             case Site.Valencia:
