@@ -35,6 +35,8 @@ public class IncidentManager : MonoBehaviour
     private int _casesClosed;
     private int _casesClosedThisTurn;
 
+    private int _endTurnSatisfaction;
+
     private const int MaxIncidents = 5;
    
 #if SELECT_INCIDENTS
@@ -209,11 +211,6 @@ public class IncidentManager : MonoBehaviour
     }
     public void CaseClosed(int impact, float transitionTime, bool expired = false)
     {
-        // Balancing against player winning
-        //impact = impact < 0
-        //    ? impact*2
-        //    : impact/2;
-        //update the citizen security/happiness
         if (expired)
         {
             if (impact >= 0)
@@ -241,7 +238,8 @@ public class IncidentManager : MonoBehaviour
     public void EndTurn()
     {
         //punish the player for having cases open, stopping players from just ignoring all cases
-        AddHappiness(GetEndTurnSatisfactionDeduction() * -1);
+        AddHappiness(_endTurnSatisfaction * -1);
+        _endTurnSatisfaction = 0;
         happiness = Mathf.Clamp(happiness, 0, 100);
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
 
@@ -375,10 +373,10 @@ public class IncidentManager : MonoBehaviour
             var casesClosed = GetTotalCasesClosed();
             var casesClosedThisTurn = GetTurnClosedCaseCount();
 
-            var satisfactionImpact = GetEndTurnSatisfactionDeduction();
+            _endTurnSatisfaction = GetEndTurnSatisfactionDeduction();
 
             tmp.EndTurnSatisfaction.GetComponent<EndTurnSatisfaction>().SetText(total, casesClosed, casesClosedThisTurn, active, actionTaken, ignored);
-            ShowSatisfactionImpact(-satisfactionImpact);
+            ShowSatisfactionImpact(-_endTurnSatisfaction);
         }
         else
             ShowIncident(currentTurn);
@@ -586,8 +584,6 @@ public class IncidentManager : MonoBehaviour
 
     private void AddHappiness(int value)
     {
-        // value *= 2;
-
         happiness += value;
     }
 }
