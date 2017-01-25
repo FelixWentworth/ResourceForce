@@ -375,6 +375,7 @@ public class IncidentManager : MonoBehaviour
 
             _endTurnSatisfaction = GetEndTurnSatisfactionDeduction();
 
+            GameObject.Find("GameInformationPanel").GetComponent<InformationPanel>().DisableAll();
             tmp.EndTurnSatisfaction.GetComponent<EndTurnSatisfaction>().SetText(total, casesClosed, casesClosedThisTurn, active, actionTaken, ignored);
             ShowSatisfactionImpact(-_endTurnSatisfaction);
         }
