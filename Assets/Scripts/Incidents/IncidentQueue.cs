@@ -1,9 +1,4 @@
-﻿//#define SELECT_INCIDENTS
-
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
 
 public class IncidentQueue : MonoBehaviour {
 

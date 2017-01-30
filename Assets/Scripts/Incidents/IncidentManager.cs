@@ -1,7 +1,4 @@
-﻿//#define SELECT_INCIDENTS
-#define ALLOW_DUPLICATE_INCIDENTS
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;

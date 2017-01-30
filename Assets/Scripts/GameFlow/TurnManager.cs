@@ -1,6 +1,4 @@
-﻿//#define SELECT_INCIDENTS
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
 using UnityEngine.UI;
