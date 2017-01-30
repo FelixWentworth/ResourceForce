@@ -23,8 +23,6 @@ public class StartTransition : MonoBehaviour {
         backgroundColor = background.color;
         fadedBackgroundColor = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, 0f);
 
-        var a = PlayerPrefs.GetInt("2131qweqw23");
-
         bool newLogIn = PlayerPrefs.GetInt("SetLocation") == 0 || overrideShowLocation;
         overrideShowLocation = false;
         SelectLocationScreen.SetActive(newLogIn);

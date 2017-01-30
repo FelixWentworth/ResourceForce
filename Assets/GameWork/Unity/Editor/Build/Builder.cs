@@ -29,8 +29,6 @@ namespace GameWork.Unity.Editor.Build
                     case BuildTarget.StandaloneLinux:
                     case BuildTarget.StandaloneLinux64:
                     case BuildTarget.StandaloneLinuxUniversal:
-                    case BuildTarget.PS3:
-                    case BuildTarget.XBOX360:
                     case BuildTarget.StandaloneOSXUniversal:
                     case BuildTarget.StandaloneOSXIntel:
                     case BuildTarget.StandaloneOSXIntel64:

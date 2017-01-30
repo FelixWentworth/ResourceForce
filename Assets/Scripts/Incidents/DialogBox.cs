@@ -36,8 +36,6 @@ public class DialogBox : MonoBehaviour {
 	private const int WaitTips = 5;
 	private const int OfficerTips = 2;
 	private const int PositiveTips = 5;
-	private int _turnsRequired;
-	private int _severity;
     private string _tip = "";
 
     private GameObject _citizenHelpButton;
@@ -76,7 +74,6 @@ public class DialogBox : MonoBehaviour {
 
         var history = _incidentManager.GetIncidentHistory(zIncident.caseNumber);
 
-        _turnsRequired = zIncident.turnsToAdd;
 
         var currentInformation = new IncidentHistoryElement()
         {
@@ -91,8 +88,6 @@ public class DialogBox : MonoBehaviour {
         IncidentInformationDisplay.Show(history, currentInformation, zIncident.severity);
         
         _caseNum = zIncident.caseNumber;
-        SetSeverity(zIncident.severity);
-	    _severity = zIncident.severity;
 
         OfficerButtonTurns.text = "x" + zIncident.turnsToAdd.ToString();
         OfficerButtonRequired.text = "x" + zIncident.officer.ToString();
@@ -159,15 +154,6 @@ public class DialogBox : MonoBehaviour {
 
         anim.Play();
         yield return new WaitForSeconds(length);
-    }
-    public void SetSeverity(int zSeverity=1)
-    {
-        //set the alpha of the overlay to fade between yellow and red
-        var alpha = 0f;
-        if (zSeverity == 2)
-            alpha = 0.5f;
-        else if (zSeverity == 3)
-            alpha = 1.0f;
     }
     public void LeftButtonPressed()
     {

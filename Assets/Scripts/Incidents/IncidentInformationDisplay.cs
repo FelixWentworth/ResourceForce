@@ -8,7 +8,6 @@ public class IncidentInformationDisplay : MonoBehaviour
     public GameObject IncidentHistoryElement;
     private IncidentManager _incidentManager;
 
-    private List<IncidentHistoryElement> _incidentElements;
     private List<IncidentHistoryUISetup> _setupObjects;
     private int _totalElements;
     private int _shownElement;
@@ -21,12 +20,7 @@ public class IncidentInformationDisplay : MonoBehaviour
     {
         ClearChildren();
 
-        var alpha = GetSeverityTransparency(severity);
-
         _totalElements = 0;
-
-        _incidentElements = new List<IncidentHistoryElement>();
-        _incidentElements = elements;
 
         _offset = 0f;
 
@@ -149,19 +143,5 @@ public class IncidentInformationDisplay : MonoBehaviour
 
         _setupObjects.Add(setup);
         _offset -= setup.Header.rect.height;
-    }
-
-    public float GetSeverityTransparency(int severity)
-    {
-        //set the alpha of the severity overlay
-        switch (severity)
-        {
-            case 3:
-                return 1f;
-            case 2:
-                return 0.5f;
-            default:
-                return 0f;
-        }
     }
 }

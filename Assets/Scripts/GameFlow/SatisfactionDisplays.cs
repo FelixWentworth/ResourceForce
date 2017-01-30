@@ -12,15 +12,9 @@ public class SatisfactionDisplays : MonoBehaviour {
     public Color FadeGB;
 
     public Color BackgroundColor;
-    private Color _segmentColor;
 
     private Transform _segmentParent;
     private Image _segment;
-
-    private List<Image> _segments;
-    private int _numSegments = 20;
-
-    private float _satisfaction = -1f;
 
     private Text _satisfactionValue;
 
@@ -53,26 +47,6 @@ public class SatisfactionDisplays : MonoBehaviour {
         Destroy(myTransform.gameObject);
         StartCoroutine(SetSatisfactionFillAmount(0.5f, value, MaxValue));
         
-    }
-
-    public IEnumerator FadeColor(float offset, float time, bool toBackground, Image image)
-    {
-        yield return new WaitForSeconds(offset);
-        var normal = _segmentColor;
-        var faded = BackgroundColor;
-
-        var startColor = toBackground ? normal : faded;
-        var endColor = toBackground ? faded : normal;
-
-        var deltaTime = 0f;
-        while (deltaTime < time)
-        {
-            image.color = Color.Lerp(startColor, endColor, deltaTime);
-            deltaTime += Time.deltaTime;
-            yield return null;
-        }
-
-        image.color = endColor;
     }
 
     private IEnumerator SetSatisfactionFillAmount(float time, float happiness, float maxHappiness)

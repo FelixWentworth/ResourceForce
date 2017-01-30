@@ -555,7 +555,6 @@ public class IncidentManager : MonoBehaviour
         var feedbackRating = 1;
         var feedback = "";
 
-        var b = new Incident();
         var historyElement = new IncidentHistoryElement
         {
             Type = type,

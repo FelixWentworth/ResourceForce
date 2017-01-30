@@ -16,8 +16,6 @@ public class Localization : MonoBehaviour {
     static TextAsset jsonTextAsset_Basic;
     public static int languageIndex = 1;
 
-    private SystemLanguage defaultLanguage = SystemLanguage.English;
-
     void Awake()
     {
         UpdateTextFile();
