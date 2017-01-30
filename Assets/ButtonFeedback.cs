@@ -11,6 +11,8 @@ public class ButtonFeedback : MonoBehaviour {
 
     private Animation _animation;
 
+    private SatisfactionDisplays _satisfactionDisplays;
+    private IncidentManager _incidentManager;
 
     void Awake()
     {
@@ -19,6 +21,12 @@ public class ButtonFeedback : MonoBehaviour {
         _ratingThree = transform.FindChild("RatingThreePanel").gameObject;
         _ratingFour = transform.FindChild("RatingFourPanel").gameObject;
         _ratingFive = transform.FindChild("RatingFivePanel").gameObject;
+
+        _ratingOne.gameObject.SetActive(false);
+        _ratingTwo.gameObject.SetActive(false);
+        _ratingThree.gameObject.SetActive(false);
+        _ratingFour.gameObject.SetActive(false);
+        _ratingFive.gameObject.SetActive(false);
 
         _animation = GetComponent<Animation>();
     }
@@ -29,8 +37,16 @@ public class ButtonFeedback : MonoBehaviour {
         {
             // if rating == -1 then either the rating has not been set or this button should not have been possible to press
 
-            var activeObject = GetActiveObject(rating);
+            var activeObject = Instantiate(GetActiveObject(rating));
+
+            activeObject.transform.parent = this.transform;
+            var rect = activeObject.GetComponent<RectTransform>();
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+            rect.localScale = Vector3.one;  
+
             activeObject.SetActive(true);
+            
             // Set position to the top of the button pressed
             transform.position = buttonPressed.position;
 
@@ -39,23 +55,22 @@ public class ButtonFeedback : MonoBehaviour {
             yield return new WaitForSeconds(_animation.clip.length);
 
             // Fade out the feedback objects
-            var children = activeObject.GetComponentsInChildren<UnityEngine.UI.Image>();
-            var childAnimLength = 0.0f;
-            foreach (var child in children)
+            var ratingObjects = activeObject.GetComponentsInChildren<Transform>();
+
+            if (!_satisfactionDisplays)
             {
-                childAnimLength = child.GetComponent<Animation>().clip.length;
-                child.GetComponent<Animation>().Play();
+                _satisfactionDisplays = GameObject.Find("SatisfactionBar").GetComponent<SatisfactionDisplays>();
+            }
+            if (!_incidentManager)
+            {
+                _incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
             }
 
-            yield return new WaitForSeconds(childAnimLength);
-
-            // Disable All objects
-            DisableAll();
-
-            // Reset for use later
-            foreach (var child in children)
+            _incidentManager.AddHappiness(rating - 3);
+            foreach (var feedbackTransform in ratingObjects)
             {
-                child.color = new Color(1f, 1f, 1f, 1f);
+                feedbackTransform.parent = GameObject.Find("Canvas").transform;
+                StartCoroutine(_satisfactionDisplays.TransitionTo(feedbackTransform, 0.5f, _incidentManager.GetHappiness())); // -3 as 3 indicates a neutral choice, so no change
             }
         }
         else
@@ -67,7 +82,6 @@ public class ButtonFeedback : MonoBehaviour {
 
     private GameObject GetActiveObject(int rating)
     {
-        DisableAll();
         switch (rating)
         {
             case 1:
@@ -81,14 +95,5 @@ public class ButtonFeedback : MonoBehaviour {
             default:
                 return _ratingThree;
         }
-    }
-
-    private void DisableAll()
-    {
-        _ratingOne.SetActive(false);
-        _ratingTwo.SetActive(false);
-        _ratingThree.SetActive(false);
-        _ratingFour.SetActive(false);
-        _ratingFive.SetActive(false);
     }
 }

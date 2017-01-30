@@ -12,6 +12,8 @@ public class Location : MonoBehaviour {
 
     public static string CurrentLocation { get; private set; }
 
+    public static bool UsesFullFeedback { get; private set; }
+
 	// Use this for initialization
 	void Awake() {
         int siteNum = PlayerPrefs.GetInt("site");
@@ -30,25 +32,32 @@ public class Location : MonoBehaviour {
         {
             case Site.Preston:
                 numIncidents = 20;
+                UsesFullFeedback = false;
                 CurrentLocation = "Preston";
                 return "_Preston";
             case Site.Belfast:
                 numIncidents = 2;
+                UsesFullFeedback = true;
                 CurrentLocation = "Belfast";
                 return "_Belfast";
             case Site.Nicosia:
                 numIncidents = 10;
+                UsesFullFeedback = false;
                 CurrentLocation = "Nicosia";
                 return "_Nicosia";
             case Site.Groningen:
                 numIncidents = 10;
+                UsesFullFeedback = true;
                 CurrentLocation = "Groningen";
                 return "_Groningen";
             case Site.Valencia:
                 numIncidents = 20;
+                UsesFullFeedback = false;
                 CurrentLocation = "Valencia";
                 return "_Valencia";
             default:
+                numIncidents = 20;
+                UsesFullFeedback = false;
                 CurrentLocation = "Preston";
                 return "_Preston";
         }

@@ -238,7 +238,11 @@ public class IncidentManager : MonoBehaviour
     public void EndTurn()
     {
         //punish the player for having cases open, stopping players from just ignoring all cases
-        AddHappiness(_endTurnSatisfaction * -1);
+        if (!Location.UsesFullFeedback)
+        {
+            // Still using the old feedback system
+            AddHappiness(_endTurnSatisfaction);
+        }
         _endTurnSatisfaction = 0;
         happiness = Mathf.Clamp(happiness, 0, 100);
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
@@ -373,11 +377,14 @@ public class IncidentManager : MonoBehaviour
             var casesClosed = GetTotalCasesClosed();
             var casesClosedThisTurn = GetTurnClosedCaseCount();
 
-            _endTurnSatisfaction = GetEndTurnSatisfactionDeduction();
-
+            // using old feedback system, otherwise end turn satisfaction is set when happiness is changed
+            if (!Location.UsesFullFeedback)
+            {
+                _endTurnSatisfaction = -GetEndTurnSatisfactionDeduction();
+            }
             GameObject.Find("GameInformationPanel").GetComponent<InformationPanel>().DisableAll();
             tmp.EndTurnSatisfaction.GetComponent<EndTurnSatisfaction>().SetText(total, casesClosed, casesClosedThisTurn, active, actionTaken, ignored);
-            ShowSatisfactionImpact(-_endTurnSatisfaction);
+            ShowSatisfactionImpact(_endTurnSatisfaction);
         }
         else
             ShowIncident(currentTurn);
@@ -387,7 +394,8 @@ public class IncidentManager : MonoBehaviour
     {
         SatisfactionImpactGameObject.SetActive(true);
         var satisfactionText = "";
-        satisfactionText += Localization.Get("BASIC_TEXT_SATISFACTION_IMPACT") + ": " + impact;
+        satisfactionText += Localization.Get("BASIC_TEXT_SATISFACTION_IMPACT") + ": ";
+        satisfactionText += impact > 0 ? "+" + impact: impact.ToString();
         SatisfactionImpactGameObject.GetComponentInChildren<Text>().text = satisfactionText;
     }
     public void CloseCase(int caseNumber, float transitionTime)
@@ -583,8 +591,9 @@ public class IncidentManager : MonoBehaviour
             new List<IncidentHistoryElement>();
     }
 
-    private void AddHappiness(int value)
+    public void AddHappiness(int value)
     {
         happiness += value;
+        _endTurnSatisfaction += value;
     }
 }
