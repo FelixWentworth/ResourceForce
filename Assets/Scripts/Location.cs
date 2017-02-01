@@ -42,7 +42,7 @@ public class Location : MonoBehaviour {
                 return "_Belfast";
             case Site.Nicosia:
                 numIncidents = 10;
-                UsesFullFeedback = false;
+                UsesFullFeedback = true;
                 CurrentLocation = "Nicosia";
                 return "_Nicosia";
             case Site.Groningen:
