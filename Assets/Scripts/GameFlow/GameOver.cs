@@ -6,19 +6,40 @@ public class GameOver : MonoBehaviour
 {
     public Text GameOverText;
 
-    public Text TurnsText;
-    public Text CasesText;
+    public Text TurnsLabel;
+    public Text GoodCasesLabel;
+    public Text BadCasesLabel;
 
+    public Text TurnsText;
+    public Text GoodCaseText;
+    public Text BadCaseText;
     public Text ScoreText;
     public Text HighScoreText;
 
-    public void ShowGameOver(int turns, int cases)
+    private readonly int TurnsSurvivedMultiplier = 1;
+    private readonly int CasesClosedWellMultiplier = 5;
+    private readonly int CasesClosedBadlyMultiplier = -5;
+
+    private readonly string TurnsLabelKey = "BASIC_TEXT_TURNS_SURVIVED";
+    private readonly string GoodCasesLabelKey = "BASIC_TEXT_CASES_CLOSED_POSITIVE";
+    private readonly string BadCasesLabelKey = "BASIC_TEXT_CASES_CLOSED_NEGATIVE";
+
+    public void ShowGameOver(int turns, int cases, int casesClosedWell)
     {
         AudioManager.Instance.PlayGameOver();
 
         GameOverText.text = string.Format(Localization.Get("BASIC_TEXT_GAMEOVER_BODY"), turns);
 
-        var totalScore = turns + cases;
+        TurnsLabel.text = "";
+        GoodCasesLabel.text = "";
+        BadCasesLabel.text = "";
+
+
+        var turnScore = turns*TurnsSurvivedMultiplier;
+        var goodCaseScore = casesClosedWell*CasesClosedWellMultiplier;
+        var badCaseScore = (cases - casesClosedWell)*CasesClosedBadlyMultiplier;
+
+        var totalScore = turnScore + goodCaseScore + badCaseScore;
 
         var highScore = PlayerPrefs.GetInt("HighScore");
 
@@ -28,39 +49,51 @@ public class GameOver : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highScore);
         }
 
-        StartCoroutine(ShowScores(turns, cases, totalScore, highScore));
+        StartCoroutine(ShowScores(turns, casesClosedWell, (cases - casesClosedWell), turnScore, goodCaseScore, badCaseScore, totalScore, highScore));
     }
 
-    private IEnumerator ShowScores(int turns, int cases, int score, int highScore)
+    private IEnumerator ShowScores(int turns, int goodCases, int badCases, int turnsScore, int goodCaseScore, int badCaseScore,  int score, int highScore)
     {
         TurnsText.text = "";
-        CasesText.text = "";
+        GoodCaseText.text = "";
+        BadCaseText.text = "";
         ScoreText.text = "";
         HighScoreText.text = "";
         // We want to display the scores one at a time to make the page more interesting
         yield return new WaitForSeconds(0.5f);
-        yield return IncrementTextNumber(TurnsText, 0, turns);
-        yield return IncrementTextNumber(CasesText, 0, cases);
-        yield return IncrementTextNumber(ScoreText, 0, score);
-        HighScoreText.text = highScore.ToString();
-        //yield return IncrementTextNumber(HighScoreText, 0, highScore);
+
+        TurnsLabel.text = Localization.Get(TurnsLabelKey) + ": x" + turns;
+        StartCoroutine(IncrementTextNumber(ScoreText, 0, turnsScore));
+        yield return IncrementTextNumber(TurnsText, 0, turnsScore);
+
+        GoodCasesLabel.text = Localization.Get(GoodCasesLabelKey) + ": x" + goodCases;
+        StartCoroutine(IncrementTextNumber(ScoreText, turnsScore, (turnsScore + goodCaseScore)));
+        yield return IncrementTextNumber(GoodCaseText, 0, goodCaseScore);
+
+        BadCasesLabel.text = Localization.Get(BadCasesLabelKey) + ": x" + badCases;
+        StartCoroutine(IncrementTextNumber(ScoreText, (turnsScore + goodCaseScore), score));
+        yield return IncrementTextNumber(BadCaseText, 0, badCaseScore);  
+
+        //yield return IncrementTextNumber(ScoreText, 0, score);
+        yield return IncrementTextNumber(HighScoreText, 0, highScore);
     }
 
     private IEnumerator IncrementTextNumber(Text text, int start, int end)
     {
         var num = start;
-        var speed = 0.4f;
+        var speed = 1.0f;
 
         var t = 0f;
 
-        while (t < 1)
+        while (t <= speed)
         {
             t += speed*Time.deltaTime;
-            num = (int)Mathf.Lerp(start, end, t);
+            num = (int)Mathf.Lerp(start, end, t/speed);
             text.text = num.ToString();
             
 
             yield return null;
         }
+        text.text = end.ToString();
     }
 }

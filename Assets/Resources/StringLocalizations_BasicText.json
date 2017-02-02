@@ -30,6 +30,8 @@
 {"key":"BASIC_TEXT_SCORE","en-gb":"Score","de":"Score","el":"XXXX","es":"Puntuación"},
 {"key":"BASIC_TEXT_BEST","en-gb":"High Score","de":"High Score","el":"XXXX","es":"Puntuación más alta"},
 {"key":"BASIC_TEXT_CASES_RESOLVED","en-gb":"Cases Closed","de":"Cases Closed","el":"XXXX","es":"Casos cerrados"},
+{"key":"BASIC_TEXT_CASES_CLOSED_POSITIVE","en-gb":"Cases Closed Positively","de":"Cases Closed Positively","el":"XXXX","es":"Casos cerrados positivamente"},
+{"key":"BASIC_TEXT_CASES_CLOSED_NEGATIVE","en-gb":"Cases Closed Negatively","de":"Cases Closed Negatively","el":"XXXX","es":"Casos cerrados negativamente"},
 {"key":"BASIC_TEXT_TURNS_SURVIVED","en-gb":"Turns Survived","de":"Turns Survived","el":"XXXX","es":"vueltas sobrevivientes"},
 {"key":"BASIC_TEXT_STATUS","en-gb":"Status","de":"Status","el":"XXXX","es":"Estado"},
 {"key":"BASIC_TEXT_TYPE","en-gb":"Type","de":"Type","el":"XXXX","es":"Tipo"},

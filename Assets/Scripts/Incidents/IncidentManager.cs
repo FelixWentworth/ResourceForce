@@ -30,6 +30,7 @@ public class IncidentManager : MonoBehaviour
     private Dictionary<int, IncidentHistory> _incidentHistories = new Dictionary<int, IncidentHistory>();
 
     private int _casesClosed;
+    private int _casesClosedWell;
     private int _casesClosedThisTurn;
 
     private int _endTurnSatisfaction;
@@ -43,6 +44,7 @@ public class IncidentManager : MonoBehaviour
     {
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
         _casesClosed = 0;
+        _casesClosedWell = 0;
         _casesClosedThisTurn = 0; 
     }
     public void CreateNewIncident(int zTurn)
@@ -218,6 +220,9 @@ public class IncidentManager : MonoBehaviour
         {
             AddHappiness(impact);
         }
+
+        _casesClosedWell += impact > 0 ? 1 : 0;
+
         happiness = Mathf.Clamp(happiness, 0, 100);
        // m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
         var ratingObjects = m_dialogBox.GetRatingObjects();
@@ -502,6 +507,15 @@ public class IncidentManager : MonoBehaviour
     public int GetTotalCasesClosed()
     {
         return _casesClosed;
+    }
+
+    /// <summary>
+    /// Gets the total number of cases that the player has resolved positively
+    /// </summary>
+    /// <returns></returns>
+    public int GetTotalCasesClosedWell()
+    {
+        return _casesClosedWell;
     }
 
     /// <summary>
