@@ -29,7 +29,7 @@
 {"key":"BASIC_TEXT_CITIZEN_HAPPINESS","en-gb":"Citizen Satisfaction","de":"Citizen Satisfaction","el":"XXXX","es":"Satisfacción ciudadana"},
 {"key":"BASIC_TEXT_SCORE","en-gb":"Score","de":"Score","el":"XXXX","es":"Puntuación"},
 {"key":"BASIC_TEXT_BEST","en-gb":"High Score","de":"High Score","el":"XXXX","es":"Puntuación más alta"},
-{"key":"BASIC_TEXT_CASES_RESOLVED","en-gb":"Cases Resolved","de":"Cases Resolved","el":"XXXX","es":"Casos Resueltos"},
+{"key":"BASIC_TEXT_CASES_RESOLVED","en-gb":"Cases Closed","de":"Cases Closed","el":"XXXX","es":"Casos cerrados"},
 {"key":"BASIC_TEXT_TURNS_SURVIVED","en-gb":"Turns Survived","de":"Turns Survived","el":"XXXX","es":"vueltas sobrevivientes"},
 {"key":"BASIC_TEXT_STATUS","en-gb":"Status","de":"Status","el":"XXXX","es":"Estado"},
 {"key":"BASIC_TEXT_TYPE","en-gb":"Type","de":"Type","el":"XXXX","es":"Tipo"},
