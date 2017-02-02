@@ -36,8 +36,6 @@ public class DialogBox : MonoBehaviour {
 	private const int WaitTips = 5;
 	private const int OfficerTips = 2;
 	private const int PositiveTips = 5;
-	private int _turnsRequired;
-	private int _severity;
     private string _tip = "";
 
     private GameObject _citizenHelpButton;
@@ -50,7 +48,7 @@ public class DialogBox : MonoBehaviour {
     private List<Transform> _ratingTransforms;
 
     void Start()
-    {
+    {        
         _citizenHelpButton = ButtonPanel.FindChild("CitizenHelpButton").gameObject;
         _sendOfficerButton = ButtonPanel.FindChild("SendOfficersButton").gameObject;
         _waitButton = ButtonPanel.FindChild("WaitButton").gameObject;
@@ -76,7 +74,6 @@ public class DialogBox : MonoBehaviour {
 
         var history = _incidentManager.GetIncidentHistory(zIncident.caseNumber);
 
-        _turnsRequired = zIncident.turnsToAdd;
 
         var currentInformation = new IncidentHistoryElement()
         {
@@ -91,8 +88,6 @@ public class DialogBox : MonoBehaviour {
         IncidentInformationDisplay.Show(history, currentInformation, zIncident.severity);
         
         _caseNum = zIncident.caseNumber;
-        SetSeverity(zIncident.severity);
-	    _severity = zIncident.severity;
 
         OfficerButtonTurns.text = "x" + zIncident.turnsToAdd.ToString();
         OfficerButtonRequired.text = "x" + zIncident.officer.ToString();
@@ -160,15 +155,6 @@ public class DialogBox : MonoBehaviour {
         anim.Play();
         yield return new WaitForSeconds(length);
     }
-    public void SetSeverity(int zSeverity=1)
-    {
-        //set the alpha of the overlay to fade between yellow and red
-        var alpha = 0f;
-        if (zSeverity == 2)
-            alpha = 0.5f;
-        else if (zSeverity == 3)
-            alpha = 1.0f;
-    }
     public void LeftButtonPressed()
     {
 		// Check if the citizen option was available
@@ -188,45 +174,13 @@ public class DialogBox : MonoBehaviour {
         {
             yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackWait), Color.cyan);
         }
-        else
-        { 
-            if (citizensAvailable)
-            {
-                yield return ShowTip(CitizenTips, "TIPS_CITIZEN_");
-            }
-            else
-            {
-                // dont show any tips with the case closed information
-                if (_turnsRequired == 1)
-                {
-                    yield return ShowTip(2, "TIPS_OFFICER_ONE_TURN_NEGATIVE_");
-                }
-                else if (_severity == 3)
-                {
-                    yield return ShowTip(2, "TIPS_OFFICER_HIGH_SEVERITY_NEGATIVE_");
-                }
-                else
-                {
-                    yield return ShowTip(WaitTips, "TIPS_WAIT_");
-                }
-            }
-        }
         DisableButtons();
 
 
         yield return EmailAnim(1f, "EmailShow");
         //wait for more officers to become available
-        _incidentManager.WaitPressed();
+        _incidentManager.WaitPressed(); 
     }
-
-	private IEnumerator ShowTip(int max, string preText)
-	{
-		// Set the text to show on screen
-		var num = Random.Range(1, max + 1);
-		_tip = Localization.Get(preText + num);
-        
-	    yield return WarningBox.ShowWarning(_tip, Color.cyan);
-	}
 
     public string GetTip()
     {
@@ -259,24 +213,6 @@ public class DialogBox : MonoBehaviour {
             if (CurrentIncident.feedbackRatingOfficer != -1)
             {
                 yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackOfficer), Color.cyan);
-            }
-            else
-            {
-                if (citizensAvailable)
-                {
-                    yield return ShowTip(CitizenTips, "TIPS_CITIZEN_");
-                }
-                else
-                {
-                    if (_turnsRequired == 1 || _severity == 3)
-                    {
-                        yield return ShowTip(PositiveTips, "TIPS_POSITIVE_");
-                    }
-                    else
-                    {
-                        yield return ShowTip(OfficerTips, "TIPS_OFFICER_");
-                    }
-                }
             }
             DisableButtons();
             //send officers to resolve issue
@@ -322,10 +258,6 @@ public class DialogBox : MonoBehaviour {
         if (CurrentIncident.feedbackRatingCitizen != -1)
         {
             yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackCitizen), Color.cyan);
-        }
-        else
-        {
-            yield return ShowTip(PositiveTips, "TIPS_POSITIVE_");
         }
         DisableButtons();
         //removing citizen help popup and instead setting the delay to one turn

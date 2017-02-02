@@ -12,7 +12,7 @@ public class OfficerController : MonoBehaviour {
 
     public Text officerStatus;
 
-    public int StartingOfficers = 5;
+    public int TotalOfficers = 5;
 
     public OfficerIndicator[] officerIndicators;
     public RectTransform OfficerPanel;
@@ -35,7 +35,7 @@ public class OfficerController : MonoBehaviour {
             rectTransform.anchoredPosition3D = new Vector3(_offset, 0f, 0f);
             _offset += rectTransform.rect.width;
         }
-        for (int i = 0; i< StartingOfficers; i++)
+        for (int i = 0; i< TotalOfficers; i++)
         {
             officer temp = new officer();
             m_officers.Add(temp);
@@ -106,7 +106,7 @@ public class OfficerController : MonoBehaviour {
         var inUseOffset = OfficerPanel.rect.width;
         var availableOffset = 0f;
 
-        for (var i = StartingOfficers - 1; i >= 0; i--)
+        for (var i = TotalOfficers - 1; i >= 0; i--)
         {
             if (officersInUse > 0)
             {

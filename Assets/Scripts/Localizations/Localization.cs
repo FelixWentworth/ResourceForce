@@ -16,8 +16,6 @@ public class Localization : MonoBehaviour {
     static TextAsset jsonTextAsset_Basic;
     public static int languageIndex = 1;
 
-    private SystemLanguage defaultLanguage = SystemLanguage.English;
-
     void Awake()
     {
         UpdateTextFile();
@@ -91,6 +89,12 @@ public class Localization : MonoBehaviour {
     }
     public static int GetLanguageIndex()
     {
+        var savedOverrideChoice = PlayerPrefs.GetInt("LanguageOverride") == 1;
+        var savedOverrideLanguage = PlayerPrefs.GetInt("LanguageOverrideChosen");
+
+        DeviceLocation.shouldOverrideLanguage = savedOverrideChoice;
+        DeviceLocation.overrideLanguage = (SystemLanguage)savedOverrideLanguage;
+
         //override to always use english for beta release 0.2
         if (!DeviceLocation.shouldOverrideLanguage)
         {

@@ -1,6 +1,4 @@
-﻿//#define SELECT_INCIDENTS
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -8,7 +6,7 @@ using UnityEngine.UI;
 public class TurnManager : MonoBehaviour {
 
     public int turn = 0;
-    IncidentManager m_IncidentManager;
+    IncidentManager _incidentManager;
     public GameOver GameOver;
 
     public Text turnsText;
@@ -34,7 +32,7 @@ public class TurnManager : MonoBehaviour {
         settingsScreen.SetActive(false);
         FeedbackObject.gameObject.SetActive(false);
         startScreen.SetActive(true);
-        m_IncidentManager = this.GetComponent<IncidentManager>();
+        _incidentManager = this.GetComponent<IncidentManager>();
     }
 	public void StartGame()
     {
@@ -52,29 +50,32 @@ public class TurnManager : MonoBehaviour {
 		EndTurnSatisfaction.SetActive(false);
 		GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
         turnsText.text = turn.ToString();
-        if (m_IncidentManager == null)
-            m_IncidentManager = this.GetComponent<IncidentManager>();
+        if (_incidentManager == null)
+            _incidentManager = this.GetComponent<IncidentManager>();
         
-        m_IncidentManager.UpdateIncidents();
+        _incidentManager.UpdateIncidents();
         //m_IncidentManager.CheckExpiredIncidents(turn);
 
-        if (m_IncidentManager.IsGameOver())
+        if (_incidentManager.IsGameOver())
         {
             //GAME OVER
             GameOver.gameObject.SetActive(true);
-            GameOver.ShowGameOver(turn-1, m_IncidentManager.GetTotalCasesClosed());
+            GameOver.ShowGameOver(turn-1, _incidentManager.GetTotalCasesClosed(), _incidentManager.GetTotalCasesClosedWell());
         }
         else
         {
             //update at the end to give the player a chance to get citizen happiness over 20%
-            m_IncidentManager.EndTurn();
+            _incidentManager.EndTurn();
             //decide which incident to show this turn
-            m_IncidentManager.IsIncidentWaitingToShow(turn);    //not using the bool callback to populate the next incident list
-            m_IncidentManager.CreateNewIncident(turn);
+            _incidentManager.IsIncidentWaitingToShow(turn);    //not using the bool callback to populate the next incident list
+            //_incidentManager.CreateNewIncident(turn);
+
+            _incidentManager.AddNewIncidents(_incidentManager.incidents, turn);
+
 #if SELECT_INCIDENTS
             GameObject.Find("IncidentDialog").GetComponent<DialogBox>().DeactivateAll();
 #else
-            m_IncidentManager.ShowIncident(turn);
+            _incidentManager.ShowIncident(turn);
 #endif
         }
         
@@ -94,13 +95,6 @@ public class TurnManager : MonoBehaviour {
         SendFeedback();
         //SendEmail();
         //Application.OpenURL("http://inspec2t-project.eu/en/");
-    }
-    void SendEmail()
-    {
-        string email = "felix@playgen.com";
-        string subject = MyEscapeURL("Resource Force");
-        string body = MyEscapeURL("");
-        Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + body);
     }
     string MyEscapeURL(string url)
     {
@@ -158,12 +152,13 @@ public class TurnManager : MonoBehaviour {
     public IEnumerator SendReport(string body)
     {
         FeedbackObject.gameObject.SetActive(false);
-        var currentIncident = m_IncidentManager.NextIncident[0];
+       
         var subject = "SCENARIO ISSUE";
-
         var bodyWithScenarioHistory = "";
-        if (currentIncident != null)
+        if (_incidentManager.NextIncident.Count > 0)
         {
+            var currentIncident = _incidentManager.NextIncident[0];
+        
             bodyWithScenarioHistory = ScenarioTracker.GetScenarioHistory(body, currentIncident.scenarioNum.ToString(),
                 currentIncident.index.ToString(), Location.CurrentLocation,
                 (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));

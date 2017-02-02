@@ -1,7 +1,4 @@
-﻿//#define SELECT_INCIDENTS
-#define ALLOW_DUPLICATE_INCIDENTS
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -10,9 +7,10 @@ public class IncidentManager : MonoBehaviour
 {
     public List<Incident> incidents = new List<Incident>();
     private SimplifiedJson jsonReader;
+    private IncidentDifficultyManager _incidentDifficultyManager;
 
     public List<Incident> NextIncident = new List<Incident>();
-    OfficerController m_OfficerController;
+    public OfficerController OfficerController;
 
     public Text CaseStatus;
     public IncidentQueue m_IncidentQueue;
@@ -32,7 +30,12 @@ public class IncidentManager : MonoBehaviour
     private Dictionary<int, IncidentHistory> _incidentHistories = new Dictionary<int, IncidentHistory>();
 
     private int _casesClosed;
+    private int _casesClosedWell;
     private int _casesClosedThisTurn;
+
+    private int _endTurnSatisfaction;
+
+    private const int MaxIncidents = 5;
    
 #if SELECT_INCIDENTS
     private int incidentShowingIndex = 1;
@@ -41,39 +44,78 @@ public class IncidentManager : MonoBehaviour
     {
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
         _casesClosed = 0;
+        _casesClosedWell = 0;
         _casesClosedThisTurn = 0; 
     }
     public void CreateNewIncident(int zTurn)
     {
-        if (incidents.Count == 10)
-        {
-            //we do not have the space for any more incidents
-            return;
-        }
         //now get a random incident data from JSON file
         if (jsonReader == null)
             jsonReader = this.GetComponent<SimplifiedJson>();
-		// create new incidents, randome amount between 1 and 3
-	    var num = UnityEngine.Random.Range(1, 4);
-	    for (int i = 0; i < num; i++)
-	    {
-			Incident newIncident = new Incident();
-			if (incidents.Count == 10)
-			    return;
+        if (_incidentDifficultyManager == null)
+        {
+            _incidentDifficultyManager = this.GetComponent<IncidentDifficultyManager>();
+        }
+        // create new incidents, randome amount between 1 and 3
+
+        var num = UnityEngine.Random.Range(1, 4);
+        for (int i = 0; i < num; i++)
+        {
+            if (incidents.Count >= MaxIncidents)
+            {
+                return;
+            }
+            var newIncident = new Incident();
 #if ALLOW_DUPLICATE_INCIDENTS
             jsonReader.CreateNewIncident(ref newIncident);
 #else
             jsonReader.CreateNewIncident(ref newIncident, incidents);
 #endif
             newIncident.turnToShow = zTurn;
-		    newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd + 1;
-		    //our complete list of incidents
-		    incidents.Add(newIncident);
-		    //our list of incidents waiting to show this turn
-		    NextIncident.Add(newIncident);
-		    m_IncidentQueue.AddToQueue(newIncident);
-	    }
+            newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd + 1;
+            //our complete list of incidents
+            incidents.Add(newIncident);
+            //our list of incidents waiting to show this turn
+            NextIncident.Add(newIncident);
+            m_IncidentQueue.AddToQueue(newIncident);
+        }
+
+
     }
+
+    public void AddNewIncidents(List<Incident> ongoingIncidents, int turn)
+    {
+        if (incidents.Count >= MaxIncidents)
+        {
+            return;
+        }
+
+        if (_incidentDifficultyManager == null)
+        {
+            _incidentDifficultyManager = this.GetComponent<IncidentDifficultyManager>();
+        }
+
+        var totalOfficersAvailable = OfficerController.TotalOfficers;
+        var currentOfficersAvailable = OfficerController.GetAvailable();
+
+        var newIncidents = _incidentDifficultyManager.GetNewIncidents(ongoingIncidents, MaxIncidents, totalOfficersAvailable, turn +1,
+           currentOfficersAvailable, null);
+
+        if (newIncidents != null)
+        {
+            foreach (var newIncident in newIncidents)
+            {
+                newIncident.turnToShow = turn;
+                newIncident.turnToDevelop = turn + newIncident.turnsToAdd + 1;
+                //our complete list of incidents
+                incidents.Add(newIncident);
+
+                NextIncident.Add(newIncident);
+                m_IncidentQueue.AddToQueue(newIncident);
+            }
+        }
+    }
+
     public bool IsIncidentWaitingToShow(int zTurn)
     {
         NextIncident.Clear();
@@ -123,9 +165,12 @@ public class IncidentManager : MonoBehaviour
         currentTurn = turn;
 
         if (NextIncident == null)
-            CreateNewIncident(turn);
+        {
+            AddNewIncidents(incidents, turn + 1);
+        }
+        //CreateNewIncident(turn);
 
-        Incident currentIncident = NextIncident[0];
+        var currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
         SatisfactionImpactGameObject.SetActive(false);
 #if SELECT_INCIDENTS
@@ -165,20 +210,19 @@ public class IncidentManager : MonoBehaviour
     }
     public void CaseClosed(int impact, float transitionTime, bool expired = false)
     {
-        impact = impact < 0
-            ? impact*2
-            : impact/2;
-        //update the citizen security/happiness
         if (expired)
         {
             if (impact >= 0)
                 impact = (impact + 1) * -1;
-            happiness += impact;
+            AddHappiness(impact);
         }
         else
         {
-            happiness += impact;
+            AddHappiness(impact);
         }
+
+        _casesClosedWell += impact > 0 ? 1 : 0;
+
         happiness = Mathf.Clamp(happiness, 0, 100);
        // m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
         var ratingObjects = m_dialogBox.GetRatingObjects();
@@ -188,13 +232,20 @@ public class IncidentManager : MonoBehaviour
             feedbackTransform.parent = GameObject.Find("Canvas").transform;
             StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, transitionTime, happiness));
         }
+
+
         _casesClosed++;
         _casesClosedThisTurn++;
     }
     public void EndTurn()
     {
         //punish the player for having cases open, stopping players from just ignoring all cases
-        happiness -= GetEndTurnSatisfactionDeduction();
+        if (!Location.UsesFullFeedback)
+        {
+            // Still using the old feedback system
+            AddHappiness(_endTurnSatisfaction);
+        }
+        _endTurnSatisfaction = 0;
         happiness = Mathf.Clamp(happiness, 0, 100);
         m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
 
@@ -328,10 +379,14 @@ public class IncidentManager : MonoBehaviour
             var casesClosed = GetTotalCasesClosed();
             var casesClosedThisTurn = GetTurnClosedCaseCount();
 
-            var satisfactionImpact = GetEndTurnSatisfactionDeduction();
-
+            // using old feedback system, otherwise end turn satisfaction is set when happiness is changed
+            if (!Location.UsesFullFeedback)
+            {
+                _endTurnSatisfaction = -GetEndTurnSatisfactionDeduction();
+            }
+            GameObject.Find("GameInformationPanel").GetComponent<InformationPanel>().DisableAll();
             tmp.EndTurnSatisfaction.GetComponent<EndTurnSatisfaction>().SetText(total, casesClosed, casesClosedThisTurn, active, actionTaken, ignored);
-            ShowSatisfactionImpact(-satisfactionImpact);
+            ShowSatisfactionImpact(_endTurnSatisfaction);
         }
         else
             ShowIncident(currentTurn);
@@ -341,7 +396,8 @@ public class IncidentManager : MonoBehaviour
     {
         SatisfactionImpactGameObject.SetActive(true);
         var satisfactionText = "";
-        satisfactionText += Localization.Get("BASIC_TEXT_SATISFACTION_IMPACT") + ": " + impact;
+        satisfactionText += Localization.Get("BASIC_TEXT_SATISFACTION_IMPACT") + ": ";
+        satisfactionText += impact > 0 ? "+" + impact: impact.ToString();
         SatisfactionImpactGameObject.GetComponentInChildren<Text>().text = satisfactionText;
     }
     public void CloseCase(int caseNumber, float transitionTime)
@@ -351,11 +407,15 @@ public class IncidentManager : MonoBehaviour
             if (incidents[i].caseNumber == caseNumber)
             {
                 //we have found the case to remove
+                m_IncidentQueue.ChangeCaseState(caseNumber, IncidentCase.State.Resolved);
                 m_IncidentQueue.RemoveFromQueue(incidents[i].caseNumber);
 
                 CaseClosed(incidents[i].satisfactionImpact, transitionTime);
+
                 incidents.RemoveAt(i);
                 i--;
+
+
             }
         }
     }
@@ -450,6 +510,15 @@ public class IncidentManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Gets the total number of cases that the player has resolved positively
+    /// </summary>
+    /// <returns></returns>
+    public int GetTotalCasesClosedWell()
+    {
+        return _casesClosedWell;
+    }
+
+    /// <summary>
     /// Gets a total number of cases closed this turn
     /// </summary>
     /// <returns></returns>
@@ -473,7 +542,7 @@ public class IncidentManager : MonoBehaviour
     /// <returns></returns>
     public int GetEndTurnSatisfactionDeduction()
     {
-        return GetTotalSeverity()*2;
+        return GetTotalSeverity()*4;
     }
 
     public Color GetSeverityColor(int severity)
@@ -497,7 +566,6 @@ public class IncidentManager : MonoBehaviour
         var feedbackRating = 1;
         var feedback = "";
 
-        var b = new Incident();
         var historyElement = new IncidentHistoryElement
         {
             Type = type,
@@ -531,5 +599,11 @@ public class IncidentManager : MonoBehaviour
             incidentHistory.IncidentHistoryElements 
             : 
             new List<IncidentHistoryElement>();
+    }
+
+    public void AddHappiness(int value)
+    {
+        happiness += value;
+        _endTurnSatisfaction += value;
     }
 }

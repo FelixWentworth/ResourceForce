@@ -21,6 +21,8 @@ public class InformationPanel : MonoBehaviour
     private OfficerController _officerController;
     private TurnManager _turnManager;
 
+    private WarningBox _warningObject;
+
     private const string satisfaction = "TIPS_SATISFACTION";
 
     private const string incident = "TIPS_INCIDENT";
@@ -41,6 +43,7 @@ public class InformationPanel : MonoBehaviour
         _incidenText = IncidentInfo.GetComponentInChildren<Text>();
         _officerText = OfficerInfo.GetComponentInChildren<Text>();
         _turnText = TurnInfo.GetComponentInChildren<Text>();
+        _warningObject =  GameObject.Find("WarningPopup").GetComponent<WarningBox>();
 
         DisableAll();
     }
@@ -62,7 +65,7 @@ public class InformationPanel : MonoBehaviour
 
     public void SatifactionPressed()
     {
-        if (InputBlocker.activeSelf)
+        if (InputBlocker.activeSelf || _warningObject.ShowingPopup)
         {
             DisableAll();
             return;
@@ -77,7 +80,7 @@ public class InformationPanel : MonoBehaviour
 
     public void IncidentPressed()
     {
-        if (InputBlocker.activeSelf)
+        if (InputBlocker.activeSelf || _warningObject.ShowingPopup)
         {
             DisableAll();
             return;
@@ -96,7 +99,7 @@ public class InformationPanel : MonoBehaviour
 
     public void OfficerPressed()
     {
-        if (InputBlocker.activeSelf)
+        if (InputBlocker.activeSelf || _warningObject.ShowingPopup)
         {
             DisableAll();
             return;
@@ -114,7 +117,7 @@ public class InformationPanel : MonoBehaviour
 
     public void TurnPressed()
     {
-        if (InputBlocker.activeSelf)
+        if (InputBlocker.activeSelf || _warningObject.ShowingPopup)
         {
             DisableAll();
             return;
