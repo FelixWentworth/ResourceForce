@@ -1,7 +1,4 @@
-﻿//#define SELECT_INCIDENTS //used to allow players to select incidents
-
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class IncidentCase : MonoBehaviour {

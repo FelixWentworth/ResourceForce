@@ -5,7 +5,6 @@ using System.Collections;
 public class AudioManager : MonoBehaviour {
 
     //setup singleton
-    private bool muted = false;
 
     private static AudioManager instance = null;
 

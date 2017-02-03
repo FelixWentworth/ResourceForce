@@ -23,8 +23,6 @@ public class StartTransition : MonoBehaviour {
         backgroundColor = background.color;
         fadedBackgroundColor = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, 0f);
 
-        var a = PlayerPrefs.GetInt("2131qweqw23");
-
         bool newLogIn = PlayerPrefs.GetInt("SetLocation") == 0 || overrideShowLocation;
         overrideShowLocation = false;
         SelectLocationScreen.SetActive(newLogIn);
@@ -45,7 +43,7 @@ public class StartTransition : MonoBehaviour {
     }
     private void FadeBackgrounds()
     {
-        SetObjects(false);
+       
         //now fade the background image
         //on completion notify the turn manager that the start transition is done
         if (PlayerPrefs.GetInt("NewPlayer") == 0)
@@ -56,11 +54,10 @@ public class StartTransition : MonoBehaviour {
         }
         else
         {
+            SetObjects(false);
             GameObject.Find("TurnManager").GetComponent<TurnManager>().StartGame();
+            StartCoroutine(FadeBackground());
         }
-        
-        StartCoroutine(FadeBackground());
-        
     }
     IEnumerator FadeBackground()
     {

@@ -101,6 +101,9 @@ public class DeviceLocation : MonoBehaviour {
             //player has successfully set the location, no need to show the popup on load anymore
             PlayerPrefs.SetInt("SetLocation", 1);
 
+            PlayerPrefs.SetInt("LanguageOverride", shouldOverrideLanguage ? 1 : 0);
+            PlayerPrefs.SetInt("LanguageOverrideChosen", (int)overrideLanguage);
+
             //load the scene again to reload data
             SceneManager.LoadScene(0);
         }

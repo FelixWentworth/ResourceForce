@@ -66,8 +66,8 @@ public class Tutorial : MonoBehaviour {
         inputBlocker.SetActive(false);
         Screenshot.SetActive(false);
 
-        this.gameObject.SetActive(false);
-
         PlayerPrefs.SetInt("NewPlayer", 1);
+
+        this.gameObject.SetActive(false);
     }
 }

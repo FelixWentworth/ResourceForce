@@ -34,7 +34,6 @@ public class SimplifiedJson : MonoBehaviour {
     public void CreateNewIncident(ref Incident zIncident, List<Incident> incidents = null ) {
 
         _myText = Resources.Load(m_location.IncidentFilePath) as TextAsset;
-        var N = JSON.Parse(_myText.text);
 
         var randIncident = Random.Range(1, m_location.numIncidents+1);
 
