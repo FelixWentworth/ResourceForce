@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking.NetworkSystem;
@@ -7,6 +8,8 @@ using UnityEngine.UI;
 
 public class Feedback : MonoBehaviour
 {
+    private string _game = "New Game";
+    public string _otherInfo = "Location";
 
     private string _feedbackSendLocation;
 
@@ -16,6 +19,12 @@ public class Feedback : MonoBehaviour
     private UnityAction<string> _sendAction;
 
     private InputField _feedbackText;
+
+    public void SetInformationText()
+    {
+        _game = PlayerSettings.productName;
+        _otherInfo = Location.CurrentLocation + ", Language: " + Localization.GetLanguage();
+    }
 
     public void Setup(UnityAction<string> action)
     {
@@ -30,11 +39,13 @@ public class Feedback : MonoBehaviour
 
         _sendButton.onClick.AddListener(SendPressed);
         _cancelButton.onClick.AddListener(CancelPressed);
+
+        SetInformationText();
     }
 
     private void SendPressed()
     {
-        var body = _feedbackText.text;
+        var body = _game + "\n" + _otherInfo + "\n\n" + _feedbackText.text;
 
         _sendAction(body);
     }

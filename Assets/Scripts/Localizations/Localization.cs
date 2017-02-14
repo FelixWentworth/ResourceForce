@@ -130,4 +130,20 @@ public class Localization : MonoBehaviour {
             }
         }        
     }
+    public static string GetLanguage()
+    {
+        switch (languageIndex)
+        {
+            case 1:
+                return "English";
+            case 2:
+                return "Dutch";
+            case 3:
+                return "Greek";
+            case 4:
+                return "Spanish";
+            default:
+                return "English";
+        }
+    }
 }
