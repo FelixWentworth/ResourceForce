@@ -121,13 +121,13 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: com.playgen.ResourceForce
-  bundleVersion: 0.6
+  bundleVersion: 0.6.1
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1
   xboxOneDisableKinectGpuReservation: 0
   protectGraphicsMemory: 0
-  AndroidBundleVersionCode: 22
+  AndroidBundleVersionCode: 23
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -135,7 +135,7 @@ PlayerSettings:
   stripEngineCode: 1
   iPhoneStrippingLevel: 3
   iPhoneScriptCallOptimization: 0
-  iPhoneBuildNumber: 21
+  iPhoneBuildNumber: 22
   ForceInternetPermission: 0
   ForceSDCardPermission: 0
   CreateWallpaper: 0
@@ -196,7 +196,7 @@ PlayerSettings:
   AndroidTargetDevice: 3
   AndroidSplashScreenScale: 1
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/Felix/Documents/Projects/INSPEC2T/ResourceForce/Assets/rfkeystore.keystore
+  AndroidKeystoreName: C:/Users/Felix/Documents/Projects/INSPEC2T/ResourceForce/RF_Game/Assets/rfkeystore.keystore
   AndroidKeyaliasName: releasebuildrf
   AndroidTVCompatibility: 1
   AndroidIsGame: 1

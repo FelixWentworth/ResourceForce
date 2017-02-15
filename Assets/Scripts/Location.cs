@@ -36,7 +36,7 @@ public class Location : MonoBehaviour {
                 CurrentLocation = "Preston";
                 return "_Preston";
             case Site.Belfast:
-                numIncidents = 2;
+                numIncidents = 10;
                 UsesFullFeedback = true;
                 CurrentLocation = "Belfast";
                 return "_Belfast";

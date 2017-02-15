@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking.NetworkSystem;
@@ -22,7 +22,7 @@ public class Feedback : MonoBehaviour
 
     public void SetInformationText()
     {
-        _game = PlayerSettings.productName;
+        _game = "Resource Force";
         _otherInfo = Location.CurrentLocation + ", Language: " + Localization.GetLanguage();
     }
 
