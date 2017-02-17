@@ -47,6 +47,8 @@ public class Feedback : MonoBehaviour
     {
         var body = _game + "\n" + _otherInfo + "\n\n" + _feedbackText.text;
 
+        TempLoading.Show();
+
         _sendAction(body);
     }
 

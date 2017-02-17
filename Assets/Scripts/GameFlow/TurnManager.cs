@@ -151,8 +151,6 @@ public class TurnManager : MonoBehaviour {
     }
     public IEnumerator SendReport(string body)
     {
-        FeedbackObject.gameObject.SetActive(false);
-       
         var subject = "SCENARIO ISSUE";
         var bodyWithScenarioHistory = "";
         if (_incidentManager.NextIncident.Count > 0)
@@ -170,6 +168,12 @@ public class TurnManager : MonoBehaviour {
 
         var www = new WWW(ElasticEmail.GetAddress(), ElasticEmail.GetForm(subject, bodyWithScenarioHistory));
         yield return www;
+
+        TempLoading.Hide();
+        if (www.error == null)
+        {
+            FeedbackObject.gameObject.SetActive(false);
+        }
     }
 
     public void SendFeedback()
@@ -184,11 +188,16 @@ public class TurnManager : MonoBehaviour {
     }
     public IEnumerator SendFeedback( string body)
     {
-        FeedbackObject.gameObject.SetActive(false);
         var subject = "FEEDBACK";
 
         var www = new WWW(ElasticEmail.GetAddress(), ElasticEmail.GetForm(subject, body));
         yield return www;
+
+        TempLoading.Hide();
+        if (www.error == null)
+        {
+            FeedbackObject.gameObject.SetActive(false);
+        }
     }
 #endregion
 }
