@@ -30488,7 +30488,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BASIC_TEXT_IGNORE
+  m_Text: BASIC_TEXT_WAIT
 --- !u!222 &2066738156
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30506,7 +30506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: BASIC_TEXT_IGNORE
+  Key: BASIC_TEXT_WAIT
   toUpper: 0
 --- !u!1 &2066747660
 GameObject:
