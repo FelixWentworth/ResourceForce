@@ -120,6 +120,8 @@ public class DialogBox : MonoBehaviour {
                 img.preserveAspect = true;
 
                 _ratingTransforms.Add(go.transform);
+
+                go.GetComponent<RectTransform>().localScale = Vector3.one;
             }
 
         }

@@ -18,17 +18,19 @@ public class SatisfactionDisplays : MonoBehaviour {
 
     private Text _satisfactionValue;
 
-    private const float MaxValue = 100f;
+    private float _maxValue = 20f;
 
-    public void SetSatisfactionDisplays(float satisfaction)
+    public void SetSatisfactionDisplays(float satisfaction, float maxSatisfaction)
     {
+        _maxValue = maxSatisfaction;
+
         //mySlider.anchoredPosition = new Vector2(myRect.rect.width - ((myRect.rect.width /MaxValue) * satisfaction),0f);
-        warningBG.color = new Color(FadeGB.r, FadeGB.g, FadeGB.b, 1f - (satisfaction / MaxValue));
+        warningBG.color = new Color(FadeGB.r, FadeGB.g, FadeGB.b, 1f - (satisfaction / _maxValue));
         AudioManager.Instance.SetBackgroundMusicBalance(satisfaction);
 
         SetSatisfactionText(Mathf.RoundToInt(satisfaction));
 
-        StartCoroutine(SetSatisfactionFillAmount(1f, satisfaction, MaxValue));
+        StartCoroutine(SetSatisfactionFillAmount(1f, satisfaction, _maxValue));
     }
 
     public IEnumerator TransitionTo(Transform myTransform, float time, float value)
@@ -45,7 +47,7 @@ public class SatisfactionDisplays : MonoBehaviour {
         myTransform.position = myRect.transform.position;
 
         Destroy(myTransform.gameObject);
-        StartCoroutine(SetSatisfactionFillAmount(0.5f, value, MaxValue));
+        StartCoroutine(SetSatisfactionFillAmount(0.5f, value, _maxValue));
         
     }
 

@@ -15,7 +15,8 @@ public class IncidentManager : MonoBehaviour
     public Text CaseStatus;
     public IncidentQueue m_IncidentQueue;
     protected int currentTurn;
-    protected float happiness = 75f;
+    protected float Happiness = 10f;
+    protected float MaxHappiness = 20f;
 
     public DialogBox m_dialogBox;
     public SatisfactionDisplays m_satisfactionDisplay;
@@ -42,7 +43,7 @@ public class IncidentManager : MonoBehaviour
 #endif
     void Start()
     {
-        m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
+        m_satisfactionDisplay.SetSatisfactionDisplays(Happiness, MaxHappiness);
         _casesClosed = 0;
         _casesClosedWell = 0;
         _casesClosedThisTurn = 0; 
@@ -223,14 +224,14 @@ public class IncidentManager : MonoBehaviour
 
         _casesClosedWell += impact > 0 ? 1 : 0;
 
-        happiness = Mathf.Clamp(happiness, 0, 100);
+        Happiness = Mathf.Clamp(Happiness, 0, MaxHappiness);
        // m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
         var ratingObjects = m_dialogBox.GetRatingObjects();
 
         foreach (var feedbackTransform in ratingObjects)
         {
             feedbackTransform.parent = GameObject.Find("Canvas").transform;
-            StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, transitionTime, happiness));
+            StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, transitionTime, Happiness));
         }
 
 
@@ -246,8 +247,8 @@ public class IncidentManager : MonoBehaviour
             AddHappiness(_endTurnSatisfaction);
         }
         _endTurnSatisfaction = 0;
-        happiness = Mathf.Clamp(happiness, 0, 100);
-        m_satisfactionDisplay.SetSatisfactionDisplays(happiness);
+        Happiness = Mathf.Clamp(Happiness, 0, MaxHappiness);
+        m_satisfactionDisplay.SetSatisfactionDisplays(Happiness, MaxHappiness);
 
         // reset the number of cases closed this turn
         _casesClosedThisTurn = 0;
@@ -398,6 +399,7 @@ public class IncidentManager : MonoBehaviour
         var satisfactionText = "";
         satisfactionText += Localization.Get("BASIC_TEXT_SATISFACTION_IMPACT") + ": ";
         satisfactionText += impact > 0 ? "+" + impact: impact.ToString();
+        satisfactionText += "%";
         SatisfactionImpactGameObject.GetComponentInChildren<Text>().text = satisfactionText;
     }
     public void CloseCase(int caseNumber, float transitionTime)
@@ -421,11 +423,11 @@ public class IncidentManager : MonoBehaviour
     }
     public bool IsGameOver()
     {
-        return GetHappiness() < 10f;
+        return GetHappiness() < (MaxHappiness * 0.1f);
     }
     public int GetHappiness()
     {
-        return Mathf.RoundToInt(happiness);
+        return Mathf.RoundToInt(Happiness);
     }
 
    
@@ -603,7 +605,7 @@ public class IncidentManager : MonoBehaviour
 
     public void AddHappiness(int value)
     {
-        happiness += value;
-        _endTurnSatisfaction += value;
+        Happiness += value;
+        _endTurnSatisfaction += Mathf.RoundToInt(value * (100f / MaxHappiness));
     }
 }
