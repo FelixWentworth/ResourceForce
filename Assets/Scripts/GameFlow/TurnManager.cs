@@ -104,8 +104,8 @@ public class TurnManager : MonoBehaviour {
     {
         //we could set Time.scale to 0 but there is little need so we will just show the pause screen
         AudioManager.Instance.PositiveButtonPress();
-        SettingsScreenQuitToMenuOption.SetActive(!startScreen.activeSelf);
-        SettingsScreenScenarioReportOption.SetActive(!startScreen.activeSelf);
+        SettingsScreenQuitToMenuOption.SetActive(turn > 0);
+        SettingsScreenScenarioReportOption.SetActive(turn > 0);
         settingsScreen.SetActive(!settingsScreen.activeSelf);
     }
     public void ResumeGame()
@@ -169,7 +169,12 @@ public class TurnManager : MonoBehaviour {
         var www = new WWW(ElasticEmail.GetAddress(), ElasticEmail.GetForm(subject, bodyWithScenarioHistory));
         yield return www;
 
-        TempLoading.Hide();
+        var message = www.error == null
+            ? Localization.Get("BASIC_TEXT_FEEDBACK_SENT")
+            : Localization.Get("BASIC_TEXT_ERROR");
+
+        yield return Loading.Stop(message, 1f);
+
         if (www.error == null)
         {
             FeedbackObject.gameObject.SetActive(false);
@@ -191,9 +196,15 @@ public class TurnManager : MonoBehaviour {
         var subject = "FEEDBACK";
 
         var www = new WWW(ElasticEmail.GetAddress(), ElasticEmail.GetForm(subject, body));
+
         yield return www;
 
-        TempLoading.Hide();
+        var message = www.error == null
+            ? Localization.Get("BASIC_TEXT_FEEDBACK_SENT")
+            : Localization.Get("BASIC_TEXT_ERROR");
+
+        yield return Loading.Stop(message, 1f);
+
         if (www.error == null)
         {
             FeedbackObject.gameObject.SetActive(false);

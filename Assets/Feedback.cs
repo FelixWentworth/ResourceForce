@@ -20,6 +20,16 @@ public class Feedback : MonoBehaviour
 
     private InputField _feedbackText;
 
+    void OnEnable()
+    {
+        TouchScreenKeyboard.hideInput = true;
+    }
+
+    void OnDisable()
+    {
+        TouchScreenKeyboard.hideInput = false;
+    }
+
     public void SetInformationText()
     {
         _game = "Resource Force";
@@ -47,7 +57,8 @@ public class Feedback : MonoBehaviour
     {
         var body = _game + "\n" + _otherInfo + "\n\n" + _feedbackText.text;
 
-        TempLoading.Show();
+        Loading.Set(300, false);
+        Loading.Start(Localization.Get("BASIC_TEXT_SENDING_FEEDBACK"));
 
         _sendAction(body);
     }

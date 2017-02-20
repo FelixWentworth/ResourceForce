@@ -93,4 +93,7 @@
 {"key":"BASIC_TEXT_SUBJECT","en-gb":"Subject","de":"Subject","el":"XXXX","es":"Tema"},
 {"key":"BASIC_TEXT_CANCEL","en-gb":"Cancel","de":"Cancel","el":"XXXX","es":"Cancelar"},
 {"key":"BASIC_TEXT_SEND","en-gb":"Send","de":"Send","el":"XXXX","es":"Enviar"},
-{"key":"BASIC_TEXT_REPORT_SCENARIO","en-gb":"Report Scenario problem","de":"Report Scenario problem","el":"XXXX","es":"Problema del escenario del informe"}]
+{"key":"BASIC_TEXT_REPORT_SCENARIO","en-gb":"Report Scenario problem","de":"Report Scenario problem","el":"XXXX","es":"Problema del escenario del informe"},
+{"key":"BASIC_TEXT_SENDING_FEEDBACK","en-gb":"Sending Feedback","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_FEEDBACK_SENT","en-gb":"Feedback Sent","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BASIC_TEXT_ERROR","en-gb":"Error","de":"XXXX","el":"XXXX","es":"XXXX"}]
