@@ -32,7 +32,7 @@ public class Location : MonoBehaviour {
         {
             case Site.Preston:
                 numIncidents = 20;
-                UsesFullFeedback = false;
+                UsesFullFeedback = true;
                 CurrentLocation = "Preston";
                 return "_Preston";
             case Site.Belfast:
