@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using GameAnalyticsSDK;
 
 public class GameOver : MonoBehaviour
 {
@@ -47,7 +48,9 @@ public class GameOver : MonoBehaviour
         {
             highScore = totalScore;
             PlayerPrefs.SetInt("HighScore", highScore);
+
         }
+        GameAnalytics.NewDesignEvent(Location.CurrentLocation + "_Score", totalScore);
 
         StartCoroutine(ShowScores(turns, casesClosedWell, (cases - casesClosedWell), turnScore, goodCaseScore, badCaseScore, totalScore, highScore));
     }
