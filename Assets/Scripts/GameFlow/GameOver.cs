@@ -50,6 +50,8 @@ public class GameOver : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highScore);
 
         }
+
+        GameAnalytics.NewDesignEvent(Location.CurrentLocation + "_TurnsSurvived", turns);
         GameAnalytics.NewDesignEvent(Location.CurrentLocation + "_Score", totalScore);
 
         StartCoroutine(ShowScores(turns, casesClosedWell, (cases - casesClosedWell), turnScore, goodCaseScore, badCaseScore, totalScore, highScore));
