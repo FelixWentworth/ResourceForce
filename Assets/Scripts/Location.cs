@@ -52,12 +52,12 @@ public class Location : MonoBehaviour {
                 return "_Groningen";
             case Site.Valencia:
                 numIncidents = 20;
-                UsesFullFeedback = false;
+                UsesFullFeedback = true;
                 CurrentLocation = "Valencia";
                 return "_Valencia";
             default:
                 numIncidents = 20;
-                UsesFullFeedback = false;
+                UsesFullFeedback = true;
                 CurrentLocation = "Preston";
                 return "_Preston";
         }
