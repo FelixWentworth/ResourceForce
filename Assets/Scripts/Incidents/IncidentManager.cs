@@ -393,8 +393,13 @@ public class IncidentManager : MonoBehaviour
             ShowIncident(currentTurn);
     }
 
-    public void ShowSatisfactionImpact(int impact)
+    public void ShowSatisfactionImpact(int impact, bool closeCase = false)
     {
+        if (closeCase)
+        {
+            // Convert to actual value
+            impact = Mathf.RoundToInt(impact * (100f / MaxHappiness));
+        }
         SatisfactionImpactGameObject.SetActive(true);
         var satisfactionText = "";
         satisfactionText += Localization.Get("BASIC_TEXT_SATISFACTION_IMPACT") + ": ";
@@ -423,7 +428,7 @@ public class IncidentManager : MonoBehaviour
     }
     public bool IsGameOver()
     {
-        return GetHappiness() < (MaxHappiness * 0.1f);
+        return GetHappiness() < Mathf.RoundToInt(MaxHappiness * 0.1f);
     }
     public int GetHappiness()
     {
@@ -606,6 +611,7 @@ public class IncidentManager : MonoBehaviour
     public void AddHappiness(int value)
     {
         Happiness += value;
+        Happiness = Mathf.Clamp(Happiness, 0, MaxHappiness);
         _endTurnSatisfaction += Mathf.RoundToInt(value * (100f / MaxHappiness));
     }
 }

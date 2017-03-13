@@ -109,7 +109,7 @@ public class DialogBox : MonoBehaviour {
             var spriteToUse = satisfaction > 0 ? PlusSprite : MinusSprite;
             var increment = satisfaction > 0 ? 1 : -1;
 
-            _incidentManager.ShowSatisfactionImpact(satisfaction);
+            _incidentManager.ShowSatisfactionImpact(satisfaction, true);
 
             for (int i = 0; i != satisfaction; i += increment)
             {
@@ -122,6 +122,9 @@ public class DialogBox : MonoBehaviour {
                 _ratingTransforms.Add(go.transform);
 
                 go.GetComponent<RectTransform>().localScale = Vector3.one;
+
+                var ratingPanelHeight = ratingPanel.GetComponent<RectTransform>().rect.height;
+                ratingPanel.GetComponent<GridLayoutGroup>().cellSize = new Vector2(ratingPanelHeight, ratingPanelHeight);
             }
 
         }
