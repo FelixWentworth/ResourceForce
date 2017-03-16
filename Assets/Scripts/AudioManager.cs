@@ -32,7 +32,6 @@ public class AudioManager : MonoBehaviour {
         }
         slider.value = AudioListener.volume;
         PlayBackgroundMusic();
-        SetBackgroundMusicBalance(75f);
         if (instance != null && instance != this)
         {
             //if the singleton has already been created
@@ -45,7 +44,6 @@ public class AudioManager : MonoBehaviour {
     }
 
     public AudioSource backgroundMusic;
-    public AudioSource endangerMusic;
     public AudioSource positiveButtonMusic;
     public AudioSource negativeButtonMusic;
     public AudioSource warningBoxMusic;
@@ -89,28 +87,11 @@ public class AudioManager : MonoBehaviour {
     {
         //play the background music
         backgroundMusic.Play();
-        endangerMusic.Play();
     }
     public void StopBackgroundMusic()
     {
         //stop the background music
         backgroundMusic.Stop();
-        endangerMusic.Stop();
-    }
-    public void SetBackgroundMusicBalance(float satisfaction)
-    {
-        //set the volumes of the background music based on the satisfaction level
-        //only play the endagered music when the satisfaction is lower than 70%
-        if (satisfaction < 70f)
-        {
-            float volume = Mathf.Clamp01(satisfaction / 70f);
-
-            backgroundMusic.volume = volume / 2f;
-            endangerMusic.volume = 1 - volume;
-
-        }
-        backgroundMusic.volume = 1;
-        endangerMusic.volume = 0;
     }
     public void ShowWarningMessage()
     {

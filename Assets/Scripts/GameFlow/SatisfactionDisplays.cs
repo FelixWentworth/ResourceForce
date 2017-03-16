@@ -26,7 +26,6 @@ public class SatisfactionDisplays : MonoBehaviour {
 
         //mySlider.anchoredPosition = new Vector2(myRect.rect.width - ((myRect.rect.width /MaxValue) * satisfaction),0f);
         warningBG.color = new Color(FadeGB.r, FadeGB.g, FadeGB.b, 1f - (satisfaction / _maxValue));
-        AudioManager.Instance.SetBackgroundMusicBalance(satisfaction);
 
         SetSatisfactionText(Mathf.RoundToInt(satisfaction));
 
