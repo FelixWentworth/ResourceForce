@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class VersionInformation : MonoBehaviour
@@ -12,6 +9,6 @@ public class VersionInformation : MonoBehaviour
     void Start()
     {
         _text = this.GetComponent<Text>();
-        _text.text = PlayerSettings.bundleVersion;
+        _text.text = Application.version;
     }
 }
