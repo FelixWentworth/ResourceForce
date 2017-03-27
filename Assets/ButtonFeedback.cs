@@ -66,8 +66,9 @@ public class ButtonFeedback : MonoBehaviour {
                 _incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
             }
 
-            var ratingImpact = (rating - 3) * severity;
+            float ratingImpact = (rating - 3) * severity;
 
+            ratingImpact = ratingImpact > 0 ? ratingImpact * 0.2f : ratingImpact;
             _incidentManager.AddHappiness(ratingImpact);
             foreach (var feedbackTransform in ratingObjects)
             {

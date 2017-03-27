@@ -297,7 +297,7 @@
 {"key":"SCENARIO_12_OFFICER_FEEDBACK_2","en-gb":"Good choice, delayed deployment may cause issues","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"SCENARIO_13_WAIT_FEEDBACK_1","en-gb":"Difficult choice, remember to set priorities with other incidents","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"SCENARIO_13_OFFICER_FEEDBACK_1","en-gb":"There may have been better choices to help aprehend the male","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"SCENARIO_13_CITIZEN_FEEDBACK_1","en-gb":"Citizesn may be able to help identify the male","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"SCENARIO_13_CITIZEN_FEEDBACK_1","en-gb":"Citizens may be able to help identify the male","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"SCENARIO_13_WAIT_FEEDBACK_2","en-gb":"Questionable choice, the incidnet has escalated and may escalate further","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"SCENARIO_13_OFFICER_FEEDBACK_2","en-gb":"Good call, you do not want the scenario to get any worse","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"SCENARIO_13_WAIT_FEEDBACK_3","en-gb":"Bad choice, you should use the information from citizens, otherwise they will feel ignored","de":"XXXX","el":"XXXX","es":"XXXX"},

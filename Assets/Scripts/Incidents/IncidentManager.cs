@@ -436,9 +436,9 @@ public class IncidentManager : MonoBehaviour
     /// Get the numerical value of happiness
     /// </summary>
     /// <returns>Current happiness value</returns>
-    public int GetActualHappiness()
+    public float GetActualHappiness()
     {
-        return Mathf.RoundToInt(Happiness);
+        return Happiness;
     }
 
     /// <summary>
@@ -622,7 +622,7 @@ public class IncidentManager : MonoBehaviour
             new List<IncidentHistoryElement>();
     }
 
-    public void AddHappiness(int value)
+    public void AddHappiness(float value)
     {
         Happiness += value;
         Happiness = Mathf.Clamp(Happiness, 0, MaxHappiness);
