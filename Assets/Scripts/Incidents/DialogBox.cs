@@ -69,11 +69,26 @@ public class DialogBox : MonoBehaviour {
     }
     public IEnumerator ShowIncident(Incident zIncident)
     {
+        
+        
         //check if this is a resolution, ie. no buttons will lead anywhere
         var endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
 
         var history = _incidentManager.GetIncidentHistory(zIncident.caseNumber);
 
+        //if (zIncident.waitIndex != -1 && zIncident.citizenIndex != -1)
+        //{
+        //    // there is both a wait and citizen option
+        //    var citizenChance = 100f - _incidentManager.GetHappiness();
+        //    var rand = UnityEngine.Random.Range(1, 101);
+
+        //    Debug.Log("Chance: " + citizenChance + ", value: " + rand);
+
+        //    if (rand > citizenChance)
+        //    {
+        //        zIncident.citizenIndex = -1;
+        //    }
+        //}
 
         var currentInformation = new IncidentHistoryElement()
         {

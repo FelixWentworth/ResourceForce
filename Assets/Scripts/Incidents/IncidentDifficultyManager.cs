@@ -179,8 +179,9 @@ public class IncidentDifficultyManager : MonoBehaviour
 
         if (newIncidentOfficerLimit == 0)
         {
-            var newIncident = GetNewIncident(newIncidentOfficerLimit, currentIncidents);
-            incidentList.Add(newIncident);
+            return null;
+            //var newIncident = GetNewIncident(newIncidentOfficerLimit, currentIncidents);
+            //incidentList.Add(newIncident);
         }
         else
         {

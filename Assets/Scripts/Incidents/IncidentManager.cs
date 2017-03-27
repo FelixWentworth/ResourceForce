@@ -36,7 +36,7 @@ public class IncidentManager : MonoBehaviour
 
     private int _endTurnSatisfaction;
 
-    private const int MaxIncidents = 5;
+    private const int MaxIncidents = 7;
    
 #if SELECT_INCIDENTS
     private int incidentShowingIndex = 1;
