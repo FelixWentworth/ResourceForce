@@ -73,7 +73,7 @@ public class SimplifiedJson : MonoBehaviour {
         //get the officers, turns to add from officers and severity values
 
         tmp.officer = int.Parse(N[name][i][5]);
-        tmp.turnsToAdd = int.Parse(N[name][i][6]);
+        tmp.turnsToAdd = int.Parse(N[name][i][6]) + 1;
         tmp.severity = int.Parse(N[name][i][7]);
 
         //set the name

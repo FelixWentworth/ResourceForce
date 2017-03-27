@@ -99,7 +99,7 @@ public class DialogBox : MonoBehaviour {
         if (endCase)
         {
             // populate the button with feedback elements
-            var satisfaction = zIncident.satisfactionImpact;
+            float satisfaction = zIncident.satisfactionImpact;
 
             var ratingPanel = _caseClosedButton.transform.FindChild("RatingPanel").transform;
             DestroyChildren(ratingPanel);
@@ -108,8 +108,6 @@ public class DialogBox : MonoBehaviour {
             // satisfaction ranges from +3 to -3
             var spriteToUse = satisfaction > 0 ? PlusSprite : MinusSprite;
             var increment = satisfaction > 0 ? 1 : -1;
-
-            _incidentManager.ShowSatisfactionImpact(satisfaction, true);
 
             for (int i = 0; i != satisfaction; i += increment)
             {
@@ -126,6 +124,12 @@ public class DialogBox : MonoBehaviour {
                 var ratingPanelHeight = ratingPanel.GetComponent<RectTransform>().rect.height;
                 ratingPanel.GetComponent<GridLayoutGroup>().cellSize = new Vector2(ratingPanelHeight, ratingPanelHeight);
             }
+
+            if (satisfaction > 0)
+            {
+                satisfaction *= 0.4f;
+            }
+            _incidentManager.ShowSatisfactionImpact(satisfaction, true);
 
         }
 

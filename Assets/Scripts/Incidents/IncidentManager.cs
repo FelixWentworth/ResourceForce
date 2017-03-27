@@ -204,7 +204,7 @@ public class IncidentManager : MonoBehaviour
         //make sure the current incident is not showing as new as we now know the player has seen it
         currentIncident.isNew = false;
     }
-    public void CaseClosed(int impact, float transitionTime, bool expired = false)
+    public void CaseClosed(float impact, float transitionTime, bool expired = false)
     {
         if (expired)
         {
@@ -388,7 +388,7 @@ public class IncidentManager : MonoBehaviour
             ShowIncident(currentTurn);
     }
 
-    public void ShowSatisfactionImpact(int impact, bool closeCase = false)
+    public void ShowSatisfactionImpact(float impact, bool closeCase = false)
     {
         if (closeCase)
         {
@@ -412,7 +412,13 @@ public class IncidentManager : MonoBehaviour
                 m_IncidentQueue.ChangeCaseState(caseNumber, IncidentCase.State.Resolved);
                 m_IncidentQueue.RemoveFromQueue(incidents[i].caseNumber);
 
-                CaseClosed(incidents[i].satisfactionImpact, transitionTime);
+                float impact = incidents[i].satisfactionImpact;
+                if (impact > 0)
+                {
+                    impact = impact * 0.4f;
+                }
+
+                CaseClosed(impact, transitionTime);
 
                 incidents.RemoveAt(i);
                 i--;

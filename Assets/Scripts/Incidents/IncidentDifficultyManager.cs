@@ -173,14 +173,14 @@ public class IncidentDifficultyManager : MonoBehaviour
         var bestOfficerUsage = GetLeastOfficersRequiredForThisTurn(currentIncidents);
         var worstOfficerUsage = GetMostOfficersRequiredForThisTurn(currentIncidents);
 
-        var newIncidentOfficerLimit = GetTotalOfficersRequiredForNewIncidents(totalOfficers, turnNumber,
+        var newIncidentOfficerLimit = GetTotalOfficersRequiredForNewIncidents(totalOfficers + 2, turnNumber,
             worstOfficerUsage, bestOfficerUsage);
-
         var currentIncidentsShowing = currentIncidents.Count;
 
         if (newIncidentOfficerLimit == 0)
         {
-            return null;
+            var newIncident = GetNewIncident(newIncidentOfficerLimit, currentIncidents);
+            incidentList.Add(newIncident);
         }
         else
         {
@@ -191,7 +191,6 @@ public class IncidentDifficultyManager : MonoBehaviour
                 if (incidentList.Find(i => i.caseNumber == newIncident.caseNumber) == null)
                 {
                     newIncidentOfficerLimit -= newIncident.officer;
-
                     incidentList.Add(newIncident);
                 }
             }

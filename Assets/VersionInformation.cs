@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class VersionInformation : MonoBehaviour
 {
-
     private Text _text;
 
     void Start()
