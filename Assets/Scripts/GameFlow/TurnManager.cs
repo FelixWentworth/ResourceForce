@@ -70,7 +70,7 @@ public class TurnManager : MonoBehaviour {
             _incidentManager.IsIncidentWaitingToShow(turn);    //not using the bool callback to populate the next incident list
             //_incidentManager.CreateNewIncident(turn);
 
-            _incidentManager.AddNewIncidents(_incidentManager.incidents, turn);
+            _incidentManager.AddNewIncidents(turn);
 
 #if SELECT_INCIDENTS
             GameObject.Find("IncidentDialog").GetComponent<DialogBox>().DeactivateAll();

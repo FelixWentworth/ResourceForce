@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Reflection;
+using JetBrains.Annotations;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,8 +29,11 @@ public class DeviceLocation : MonoBehaviour {
     private int _locationIndex;
     private GridLayoutGroup _gridLayout;
 
+    private Dropdown _dropdown;
+
     void Awake()
     {
+        _dropdown = GetComponentInChildren<Dropdown>();
         _gridLayout = grid.GetComponent<GridLayoutGroup>();
         _config = this.GetComponent<LocationConfig>();
         _locationIndex = 0;
@@ -40,24 +45,59 @@ public class DeviceLocation : MonoBehaviour {
 
     private void SetButtonClicks()
     {
+        
+
         EnglishButton.onClick.AddListener(EnglishSelected);
         DutchButton.onClick.AddListener(DutchSelected);
         GreekButton.onClick.AddListener(GreekSelected);
         SpanishButton.onClick.AddListener(SpanishSelected);
     }
 
+    void Update()
+    {
+        if (_dropdown.transform.childCount != 4)
+        {
+            SetToggleToButtons();
+        }
+    }
+
+    private void SetToggleToButtons()
+    {
+        var toggles = GetComponentsInChildren<Toggle>();
+        foreach (var toggle in toggles)
+        {
+            var go = toggle.gameObject;
+            DestroyImmediate(toggle);
+            var btn = go.AddComponent<Button>();
+            btn.onClick.AddListener(() => OnToggleClicked(go.name));
+        }
+    }
+
+    private void OnToggleClicked(string name)
+    {
+        var itemNumber = name.Substring(5, 1);
+
+        var index = int.Parse(itemNumber);
+        _dropdown.Hide();
+        _dropdown.value = index;
+        SetLocation(index);
+        
+    }
+
     public void SetLocation(Dropdown dropdown)
     {
-        int value = dropdown.value;
+        SetLocation(dropdown.value);
+    }
 
+    private void SetLocation(int value)
+    {
         UpdateLanguagesAvailable(value);
-
+        
         // check a location has been set
         if (value == 0)
             return;
 
-        loc.SetFilePath(value-1);
-        
+        loc.SetFilePath(value - 1);
     }
 
     private void EnglishSelected()

@@ -167,7 +167,7 @@ public class DialogBox : MonoBehaviour {
 
         _buttonFade.SetActive(true);
 
-        ShowImmediateFeedback(CurrentIncident.feedbackRatingWait, _waitButton.transform);
+        ShowImmediateFeedback(CurrentIncident.feedbackRatingWait, CurrentIncident.severity, _waitButton.transform);
 
         StartCoroutine(LeftButtonWithAnim(isCitizensAvailable));
         AudioManager.Instance.PressWaitButton();
@@ -200,7 +200,7 @@ public class DialogBox : MonoBehaviour {
 			_buttonFade.SetActive(true);
             StartCoroutine(RightButtonWithAnim(isCitizensAvailable));
 
-            ShowImmediateFeedback(CurrentIncident.feedbackRatingOfficer, _sendOfficerButton.transform);
+            ShowImmediateFeedback(CurrentIncident.feedbackRatingOfficer, CurrentIncident.severity, _sendOfficerButton.transform);
 
             AudioManager.Instance.PressOfficerButton();
         }
@@ -253,7 +253,7 @@ public class DialogBox : MonoBehaviour {
     {
         _buttonFade.SetActive(true);
 
-        ShowImmediateFeedback(CurrentIncident.feedbackRatingCitizen, _citizenHelpButton.transform);
+        ShowImmediateFeedback(CurrentIncident.feedbackRatingCitizen, CurrentIncident.severity, _citizenHelpButton.transform);
         StartCoroutine(CitizenButtonWithAnim());
         AudioManager.Instance.PressCitizenButton();
     }
@@ -292,10 +292,10 @@ public class DialogBox : MonoBehaviour {
         }
     }
 
-    private void ShowImmediateFeedback(int rating, Transform button)
+    private void ShowImmediateFeedback(int rating, int severity, Transform button)
     {
         _buttonFeedback.gameObject.SetActive(true);
 
-        StartCoroutine(_buttonFeedback.ShowFeedback(rating, button));
+        StartCoroutine(_buttonFeedback.ShowFeedback(rating, severity, button));
     }
 }

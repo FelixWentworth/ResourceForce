@@ -58,33 +58,29 @@ public class IncidentManager : MonoBehaviour
             _incidentDifficultyManager = this.GetComponent<IncidentDifficultyManager>();
         }
         // create new incidents, randome amount between 1 and 3
-
-        var num = UnityEngine.Random.Range(1, 4);
-        for (int i = 0; i < num; i++)
+       
+        if (incidents.Count >= MaxIncidents)
         {
-            if (incidents.Count >= MaxIncidents)
-            {
-                return;
-            }
-            var newIncident = new Incident();
-#if ALLOW_DUPLICATE_INCIDENTS
-            jsonReader.CreateNewIncident(ref newIncident);
-#else
-            jsonReader.CreateNewIncident(ref newIncident, incidents);
-#endif
-            newIncident.turnToShow = zTurn;
-            newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd + 1;
-            //our complete list of incidents
-            incidents.Add(newIncident);
-            //our list of incidents waiting to show this turn
-            NextIncident.Add(newIncident);
-            m_IncidentQueue.AddToQueue(newIncident);
+            return;
         }
+        var newIncident = new Incident();
+#if ALLOW_DUPLICATE_INCIDENTS
+        jsonReader.CreateNewIncident(ref newIncident);
+#else
+        jsonReader.CreateNewIncident(ref newIncident, incidents);
+#endif
+        newIncident.turnToShow = zTurn;
+        newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd + 1;
+        //our complete list of incidents
+        incidents.Add(newIncident);
+        //our list of incidents waiting to show this turn
+        NextIncident.Add(newIncident);
+        m_IncidentQueue.AddToQueue(newIncident);
 
 
     }
 
-    public void AddNewIncidents(List<Incident> ongoingIncidents, int turn)
+    public void AddNewIncidents(int turn)
     {
         if (incidents.Count >= MaxIncidents)
         {
@@ -99,7 +95,7 @@ public class IncidentManager : MonoBehaviour
         var totalOfficersAvailable = OfficerController.TotalOfficers;
         var currentOfficersAvailable = OfficerController.GetAvailable();
 
-        var newIncidents = _incidentDifficultyManager.GetNewIncidents(ongoingIncidents, MaxIncidents, totalOfficersAvailable, turn +1,
+        var newIncidents = _incidentDifficultyManager.GetNewIncidents(incidents, MaxIncidents, totalOfficersAvailable, turn +1,
            currentOfficersAvailable, null);
 
         if (newIncidents != null)
@@ -167,9 +163,8 @@ public class IncidentManager : MonoBehaviour
 
         if (NextIncident == null)
         {
-            AddNewIncidents(incidents, turn + 1);
+            AddNewIncidents(turn + 1);
         }
-        //CreateNewIncident(turn);
 
         var currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
@@ -426,15 +421,34 @@ public class IncidentManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Check if the happiness is below the end game threshold
+    /// </summary>
+    /// <returns>if the game is over</returns>
     public bool IsGameOver()
     {
-        return GetHappiness() < Mathf.RoundToInt(MaxHappiness * 0.1f);
+        // Happiness is less than 10%
+        return GetHappiness() < 10f;
     }
-    public int GetHappiness()
+
+    /// <summary>
+    /// Get the numerical value of happiness
+    /// </summary>
+    /// <returns>Current happiness value</returns>
+    public int GetActualHappiness()
     {
         return Mathf.RoundToInt(Happiness);
     }
 
+    /// <summary>
+    /// Get the % value of happiness as shown in game
+    /// </summary>
+    /// <returns>Current happiness %</returns>
+    public float GetHappiness()
+    {
+        return (Happiness / MaxHappiness) * 100f;
+    }
    
     /// <summary>
     /// Gets the total severity of all active cases

@@ -116,7 +116,7 @@ public class IncidentDifficultyManager : MonoBehaviour
     /// </summary>
     /// <param name="officerRequirementLimit">Limit of number of officers required for sending to new incident</param>
     /// <returns></returns>
-    private Incident GetNewIncident(int officerRequirementLimit)
+    private Incident GetNewIncident(int officerRequirementLimit, List<Incident> incidents )
     {
         var incident = new Incident();
 
@@ -127,7 +127,13 @@ public class IncidentDifficultyManager : MonoBehaviour
 
         do
         {
+            
+#if ALLOW_DUPLICATE_INCIDENTS
             _incidentLoader.CreateNewIncident(ref incident);
+#else
+            _incidentLoader.CreateNewIncident(ref incident, incidents);
+
+#endif
         }
         while (incident.officerIndex == -1 || incident.officer > officerRequirementLimit);
 
@@ -180,10 +186,14 @@ public class IncidentDifficultyManager : MonoBehaviour
         {
             while (newIncidentOfficerLimit > 0 ) 
             {
-                var newIncident = GetNewIncident(newIncidentOfficerLimit);
-                newIncidentOfficerLimit -= newIncident.officer;
+                var newIncident = GetNewIncident(newIncidentOfficerLimit, currentIncidents);
+                // Make sure that the incident list does not contain the new incident
+                if (incidentList.Find(i => i.caseNumber == newIncident.caseNumber) == null)
+                {
+                    newIncidentOfficerLimit -= newIncident.officer;
 
-                incidentList.Add(newIncident);
+                    incidentList.Add(newIncident);
+                }
             }
         }
 

@@ -31,7 +31,7 @@ public class ButtonFeedback : MonoBehaviour {
         _animation = GetComponent<Animation>();
     }
 
-    public IEnumerator ShowFeedback(int rating, Transform buttonPressed)
+    public IEnumerator ShowFeedback(int rating, int severity, Transform buttonPressed)
     {
         if (rating != -1)
         {
@@ -66,11 +66,13 @@ public class ButtonFeedback : MonoBehaviour {
                 _incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
             }
 
-            _incidentManager.AddHappiness(rating - 3);
+            var ratingImpact = (rating - 3) * severity;
+
+            _incidentManager.AddHappiness(ratingImpact);
             foreach (var feedbackTransform in ratingObjects)
             {
                 feedbackTransform.parent = GameObject.Find("Canvas").transform;
-                StartCoroutine(_satisfactionDisplays.TransitionTo(feedbackTransform, 0.5f, _incidentManager.GetHappiness())); // -3 as 3 indicates a neutral choice, so no change
+                StartCoroutine(_satisfactionDisplays.TransitionTo(feedbackTransform, 0.5f, _incidentManager.GetActualHappiness())); // -3 as 3 indicates a neutral choice, so no change
             }
         }
         else
