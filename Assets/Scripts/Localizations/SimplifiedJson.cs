@@ -35,17 +35,16 @@ public class SimplifiedJson : MonoBehaviour {
 
         _myText = Resources.Load(m_location.IncidentFilePath) as TextAsset;
 
-        var randIncident = Random.Range(1, m_location.numIncidents+1);
-
+        var randIncident = Random.Range(1, Location.numIncidents+1);
         // Should be hidden behind ALLOW_DUPLICATE_INCIDENTS flag in incident manager
         if (incidents != null)
         {
             // We have provided the list of incidents to make sure that the incident is not duplicated, now get a random incident index that is not currently in use
             var indexesInUse = incidents.Select(i => i.scenarioNum).ToList();
-            while (indexesInUse.Contains(randIncident) && indexesInUse.Count() < m_location.numIncidents)
+            while (indexesInUse.Contains(randIncident) && indexesInUse.Count() < Location.numIncidents)
             {
                 // Keep looking for an incident that is not used, and we have other incidents we can show
-                randIncident = Random.Range(1, m_location.numIncidents + 1);
+                randIncident = Random.Range(1, Location.numIncidents + 1);
             }
         }
 

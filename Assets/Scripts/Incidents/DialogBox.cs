@@ -87,7 +87,7 @@ public class DialogBox : MonoBehaviour {
         //    if (rand > citizenChance)
         //    {
         //        zIncident.citizenIndex = -1;
-        //    }
+        //    } 
         //}
 
         var currentInformation = new IncidentHistoryElement()
@@ -175,7 +175,6 @@ public class DialogBox : MonoBehaviour {
         anim[name].speed = speed;
         var length = anim[name].length;
         anim[name].time = speed == -1f ? length : 0f;
-
         anim.Play();
         yield return new WaitForSeconds(length);
     }

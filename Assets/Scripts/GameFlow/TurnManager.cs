@@ -45,7 +45,6 @@ public class TurnManager : MonoBehaviour {
         AudioManager.Instance.PlayNextTurn();
 
         turn++;
-        
         NextTurnButton.SetActive(false);
 		EndTurnSatisfaction.SetActive(false);
 		GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
@@ -68,19 +67,19 @@ public class TurnManager : MonoBehaviour {
             _incidentManager.EndTurn();
             //decide which incident to show this turn
             _incidentManager.IsIncidentWaitingToShow(turn);    //not using the bool callback to populate the next incident list
-            //_incidentManager.CreateNewIncident(turn);
+                                                               //_incidentManager.CreateNewIncident(turn);
 
             _incidentManager.AddNewIncidents(turn);
 
+            
 #if SELECT_INCIDENTS
             GameObject.Find("IncidentDialog").GetComponent<DialogBox>().DeactivateAll();
 #else
             _incidentManager.ShowIncident(turn);
 #endif
         }
-        
     }
-    
+
     public void Reset()
     {
         //reset the case identifier to ensure that the case numbers are reset

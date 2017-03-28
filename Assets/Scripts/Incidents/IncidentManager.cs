@@ -97,7 +97,6 @@ public class IncidentManager : MonoBehaviour
 
         var newIncidents = _incidentDifficultyManager.GetNewIncidents(incidents, MaxIncidents, totalOfficersAvailable, turn +1,
            currentOfficersAvailable, null);
-
         if (newIncidents != null)
         {
             foreach (var newIncident in newIncidents)
@@ -160,13 +159,16 @@ public class IncidentManager : MonoBehaviour
     public void ShowIncident(int turn, int zCaseNumber = -1)
     {
         currentTurn = turn;
-
         if (NextIncident == null)
         {
             AddNewIncidents(turn + 1);
         }
 
         var currentIncident = NextIncident[0];
+        if (m_dialogBox == null)
+        {
+            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
+        }
         m_dialogBox.CurrentIncident = currentIncident;
         SatisfactionImpactGameObject.SetActive(false);
 #if SELECT_INCIDENTS
@@ -193,10 +195,7 @@ public class IncidentManager : MonoBehaviour
             if (!incidentFound) //clicked on a case that has since been removed
                 return;
         }
-        if (m_dialogBox == null)
-        {
-            m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
-        }
+        
         currentIncident.Show(ref currentIncident, m_dialogBox);
 
         m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);

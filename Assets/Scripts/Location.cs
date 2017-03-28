@@ -8,7 +8,7 @@ public class Location : MonoBehaviour {
 
     public string IncidentFilePath { get; private set; }
 
-    public int numIncidents { get; private set; }
+    public static int numIncidents { get; private set; }
 
     public static string CurrentLocation { get; private set; }
 

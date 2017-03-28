@@ -125,8 +125,8 @@ public class IncidentDifficultyManager : MonoBehaviour
             _incidentLoader = GameObject.Find("TurnManager").GetComponent<SimplifiedJson>();
         }
 
-        do
-        {
+        //do
+        //{
             
 #if ALLOW_DUPLICATE_INCIDENTS
             _incidentLoader.CreateNewIncident(ref incident);
@@ -134,8 +134,8 @@ public class IncidentDifficultyManager : MonoBehaviour
             _incidentLoader.CreateNewIncident(ref incident, incidents);
 
 #endif
-        }
-        while (incident.officerIndex == -1 || incident.officer > officerRequirementLimit);
+        //}
+        //while (incident.officerIndex == -1 || incident.officer > officerRequirementLimit);
 
         return incident;
     }
@@ -176,8 +176,7 @@ public class IncidentDifficultyManager : MonoBehaviour
         var newIncidentOfficerLimit = GetTotalOfficersRequiredForNewIncidents(totalOfficers + 2, turnNumber,
             worstOfficerUsage, bestOfficerUsage);
         var currentIncidentsShowing = currentIncidents.Count;
-
-        if (newIncidentOfficerLimit == 0)
+        if (newIncidentOfficerLimit <= 0)
         {
             return null;
             //var newIncident = GetNewIncident(newIncidentOfficerLimit, currentIncidents);
@@ -185,11 +184,11 @@ public class IncidentDifficultyManager : MonoBehaviour
         }
         else
         {
-            while (newIncidentOfficerLimit > 0 ) 
+            while (newIncidentOfficerLimit > 0 && incidentList.Count + currentIncidents.Count < Location.numIncidents) 
             {
                 var newIncident = GetNewIncident(newIncidentOfficerLimit, currentIncidents);
                 // Make sure that the incident list does not contain the new incident
-                if (incidentList.Find(i => i.caseNumber == newIncident.caseNumber) == null)
+                if (incidentList.Find(i => i.scenarioNum == newIncident.scenarioNum) == null)
                 {
                     newIncidentOfficerLimit -= newIncident.officer;
                     incidentList.Add(newIncident);
