@@ -4,6 +4,7 @@ using System.Collections;
 using System.Reflection;
 using JetBrains.Annotations;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -66,10 +67,15 @@ public class DeviceLocation : MonoBehaviour {
         var toggles = GetComponentsInChildren<Toggle>();
         foreach (var toggle in toggles)
         {
-            var go = toggle.gameObject;
-            DestroyImmediate(toggle);
-            var btn = go.AddComponent<Button>();
-            btn.onClick.AddListener(() => OnToggleClicked(go.name));
+            if (toggle.gameObject.GetComponent<EventTrigger>() != null)
+            {
+                // We have already set up this trigger
+                continue;
+            }
+            var trigger = toggle.gameObject.AddComponent<EventTrigger>();
+            var clicked = new EventTrigger.Entry {eventID = EventTriggerType.PointerClick};
+            clicked.callback.AddListener((eventData) => OnToggleClicked(toggle.gameObject.name));
+            trigger.triggers.Add(clicked);
         }
     }
 
