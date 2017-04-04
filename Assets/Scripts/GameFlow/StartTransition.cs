@@ -16,6 +16,8 @@ public class StartTransition : MonoBehaviour {
     public GameObject[] objectsToDisableOnStart;
     public Tutorial tut;
 
+    private bool _gameStarted;
+
     void Awake()
     {
         //reset the start screen whilst taking note of the text that used to be used as the password
@@ -31,8 +33,10 @@ public class StartTransition : MonoBehaviour {
 
     public void StartGameTransition()
     {
+        if (_gameStarted)
+            return;
+        _gameStarted = true;
         //start to transition from this screen to game screen, we will do this by filling in the password and then transition to the main game
-        //StartCoroutine(ShowPassword());
         AudioManager.Instance.PlayNewGame();
         StartCoroutine(DelayToGame());
     }
