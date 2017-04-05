@@ -224,7 +224,7 @@ public class IncidentManager : MonoBehaviour
 
         foreach (var feedbackTransform in ratingObjects)
         {
-            feedbackTransform.parent = GameObject.Find("Canvas").transform;
+            feedbackTransform.SetParent(GameObject.Find("Canvas").transform);
             StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, transitionTime, Happiness));
         }
 

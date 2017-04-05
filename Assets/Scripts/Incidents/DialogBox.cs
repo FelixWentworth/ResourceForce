@@ -127,7 +127,7 @@ public class DialogBox : MonoBehaviour {
             for (int i = 0; i != satisfaction; i += increment)
             {
                 var go = new GameObject();
-                go.transform.parent = ratingPanel.transform;
+                go.transform.SetParent(ratingPanel.transform);
                 var img = go.AddComponent<Image>();
                 img.sprite = spriteToUse;
                 img.preserveAspect = true;

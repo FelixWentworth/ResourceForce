@@ -39,7 +39,7 @@ public class ButtonFeedback : MonoBehaviour {
 
             var activeObject = Instantiate(GetActiveObject(rating));
 
-            activeObject.transform.parent = this.transform;
+            activeObject.transform.SetParent(this.transform);
             var rect = activeObject.GetComponent<RectTransform>();
             rect.offsetMin = Vector2.zero;
             rect.offsetMax = Vector2.zero;
@@ -72,7 +72,7 @@ public class ButtonFeedback : MonoBehaviour {
             _incidentManager.AddHappiness(ratingImpact);
             foreach (var feedbackTransform in ratingObjects)
             {
-                feedbackTransform.parent = GameObject.Find("Canvas").transform;
+                feedbackTransform.SetParent(GameObject.Find("Canvas").transform);
                 StartCoroutine(_satisfactionDisplays.TransitionTo(feedbackTransform, 0.5f, _incidentManager.GetActualHappiness())); // -3 as 3 indicates a neutral choice, so no change
             }
         }

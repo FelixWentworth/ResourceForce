@@ -101,7 +101,7 @@ public class IncidentInformationDisplay : MonoBehaviour
         var setup = go.GetComponent<IncidentHistoryUISetup>();
         var rectTransform = go.GetComponent<RectTransform>();
 
-        go.transform.parent = this.transform;
+        go.transform.SetParent(this.transform);
 
         rectTransform.anchorMin = Vector2.zero;
         rectTransform.anchorMax = Vector2.one;
