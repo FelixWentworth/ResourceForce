@@ -18,7 +18,7 @@ public class Localization : MonoBehaviour {
 
     void Awake()
     {
-        if (_localizationDict.Count == 0)
+        if (_localizationDict.Count == 0 || languageIndex != GetLanguageIndex())
         {
             UpdateTextFile();
         }
@@ -99,12 +99,12 @@ public class Localization : MonoBehaviour {
         key = key.ToUpper();
 
         _localizationDict.TryGetValue(key, out txt);
-        if (txt == null)
+        if (txt == null || txt == "XXXX")
         {
             Debug.LogError("Could not find string with key: \"" + key + " \" in the selected language\nMake sure the key is correct and does not have spacing at the start or end!");
 
             // Try to fall back to default library
-            if (_defaultLocalizationDict == null)
+            if (_defaultLocalizationDict != null)
             {
                 _defaultLocalizationDict.TryGetValue(key, out txt);
                 if (txt == null)
@@ -130,8 +130,6 @@ public class Localization : MonoBehaviour {
         //override to always use english for beta release 0.2
         if (!DeviceLocation.shouldOverrideLanguage)
         {
-            return 1;
-            /*
             switch (Application.systemLanguage)
             {
                 case SystemLanguage.English:
@@ -142,8 +140,9 @@ public class Localization : MonoBehaviour {
                     return 3;
                 case SystemLanguage.Spanish:
                     return 4;
+                default:
+                    return 1;
             }
-            */
         }
         else
         {
