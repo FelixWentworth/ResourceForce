@@ -18,7 +18,10 @@ public class Localization : MonoBehaviour {
 
     void Awake()
     {
-        UpdateTextFile();
+        if (localizationDict.Count == 0)
+        {
+            UpdateTextFile();
+        }
     }
     public static void UpdateTextFile()
     {

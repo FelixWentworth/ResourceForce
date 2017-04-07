@@ -56,7 +56,7 @@ namespace GameWork.Unity.Editor.Build
 
             for (var i = 0; i < buildTargets.Length; i++)
             {
-                buildPaths[i] = Build(buildTargets[i]);
+                buildPaths[i] = Build(EditorUserBuildSettings.selectedBuildTargetGroup,  buildTargets[i]);
             }
 
             return buildPaths;
@@ -64,12 +64,12 @@ namespace GameWork.Unity.Editor.Build
 
         public static void Build()
         {
-            Build(EditorUserBuildSettings.activeBuildTarget);
+            Build(EditorUserBuildSettings.selectedBuildTargetGroup, EditorUserBuildSettings.activeBuildTarget);
         }
 
-        public static string Build(BuildTarget buildTarget)
+        public static string Build(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
-            SetPlatform(buildTarget);
+            SetPlatform(buildTargetGroup, buildTarget);
             SetDefaults();
 
             var buildEventCache = new BuildEventCache();
@@ -84,11 +84,11 @@ namespace GameWork.Unity.Editor.Build
             return buildPath;
         }
 
-        private static void SetPlatform(BuildTarget buildTarget)
+        private static void SetPlatform(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
             if (EditorUserBuildSettings.activeBuildTarget != buildTarget)
             {
-                EditorUserBuildSettings.SwitchActiveBuildTarget(buildTarget);
+                EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
             }
         }
 
