@@ -33,7 +33,7 @@ public class Feedback : MonoBehaviour
     public void SetInformationText()
     {
         _game = "Resource Force";
-        _otherInfo = Location.CurrentLocation + ", Language: " + Localization.GetLanguage();
+        _otherInfo = Location.CurrentLocation + ", Language: " + Localization.GetLanguageString();
     }
 
     public void Setup(UnityAction<string> action)

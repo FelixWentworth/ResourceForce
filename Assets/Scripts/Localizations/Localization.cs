@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Localization : MonoBehaviour {
 
-    static Dictionary<string, string> localizationDict = new Dictionary<string, string>();
-
+    private static Dictionary<string, string> _localizationDict = new Dictionary<string, string>();
+    private static Dictionary<string, string> _defaultLocalizationDict = new Dictionary<string, string>();
     public string Key;
     public bool toUpper;
 
@@ -18,9 +18,17 @@ public class Localization : MonoBehaviour {
 
     void Awake()
     {
-        if (localizationDict.Count == 0)
+        if (_localizationDict.Count == 0)
         {
             UpdateTextFile();
+        }
+        if (GetLanguageIndex() != 1) // we can default to english for now if english is not the current language
+        {
+            _defaultLocalizationDict = ConvertJsonToDict(1);
+        }
+        else
+        {
+            _defaultLocalizationDict = null;
         }
     }
     public static void UpdateTextFile()
@@ -29,10 +37,12 @@ public class Localization : MonoBehaviour {
         filePath = "StringLocalizations" + GameObject.Find("LocationMaster").GetComponent<Location>().GetExtension();
         //above code not original part of localization package
         languageIndex = GetLanguageIndex();
-        ConvertJsonToDict();
+        _localizationDict = ConvertJsonToDict(languageIndex);
     }
-    static void ConvertJsonToDict()
+    static Dictionary<string, string> ConvertJsonToDict(int index)
     {
+        var dict = new Dictionary<string, string>();
+
         jsonTextAsset_Scenario = Resources.Load(filePath) as TextAsset;
         jsonTextAsset_Basic = Resources.Load("StringLocalizations_BasicText") as TextAsset;
         var N = JSON.Parse(jsonTextAsset_Scenario.text);
@@ -44,7 +54,7 @@ public class Localization : MonoBehaviour {
             _key = _key.Replace("\"", "");
             string _value = N[i][languageIndex].ToString();
             _value = _value.Replace("\"", "");
-            localizationDict[_key] = _value;
+            dict[_key] = _value;
         }
 
         var B = JSON.Parse(jsonTextAsset_Basic.text);
@@ -56,38 +66,57 @@ public class Localization : MonoBehaviour {
             _key = _key.Replace("\"", "");
             string _value = B[i][languageIndex].ToString();
             _value = _value.Replace("\"", "");
-            localizationDict[_key] = _value;
+            dict[_key] = _value;
         }
 
-        
+        return dict;
     }
     void OnEnable()
     {
-        Text _text = this.GetComponent<Text>();
-        if (_text == null)
-            Debug.LogError("Localization script could not find Text component attached to this gameObject: " + this.gameObject.name);
-        _text.text = Get(Key);
-        if (_text.text == "")
+        var text = this.GetComponent<Text>();
+        if (text == null)
+        {
+            Debug.LogError("Localization script could not find Text component attached to this gameObject: " + gameObject.name);
+            return;
+        }
+
+        text.text = Get(Key);
+
+        if (text.text == "")
         {
             Debug.LogError("Could not find string with key: " + Key);
+
         }
         if (toUpper)
-            _text.text = _text.text.ToUpper();
+        {
+            text.text = text.text.ToUpper();
+        }
     }
     
     public static string Get(string key)
     {
         var txt = "";
         key = key.ToUpper();
-        localizationDict.TryGetValue(key, out txt);
-        
-        //new line character in spreadsheet is *n*
+
+        _localizationDict.TryGetValue(key, out txt);
         if (txt == null)
         {
-            return key;
+            Debug.LogError("Could not find string with key: \"" + key + " \" in the selected language\nMake sure the key is correct and does not have spacing at the start or end!");
+
+            // Try to fall back to default library
+            if (_defaultLocalizationDict == null)
+            {
+                _defaultLocalizationDict.TryGetValue(key, out txt);
+                if (txt == null)
+                {
+                    Debug.LogError("Could not find string with key: \"" + key + " \" in the default language\nMake sure the key is correct and does not have spacing at the start or end!");
+                }
+            }
         }
-        txt = txt.Replace("*n*", "\n");
-        txt = txt.Replace("*2n*", "\n\n");
+        //typing \n in excel spreadsheet will format to \\n so we put it back here
+        txt = txt.Replace(@"\\n", "\n");
+        //same again for tabs
+        txt = txt.Replace(@"\\t", "\t");
         return txt;
     }
     public static int GetLanguageIndex()
@@ -133,7 +162,7 @@ public class Localization : MonoBehaviour {
             }
         }        
     }
-    public static string GetLanguage()
+    public static string GetLanguageString()
     {
         switch (languageIndex)
         {
