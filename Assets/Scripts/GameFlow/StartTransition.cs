@@ -20,8 +20,10 @@ public class StartTransition : MonoBehaviour {
 
     void Awake()
     {
+
         //reset the start screen whilst taking note of the text that used to be used as the password
         SetObjects(true);
+        _gameStarted = false;
         backgroundColor = background.color;
         fadedBackgroundColor = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, 0f);
 
@@ -35,7 +37,8 @@ public class StartTransition : MonoBehaviour {
     {
         if (_gameStarted)
             return;
-        _gameStarted = true;
+        // check that we are not going to show the tutorial
+        _gameStarted = PlayerPrefs.GetInt("NewPlayer") == 1;
         //start to transition from this screen to game screen, we will do this by filling in the password and then transition to the main game
         AudioManager.Instance.PlayNewGame();
         StartCoroutine(DelayToGame());
