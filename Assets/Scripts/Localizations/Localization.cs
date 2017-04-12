@@ -109,8 +109,14 @@ public class Localization : MonoBehaviour {
                 _defaultLocalizationDict.TryGetValue(key, out txt);
                 if (txt == null)
                 {
-                    Debug.LogError("Could not find string with key: \"" + key + " \" in the default language\nMake sure the key is correct and does not have spacing at the start or end!");
+                    Debug.LogError("Could not find string with key: \"" + key +
+                                   " \" in the default language\nMake sure the key is correct and does not have spacing at the start or end!");
+                    return key;
                 }
+            }
+            else
+            {
+                return key;
             }
         }
         //typing \n in excel spreadsheet will format to \\n so we put it back here

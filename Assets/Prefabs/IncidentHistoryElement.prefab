@@ -90,7 +90,6 @@ GameObject:
   - component: {fileID: 224000011196829896}
   - component: {fileID: 222000010791932836}
   - component: {fileID: 114000014045190308}
-  - component: {fileID: 114000011093353272}
   m_Layer: 5
   m_Name: CaseName
   m_TagString: Untagged
@@ -462,19 +461,6 @@ MonoBehaviour:
   RightTarget: {fileID: 224000010291736058}
   RightAlignment: 5
   RightPadding: 0
---- !u!114 &114000011093353272
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010352871150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Key: INCIDENT_CASE_SUBJECT
-  toUpper: 0
 --- !u!114 &114000011369021330
 MonoBehaviour:
   m_ObjectHideFlags: 1

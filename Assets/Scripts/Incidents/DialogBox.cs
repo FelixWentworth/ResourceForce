@@ -72,6 +72,7 @@ public class DialogBox : MonoBehaviour {
         
         
         //check if this is a resolution, ie. no buttons will lead anywhere
+        Debug.Log("Wait Index: " + zIncident.waitIndex + "\nOfficer Index: " +  zIncident.officerIndex + "\ncitizen Index: " + zIncident.citizenIndex + "\nScenario Index: " + zIncident.scenarioNum);
         var endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
 
         var history = _incidentManager.GetIncidentHistory(zIncident.caseNumber);
@@ -147,15 +148,15 @@ public class DialogBox : MonoBehaviour {
             _incidentManager.ShowSatisfactionImpact(satisfaction, true);
 
         }
-
-        yield return new WaitForSeconds(0.25f);
+        Debug.Log(endCase);
+        //yield return new WaitForSeconds(0.25f);
         //now set which buttons should be active
         _waitButton.SetActive(zIncident.waitIndex != -1);
         _sendOfficerButton.SetActive(zIncident.officerIndex != -1);
         _citizenHelpButton.SetActive(zIncident.citizenIndex != -1);
 
         _caseClosedButton.SetActive(endCase);
-
+        Debug.Log(endCase);
        
 
     }

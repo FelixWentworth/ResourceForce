@@ -72,7 +72,7 @@ public class InformationPanel : MonoBehaviour
         }
         DisableAll();
 
-        _satisfactionText.text = string.Format(Localization.Get(satisfaction), _incidentManager.GetHappiness());
+        _satisfactionText.text = string.Format(Localization.Get(satisfaction), Mathf.RoundToInt(_incidentManager.GetHappiness()));
 
         InputBlocker.SetActive(true);
         SatifactionInfo.SetActive(true);
