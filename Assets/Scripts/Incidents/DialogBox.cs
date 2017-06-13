@@ -49,13 +49,13 @@ public class DialogBox : MonoBehaviour {
 
     void Start()
     {        
-        _citizenHelpButton = ButtonPanel.FindChild("CitizenHelpButton").gameObject;
-        _sendOfficerButton = ButtonPanel.FindChild("SendOfficersButton").gameObject;
-        _waitButton = ButtonPanel.FindChild("WaitButton").gameObject;
-        _caseClosedButton = ButtonPanel.FindChild("CaseClosedButton").gameObject;
-        _buttonFeedback = ButtonPanel.FindChild("FeedbackPanel").GetComponent<ButtonFeedback>();
+        _citizenHelpButton = ButtonPanel.Find("CitizenHelpButton").gameObject;
+        _sendOfficerButton = ButtonPanel.Find("SendOfficersButton").gameObject;
+        _waitButton = ButtonPanel.Find("WaitButton").gameObject;
+        _caseClosedButton = ButtonPanel.Find("CaseClosedButton").gameObject;
+        _buttonFeedback = ButtonPanel.Find("FeedbackPanel").GetComponent<ButtonFeedback>();
         _buttonFeedback.gameObject.SetActive(false);
-        _buttonFade = ButtonPanel.FindChild("ButtonFade").gameObject;
+        _buttonFade = ButtonPanel.Find("ButtonFade").gameObject;
         _buttonFade.SetActive(false);
 
         DisableButtons();
@@ -72,7 +72,6 @@ public class DialogBox : MonoBehaviour {
         
         
         //check if this is a resolution, ie. no buttons will lead anywhere
-        Debug.Log("Wait Index: " + zIncident.waitIndex + "\nOfficer Index: " +  zIncident.officerIndex + "\ncitizen Index: " + zIncident.citizenIndex + "\nScenario Index: " + zIncident.scenarioNum);
         var endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
 
         var history = _incidentManager.GetIncidentHistory(zIncident.caseNumber);
@@ -93,7 +92,7 @@ public class DialogBox : MonoBehaviour {
 
         var currentInformation = new IncidentHistoryElement()
         {
-            Description = Localization.Get(zIncident.incidentName),
+            Description = zIncident.incidentName,
             Type = endCase ? "SCENARIO_TITLE_RESOLUTION" : zIncident.type,
             Feedback = "",
             FeedbackRating = 0,
@@ -117,7 +116,7 @@ public class DialogBox : MonoBehaviour {
             // populate the button with feedback elements
             float satisfaction = zIncident.satisfactionImpact;
 
-            var ratingPanel = _caseClosedButton.transform.FindChild("RatingPanel").transform;
+            var ratingPanel = _caseClosedButton.transform.Find("RatingPanel").transform;
             DestroyChildren(ratingPanel);
             _ratingTransforms = new List<Transform>();
 
@@ -148,7 +147,6 @@ public class DialogBox : MonoBehaviour {
             _incidentManager.ShowSatisfactionImpact(satisfaction, true);
 
         }
-        Debug.Log(endCase);
         //yield return new WaitForSeconds(0.25f);
         //now set which buttons should be active
         _waitButton.SetActive(zIncident.waitIndex != -1);
@@ -156,9 +154,6 @@ public class DialogBox : MonoBehaviour {
         _citizenHelpButton.SetActive(zIncident.citizenIndex != -1);
 
         _caseClosedButton.SetActive(endCase);
-        Debug.Log(endCase);
-       
-
     }
 
     public List<Transform> GetRatingObjects()
@@ -196,7 +191,7 @@ public class DialogBox : MonoBehaviour {
     {
         if (CurrentIncident.feedbackRatingWait != -1)
         {
-            yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackWait), Color.cyan);
+            yield return WarningBox.ShowWarning(CurrentIncident.feedbackWait, Color.cyan);
         }
         DisableButtons();
 
@@ -236,7 +231,7 @@ public class DialogBox : MonoBehaviour {
             OfficerController.RemoveOfficer(CurrentIncident.officer, CurrentIncident.turnsToAdd);
             if (CurrentIncident.feedbackRatingOfficer != -1)
             {
-                yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackOfficer), Color.cyan);
+                yield return WarningBox.ShowWarning(CurrentIncident.feedbackOfficer, Color.cyan);
             }
             DisableButtons();
             //send officers to resolve issue
@@ -281,7 +276,7 @@ public class DialogBox : MonoBehaviour {
     {
         if (CurrentIncident.feedbackRatingCitizen != -1)
         {
-            yield return WarningBox.ShowWarning(Localization.Get(CurrentIncident.feedbackCitizen), Color.cyan);
+            yield return WarningBox.ShowWarning(CurrentIncident.feedbackCitizen, Color.cyan);
         }
         DisableButtons();
         //removing citizen help popup and instead setting the delay to one turn

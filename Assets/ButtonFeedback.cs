@@ -16,11 +16,11 @@ public class ButtonFeedback : MonoBehaviour {
 
     void Awake()
     {
-        _ratingOne = transform.FindChild("RatingOnePanel").gameObject;
-        _ratingTwo = transform.FindChild("RatingTwoPanel").gameObject;
-        _ratingThree = transform.FindChild("RatingThreePanel").gameObject;
-        _ratingFour = transform.FindChild("RatingFourPanel").gameObject;
-        _ratingFive = transform.FindChild("RatingFivePanel").gameObject;
+        _ratingOne = transform.Find("RatingOnePanel").gameObject;
+        _ratingTwo = transform.Find("RatingTwoPanel").gameObject;
+        _ratingThree = transform.Find("RatingThreePanel").gameObject;
+        _ratingFour = transform.Find("RatingFourPanel").gameObject;
+        _ratingFive = transform.Find("RatingFivePanel").gameObject;
 
         _ratingOne.gameObject.SetActive(false);
         _ratingTwo.gameObject.SetActive(false);

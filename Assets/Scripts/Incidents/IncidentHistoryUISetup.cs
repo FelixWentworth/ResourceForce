@@ -18,12 +18,12 @@ public class IncidentHistoryUISetup : MonoBehaviour
 
     void Awake()
     {
-        Header = this.transform.FindChild("Header").GetComponent<RectTransform>();
+        Header = this.transform.Find("Header").GetComponent<RectTransform>();
     }
 
     public void Setup(string titleText, string descriptionText, Sprite icon, int listPoition, Color severity)
     {
-        TitleText.text = Localization.Get(titleText);
+        TitleText.text = titleText;
         DescriptionText.text = descriptionText;
         Icon.sprite = icon;
         ListPoition = listPoition;

@@ -52,7 +52,7 @@ public class SatisfactionDisplays : MonoBehaviour {
 
     private IEnumerator SetSatisfactionFillAmount(float time, float happiness, float maxHappiness)
     {
-        var satisfactionBar = transform.FindChild("BarOverlay").GetComponent<Image>();
+        var satisfactionBar = transform.Find("BarOverlay").GetComponent<Image>();
 
         var startValue = satisfactionBar.fillAmount;
         var endValue = happiness/maxHappiness;
@@ -77,7 +77,7 @@ public class SatisfactionDisplays : MonoBehaviour {
     {
         if (_satisfactionValue == null)
         {
-            _satisfactionValue = transform.FindChild("SatisfactionValueText").GetComponent<Text>();
+            _satisfactionValue = transform.Find("SatisfactionValueText").GetComponent<Text>();
         }
 
         _satisfactionValue.text = satisfaction + "%";

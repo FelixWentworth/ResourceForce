@@ -595,7 +595,7 @@ public class IncidentManager : MonoBehaviour
         var historyElement = new IncidentHistoryElement
         {
             Type = type,
-            Description = Localization.Get(incident.incidentName) + "\n\n" + "<color=yellow>" + m_dialogBox.GetTip() + "</color>",
+            Description = incident.incidentName + "\n\n" + "<color=yellow>" + m_dialogBox.GetTip() + "</color>",
             Feedback = feedback,
             FeedbackRating = feedbackRating,
             Severity = incident.severity,

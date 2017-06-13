@@ -28,7 +28,7 @@ public class WarningBox : MonoBehaviour
             ScreenFade.SetActive(true);
             if (_warningText == null)
             {
-                _warningText = transform.FindChild("Text").GetComponent<Text>();
+                _warningText = transform.Find("Text").GetComponent<Text>();
             }
 
             _warningText.text = upperCase ? message.ToUpper() : message;
@@ -60,11 +60,11 @@ public class WarningBox : MonoBehaviour
     {
         if (_borderImage == null)
         {
-            _borderImage = transform.FindChild("Border").GetComponent<Image>();
+            _borderImage = transform.Find("Border").GetComponent<Image>();
         }
         if (_warningText == null)
         {
-            _warningText = transform.FindChild("Text").GetComponent<Text>();
+            _warningText = transform.Find("Text").GetComponent<Text>();
         }
         _warningText.color = color;
         _borderImage.color = color;

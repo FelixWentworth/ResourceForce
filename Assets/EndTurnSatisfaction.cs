@@ -10,9 +10,9 @@ public class EndTurnSatisfaction : MonoBehaviour {
 
     public void SetText(int totalCases, int closedCases, int casesClosedThisTurn, int ongoingCases, int actionTaken, int ignoredCases)
     {
-        _totalCasesText = transform.FindChild("SatisfactionSubtitle").GetComponent<Text>();
-        _closedCasesText = transform.FindChild("ClosedCases/ClosedCasesText").GetComponent<Text>();
-        _ongoingCasesText = transform.FindChild("OngoingCases/OngoingCasesText").GetComponent<Text>();
+        _totalCasesText = transform.Find("SatisfactionSubtitle").GetComponent<Text>();
+        _closedCasesText = transform.Find("ClosedCases/ClosedCasesText").GetComponent<Text>();
+        _ongoingCasesText = transform.Find("OngoingCases/OngoingCasesText").GetComponent<Text>();
 
         _totalCasesText.text = Localization.Get("BASIC_TEXT_CASES") + ": " + totalCases;
 

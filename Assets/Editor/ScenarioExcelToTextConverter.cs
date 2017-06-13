@@ -174,7 +174,7 @@ public class ScenarioExcelToTextConverter  {
         while (excelReader.Read())
         {
             var rowString = "";
-            var rowNumber = 0;
+            //var rowNumber = 0;
             for (var i = 0; i < excelReader.FieldCount; i++)
             {
                 // If the column is null and this is the first row, skip
@@ -215,39 +215,39 @@ public class ScenarioExcelToTextConverter  {
                         if (rowString == "")
                         {
                             rowString += "\"" + value + "\"" + ": [";
-                            rowNumber = int.Parse(value);
+                            //rowNumber = int.Parse(value);
                         }
                         else
                         {
-                            if (i == 2)
-                            {
-                                // This value is the title of the incident, store as a string
-                                rowString += "\"" + scenarioNum.ToUpper() + "_TITLE_" + rowNumber + "\""; ;
-                            }
-                            else if (i == 3)
-                            {
-                                // this string is the localized string, add the key value as a string
-                                rowString += "\"" + scenarioNum.ToUpper() + "_INDEX_" + rowNumber + "\"";
-                            }
-                            else if (i == 12)
-                            {
-                                // Wait feedback
-                                rowString += "\"" + scenarioNum.ToUpper() + "_WAIT_FEEDBACK_" + rowNumber + "\"";
-                            }
-                            else if (i == 14)
-                            {
-                                // Officer Feedback
-                                rowString += "\"" + scenarioNum.ToUpper() + "_OFFICER_FEEDBACK_" + rowNumber + "\"";
-                            }
-                            else if (i == 16)
-                            {
-                                // Citizen Feedback
-                                rowString += "\"" + scenarioNum.ToUpper() + "_CITIZEN_FEEDBACK_" + rowNumber + "\"";
-                            }
-                            else
-                            {
-                                rowString += value;
-                            }
+                            //if (i == 2)
+                            //{
+                            //    // This value is the title of the incident, store as a string
+                            //    rowString += "\"" + scenarioNum.ToUpper() + "_TITLE_" + rowNumber + "\""; ;
+                            //}
+                            //else if (i == 3)
+                            //{
+                            //    // this string is the localized string, add the key value as a string
+                            //    rowString += "\"" + scenarioNum.ToUpper() + "_INDEX_" + rowNumber + "\"";
+                            //}
+                            //else if (i == 12)
+                            //{
+                            //    // Wait feedback
+                            //    rowString += "\"" + scenarioNum.ToUpper() + "_WAIT_FEEDBACK_" + rowNumber + "\"";
+                            //}
+                            //else if (i == 14)
+                            //{
+                            //    // Officer Feedback
+                            //    rowString += "\"" + scenarioNum.ToUpper() + "_OFFICER_FEEDBACK_" + rowNumber + "\"";
+                            //}
+                            //else if (i == 16)
+                            //{
+                            //    // Citizen Feedback
+                            //    rowString += "\"" + scenarioNum.ToUpper() + "_CITIZEN_FEEDBACK_" + rowNumber + "\"";
+                            //}
+                            //else
+                            //{
+                                rowString += "\"" + value + "\"";
+                            //}
                         }
                         if (!rowString.EndsWith("[") && rowString != "" && i != 16) // index 10 is the last information we require
                         {
