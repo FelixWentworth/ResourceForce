@@ -1,3 +1,2 @@
--warnaserror+
 -define:SELECT_INCIDENTS_
 -define:ALLOW_DUPLICATE_INCIDENTS_
