@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class Scenario
 {
+    public string Id;
     public long SerialNumber;
+    public string Location;
+    public string Language;
     public ScenarioWrapper Content;
 }
 
