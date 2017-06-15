@@ -32,9 +32,6 @@ public class Incident
 
     public IncidentContent GetChoiceContent(string choice)
     {
-        UnityEngine.Debug.Log(choice);
-        UnityEngine.Debug.Log(IncidentContent.Choices.Count);
-
         var content = new IncidentContent();
 
         foreach (var incidentChoice in IncidentContent.Choices)
