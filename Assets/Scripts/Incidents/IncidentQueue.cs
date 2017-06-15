@@ -26,18 +26,18 @@ public class IncidentQueue : MonoBehaviour {
     public void AddToQueue(Incident zIncident)
     {
         //set up the data to show on the case
-        allCases[cases].Setup(zIncident.caseNumber, IncidentCase.State.New, zIncident.severity);
+        allCases[cases].Setup(zIncident.Scenario.Id, IncidentCase.State.New, zIncident.IncidentContent.Severity);
         allCases[cases].gameObject.SetActive(true);
-        ShowWarningIcon(zIncident.caseNumber);
+        ShowWarningIcon(zIncident.Scenario.Id);
 
         cases++;
     }
-    public void RemoveFromQueue(int zCaseNumber)
+    public void RemoveFromQueue(string id)
     {
         for (int i=0; i< cases +1; i++)
         {
             //search for our case
-            if (allCases[i].GetComponent<IncidentCase>().caseNumber == zCaseNumber)
+            if (allCases[i].GetComponent<IncidentCase>().caseNumber == id)
             {
                 //move the remaining cases up the queue
                 //allCases[i].gameObject.SetActive(false);
@@ -54,11 +54,11 @@ public class IncidentQueue : MonoBehaviour {
         }
     }
 
-   public void ToggleBackground(int caseNum)
+   public void ToggleBackground(string id)
     {
         for (int i = 0; i < cases; i++)
         {
-            if (allCases[i].caseNumber == caseNum)
+            if (allCases[i].caseNumber == id)
             {
                 allCases[i].ToggleHighlight();
 #if SELECT_INCIDENTS
@@ -82,39 +82,39 @@ public class IncidentQueue : MonoBehaviour {
             allCases[i].ToggleHighlight(true);
         }
     }
-    public void RemoveWarningIcon(int caseNum)
+    public void RemoveWarningIcon(string id)
     {
         for (int i=0; i<cases; i++)
         {
-            if (allCases[i].caseNumber == caseNum)
+            if (allCases[i].caseNumber == id)
                 allCases[i].UpdateWarning(false);
         }
     }
-    public void UpdateSeverity(int caseNum, int zSeverity)
+    public void UpdateSeverity(string id, int zSeverity)
     {
-        IncidentCase current = GetCaseFromNum(caseNum);
+        IncidentCase current = GetCaseFromNum(id);
         current.severityNumber = zSeverity;
     }
-    public void ChangeCaseState(int caseNum, IncidentCase.State newState)
+    public void ChangeCaseState(string id, IncidentCase.State newState)
     {
-        IncidentCase current = GetCaseFromNum(caseNum);
+        IncidentCase current = GetCaseFromNum(id);
         current.m_state = newState;
         //current.SetIcon();
     }
-    public IncidentCase GetCaseFromNum(int n)
+    public IncidentCase GetCaseFromNum(string id)
     {
         for (int i = 0; i < cases; i++)
         {
-            if (allCases[i].caseNumber == n)
+            if (allCases[i].caseNumber == id)
                 return allCases[i];
         }
         return null;
     }
-    public void ShowWarningIcon(int n)
+    public void ShowWarningIcon(string id)
     {
         for (int i=0; i< cases; i++)
         {
-            if (allCases[i].caseNumber == n)
+            if (allCases[i].caseNumber == id)
                 allCases[i].UpdateWarning(true);
         }
     }

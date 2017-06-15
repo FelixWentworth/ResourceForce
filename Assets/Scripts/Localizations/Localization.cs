@@ -101,7 +101,8 @@ public class Localization : MonoBehaviour {
         _localizationDict.TryGetValue(key, out txt);
         if (txt == null || txt == "XXXX")
         {
-            Debug.LogError("Could not find string with key: \"" + key + " \" in the selected language\nMake sure the key is correct and does not have spacing at the start or end!");
+            var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
+            Debug.LogError("Could not find string with key: \"" + key + " \" in the selected language (" + language + ")\nMake sure the key is correct and does not have spacing at the start or end!");
 
             // Try to fall back to default library
             if (_defaultLocalizationDict != null)

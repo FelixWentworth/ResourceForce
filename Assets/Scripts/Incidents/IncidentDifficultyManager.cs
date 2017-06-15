@@ -85,9 +85,9 @@ public class IncidentDifficultyManager : MonoBehaviour
         var officersRequired = 0;
         foreach (var incident in incidents)
         {
-            if (incident.officerIndex != -1)
+            if (incident.GetChoiceContent("Officer") != null)
             {
-                officersRequired += incident.officer;
+                officersRequired += incident.IncidentContent.OfficerReq;
             }
         }
         return officersRequired;
@@ -103,9 +103,12 @@ public class IncidentDifficultyManager : MonoBehaviour
         var officersRequired = 0;
         foreach (var incident in incidents)
         {
-            if (incident.citizenIndex == -1 && incident.officerIndex != -1)
+            var citizenChoice = incident.GetChoiceContent("Citizen");
+            var officerChoice = incident.GetChoiceContent("Officer");
+
+            if (citizenChoice != null && officerChoice != null)
             {
-                officersRequired += incident.officer;
+                officersRequired += incident.IncidentContent.OfficerReq;
             }
         }
         return officersRequired;
@@ -116,7 +119,7 @@ public class IncidentDifficultyManager : MonoBehaviour
     /// </summary>
     /// <param name="officerRequirementLimit">Limit of number of officers required for sending to new incident</param>
     /// <returns></returns>
-    private Incident GetNewIncident(int officerRequirementLimit, List<Incident> incidents )
+    private Incident GetNewIncident(int officerRequirementLimit, List<Incident> incidents)
     {
         var incident = new Incident();
 
@@ -127,15 +130,19 @@ public class IncidentDifficultyManager : MonoBehaviour
 
         //do
         //{
-            
-#if ALLOW_DUPLICATE_INCIDENTS
-            _incidentLoader.CreateNewIncident(ref incident);
-#else
-            _incidentLoader.CreateNewIncident(ref incident, incidents);
 
+        var location = Location.CurrentLocation;
+        var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
+
+#if ALLOW_DUPLICATE_INCIDENTS
+        incident.Scenario = _incidentLoader.CreateNewScenario(location, language);
+#else
+        incident.Scenario = _incidentLoader.CreateNewScenario(location, language, incidents);
 #endif
         //}
         //while (incident.officerIndex == -1 || incident.officer > officerRequirementLimit);
+
+        incident.IncidentContent = incident.Scenario.Content.Scene;
 
         return incident;
     }
@@ -188,16 +195,16 @@ public class IncidentDifficultyManager : MonoBehaviour
             {
                 var newIncident = GetNewIncident(newIncidentOfficerLimit, currentIncidents);
                 // Make sure that the incident list does not contain the new incident
-                if (incidentList.Find(i => i.scenarioNum == newIncident.scenarioNum) == null)
+                if (incidentList.Find(i => i.Scenario.Id== newIncident.Scenario.Id) == null)
                 {
-                    newIncidentOfficerLimit -= newIncident.officer;
+                    newIncidentOfficerLimit -= newIncident.IncidentContent.OfficerReq;
                     incidentList.Add(newIncident);
                 }
             }
         }
 
         //select the most officer intensive 
-        incidentList.Sort((a, b) => a.officer.CompareTo(b.officer));
+        incidentList.Sort((a, b) => a.IncidentContent.OfficerReq.CompareTo(b.IncidentContent.OfficerReq));
 
         var countNewIncidents = maximumIncidentx - currentIncidentsShowing;
 
@@ -205,8 +212,6 @@ public class IncidentDifficultyManager : MonoBehaviour
         {
             incidentList = incidentList.Take(countNewIncidents).ToList();
         }
-
-        //incidentList.Sort((a, b) => a.citizenIndex.CompareTo(b.citizenIndex));
 
         // Check the player has enough officers to complete the round
         var officersRequired = newIncidentOfficerLimit > availableOfficers;

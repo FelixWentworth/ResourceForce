@@ -15,17 +15,17 @@ public class IncidentCase : MonoBehaviour {
 
     private IncidentManager _incidentManager;
 
-    [HideInInspector]public int caseNumber;
+    [HideInInspector]public string caseNumber;
     [HideInInspector]public int severityNumber;
 
-    public void Setup(int zNumber, State zState = State.New, int zSeverity = 1)
+    public void Setup(string id, State zState = State.New, int zSeverity = 1)
     {
         if (_incidentManager == null)
         {
             _incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
         }
         //set up the case to show the relevant info
-        caseNumber = zNumber;
+        caseNumber = id;
         m_state = zState;
         severityNumber = zSeverity;
 

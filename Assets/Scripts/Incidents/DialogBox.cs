@@ -28,7 +28,7 @@ public class DialogBox : MonoBehaviour {
 
     public IncidentInformationDisplay IncidentInformationDisplay;
 
-    private int _caseNum;
+    private string _caseNum;
 
     private const float TransitionTime = 0.75f;
 
@@ -72,41 +72,27 @@ public class DialogBox : MonoBehaviour {
         
         
         //check if this is a resolution, ie. no buttons will lead anywhere
-        var endCase = (zIncident.waitIndex == -1 && zIncident.officerIndex == -1 && zIncident.citizenIndex == -1);
+        var endCase = zIncident.IsEndCase();
 
-        var history = _incidentManager.GetIncidentHistory(zIncident.caseNumber);
-
-        //if (zIncident.waitIndex != -1 && zIncident.citizenIndex != -1)
-        //{
-        //    // there is both a wait and citizen option
-        //    var citizenChance = 100f - _incidentManager.GetHappiness();
-        //    var rand = UnityEngine.Random.Range(1, 101);
-
-        //    Debug.Log("Chance: " + citizenChance + ", value: " + rand);
-
-        //    if (rand > citizenChance)
-        //    {
-        //        zIncident.citizenIndex = -1;
-        //    } 
-        //}
+        var history = _incidentManager.GetIncidentHistory(zIncident.Scenario.Id);
 
         var currentInformation = new IncidentHistoryElement()
         {
-            Description = zIncident.incidentName,
-            Type = endCase ? "SCENARIO_TITLE_RESOLUTION" : zIncident.type,
+            Type = zIncident.IncidentContent.Title,
+            Description = zIncident.IncidentContent.Description,
             Feedback = "",
             FeedbackRating = 0,
-            Severity = zIncident.severity,
+            Severity = zIncident.IncidentContent.Severity,
             PlayerDecision = IncidentHistoryElement.Decision.Ignore
         };
 
-        IncidentInformationDisplay.Show(history, currentInformation, zIncident.severity);
+        IncidentInformationDisplay.Show(history, currentInformation, currentInformation.Severity);
         
-        _caseNum = zIncident.caseNumber;
+        _caseNum = zIncident.Scenario.Id;
 
-        OfficerButtonTurns.text = "x" + zIncident.turnsToAdd.ToString();
-        OfficerButtonRequired.text = "x" + zIncident.officer.ToString();
-        RightButton.text = zIncident.officer == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
+        OfficerButtonTurns.text = "x" + zIncident.IncidentContent.TurnReq;
+        OfficerButtonRequired.text = "x" + zIncident.IncidentContent.OfficerReq;
+        RightButton.text = zIncident.IncidentContent.OfficerReq == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
         //wait for anim to finish
         yield return EmailAnim(-1f, "EmailShow");
@@ -114,7 +100,7 @@ public class DialogBox : MonoBehaviour {
         if (endCase)
         {
             // populate the button with feedback elements
-            float satisfaction = zIncident.satisfactionImpact;
+            float satisfaction = zIncident.IncidentContent.SatisfactionImpact;
 
             var ratingPanel = _caseClosedButton.transform.Find("RatingPanel").transform;
             DestroyChildren(ratingPanel);
@@ -149,9 +135,9 @@ public class DialogBox : MonoBehaviour {
         }
         //yield return new WaitForSeconds(0.25f);
         //now set which buttons should be active
-        _waitButton.SetActive(zIncident.waitIndex != -1);
-        _sendOfficerButton.SetActive(zIncident.officerIndex != -1);
-        _citizenHelpButton.SetActive(zIncident.citizenIndex != -1);
+        _waitButton.SetActive(zIncident.GetChoiceContent("Wait") != null);
+        _sendOfficerButton.SetActive(zIncident.GetChoiceContent("Officer") != null);
+        _citizenHelpButton.SetActive(zIncident.GetChoiceContent("Citizen") != null);
 
         _caseClosedButton.SetActive(endCase);
     }
@@ -181,17 +167,20 @@ public class DialogBox : MonoBehaviour {
 
         _buttonFade.SetActive(true);
 
-        ShowImmediateFeedback(CurrentIncident.feedbackRatingWait, CurrentIncident.severity, _waitButton.transform);
+        var feedback = CurrentIncident.GetChoiceFeedback("Wait");
 
-        StartCoroutine(LeftButtonWithAnim(isCitizensAvailable));
+        ShowImmediateFeedback(feedback.FeedbackRating, CurrentIncident.IncidentContent.Severity, _waitButton.transform);
+
+        StartCoroutine(LeftButtonWithAnim(feedback, isCitizensAvailable));
         AudioManager.Instance.PressWaitButton();
     }
 
-    private IEnumerator LeftButtonWithAnim(bool citizensAvailable = false)
+    private IEnumerator LeftButtonWithAnim(ChoiceFeedback feedback, bool  citizensAvailable = false)
     {
-        if (CurrentIncident.feedbackRatingWait != -1)
+
+        if (feedback.FeedbackRating != -1)
         {
-            yield return WarningBox.ShowWarning(CurrentIncident.feedbackWait, Color.cyan);
+            yield return WarningBox.ShowWarning(feedback.Feedback, Color.cyan);
         }
         DisableButtons();
 
@@ -207,14 +196,17 @@ public class DialogBox : MonoBehaviour {
     }
     public void RightButtonPressed()
     {
-        if (OfficerController.m_officers.Count >= CurrentIncident.officer)
+        if (OfficerController.m_officers.Count >= CurrentIncident.IncidentContent.OfficerReq)
         {
 			var isCitizensAvailable = _citizenHelpButton.activeSelf;
 			//double check if we have enough officers otherwise the game will break
 			_buttonFade.SetActive(true);
-            StartCoroutine(RightButtonWithAnim(isCitizensAvailable));
 
-            ShowImmediateFeedback(CurrentIncident.feedbackRatingOfficer, CurrentIncident.severity, _sendOfficerButton.transform);
+            var feedback = CurrentIncident.GetChoiceFeedback("Officer");
+
+            StartCoroutine(RightButtonWithAnim(feedback, isCitizensAvailable));
+
+            ShowImmediateFeedback(feedback.FeedbackRating, CurrentIncident.IncidentContent.Severity, _sendOfficerButton.transform);
 
             AudioManager.Instance.PressOfficerButton();
         }
@@ -224,14 +216,14 @@ public class DialogBox : MonoBehaviour {
         }
     }
 
-    private IEnumerator RightButtonWithAnim(bool citizensAvailable = false)
+    private IEnumerator RightButtonWithAnim(ChoiceFeedback feedback, bool citizensAvailable = false)
     {
-        if (OfficerController.m_officers.Count >= CurrentIncident.officer)
+        if (OfficerController.m_officers.Count >= CurrentIncident.IncidentContent.OfficerReq)
         {
-            OfficerController.RemoveOfficer(CurrentIncident.officer, CurrentIncident.turnsToAdd);
-            if (CurrentIncident.feedbackRatingOfficer != -1)
+            OfficerController.RemoveOfficer(CurrentIncident.IncidentContent.OfficerReq, CurrentIncident.IncidentContent.TurnReq);
+            if (feedback.FeedbackRating != -1)
             {
-                yield return WarningBox.ShowWarning(CurrentIncident.feedbackOfficer, Color.cyan);
+                yield return WarningBox.ShowWarning(feedback.Feedback, Color.cyan);
             }
             DisableButtons();
             //send officers to resolve issue
@@ -267,16 +259,18 @@ public class DialogBox : MonoBehaviour {
     {
         _buttonFade.SetActive(true);
 
-        ShowImmediateFeedback(CurrentIncident.feedbackRatingCitizen, CurrentIncident.severity, _citizenHelpButton.transform);
-        StartCoroutine(CitizenButtonWithAnim());
+        var feedback = CurrentIncident.GetChoiceFeedback("Citizen");
+
+        ShowImmediateFeedback(feedback.FeedbackRating, CurrentIncident.IncidentContent.Severity, _citizenHelpButton.transform);
+        StartCoroutine(CitizenButtonWithAnim(feedback));
         AudioManager.Instance.PressCitizenButton();
     }
 
-    private IEnumerator CitizenButtonWithAnim()
+    private IEnumerator CitizenButtonWithAnim(ChoiceFeedback feedback)
     {
-        if (CurrentIncident.feedbackRatingCitizen != -1)
+        if (feedback.FeedbackRating != -1)
         {
-            yield return WarningBox.ShowWarning(CurrentIncident.feedbackCitizen, Color.cyan);
+            yield return WarningBox.ShowWarning(feedback.Feedback, Color.cyan);
         }
         DisableButtons();
         //removing citizen help popup and instead setting the delay to one turn

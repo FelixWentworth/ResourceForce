@@ -156,8 +156,8 @@ public class TurnManager : MonoBehaviour {
         {
             var currentIncident = _incidentManager.NextIncident[0];
         
-            bodyWithScenarioHistory = ScenarioTracker.GetScenarioHistory(body, currentIncident.scenarioNum.ToString(),
-                currentIncident.index.ToString(), Location.CurrentLocation,
+            bodyWithScenarioHistory = ScenarioTracker.GetScenarioHistory(body, currentIncident.Scenario.Id,
+                currentIncident.IncidentContent.Title, Location.CurrentLocation,
                 (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
         }
         else

@@ -1,42 +1,56 @@
-﻿public class Incident
+﻿using System.Diagnostics;
+using System.Linq;
+
+public class Incident
 {
-    public int scenarioNum;
-    public int index;
-    public int officer;
-    public string incidentName;
-    public string type;
-    public int turnToShow;
-    public int turnsToAdd;
-    public int severity;
-    public int caseNumber;
-    public int waitIndex;
-    public int officerIndex;
-    public int citizenIndex;
-    public int satisfactionImpact;
+    public Scenario Scenario;
+    public IncidentContent IncidentContent;
 
-    public int feedbackRatingWait = 1;
-    public string feedbackWait;
-
-    public int feedbackRatingCitizen = 5;
-    public string feedbackCitizen;
-
-    public int feedbackRatingOfficer = 4;
-    public string feedbackOfficer;
-
+    public int TurnToShow;
+    
     //values which are not set during setup
-    public int turnToDevelop;
-    public string nameBeforeDeveloped;
-    public bool developed;
-    public bool resolved;
-    public bool positiveResolution = false;
-    public bool isNew = true;
+    public int TurnToDevelop;
+    public string NameBeforeDeveloped;
+    public bool Developed;
+    public bool Resolved;
+    public bool PositiveResolution = false;
+    public bool IsNew = true;
 
-    private TurnManager m_turnManager;
-    private DialogBox m_dialogBox;
+    private TurnManager _turnManager;
+    private DialogBox _dialogBox;
 
     public void Show(ref Incident zIncident, DialogBox dialogBox)
     {
         //use the dialog box to show the current incident
         dialogBox.Show(zIncident);
+    }
+
+    public bool IsEndCase()
+    {
+        return IncidentContent.Choices[0].Choice == null;
+    }
+
+    public IncidentContent GetChoiceContent(string choice)
+    {
+        UnityEngine.Debug.Log(choice);
+        UnityEngine.Debug.Log(IncidentContent.Choices.Count);
+
+        var content = new IncidentContent();
+
+        foreach (var incidentChoice in IncidentContent.Choices)
+        {
+            if (incidentChoice.Choice != null && incidentChoice.Choice.ChoiceType != null && incidentChoice.Choice.ChoiceType == choice)
+            {
+                return incidentChoice.Scene;
+            }
+        }
+
+        return null;
+    }
+
+    public ChoiceFeedback GetChoiceFeedback(string choice)
+    {
+        var content = IncidentContent.Choices.FirstOrDefault(c => c.Choice.ChoiceType == choice);
+        return content.Choice;
     }
 }

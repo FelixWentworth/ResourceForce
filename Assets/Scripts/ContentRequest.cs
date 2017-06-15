@@ -9,10 +9,10 @@ using UnityEngine.Networking;
 public class ContentRequest : MonoBehaviour
 {
 
-    public string HostName;
-    public string Port;
+    [SerializeField] private string _hostName;
+    [SerializeField] private string _port;
 
-    public string FilePath;
+    [SerializeField] private string _filePath;
 
     private long _serialNumber = 10;
 
@@ -29,7 +29,7 @@ public class ContentRequest : MonoBehaviour
 
     private string _api
     {
-        get { return "http://" + HostName + ":" + Port + "/api"; }
+        get { return "http://" + _hostName + ":" + _port + "/api"; }
     }
 
     private string _extension
@@ -60,7 +60,7 @@ public class ContentRequest : MonoBehaviour
         _currentState = State.Updating;
         // Get existing content
         var contentString = "";
-        using (var stream = new StreamReader(FilePath))
+        using (var stream = new StreamReader(_filePath))
         {
             contentString = stream.ReadToEnd();
         }
@@ -116,7 +116,7 @@ public class ContentRequest : MonoBehaviour
 
     private void WriteToFile(string content)
     {
-        using (var stream = new StreamWriter(FilePath, false))
+        using (var stream = new StreamWriter(_filePath, false))
         {
             stream.Write(content);
         }
@@ -124,7 +124,7 @@ public class ContentRequest : MonoBehaviour
 
     public List<Scenario> GetScenarios(string location, string language)
     {
-        using (var stream = new StreamReader(FilePath))
+        using (var stream = new StreamReader(_filePath))
         {
             var scenarios = stream.ReadToEnd();
 

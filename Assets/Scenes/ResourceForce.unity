@@ -29214,7 +29214,7 @@ GameObject:
   - component: {fileID: 1964525949}
   - component: {fileID: 1964525948}
   m_Layer: 0
-  m_Name: Contentmanager
+  m_Name: ContentManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29231,9 +29231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c6530f40404434a8db4c660f5bd975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostName: localhost
-  Port: 8728
-  FilePath: C:\Users\Felix\Documents\Projects\INSPEC2T\ResourceForce\RF_Game\Assets\Test.txt
+  _hostName: localhost
+  _port: 8728
+  _filePath: C:\Users\Felix\Documents\Projects\INSPEC2T\ResourceForce\RF_Game\Assets\Test.txt
 --- !u!4 &1964525949
 Transform:
   m_ObjectHideFlags: 0

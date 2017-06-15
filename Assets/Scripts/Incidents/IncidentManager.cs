@@ -28,7 +28,7 @@ public class IncidentManager : MonoBehaviour
 
     public GameObject SatisfactionImpactGameObject;
 
-    private Dictionary<int, IncidentHistory> _incidentHistories = new Dictionary<int, IncidentHistory>();
+    private Dictionary<string, IncidentHistory> _incidentHistories = new Dictionary<string, IncidentHistory>();
 
     private int _casesClosed;
     private int _casesClosedWell;
@@ -63,14 +63,18 @@ public class IncidentManager : MonoBehaviour
         {
             return;
         }
+
+        var location = Location.CurrentLocation;
+        var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
+
         var newIncident = new Incident();
 #if ALLOW_DUPLICATE_INCIDENTS
-        jsonReader.CreateNewIncident(ref newIncident);
+        jsonReader.CreateNewScenario(location, language);
 #else
-        jsonReader.CreateNewIncident(ref newIncident, incidents);
+        jsonReader.CreateNewScenario(location, language, incidents);
 #endif
-        newIncident.turnToShow = zTurn;
-        newIncident.turnToDevelop = zTurn + newIncident.turnsToAdd + 1;
+        newIncident.TurnToShow = zTurn;
+        newIncident.TurnToDevelop = zTurn + newIncident.IncidentContent.TurnReq + 1;
         //our complete list of incidents
         incidents.Add(newIncident);
         //our list of incidents waiting to show this turn
@@ -101,8 +105,8 @@ public class IncidentManager : MonoBehaviour
         {
             foreach (var newIncident in newIncidents)
             {
-                newIncident.turnToShow = turn;
-                newIncident.turnToDevelop = turn + newIncident.turnsToAdd + 1;
+                newIncident.TurnToShow = turn;
+                newIncident.TurnToDevelop = turn + newIncident.IncidentContent.TurnReq + 1;
                 //our complete list of incidents
                 incidents.Add(newIncident);
 
@@ -117,10 +121,10 @@ public class IncidentManager : MonoBehaviour
         NextIncident.Clear();
         for (int i = 0; i < incidents.Count; i++)
         {
-            if (incidents[i].turnToShow <= zTurn)
+            if (incidents[i].TurnToShow <= zTurn)
             {
                 //this incident wants to be shown on this turn
-                m_IncidentQueue.ShowWarningIcon(incidents[i].caseNumber);
+                m_IncidentQueue.ShowWarningIcon(incidents[i].Scenario.Id);
                 NextIncident.Add(incidents[i]);
 
             }
@@ -134,8 +138,8 @@ public class IncidentManager : MonoBehaviour
         {
             //an incident has been resolved so remove it from our list
             {
-                status += Localization.Get("INCIDENT_CASE") + incidents[i].caseNumber + ": " + incidents[i].nameBeforeDeveloped + "\n";
-                m_IncidentQueue.UpdateSeverity(incidents[i].caseNumber, incidents[i].severity);
+                //status += Localization.Get("INCIDENT_CASE") + incidents[i].caseNumber + ": " + incidents[i].NameBeforeDeveloped + "\n";
+                m_IncidentQueue.UpdateSeverity(incidents[i].Scenario.Id, incidents[i].IncidentContent.Severity);
             }
         }
         CaseStatus.text = status;
@@ -144,19 +148,19 @@ public class IncidentManager : MonoBehaviour
     {
         for (int i=0; i<incidents.Count; i++)
         {
-            if (incidents[i].turnToDevelop < turn)
+            if (incidents[i].TurnToDevelop < turn)
             {
-                incidents[i].satisfactionImpact = -1 * incidents[i].severity;
+                incidents[i].IncidentContent.SatisfactionImpact = -1 * incidents[i].IncidentContent.SatisfactionImpact;
             }
         }
     }
-    public void ShowIncidentWithCaseNumber(int caseNum)
+    public void ShowIncidentWithCaseNumber(string caseNum)
     {
         //used in button driven incidents
         var turn = GameObject.Find("TurnManager").GetComponent<TurnManager>().turn;
         ShowIncident(turn, caseNum);
     }
-    public void ShowIncident(int turn, int zCaseNumber = -1)
+    public void ShowIncident(int turn, string caseNumber = "")
     {
         currentTurn = turn;
         if (NextIncident == null)
@@ -174,14 +178,14 @@ public class IncidentManager : MonoBehaviour
 #if SELECT_INCIDENTS
         incidentShowingIndex = 0;
 #endif
-        if (zCaseNumber != -1)
+        if (caseNumber != "")
         {
             //we have a case to show
             bool incidentFound = false;
             for (int i = 0; i < NextIncident.Count; i++)
             {
                 //find the case to show by caseNumber
-                if (NextIncident[i].caseNumber == zCaseNumber)
+                if (NextIncident[i].Scenario.Id == caseNumber)
                 {
                     currentIncident = NextIncident[i];
                     m_dialogBox.CurrentIncident = currentIncident;
@@ -198,10 +202,10 @@ public class IncidentManager : MonoBehaviour
         
         currentIncident.Show(ref currentIncident, m_dialogBox);
 
-        m_IncidentQueue.ToggleBackground(currentIncident.caseNumber);
+        m_IncidentQueue.ToggleBackground(currentIncident.Scenario.Id);
 
         //make sure the current incident is not showing as new as we now know the player has seen it
-        currentIncident.isNew = false;
+        currentIncident.IsNew = false;
     }
     public void CaseClosed(float impact, float transitionTime, bool expired = false)
     {
@@ -262,17 +266,17 @@ public class IncidentManager : MonoBehaviour
         var currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
 #endif
-        ScenarioTracker.AddDecision(currentIncident.scenarioNum.ToString(), currentIncident.index.ToString(), "Ignore", Location.CurrentLocation, (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
+        ScenarioTracker.AddDecision(currentIncident.Scenario.Id, currentIncident.IncidentContent.Title, "Ignore", Location.CurrentLocation, (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
 
-        m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
+        m_IncidentQueue.RemoveWarningIcon(currentIncident.Scenario.Id);
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().WaitPressed(ref currentIncident);
        // GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().DevelopIncident(ref currentIncident, true);
-        m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.Waiting);
+        m_IncidentQueue.ChangeCaseState(currentIncident.Scenario.Id, IncidentCase.State.Waiting);
         //update our lists
         NextIncident[0] = currentIncident;
         for (var i = 0; i < incidents.Count; i++)
         {
-            if (incidents[i].caseNumber == currentIncident.caseNumber)
+            if (incidents[i].Scenario.Id == currentIncident.Scenario.Id)
             {
                 incidents[i] = currentIncident;
                 break;
@@ -293,18 +297,18 @@ public class IncidentManager : MonoBehaviour
         var currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
 #endif
-        ScenarioTracker.AddDecision(currentIncident.scenarioNum.ToString(), currentIncident.index.ToString(), "Officer", Location.CurrentLocation, (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
+        ScenarioTracker.AddDecision(currentIncident.Scenario.Id, currentIncident.IncidentContent.Title, "Officer", Location.CurrentLocation, (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
 
-        m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
+        m_IncidentQueue.RemoveWarningIcon(currentIncident.Scenario.Id);
             
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().OfficerPressed(ref currentIncident);
 
-        m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.OfficersSent);
+        m_IncidentQueue.ChangeCaseState(currentIncident.Scenario.Id, IncidentCase.State.OfficersSent);
         NextIncident[0] = currentIncident;
 
         for (var i = 0; i < incidents.Count; i++)
         {
-            if (incidents[i].caseNumber == currentIncident.caseNumber)
+            if (incidents[i].Scenario.Id == currentIncident.Scenario.Id)
             {
                 incidents[i] = currentIncident;
                 break;
@@ -327,17 +331,17 @@ public class IncidentManager : MonoBehaviour
         var currentIncident = NextIncident[0];
         m_dialogBox.CurrentIncident = currentIncident;
 #endif
-        ScenarioTracker.AddDecision(currentIncident.scenarioNum.ToString(), currentIncident.index.ToString(), "Citizen", Location.CurrentLocation, (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
+        ScenarioTracker.AddDecision(currentIncident.Scenario.Id, currentIncident.IncidentContent.Title, "Citizen", Location.CurrentLocation, (DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English"));
 
-        m_IncidentQueue.RemoveWarningIcon(currentIncident.caseNumber);
-        m_IncidentQueue.ChangeCaseState(currentIncident.caseNumber, IncidentCase.State.CitizenRequest);
+        m_IncidentQueue.RemoveWarningIcon(currentIncident.Scenario.Id);
+        m_IncidentQueue.ChangeCaseState(currentIncident.Scenario.Id, IncidentCase.State.CitizenRequest);
         //make sure the incident is updated next turn, we will handle the citizen request result when we next show the incident
-        currentIncident.turnToShow++;
+        currentIncident.TurnToShow++;
         GameObject.Find("TurnManager").GetComponent<SimplifiedJson>().CitizenPressed(ref currentIncident);
         NextIncident[0] = currentIncident;
         for (var i = 0; i < incidents.Count; i++)
         {
-            if (incidents[i].caseNumber == currentIncident.caseNumber)
+            if (incidents[i].Scenario.Id == currentIncident.Scenario.Id)
             {
                 incidents[i] = currentIncident;
                 break;
@@ -401,17 +405,17 @@ public class IncidentManager : MonoBehaviour
         satisfactionText += "%";
         SatisfactionImpactGameObject.GetComponentInChildren<Text>().text = satisfactionText;
     }
-    public void CloseCase(int caseNumber, float transitionTime)
+    public void CloseCase(string Id, float transitionTime)
     {
         for (int i = 0; i < incidents.Count; i++)
         {
-            if (incidents[i].caseNumber == caseNumber)
+            if (incidents[i].Scenario.Id == Id)
             {
                 //we have found the case to remove
-                m_IncidentQueue.ChangeCaseState(caseNumber, IncidentCase.State.Resolved);
-                m_IncidentQueue.RemoveFromQueue(incidents[i].caseNumber);
+                m_IncidentQueue.ChangeCaseState(Id, IncidentCase.State.Resolved);
+                m_IncidentQueue.RemoveFromQueue(incidents[i].Scenario.Id);
 
-                float impact = incidents[i].satisfactionImpact;
+                float impact = incidents[i].IncidentContent.SatisfactionImpact;
                 if (impact > 0)
                 {
                     impact = impact * 0.4f;
@@ -588,17 +592,17 @@ public class IncidentManager : MonoBehaviour
 
     private void AddIncidentHistory(Incident incident, IncidentHistoryElement.Decision decision)
     {
-        var type = incident.type;
+        var type = incident.IncidentContent.Title;
         var feedbackRating = 1;
         var feedback = "";
 
         var historyElement = new IncidentHistoryElement
         {
             Type = type,
-            Description = incident.incidentName + "\n\n" + "<color=yellow>" + m_dialogBox.GetTip() + "</color>",
+            Description = incident.IncidentContent.Description + "\n\n" + "<color=yellow>" + m_dialogBox.GetTip() + "</color>",
             Feedback = feedback,
             FeedbackRating = feedbackRating,
-            Severity = incident.severity,
+            Severity = incident.IncidentContent.Severity,
             PlayerDecision = decision
         };
 
@@ -608,20 +612,20 @@ public class IncidentManager : MonoBehaviour
     {
         var incidentHistory = new IncidentHistory();
 
-        if (_incidentHistories.ContainsKey(incident.caseNumber))
+        if (_incidentHistories.ContainsKey(incident.Scenario.Id))
         {
-            _incidentHistories.TryGetValue(incident.caseNumber, out incidentHistory);
+            _incidentHistories.TryGetValue(incident.Scenario.Id, out incidentHistory);
         }
 
         incidentHistory.IncidentHistoryElements.Add(element);
-        _incidentHistories[incident.caseNumber] = incidentHistory;
+        _incidentHistories[incident.Scenario.Id] = incidentHistory;
     }
 
-    public List<IncidentHistoryElement> GetIncidentHistory(int caseNumber)
+    public List<IncidentHistoryElement> GetIncidentHistory(string scenarioId)
     {
         IncidentHistory incidentHistory;
 
-        return _incidentHistories.TryGetValue(caseNumber, out incidentHistory) ? 
+        return _incidentHistories.TryGetValue(scenarioId, out incidentHistory) ? 
             incidentHistory.IncidentHistoryElements 
             : 
             new List<IncidentHistoryElement>();

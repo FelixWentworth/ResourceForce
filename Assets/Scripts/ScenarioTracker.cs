@@ -12,7 +12,7 @@ public class ScenarioTracker : MonoBehaviour {
     // The data for each decision we want to track
 	public struct History
     {
-        public string ScenarioNum;
+        public string ScenarioId;
         public string ScenarioIndex;
         public string PlayerDecision;
         public string TestSite;
@@ -24,14 +24,14 @@ public class ScenarioTracker : MonoBehaviour {
     /// <summary>
     /// Add a new decision a player has made, should be called on option made button
     /// </summary>
-    /// <param name="scenarioNum"></param>
+    /// <param name="scenarioId"></param>
     /// <param name="scenarioIndex"></param>
     /// <param name="playerDecision"></param>
     /// <param name="testSite"></param>
     /// <param name="language"></param>
-    public static void AddDecision(string scenarioNum, string scenarioIndex, string playerDecision, string testSite, string language)
+    public static void AddDecision(string scenarioId, string scenarioIndex, string playerDecision, string testSite, string language)
     {
-        var element = NewHistoryElement(scenarioNum, scenarioIndex, playerDecision, testSite, language);
+        var element = NewHistoryElement(scenarioId, scenarioIndex, playerDecision, testSite, language);
 
         _history.Add(element);
     }
@@ -46,12 +46,12 @@ public class ScenarioTracker : MonoBehaviour {
 
     #region Reporting Scenario Issues
 
-    public static string GetScenarioHistory(string body, string currentScenarioNum, string currentScenarioIndex, string currentTestSite, string currentLanguage)
+    public static string GetScenarioHistory(string body, string currentScenarioId, string currentScenarioIndex, string currentTestSite, string currentLanguage)
     {
         // before we send the report we want to attach incident after body text
 
         // Ceate a new History Element
-        var currentScenario = NewHistoryElement(currentScenarioNum, currentScenarioIndex, "null", currentTestSite,
+        var currentScenario = NewHistoryElement(currentScenarioId, currentScenarioIndex, "null", currentTestSite,
             currentLanguage);
 
         var history = GetHistory();
@@ -93,11 +93,11 @@ public class ScenarioTracker : MonoBehaviour {
     /// <param name="testSite"></param>
     /// <param name="language"></param>
     /// <returns></returns>
-    private static History NewHistoryElement(string scenarioNum, string scenarioIndex, string playerDecision, string testSite, string language)
+    private static History NewHistoryElement(string scenarioId, string scenarioIndex, string playerDecision, string testSite, string language)
     {
         var newElement = new History
         {
-            ScenarioNum = scenarioNum,
+            ScenarioId = scenarioId,
             ScenarioIndex = scenarioIndex,
             PlayerDecision = playerDecision,
             TestSite = testSite,
