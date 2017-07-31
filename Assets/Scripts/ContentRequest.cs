@@ -97,6 +97,11 @@ public class ContentRequest : MonoBehaviour
 
     private string UpdateExistingContent(List<Scenario> currentScenarios, List<Scenario> newScenarios)
     {
+        if (newScenarios == null)
+        {
+            return "";
+        }
+
         var allScenarios = currentScenarios;
         foreach (var newScenario in newScenarios)
         {
@@ -116,6 +121,10 @@ public class ContentRequest : MonoBehaviour
 
     private void WriteToFile(string content)
     {
+        if (content == "")
+        {
+            return;
+        }
         using (var stream = new StreamWriter(_filePath, false))
         {
             stream.Write(content);
