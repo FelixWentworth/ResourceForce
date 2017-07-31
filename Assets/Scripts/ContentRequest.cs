@@ -50,49 +50,50 @@ public class ContentRequest : MonoBehaviour
         _currentState = State.Retrieving;
         yield return www;
 
-        if (www.text == null)
+        if (string.IsNullOrEmpty(www.text))
         {
             Debug.Log("Unable to find any new content");
         }
-
-        var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
-
-        _currentState = State.Updating;
-        // Get existing content
-        var contentString = "";
-        using (var stream = new StreamReader(_filePath))
-        {
-            contentString = stream.ReadToEnd();
-        }
-
-        // Update any scenarios that may have been edited
-        if (contentString != "")
-        {
-            var existingScenarios = JsonConvert.DeserializeObject<List<Scenario>>(contentString);
-
-            contentString = UpdateExistingContent(existingScenarios, scenarios);
-
-        }
         else
         {
-            contentString = www.text;
-        }
+            var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
 
-        _currentState = State.Saving;
-
-        WriteToFile(contentString);
-
-        // update the scenario number
-        foreach (var scenario in scenarios)
-        {
-            if (scenario.SerialNumber > _serialNumber)
+            _currentState = State.Updating;
+            // Get existing content
+            var contentString = "";
+            using (var stream = new StreamReader(_filePath))
             {
-                // TODO Save serial number
-                _serialNumber = scenario.SerialNumber;
+                contentString = stream.ReadToEnd();
             }
-        }
 
-        _currentState = State.Finalizing;
+            // Update any scenarios that may have been edited
+            if (contentString != "")
+            {
+                var existingScenarios = JsonConvert.DeserializeObject<List<Scenario>>(contentString);
+
+                contentString = UpdateExistingContent(existingScenarios, scenarios);
+
+            }
+            else
+            {
+                contentString = www.text;
+            }
+
+            _currentState = State.Saving;
+
+            WriteToFile(contentString);
+
+            // update the scenario number
+            foreach (var scenario in scenarios)
+            {
+                if (scenario.SerialNumber > _serialNumber)
+                {
+                    // TODO Save serial number
+                    _serialNumber = scenario.SerialNumber;
+                }
+            }
+            _currentState = State.Finalizing;
+        }
     }
 
     private string UpdateExistingContent(List<Scenario> currentScenarios, List<Scenario> newScenarios)
