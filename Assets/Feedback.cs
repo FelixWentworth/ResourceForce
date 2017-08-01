@@ -72,7 +72,7 @@ public class Feedback : MonoBehaviour
 
 
         Loading.Set(300, false);
-        Loading.Start(Localization.Get("BASIC_TEXT_SENDING_FEEDBACK"));
+        Loading.Start(Localization.Get("BASIC_TEXT_SENDING"));
 
         _sendAction(body);
     }

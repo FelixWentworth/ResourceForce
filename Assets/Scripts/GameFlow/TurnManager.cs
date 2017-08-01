@@ -169,7 +169,7 @@ public class TurnManager : MonoBehaviour {
         yield return www;
 
         var message = www.error == null
-            ? Localization.Get("BASIC_TEXT_FEEDBACK_SENT")
+            ? Localization.Get("BASIC_TEXT_SENT")
             : Localization.Get("BASIC_TEXT_ERROR");
 
         yield return Loading.Stop(message, 1f);
@@ -199,7 +199,7 @@ public class TurnManager : MonoBehaviour {
         yield return www;
 
         var message = www.error == null
-            ? Localization.Get("BASIC_TEXT_FEEDBACK_SENT")
+            ? Localization.Get("BASIC_TEXT_SENT")
             : Localization.Get("BASIC_TEXT_ERROR");
 
         yield return Loading.Stop(message, 1f);
