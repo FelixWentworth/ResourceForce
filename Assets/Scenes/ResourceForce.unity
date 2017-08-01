@@ -29233,7 +29233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hostName: localhost
   _port: 8728
-  _filePath: C:\Users\Felix\Documents\Projects\INSPEC2T\ResourceForce\RF_Game\Assets\Test.txt
+  _fileName: ScenarioContent.txt
 --- !u!4 &1964525949
 Transform:
   m_ObjectHideFlags: 0

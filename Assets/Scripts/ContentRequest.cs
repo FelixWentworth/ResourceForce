@@ -67,7 +67,7 @@ public class ContentRequest : MonoBehaviour
 
         if (string.IsNullOrEmpty(www.text))
         {
-            Debug.Log("Unable to find any new content");
+            Debug.Log("Unable to find any new content from authoring tool");
             _contentFound = false;
         }
         else
