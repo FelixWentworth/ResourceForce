@@ -19,6 +19,9 @@ public class Feedback : MonoBehaviour
     private UnityAction<string> _sendAction;
 
     private InputField _feedbackText;
+    private InputField _emailText;
+
+    private bool _sending;
 
     void OnEnable()
     {
@@ -42,10 +45,13 @@ public class Feedback : MonoBehaviour
         _sendButton = transform.Find("Panel/FooterPanel/SendButton").GetComponent<Button>();
 
         _feedbackText = transform.Find("Panel/BodyPanel/Feedback").GetComponent<InputField>();
+        _emailText = transform.Find("Panel/BodyPanel/EmailEntry").GetComponent<InputField>();
 
         _feedbackText.text = "";
+        _emailText.text = "";
 
         _sendAction = action;
+        _sending = false;
 
         _sendButton.onClick.AddListener(SendPressed);
         _cancelButton.onClick.AddListener(CancelPressed);
@@ -55,7 +61,10 @@ public class Feedback : MonoBehaviour
 
     private void SendPressed()
     {
-        var body = _game + "\n" + _otherInfo + "\n\n" + _feedbackText.text;
+        if (_sending)
+            return;
+        _sending = true;
+        var body = _game + "\n" + _otherInfo + "\n\n" + _feedbackText.text + "\n\nFrom: " + _emailText.text;
 
         Loading.Set(300, false);
         Loading.Start(Localization.Get("BASIC_TEXT_SENDING_FEEDBACK"));

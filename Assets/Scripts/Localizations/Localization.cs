@@ -43,19 +43,7 @@ public class Localization : MonoBehaviour {
     {
         var dict = new Dictionary<string, string>();
 
-        jsonTextAsset_Scenario = Resources.Load(filePath) as TextAsset;
         jsonTextAsset_Basic = Resources.Load("StringLocalizations_BasicText") as TextAsset;
-        var N = JSON.Parse(jsonTextAsset_Scenario.text);
-
-        for (int i = 0; N[i] != null; i++)
-        {
-            //go through the list and add the strings to the dictionary
-            string _key = N[i][0].ToString();
-            _key = _key.Replace("\"", "");
-            string _value = N[i][languageIndex].ToString();
-            _value = _value.Replace("\"", "");
-            dict[_key] = _value;
-        }
 
         var B = JSON.Parse(jsonTextAsset_Basic.text);
 
