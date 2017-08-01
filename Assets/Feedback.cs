@@ -64,7 +64,12 @@ public class Feedback : MonoBehaviour
         if (_sending)
             return;
         _sending = true;
-        var body = _game + "\n" + _otherInfo + "\n\n" + _feedbackText.text + "\n\nFrom: " + _emailText.text;
+        var body = _game + "\n" + _otherInfo + "\n\n" + _feedbackText.text;
+        if (_emailText.text != "")
+        {
+            body += "\n\nFrom: " + _emailText.text;
+        }
+
 
         Loading.Set(300, false);
         Loading.Start(Localization.Get("BASIC_TEXT_SENDING_FEEDBACK"));

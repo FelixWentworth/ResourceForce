@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class ElasticEmail : MonoBehaviour {
 
-    private const string ApiKey = "cdcae26d-1fb8-4565-9b8f-1495d1023c26";
+    private const string ApiKey = "97b43a64-c5ad-414b-9a07-9844c0f9c82d";
     private const string Address = "https://api.elasticemail.com/v2/email/send";
 
     private static EmailHandler _emailHandlerInstance;
