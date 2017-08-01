@@ -29162,6 +29162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c6530f40404434a8db4c660f5bd975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectLocationScreen: {fileID: 371280199}
   _hostName: localhost
   _port: 8728
   _fileName: ScenarioContent.txt

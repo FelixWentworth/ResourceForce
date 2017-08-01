@@ -9,6 +9,7 @@ using UnityEngine.Networking;
 
 public class ContentRequest : MonoBehaviour
 {
+    public GameObject SelectLocationScreen;
 
     [SerializeField] private string _hostName;
     [SerializeField] private string _port;
@@ -59,17 +60,20 @@ public class ContentRequest : MonoBehaviour
 
     IEnumerator Start()
     {
-        Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_RETRIEVING_CONTENT"));
-        yield return GetStreamingAssetsScenario();
-        Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
-        yield return FetchNewContent();
-        if (_contentFound)
+        if (!SelectLocationScreen.activeSelf)
         {
-            yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
-        }
-        else
-        {
-            yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NO_CONTENT"), 1.5f);
+            Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_RETRIEVING_CONTENT"));
+            yield return GetStreamingAssetsScenario();
+            Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
+            yield return FetchNewContent();
+            if (_contentFound)
+            {
+                yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
+            }
+            else
+            {
+                yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NO_CONTENT"), 1.5f);
+            }
         }
     }
 
