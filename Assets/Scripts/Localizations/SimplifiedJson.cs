@@ -20,7 +20,6 @@ public class SimplifiedJson : MonoBehaviour {
 
     public Scenario CreateNewScenario(string location, string language, List<Incident> activeScenarios = null )
     {
-
         var scenarios = GameObject.Find("ContentManager").GetComponent<ContentRequest>().GetScenarios(location, language);
 
         var randScenario = Random.Range(0, scenarios.Count);

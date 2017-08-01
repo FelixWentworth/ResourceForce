@@ -12,7 +12,11 @@ public class ContentRequest : MonoBehaviour
     [SerializeField] private string _hostName;
     [SerializeField] private string _port;
 
-    [SerializeField] private string _filePath;
+    [SerializeField] private string _fileName;
+
+    private List<Scenario> _allScenarios = new List<Scenario>();
+    private string _contentString;
+    private bool _contentFound;
 
     private long _serialNumber = 10;
 
@@ -37,9 +41,20 @@ public class ContentRequest : MonoBehaviour
         get { return "/scenario/new/" + _serialNumber; }
     }
 
-    void Start()
+    IEnumerator Start()
     {
-        StartCoroutine(FetchNewContent());
+        Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_RETRIEVING_CONTENT"));
+        yield return GetStreamingAssetsScenario();
+        Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
+        yield return FetchNewContent();
+        if (_contentFound)
+        {
+            yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
+        }
+        else
+        {
+            yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NO_CONTENT"), 1.5f);
+        }
     }
 
     private IEnumerator FetchNewContent()
@@ -53,18 +68,16 @@ public class ContentRequest : MonoBehaviour
         if (string.IsNullOrEmpty(www.text))
         {
             Debug.Log("Unable to find any new content");
+            _contentFound = false;
         }
         else
         {
+            _contentFound = true;
             var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
 
             _currentState = State.Updating;
-            // Get existing content
-            var contentString = "";
-            using (var stream = new StreamReader(_filePath))
-            {
-                contentString = stream.ReadToEnd();
-            }
+
+            var contentString = _contentString;
 
             // Update any scenarios that may have been edited
             if (contentString != "")
@@ -81,8 +94,10 @@ public class ContentRequest : MonoBehaviour
 
             _currentState = State.Saving;
 
-            WriteToFile(contentString);
-
+            if (contentString != "")
+            {
+                StartCoroutine(WriteToFile(contentString));
+            }
             // update the scenario number
             foreach (var scenario in scenarios)
             {
@@ -120,27 +135,63 @@ public class ContentRequest : MonoBehaviour
         return JsonConvert.SerializeObject(allScenarios);
     }
 
-    private void WriteToFile(string content)
+    private IEnumerator WriteToFile(string content)
     {
-        if (content == "")
+        var path = Application.streamingAssetsPath + "/" + _fileName;
+
+        if (Application.platform == RuntimePlatform.WindowsEditor ||
+            Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
+            Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.LinuxPlayer)
         {
-            return;
+            path = "file:///" + path;
         }
-        using (var stream = new StreamWriter(_filePath, false))
+
+        var www = new WWW(path);
+
+        yield return www;
+        if (www.text != null)
         {
-            stream.Write(content);
+            var newtext = www.text + content;
+            using (var sw = new StreamWriter(Application.streamingAssetsPath + "/" + _fileName))
+            {
+                sw.Write(newtext);
+            }
         }
     }
 
     public List<Scenario> GetScenarios(string location, string language)
     {
-        using (var stream = new StreamReader(_filePath))
+        if (_allScenarios.Count == 0)
         {
-            var scenarios = stream.ReadToEnd();
+            StartCoroutine(GetStreamingAssetsScenario());
+            return null;
+        }
+        else
+        {
+            return _allScenarios.Where(s => s.Language == language && s.Location == location).ToList();
+        }
+    }
 
-            var scenarioJson = JsonConvert.DeserializeObject<List<Scenario>>(scenarios);
 
-            return scenarioJson.Where(s => s.Language == language && s.Location == location).ToList();
+    private IEnumerator GetStreamingAssetsScenario()
+    {
+        var path = Application.streamingAssetsPath + "/" + _fileName;
+
+        if (Application.platform == RuntimePlatform.WindowsEditor ||
+            Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
+            Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.LinuxPlayer)
+        {
+            path = "file:///" + path;
+        }
+
+        var www = new WWW(path);
+
+        yield return www;
+        if (www.text != null)
+        {
+            _contentString = www.text;
+            var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
+            _allScenarios = scenarios;
         }
     }
 }
