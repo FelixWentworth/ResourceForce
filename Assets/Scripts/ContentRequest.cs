@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,7 +19,22 @@ public class ContentRequest : MonoBehaviour
     private string _contentString;
     private bool _contentFound;
 
-    private long _serialNumber = 10;
+    private long _serialNumber
+    {
+        get
+        {
+            var serial = PlayerPrefs.GetString("SerialNumber");
+            if (serial == "")
+            {
+                return 0;
+            }
+            else
+            {
+                return Convert.ToInt64(serial);
+            }
+        }
+        set { }
+    }
 
     private enum State
     {
@@ -107,6 +123,9 @@ public class ContentRequest : MonoBehaviour
                     _serialNumber = scenario.SerialNumber;
                 }
             }
+
+            PlayerPrefs.SetString("SerialNumber", _serialNumber.ToString());
+
             _currentState = State.Finalizing;
         }
     }
