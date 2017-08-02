@@ -68,6 +68,7 @@ public class ContentRequest : MonoBehaviour
 
     public IEnumerator GetContent()
     {
+        
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_RETRIEVING_CONTENT"));
         yield return GetStreamingAssetsScenario();
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
@@ -177,6 +178,10 @@ public class ContentRequest : MonoBehaviour
             Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.LinuxPlayer)
         {
             path = "file:///" + path;
+        }
+        else if (Application.platform == RuntimePlatform.Android)
+        {
+            path = "jar:file://" + Application.dataPath + "!/assets/" + _fileName;
         }
 
         var www = new WWW(path);

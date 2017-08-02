@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.VR.WSA.Persistence;
 
 public class Location : MonoBehaviour
 {
