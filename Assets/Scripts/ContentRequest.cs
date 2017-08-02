@@ -16,7 +16,7 @@ public class ContentRequest : MonoBehaviour
 
     [SerializeField] private string _fileName;
 
-    private List<Scenario> _allScenarios = new List<Scenario>();
+    private static List<Scenario> _allScenarios = new List<Scenario>();
     private string _contentString;
     private bool _contentFound;
 

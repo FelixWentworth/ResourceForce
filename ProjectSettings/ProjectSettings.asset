@@ -40,7 +40,8 @@ PlayerSettings:
   m_SplashScreenLogos:
   - logo: {fileID: 21300000, guid: 763588d7bdfc68b46bb6c0ac3137a95c, type: 3}
     duration: 2
-  m_SplashScreenBackgroundLandscape: {fileID: 0}
+  m_SplashScreenBackgroundLandscape: {fileID: 1, guid: 00000000000000000000000000000000,
+    type: 0}
   m_SplashScreenBackgroundPortrait: {fileID: 0}
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
@@ -577,8 +578,7 @@ PlayerSettings:
   incrementalIl2cppBuild:
     iOS: 1
   additionalIl2CppArgs: 
-  apiCompatibilityLevelPerPlatform:
-    Android: 1
+  apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: ResourceForce
