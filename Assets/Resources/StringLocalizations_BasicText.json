@@ -7,7 +7,7 @@
 {"key":"BASIC_TEXT_TRY_AGAIN","en-gb":"Try Again","de":"Probeer opnieuw","el":"Προσπάθεια ξανά","es":"Inténtalo de nuevo"},
 {"key":"BASIC_TEXT_SEND_ONE","en-gb":"Send officer","de":"Stuur agent","el":"Αποστολή αστυνομικού","es":"Enviar un policía"},
 {"key":"BASIC_TEXT_SEND_MANY","en-gb":"Send officers","de":"Stuur agenten","el":"Αποστολή αστυνομικών","es":"Enviar varios policías"},
-{"key":"BASIC_TEXT_ASK_CITIZEN","en-gb":"Ask citizens for help!","de":"Vraag burgers om hulp!","el":"Ζητήστε την βοήθεια των πολιτών!","es":"¡Pide ayuda a los ciudadanos!"},
+{"key":"BASIC_TEXT_ASK_CITIZEN","en-gb":"Ask citizens for information!","de":"Vraag burgers om informatie!","el":"Ζητήστε πληροφορίες από τους πολίτες!","es":"¡Pide información a los ciudadanos!"},
 {"key":"BASIC_TEXT_GO","en-gb":"Go","de":"Start","el":"Έναρξη","es":"Ir"},
 {"key":"BASIC_TEXT_NEXT_TURN","en-gb":"Next Turn","de":"Volgende beurt","el":"Επόμενος Γύρος","es":"Siguiente turno"},
 {"key":"BASIC_TEXT_BACK","en-gb":"Back","de":"Terug","el":"Πίσω","es":"Atrás"},
