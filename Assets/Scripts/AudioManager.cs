@@ -17,9 +17,10 @@ public class AudioManager : MonoBehaviour {
     }
 
     //get slider so that we can update the position to match the volume
-    public Slider slider;
     private void Awake()
     {
+        instance = this;
+
         if (PlayerPrefs.GetInt("VolumeSet") == 1)
         {
             //the volume has previously been set, get the volume the player has chosen
@@ -30,18 +31,9 @@ public class AudioManager : MonoBehaviour {
             //set the volume to full as default
             AudioListener.volume = 1.0f;
         }
-        slider.value = AudioListener.volume;
         PlayBackgroundMusic();
-        if (instance != null && instance != this)
-        {
-            //if the singleton has already been created
-            Destroy(this.gameObject);
-            return;
-        }
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
-       
     }
+
 
     public AudioSource backgroundMusic;
     public AudioSource positiveButtonMusic;
@@ -119,14 +111,20 @@ public class AudioManager : MonoBehaviour {
         // play case closed audio
         // caseClosedMusic.Play();
     }
-    public void SetVolume()
-    {
-        AudioListener.volume = slider.value;
-        SaveVolume(slider.value);
-    }
     private void SaveVolume(float vol)
     {
         PlayerPrefs.SetFloat("Volume", vol);
         PlayerPrefs.SetInt("VolumeSet", 1);
+    }
+
+    public void ToggleAudio()
+    {
+        AudioListener.volume = AudioListener.volume == 1f ? 0f : 1f;
+        SaveVolume(AudioListener.volume);
+    }
+
+    public bool IsAudioEnabled()
+    {
+        return AudioListener.volume == 1f;
     }
 }

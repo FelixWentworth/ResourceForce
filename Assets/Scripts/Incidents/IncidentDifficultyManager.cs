@@ -191,11 +191,11 @@ public class IncidentDifficultyManager : MonoBehaviour
         }
         else
         {
-            while (newIncidentOfficerLimit > 0 && incidentList.Count + currentIncidents.Count < Location.numIncidents) 
+            while (newIncidentOfficerLimit > 0 && incidentList.Count + currentIncidents.Count < Location.NumIncidents) 
             {
                 var newIncident = GetNewIncident(newIncidentOfficerLimit, currentIncidents);
                 // Make sure that the incident list does not contain the new incident
-                if (incidentList.Find(i => i.Scenario.Id== newIncident.Scenario.Id) == null)
+                if (incidentList.Find(i => i.Scenario.Id == newIncident.Scenario.Id) == null)
                 {
                     newIncidentOfficerLimit -= newIncident.IncidentContent.OfficerReq;
                     incidentList.Add(newIncident);

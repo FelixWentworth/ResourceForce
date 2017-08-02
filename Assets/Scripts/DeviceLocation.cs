@@ -103,7 +103,8 @@ public class DeviceLocation : MonoBehaviour {
         if (value == 0)
             return;
 
-        loc.SetFilePath(value - 1);
+
+        loc.SetSite(value - 1);
     }
 
     private void EnglishSelected()

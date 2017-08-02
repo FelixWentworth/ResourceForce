@@ -163,7 +163,7 @@ public class IncidentManager : MonoBehaviour
     public void ShowIncident(int turn, string caseNumber = "")
     {
         currentTurn = turn;
-        if (NextIncident == null)
+        if (NextIncident == null || NextIncident.Count == 0)
         {
             AddNewIncidents(turn + 1);
         }
@@ -238,12 +238,6 @@ public class IncidentManager : MonoBehaviour
     }
     public void EndTurn()
     {
-        //punish the player for having cases open, stopping players from just ignoring all cases
-        if (!Location.UsesFullFeedback)
-        {
-            // Still using the old feedback system
-            AddHappiness(_endTurnSatisfaction);
-        }
         _endTurnSatisfaction = 0;
         Happiness = Mathf.Clamp(Happiness, 0, MaxHappiness);
         m_satisfactionDisplay.SetSatisfactionDisplays(Happiness, MaxHappiness);
@@ -378,11 +372,6 @@ public class IncidentManager : MonoBehaviour
             var casesClosed = GetTotalCasesClosed();
             var casesClosedThisTurn = GetTurnClosedCaseCount();
 
-            // using old feedback system, otherwise end turn satisfaction is set when happiness is changed
-            if (!Location.UsesFullFeedback)
-            {
-                _endTurnSatisfaction = -GetEndTurnSatisfactionDeduction();
-            }
             GameObject.Find("GameInformationPanel").GetComponent<InformationPanel>().DisableAll();
             tmp.EndTurnSatisfaction.GetComponent<EndTurnSatisfaction>().SetText(total, casesClosed, casesClosedThisTurn, active, actionTaken, ignored);
             ShowSatisfactionImpact(_endTurnSatisfaction);

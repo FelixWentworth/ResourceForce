@@ -75,6 +75,11 @@ public class ContentRequest : MonoBehaviour
                 yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NO_CONTENT"), 1.5f);
             }
         }
+
+        // Set content number
+        var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
+        Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language);
+        Debug.Log(Location.NumIncidents + " Scenarios available");
     }
 
     private IEnumerator FetchNewContent()

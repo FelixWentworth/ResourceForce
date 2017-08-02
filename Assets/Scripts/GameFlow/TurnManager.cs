@@ -16,6 +16,7 @@ public class TurnManager : MonoBehaviour {
 
     public GameObject startScreen;
     public GameObject settingsScreen;
+    public GameObject SettingsSoundIcon;
     public GameObject SettingsScreenQuitToMenuOption;
     public GameObject SettingsScreenScenarioReportOption;
     public GameObject NextTurnButton;
@@ -135,6 +136,7 @@ public class TurnManager : MonoBehaviour {
         {
             PauseGame();
         }
+        SettingsSoundIcon.SetActive(!AudioManager.Instance.IsAudioEnabled());
     }
 
 #region send emails

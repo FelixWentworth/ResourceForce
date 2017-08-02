@@ -12,7 +12,6 @@ public class Localization : MonoBehaviour {
     public bool toUpper;
 
     public static string filePath = "StringLocalizations";
-    static TextAsset jsonTextAsset_Scenario;
     static TextAsset jsonTextAsset_Basic;
     public static int languageIndex = 1;
 
@@ -33,9 +32,7 @@ public class Localization : MonoBehaviour {
     }
     public static void UpdateTextFile()
     {
-        //below code not original part of localization package
-        filePath = "StringLocalizations" + GameObject.Find("LocationMaster").GetComponent<Location>().GetExtension();
-        //above code not original part of localization package
+        // Get language data from json file
         languageIndex = GetLanguageIndex();
         _localizationDict = ConvertJsonToDict(languageIndex);
     }
