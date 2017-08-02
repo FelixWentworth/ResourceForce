@@ -60,20 +60,25 @@ public class ContentRequest : MonoBehaviour
 
     IEnumerator Start()
     {
-        if (!SelectLocationScreen.activeSelf)
+        if (!SelectLocationScreen.activeSelf && Location.NumIncidents == 0)
         {
-            Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_RETRIEVING_CONTENT"));
-            yield return GetStreamingAssetsScenario();
-            Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
-            yield return FetchNewContent();
-            if (_contentFound)
-            {
-                yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
-            }
-            else
-            {
-                yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NO_CONTENT"), 1.5f);
-            }
+            yield return GetContent();
+        }
+    }
+
+    public IEnumerator GetContent()
+    {
+        Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_RETRIEVING_CONTENT"));
+        yield return GetStreamingAssetsScenario();
+        Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
+        yield return FetchNewContent();
+        if (_contentFound)
+        {
+            yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
+        }
+        else
+        {
+            yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NO_CONTENT"), 1.5f);
         }
 
         // Set content number

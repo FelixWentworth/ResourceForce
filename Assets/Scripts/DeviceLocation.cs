@@ -137,6 +137,9 @@ public class DeviceLocation : MonoBehaviour {
 
     public void LanguageSelectd()
     {
+        // Set num incidents to 0 to recalculate the number available on start
+        Location.NumIncidents = 0;
+
         if (_locationIndex == 0)
         {
             // Notify the player to select a location

@@ -19,7 +19,14 @@ public class AudioManager : MonoBehaviour {
     //get slider so that we can update the position to match the volume
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            //if the singleton has already been created
+            Destroy(this.gameObject);
+            return;
+        }
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
 
         if (PlayerPrefs.GetInt("VolumeSet") == 1)
         {
