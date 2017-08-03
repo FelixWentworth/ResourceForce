@@ -79,6 +79,8 @@ public class ButtonFeedbackManager : MonoBehaviour
         IgnoreFeedback.SetActive(false);
         CitizenFeedback.SetActive(false);
         OfficerFeedback.SetActive(false);
+
+        AudioManager.Instance.StopButtonMusic();
     }
 
     public void ShowFeedback(FeedbackType type, int severity)

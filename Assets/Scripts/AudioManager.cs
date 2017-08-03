@@ -22,6 +22,13 @@ public class AudioManager : MonoBehaviour {
         get { return sendOfficerMusic.isPlaying || citizenMusic.isPlaying || ignoreMusic.isPlaying; }
     }
 
+    public void StopButtonMusic()
+    {
+        sendOfficerMusic.Stop();
+        citizenMusic.Stop();
+        ignoreMusic.Stop();
+    }
+
     //get slider so that we can update the position to match the volume
     private void Awake()
     {
