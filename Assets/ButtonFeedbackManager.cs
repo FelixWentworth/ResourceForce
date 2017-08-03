@@ -34,45 +34,45 @@ public class ButtonFeedbackManager : MonoBehaviour
         ResetObjects();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ShowFeedback(FeedbackType.Officer, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ShowFeedback(FeedbackType.Officer, 2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ShowFeedback(FeedbackType.Officer, 3);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            ShowFeedback(FeedbackType.Ignore, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            ShowFeedback(FeedbackType.Ignore, 2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            ShowFeedback(FeedbackType.Ignore, 3);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            ShowFeedback(FeedbackType.Citizen, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            ShowFeedback(FeedbackType.Citizen, 2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            ShowFeedback(FeedbackType.Citizen, 3);
-        }
-    }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        ShowFeedback(FeedbackType.Officer, 1);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha2))
+    //    {
+    //        ShowFeedback(FeedbackType.Officer, 2);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha3))
+    //    {
+    //        ShowFeedback(FeedbackType.Officer, 3);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha4))
+    //    {
+    //        ShowFeedback(FeedbackType.Ignore, 1);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha5))
+    //    {
+    //        ShowFeedback(FeedbackType.Ignore, 2);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha6))
+    //    {
+    //        ShowFeedback(FeedbackType.Ignore, 3);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha7))
+    //    {
+    //        ShowFeedback(FeedbackType.Citizen, 1);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha8))
+    //    {
+    //        ShowFeedback(FeedbackType.Citizen, 2);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha9))
+    //    {
+    //        ShowFeedback(FeedbackType.Citizen, 3);
+    //    }
+    //}
 
     public void ResetObjects()
     {

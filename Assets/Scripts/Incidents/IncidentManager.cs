@@ -252,7 +252,8 @@ public class IncidentManager : MonoBehaviour
     }
     public void WaitPressed()
     {
-        
+        AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Ignore);
+
 #if SELECT_INCIDENTS
         var currentIncident = NextIncident[incidentShowingIndex];
         m_dialogBox.CurrentIncident = currentIncident;
@@ -277,13 +278,15 @@ public class IncidentManager : MonoBehaviour
             }
         }
 
-        AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Ignore);
 
 
         ShowNext();
     }
     public void ResolvePressed()
     {
+        AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Officer);
+
+
 #if SELECT_INCIDENTS
         var currentIncident = NextIncident[incidentShowingIndex];
         m_dialogBox.CurrentIncident = currentIncident;
@@ -309,7 +312,6 @@ public class IncidentManager : MonoBehaviour
             }
         }
 
-        AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Officer);
 
 
         ShowNext();
@@ -317,7 +319,8 @@ public class IncidentManager : MonoBehaviour
 
     public void CitizenHelpPressed()
     {
-        
+        AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Citizen);
+
 #if SELECT_INCIDENTS
         Incident currentIncident = NextIncident[incidentShowingIndex];
         m_dialogBox.CurrentIncident = currentIncident;
@@ -342,7 +345,6 @@ public class IncidentManager : MonoBehaviour
             }
         }
 
-        AddIncidentHistory(m_dialogBox.CurrentIncident, IncidentHistoryElement.Decision.Citizen);
 
 
         ShowNext();
