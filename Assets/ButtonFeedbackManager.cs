@@ -74,7 +74,7 @@ public class ButtonFeedbackManager : MonoBehaviour
         }
     }
 
-    private void ResetObjects()
+    public void ResetObjects()
     {
         IgnoreFeedback.SetActive(false);
         CitizenFeedback.SetActive(false);

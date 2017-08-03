@@ -67,15 +67,15 @@ public class GameOver : MonoBehaviour
         // We want to display the scores one at a time to make the page more interesting
         yield return new WaitForSeconds(0.5f);
 
-        TurnsLabel.text = turns + " " + Localization.Get(TurnsLabelKey) + ":" ;
+        TurnsLabel.text = turns + " " + Localization.Get(TurnsLabelKey);
         StartCoroutine(IncrementTextNumber(ScoreText, 0, turnsScore));
         yield return IncrementTextNumber(TurnsText, 0, turnsScore);
 
-        GoodCasesLabel.text = goodCases + " " + Localization.Get(GoodCasesLabelKey) + ":";
+        GoodCasesLabel.text = goodCases + " " + Localization.Get(GoodCasesLabelKey);
         StartCoroutine(IncrementTextNumber(ScoreText, turnsScore, (turnsScore + goodCaseScore)));
         yield return IncrementTextNumber(GoodCaseText, 0, goodCaseScore);
 
-        BadCasesLabel.text = badCases + " " + Localization.Get(BadCasesLabelKey) + ":";
+        BadCasesLabel.text = badCases + " " + Localization.Get(BadCasesLabelKey);
         StartCoroutine(IncrementTextNumber(ScoreText, (turnsScore + goodCaseScore), score));
         yield return IncrementTextNumber(BadCaseText, 0, badCaseScore);  
 

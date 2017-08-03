@@ -274,6 +274,7 @@ public class DialogBox : MonoBehaviour {
             yield return WarningBox.ShowWarning(feedback.Feedback, Color.cyan);
         }
         DisableButtons();
+
         //removing citizen help popup and instead setting the delay to one turn
         yield return EmailAnim(1f, "EmailShow");
         _incidentManager.CitizenHelpPressed();
@@ -287,6 +288,8 @@ public class DialogBox : MonoBehaviour {
         _citizenHelpButton.SetActive(false);
 
         _buttonFade.SetActive(false);
+        // Make sure that the feedback objects are also disbled
+        ButtonFeedbackManager.Instance.ResetObjects();
     }
     public void DeactivateAll()
     {

@@ -78,6 +78,7 @@ public class ButtonFeedback : MonoBehaviour {
         }
         else
         {
+
             // This object would normally be set active before it is used, so lets force it to be inactive
             this.gameObject.SetActive(false);
         }
