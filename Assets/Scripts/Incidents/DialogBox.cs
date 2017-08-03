@@ -172,7 +172,8 @@ public class DialogBox : MonoBehaviour {
         ShowImmediateFeedback(feedback.FeedbackRating, CurrentIncident.IncidentContent.Severity, _waitButton.transform);
 
         StartCoroutine(LeftButtonWithAnim(feedback, isCitizensAvailable));
-        AudioManager.Instance.PressWaitButton();
+
+        ButtonFeedbackManager.Instance.ShowFeedback(ButtonFeedbackManager.FeedbackType.Ignore, CurrentIncident.IncidentContent.Severity);
     }
 
     private IEnumerator LeftButtonWithAnim(ChoiceFeedback feedback, bool  citizensAvailable = false)
@@ -208,7 +209,7 @@ public class DialogBox : MonoBehaviour {
 
             ShowImmediateFeedback(feedback.FeedbackRating, CurrentIncident.IncidentContent.Severity, _sendOfficerButton.transform);
 
-            AudioManager.Instance.PressOfficerButton();
+            ButtonFeedbackManager.Instance.ShowFeedback(ButtonFeedbackManager.FeedbackType.Officer, CurrentIncident.IncidentContent.Severity);
         }
         else
         {
@@ -263,7 +264,7 @@ public class DialogBox : MonoBehaviour {
 
         ShowImmediateFeedback(feedback.FeedbackRating, CurrentIncident.IncidentContent.Severity, _citizenHelpButton.transform);
         StartCoroutine(CitizenButtonWithAnim(feedback));
-        AudioManager.Instance.PressCitizenButton();
+        ButtonFeedbackManager.Instance.ShowFeedback(ButtonFeedbackManager.FeedbackType.Citizen, CurrentIncident.IncidentContent.Severity);
     }
 
     private IEnumerator CitizenButtonWithAnim(ChoiceFeedback feedback)

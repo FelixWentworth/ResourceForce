@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour {
 
@@ -14,6 +15,11 @@ public class AudioManager : MonoBehaviour {
         {
             return instance;
         }
+    }
+
+    public bool IsButtonFeeedbackPlaying
+    {
+        get { return sendOfficerMusic.isPlaying || citizenMusic.isPlaying || ignoreMusic.isPlaying; }
     }
 
     //get slider so that we can update the position to match the volume
@@ -47,24 +53,38 @@ public class AudioManager : MonoBehaviour {
     public AudioSource negativeButtonMusic;
     public AudioSource warningBoxMusic;
     public AudioSource sendOfficerMusic;
+    public AudioSource ignoreMusic;
+    public AudioSource citizenMusic;
     public AudioSource gameOverMusic;
     public AudioSource caseClosedMusic;
 
-	public void PressCitizenButton()
-    {
-        //play citizen button press audio 
-        positiveButtonMusic.Play();
-    }
-    public void PressWaitButton()
-    {
-        //play wait button press audio
-        positiveButtonMusic.Play();
-    }
-    public void PressOfficerButton()
+    public List<AudioClip> SendOfficerClips;
+    public List<AudioClip> IgnoreClips;
+    public List<AudioClip> CitizenClips;
+
+
+    public void PressOfficerButton(int severity)
     {
         //play officer button press audio
-        //sendOfficerMusic.Play();
-        positiveButtonMusic.Play();
+        sendOfficerMusic.clip = SendOfficerClips[severity - 1];
+
+        sendOfficerMusic.Play();
+    }
+
+    public void PressCitizenButton(int severity)
+    {
+        //play citizen button press audio
+        citizenMusic.clip = CitizenClips[severity - 1];
+
+        citizenMusic.Play();
+    }
+
+    public void PressIgnoreButton(int severity)
+    {
+        //play ignore button press audio
+        ignoreMusic.clip = IgnoreClips[severity - 1];
+        
+        ignoreMusic.Play();
     }
 
     public void PressCaseCloseButton()
