@@ -466,8 +466,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b31ab930b09c9d649babcb35c14b8eb5, type: 3}
   CitizenClips:
   - {fileID: 8300000, guid: 6556e3cd75778fa4bae8cf9cfc871d90, type: 3}
-  - {fileID: 8300000, guid: c395291f383a1334e81c27424c59aeed, type: 3}
-  - {fileID: 8300000, guid: 8f4d44fa02018674e8b07e48080a50e1, type: 3}
+  - {fileID: 8300000, guid: edad60b8328db8740880c18bd741f913, type: 3}
+  - {fileID: 8300000, guid: da707eea863f5bd41ac159bba6625539, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
