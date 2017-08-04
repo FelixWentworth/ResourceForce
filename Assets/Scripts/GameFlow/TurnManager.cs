@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour {
@@ -19,6 +20,7 @@ public class TurnManager : MonoBehaviour {
     public GameObject SettingsSoundIcon;
     public GameObject SettingsScreenQuitToMenuOption;
     public GameObject SettingsScreenScenarioReportOption;
+    public GameObject SettingsScreenReplayTutorialOption;
     public GameObject NextTurnButton;
     public GameObject EndTurnSatisfaction;
 
@@ -104,8 +106,12 @@ public class TurnManager : MonoBehaviour {
     {
         //we could set Time.scale to 0 but there is little need so we will just show the pause screen
         AudioManager.Instance.PositiveButtonPress();
-        SettingsScreenQuitToMenuOption.SetActive(turn > 0);
-        SettingsScreenScenarioReportOption.SetActive(turn > 0);
+
+        var inGame = turn > 0;
+
+        SettingsScreenQuitToMenuOption.SetActive(inGame);
+        SettingsScreenScenarioReportOption.SetActive(inGame);
+        SettingsScreenReplayTutorialOption.SetActive(!inGame);
         settingsScreen.SetActive(!settingsScreen.activeSelf);
     }
     public void ResumeGame()
@@ -117,9 +123,11 @@ public class TurnManager : MonoBehaviour {
     public void ReplayTutorial()
     {
         AudioManager.Instance.PositiveButtonPress();
-        Tutorial.gameObject.SetActive(true);
-        Tutorial.StartTutorial();
-        settingsScreen.SetActive(false);
+        // TODO load tutorial
+        SceneManager.LoadScene(1);
+        //Tutorial.gameObject.SetActive(true);
+        //Tutorial.StartTutorial();
+        //settingsScreen.SetActive(false);
     }
 
     public void ChangeLocation()

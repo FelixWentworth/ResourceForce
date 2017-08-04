@@ -21,6 +21,9 @@ public class IncidentManager : MonoBehaviour
     public DialogBox m_dialogBox;
     public SatisfactionDisplays m_satisfactionDisplay;
 
+    public GameObject NextTurnButton;
+    public GameObject EndTurnSatisfactionObject;
+
     public Color LowSeverity;
     public Color MidSeverity;
     public Color HighSeverity;
@@ -46,7 +49,8 @@ public class IncidentManager : MonoBehaviour
         m_satisfactionDisplay.SetSatisfactionDisplays(Happiness, MaxHappiness);
         _casesClosed = 0;
         _casesClosedWell = 0;
-        _casesClosedThisTurn = 0; 
+        _casesClosedThisTurn = 0;
+        EndTurnSatisfactionObject.SetActive(false);
     }
     public void CreateNewIncident(int zTurn)
     {
@@ -228,7 +232,7 @@ public class IncidentManager : MonoBehaviour
 
         foreach (var feedbackTransform in ratingObjects)
         {
-            feedbackTransform.SetParent(GameObject.Find("Canvas").transform);
+            feedbackTransform.SetParent(GameObject.Find("GameCanvas").transform);
             StartCoroutine(m_satisfactionDisplay.TransitionTo(feedbackTransform, transitionTime, Happiness));
         }
 
@@ -361,9 +365,8 @@ public class IncidentManager : MonoBehaviour
 #endif
         if (NextIncident.Count == 0)//no more incidents to show
         {
-            var tmp = this.gameObject.GetComponent<TurnManager>();
-            tmp.NextTurnButton.SetActive(true);
-			tmp.EndTurnSatisfaction.SetActive(true);
+            NextTurnButton.SetActive(true);
+			EndTurnSatisfactionObject.SetActive(true);
 
             // Get our updated statistics
             var total = GetTotalCasesCount();
@@ -374,8 +377,13 @@ public class IncidentManager : MonoBehaviour
             var casesClosed = GetTotalCasesClosed();
             var casesClosedThisTurn = GetTurnClosedCaseCount();
 
-            GameObject.Find("GameInformationPanel").GetComponent<InformationPanel>().DisableAll();
-            tmp.EndTurnSatisfaction.GetComponent<EndTurnSatisfaction>().SetText(total, casesClosed, casesClosedThisTurn, active, actionTaken, ignored);
+            var infoPanel = GameObject.Find("GameInformationPanel");
+            if (infoPanel != null)
+            {
+                infoPanel.GetComponent<InformationPanel>().DisableAll();
+            }
+
+            EndTurnSatisfactionObject.GetComponent<EndTurnSatisfaction>().SetText(total, casesClosed, casesClosedThisTurn, active, actionTaken, ignored);
             ShowSatisfactionImpact(_endTurnSatisfaction);
         }
         else
@@ -628,4 +636,43 @@ public class IncidentManager : MonoBehaviour
         Happiness = Mathf.Clamp(Happiness, 0, MaxHappiness);
         _endTurnSatisfaction += Mathf.RoundToInt(value * (100f / MaxHappiness));
     }
+
+
+#region TutorialSpecific
+
+    public void AddTutorialContent(List<Scenario> scenarios)
+    {
+        //now get a random incident data from JSON file
+        if (jsonReader == null)
+            jsonReader = this.GetComponent<SimplifiedJson>();
+        if (_incidentDifficultyManager == null)
+        {
+            _incidentDifficultyManager = this.GetComponent<IncidentDifficultyManager>();
+        }
+
+        var location = Location.CurrentLocation;
+        var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
+
+        
+
+        foreach (var scenario in scenarios)
+        {
+            var newIncident = new Incident();
+
+            newIncident.IncidentContent = scenario.Content.Scene;
+            newIncident.Scenario = scenario;
+
+            newIncident.TurnToShow = 0;
+            newIncident.TurnToDevelop = 0 + newIncident.IncidentContent.TurnReq + 1;
+
+            //our complete list of incidents
+            incidents.Add(newIncident);
+
+            //our list of incidents waiting to show this turn
+            NextIncident.Add(newIncident);
+            m_IncidentQueue.AddToQueue(newIncident);
+        }
+    }
+
+#endregion
 }

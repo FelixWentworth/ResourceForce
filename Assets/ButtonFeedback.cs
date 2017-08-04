@@ -72,7 +72,7 @@ public class ButtonFeedback : MonoBehaviour {
             _incidentManager.AddHappiness(ratingImpact);
             foreach (var feedbackTransform in ratingObjects)
             {
-                feedbackTransform.SetParent(GameObject.Find("Canvas").transform);
+                feedbackTransform.SetParent(GameObject.Find("GameCanvas").transform);
                 StartCoroutine(_satisfactionDisplays.TransitionTo(feedbackTransform, 0.5f, _incidentManager.GetActualHappiness())); // -3 as 3 indicates a neutral choice, so no change
             }
         }

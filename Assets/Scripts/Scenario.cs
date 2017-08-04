@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Scenario
 {
     public string Id;
@@ -11,12 +13,14 @@ public class Scenario
     public ScenarioWrapper Content;
 }
 
+[Serializable]
 public class ScenarioWrapper
 {
     private string _type = "Content";
     public IncidentContent Scene;
 }
 
+[Serializable]
 public class IncidentContent
 {
     private string _type = "scene";
@@ -29,6 +33,7 @@ public class IncidentContent
     public List<IncidentChoice> Choices;
 }
 
+[Serializable]
 public class ChoiceFeedback
 {
     private string _type = "ChoiceAction";
@@ -37,6 +42,7 @@ public class ChoiceFeedback
     public string Feedback;
 }
 
+[Serializable]
 public class IncidentChoice
 {
     private string _type = "Choice";

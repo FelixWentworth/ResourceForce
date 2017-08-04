@@ -60,9 +60,13 @@ public class ContentRequest : MonoBehaviour
 
     IEnumerator Start()
     {
-        if (!SelectLocationScreen.activeSelf && Location.NumIncidents == 0)
+        if (SelectLocationScreen != null)
         {
-            yield return GetContent();
+
+            if (!SelectLocationScreen.activeSelf && Location.NumIncidents == 0)
+            {
+                yield return GetContent();
+            }
         }
     }
 

@@ -10,12 +10,14 @@ public class SimplifiedJson : MonoBehaviour {
 
     private TextAsset _myText;
     private TurnManager _manager;
+    private Tutorial _tutorial;
 
     public static int Identifier = 1;
 
     void Awake()
     {
         _manager = this.GetComponent<TurnManager>();
+        _tutorial = this.GetComponent<Tutorial>();
     }
 
     public Scenario CreateNewScenario(string location, string language, List<Incident> activeScenarios = null )
@@ -66,7 +68,17 @@ public class SimplifiedJson : MonoBehaviour {
 
         incident.IncidentContent = waitContent;
 
-        incident.TurnToShow = _manager.turn + turnsToAdd;
+        var turn = 0;
+        if (_manager != null)
+        {
+            turn = _manager.turn;
+        }
+        else if (_tutorial != null)
+        {
+            turn = _tutorial.Turn;
+        }
+
+        incident.TurnToShow = turn + turnsToAdd;
         incident.TurnToDevelop = turnToDevelop;
     }
 }

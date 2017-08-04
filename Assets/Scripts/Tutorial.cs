@@ -1,73 +1,150 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class Tutorial : MonoBehaviour {
+public class Tutorial : MonoBehaviour
+{
+    private enum TutorialStates
+    {
+        Start = 0,
 
+        Incident1,
+        Incident2,
+        Incident3,
+        EndTurnShown,
+        ScenarioResolved,
+        FreeChoice,
+        Satisfaction,
+        GameOver,
+
+        End
+    }
+
+    private TutorialStates _tutorialState;
+
+    [Serializable]
+    private class OnBoarding
+    {
+        public TutorialStates State;
+        public GameObject Screen;
+    }
+
+    [SerializeField] private List<OnBoarding> OnBoardingSteps;
+
+    public Text TurnsText;
+    public List<Scenario> TutorialScenarios;
+
+    public int Turn;
     /// <summary>
     /// this class will show a brief tutorial of how to play the game, it will highlight sections and describe what they do
     /// </summary>
-    public GameObject inputBlocker;
-    public GameObject Screenshot;
-    public GameObject[] tutorialObjects;
-    public enum TutorialPoint { TopBar = 0, IncidentBar = 1, Information = 2, OfficerBar = 3, WaitButton = 4, CitizenButton = 5, OfficerButton = 6}
-    public TutorialPoint currentPoint = (TutorialPoint)0;
+
+    private IncidentManager _incidentManager;
 
     void Awake()
     {
-        DeactivateAll();
-        inputBlocker.SetActive(false);
-        Screenshot.SetActive(false);
+        _incidentManager = GetComponent<IncidentManager>();
+
+        _tutorialState = TutorialStates.Start;
+        NextState();
     }
-    private void DeactivateAll()
+
+    void Start()
     {
-        for (int i = 0; i < tutorialObjects.Length; i++)
+        // Generate the incidents for the tutorial
+        _incidentManager.AddTutorialContent(TutorialScenarios);
+
+        _incidentManager.ShowIncident(0);
+        TurnsText.text = Turn.ToString();
+    }
+
+    public void OptionPressed()
+    {
+        foreach (var step in OnBoardingSteps)
         {
-            //ensure our objects start disabled
-            tutorialObjects[i].SetActive(false);
+            step.Screen.SetActive(false);
+        }
+        if (_tutorialState >= TutorialStates.FreeChoice)
+        {
+            NextState();
         }
     }
 
-    public void StartTutorial()
+    public void CloseCasePressed()
     {
-        currentPoint = (TutorialPoint) 0;
-        ShowStep();
-    }
-    public void ShowStep()
-    {
-        DeactivateAll();
-        inputBlocker.SetActive(true);
-        Screenshot.SetActive(true);
-        var step = (int)currentPoint;
-        tutorialObjects[step].SetActive(true);
-    }
-    public void NextStep()
-    {
-        var step = (int)currentPoint;
-        step++;
-        if (step <= tutorialObjects.Length - 1)
+        foreach (var step in OnBoardingSteps)
         {
-            currentPoint = (TutorialPoint)step;
-            ShowStep();
+            step.Screen.SetActive(false);
+        }
+        // Wait some time to allow for animations
+        StartCoroutine(GoToNextState());
+    }
+
+    private IEnumerator GoToNextState()
+    {
+        yield return new WaitForSeconds(1.25f);
+        NextState();
+    }
+
+    public void FeedbackDismissed()
+    {
+        NextState();
+    }
+
+    public void Exit()
+    {
+        PlayerPrefs.SetInt("NewPlayer", 1);
+        SceneManager.LoadScene(0);
+    }
+
+
+    private void NextState()
+    {
+        _tutorialState = _tutorialState + 1;
+        if (_tutorialState == TutorialStates.End)
+        {
+            // Go back to the main game
+            SceneManager.LoadScene(0);
         }
         else
         {
-            CloseTutorial();
+            ShowNextTip();
         }
     }
 
-    public void Skip()
+    private void ShowNextTip()
     {
-        CloseTutorial();
+        foreach (var step in OnBoardingSteps)
+        {
+            step.Screen.SetActive(step.State == _tutorialState);
+        }
     }
 
-    private void CloseTutorial()
+    public void NextTurn()
     {
-        DeactivateAll();
-        inputBlocker.SetActive(false);
-        Screenshot.SetActive(false);
+        //PlayerPrefs.DeleteAll();
+        AudioManager.Instance.PlayNextTurn();
 
-        PlayerPrefs.SetInt("NewPlayer", 1);
+        Turn++;
+        _incidentManager.NextTurnButton.SetActive(false);
+        _incidentManager.EndTurnSatisfactionObject.SetActive(false);
+        GameObject.Find("OfficerManager").GetComponent<OfficerController>().EndTurn();
+        TurnsText.text = Turn.ToString();
+        if (_incidentManager == null)
+            _incidentManager = this.GetComponent<IncidentManager>();
 
-        this.gameObject.SetActive(false);
+        _incidentManager.UpdateIncidents();
+
+        //update at the end to give the player a chance to get citizen happiness over 20%
+        _incidentManager.EndTurn();
+        //decide which incident to show this turn
+        _incidentManager.IsIncidentWaitingToShow(Turn);    //not using the bool callback to populate the next incident list
+        //_incidentManager.CreateNewIncident(turn);
+
+        _incidentManager.ShowIncident(Turn);
+        NextState();
     }
 }

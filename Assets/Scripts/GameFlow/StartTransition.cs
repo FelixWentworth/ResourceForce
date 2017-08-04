@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartTransition : MonoBehaviour {
@@ -55,9 +56,11 @@ public class StartTransition : MonoBehaviour {
         //on completion notify the turn manager that the start transition is done
         if (PlayerPrefs.GetInt("NewPlayer") == 0)
         {
+            // TODO Load tutorial
+            SceneManager.LoadScene(1);
             //player is new so show tutorial
-            tut.gameObject.SetActive(true);
-            tut.StartTutorial();
+            //tut.gameObject.SetActive(true);
+            //tut.StartTutorial();
         }
         else
         {

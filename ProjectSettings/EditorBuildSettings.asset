@@ -7,3 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/ResourceForce.unity
+    guid: 41c861b145396f84a8d5240b8897e3bc
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 5249b2e16b750c0409b99e1db6d09ba2

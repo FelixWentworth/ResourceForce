@@ -53,6 +53,12 @@ public class WarningBox : MonoBehaviour
 
             ShowingPopup = false;
             ScreenFade.SetActive(false);
+
+            var tutorial = GameObject.Find("TurnManager").GetComponent<Tutorial>();
+            if (tutorial != null)
+            {
+                tutorial.FeedbackDismissed();
+            }
         }
     }
 

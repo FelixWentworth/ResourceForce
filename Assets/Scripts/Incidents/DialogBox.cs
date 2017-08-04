@@ -135,11 +135,33 @@ public class DialogBox : MonoBehaviour {
         }
         //yield return new WaitForSeconds(0.25f);
         //now set which buttons should be active
-        _waitButton.SetActive(zIncident.GetChoiceContent("Wait") != null);
-        _sendOfficerButton.SetActive(zIncident.GetChoiceContent("Officer") != null);
-        _citizenHelpButton.SetActive(zIncident.GetChoiceContent("Citizen") != null);
+        if (endCase)
+        {
+            DisableButtons();
+        }
+        else
+        {
+            SetButtonActive(_waitButton, zIncident.GetChoiceContent("Wait") != null);
+            SetButtonActive(_sendOfficerButton, zIncident.GetChoiceContent("Officer") != null);
+            SetButtonActive(_citizenHelpButton, zIncident.GetChoiceContent("Citizen") != null);
+        }
+
+        //_waitButton.SetActive(zIncident.GetChoiceContent("Wait") != null);
+        //_sendOfficerButton.SetActive(zIncident.GetChoiceContent("Officer") != null);
+        //_citizenHelpButton.SetActive(zIncident.GetChoiceContent("Citizen") != null);
 
         _caseClosedButton.SetActive(endCase);
+    }
+
+    private void SetButtonActive(GameObject obj, bool active)
+    {
+        var button = obj.GetComponent<Button>();
+        var canvasGroup = obj.GetComponent<CanvasGroup>();
+
+        button.interactable = active;
+        canvasGroup.alpha = active ? 1f : .5f;
+
+        obj.SetActive(true);
     }
 
     public List<Transform> GetRatingObjects()
