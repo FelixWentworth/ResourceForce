@@ -3620,6 +3620,16 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 224983830363297192, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224983830363297192, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7142b44ba53241744a8872e52d0ffc42, type: 2}
   m_IsPrefabParent: 0
@@ -4191,8 +4201,8 @@ MonoBehaviour:
             Feedback: Good job! Police should not deal with this type of incident
           Scene:
             Title: Information Forwarded
-            Description: Information of man seen driopping litter has been passed
-              onto environmental services
+            Description: Information of man seen dropping litter has been passed onto
+              environmental services
             Severity: 1
             OfficerReq: 0
             TurnReq: 0

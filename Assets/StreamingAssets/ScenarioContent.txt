@@ -19408,7 +19408,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "A citizen sends a picture showing three people molesting bicycles",
+              "description": "A citizen sends a picture showing three people vandalising bicycles",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -20985,7 +20985,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "After 24 hours, the tablet is still not justified. The boy fills in an online statement form.",
+                    "description": "After 24 hours, the tablet is still not found. The boy fills in an online statement form.",
                     "officerReq": 1,
                     "satisfactionImpact": 0,
                     "severity": 1,
@@ -26991,7 +26991,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Citizens look out their windows and exchange messages. After localising the man someone walks up to him and tries to talks to him. The man responds aggressively.",
+                    "description": "Citizens look out their windows and exchange messages. After locating the man someone walks up to him and tries to talks to him. The man responds aggressively.",
                     "officerReq": 2,
                     "satisfactionImpact": 0,
                     "severity": 2,
