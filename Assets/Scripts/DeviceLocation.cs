@@ -85,6 +85,7 @@ public class DeviceLocation : MonoBehaviour {
 
         var index = int.Parse(itemNumber);
         _dropdown.Hide();
+        _dropdown.value = -1;
         _dropdown.value = index;
         SetLocation(index);
         

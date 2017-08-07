@@ -962,7 +962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: BASIC_TEXT_SELECT_LANGUAGE
+  Key: BASIC_TEXT_LOCATION
   toUpper: 0
 --- !u!1 &136619502
 GameObject:
@@ -11948,7 +11948,7 @@ Prefab:
     - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 244
+      value: 244.00002
       objectReference: {fileID: 0}
     - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
