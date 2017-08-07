@@ -49,7 +49,7 @@ public class Localization : MonoBehaviour {
             //go through the list and add the strings to the dictionary
             string _key = B[i][0].ToString();
             _key = _key.Replace("\"", "");
-            string _value = B[i][languageIndex].ToString();
+            string _value = B[i][index].ToString();
             _value = _value.Replace("\"", "");
             dict[_key] = _value;
         }
