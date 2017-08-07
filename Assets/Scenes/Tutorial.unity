@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 17618961}
   - component: {fileID: 17618963}
   - component: {fileID: 17618962}
+  - component: {fileID: 17618964}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -183,6 +184,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 17618960}
+--- !u!114 &17618964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 17618960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: TUTORIAL_TEXT_5
+  toUpper: 0
 --- !u!1 &33560409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,6 +1233,7 @@ GameObject:
   - component: {fileID: 388894540}
   - component: {fileID: 388894542}
   - component: {fileID: 388894541}
+  - component: {fileID: 388894543}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1276,14 +1291,27 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "In Resource Force, It is your job to decide how to handle incoming reports.
-    \n\nMake sure to read each report carefully, they may be best ignored."
+  m_Text: In Resource Force, It is your job to decide how to handle incoming reports.\nMake
+    sure to read each report carefully, they may be best ignored.
 --- !u!222 &388894542
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 388894539}
+--- !u!114 &388894543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 388894539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: TUTORIAL_TEXT_1
+  toUpper: 0
 --- !u!1 &451011290
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,6 +2046,7 @@ GameObject:
   - component: {fileID: 667921508}
   - component: {fileID: 667921510}
   - component: {fileID: 667921509}
+  - component: {fileID: 667921511}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2075,20 +2104,28 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'The game is lost when satisfaction is below 10% at the end of the turn
-
-
-    Now that the basics have been covered you should be ready to take on the task
-    of running the police force
-
-
-    How many turns can you survive?'
+  m_Text: The game is lost when satisfaction is below 10% at the end of the turn.\n\nNow
+    that the basics have been covered you should be ready to take on the task of running
+    the police force.\n\nHow many turns can you survive?
 --- !u!222 &667921510
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 667921507}
+--- !u!114 &667921511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 667921507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: TUTORIAL_TEXT_8
+  toUpper: 0
 --- !u!1 &708959126
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,6 +2716,7 @@ GameObject:
   - component: {fileID: 837764065}
   - component: {fileID: 837764067}
   - component: {fileID: 837764066}
+  - component: {fileID: 837764068}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2736,16 +2774,27 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'In reports where people may be in danger, it is important to send officers.
-
-
-    This incident requires 2 officers for 2 turns'
+  m_Text: In reports where people may be in danger, it is important to send officers.\nThis
+    incident requires 2 officers for 2 turns.
 --- !u!222 &837764067
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 837764064}
+--- !u!114 &837764068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 837764064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: TUTORIAL_TEXT_3
+  toUpper: 0
 --- !u!1 &857867128
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,8 +3225,8 @@ RectTransform:
   m_Father: {fileID: 475736440}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.475}
-  m_AnchorMax: {x: 1, y: 0.725}
+  m_AnchorMin: {x: 0, y: 0.575}
+  m_AnchorMax: {x: 1, y: 0.855}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4188,8 +4237,8 @@ MonoBehaviour:
     Language: Tutorial
     Content:
       Scene:
-        Title: Littering
-        Description: A man has been seen dropping litter
+        Title: TUTORIAL_INCIDENT_1_TITLE
+        Description: TUTORIAL_INCIDENT_1_REPORT
         Severity: 1
         OfficerReq: 0
         TurnReq: 0
@@ -4198,11 +4247,10 @@ MonoBehaviour:
         - Choice:
             ChoiceType: Wait
             FeedbackRating: 3
-            Feedback: Good job! Police should not deal with this type of incident
+            Feedback: TUTORIAL_INCIDENT_1_FEEDBACK
           Scene:
-            Title: Information Forwarded
-            Description: Information of man seen dropping litter has been passed onto
-              environmental services
+            Title: TUTORIAL_INCIDENT_4_TITLE
+            Description: TUTORIAL_INCIDENT_4_REPORT
             Severity: 1
             OfficerReq: 0
             TurnReq: 0
@@ -4214,8 +4262,8 @@ MonoBehaviour:
     Language: Tutorial
     Content:
       Scene:
-        Title: Harassment Report
-        Description: Reports of an unidentified person harassing neighbours
+        Title: TUTORIAL_INCIDENT_2_TITLE
+        Description: TUTORIAL_INCIDENT_2_REPORT
         Severity: 1
         OfficerReq: 1
         TurnReq: 1
@@ -4224,12 +4272,10 @@ MonoBehaviour:
         - Choice:
             ChoiceType: Citizen
             FeedbackRating: 3
-            Feedback: Great! You should try to get more information before deploying
-              officers
+            Feedback: TUTORIAL_INCIDENT_2_FEEDBACK
           Scene:
-            Title: Information Received
-            Description: Citizens provided a full descruption along with reports of
-              assault, the exact location is unknown
+            Title: TUTORIAL_INCIDENT_5_TITLE
+            Description: TUTORIAL_INCIDENT_5_REPORT
             Severity: 2
             OfficerReq: 2
             TurnReq: 2
@@ -4238,11 +4284,10 @@ MonoBehaviour:
             - Choice:
                 ChoiceType: Wait
                 FeedbackRating: 1
-                Feedback: Bad Idea, you should have sent officers to prevent further
-                  altercation
+                Feedback: TUTORIAL_INCIDENT_5_FEEDBACK_WAIT
               Scene:
-                Title: Null
-                Description: Null
+                Title: APP_NAME
+                Description: BASIC_TEXT_QUIT
                 Severity: 0
                 OfficerReq: 0
                 TurnReq: 0
@@ -4251,11 +4296,10 @@ MonoBehaviour:
             - Choice:
                 ChoiceType: Citizen
                 FeedbackRating: 2
-                Feedback: Ok, you might be able to get a location, but you may be
-                  putting citizens at risk
+                Feedback: TUTORIAL_INCIDENT_5_FEEDBACK_CITIZEN
               Scene:
-                Title: null
-                Description: null
+                Title: APP_NAME
+                Description: BASIC_TEXT_QUIT
                 Severity: 0
                 OfficerReq: 0
                 TurnReq: 0
@@ -4264,11 +4308,10 @@ MonoBehaviour:
             - Choice:
                 ChoiceType: Officer
                 FeedbackRating: 4
-                Feedback: Well Done! Officers need to be sent to make sure that nobody
-                  gets hurt
+                Feedback: TUTORIAL_INCIDENT_5_FEEDBACK_OFFICER
               Scene:
-                Title: null
-                Description: null
+                Title: APP_NAME
+                Description: BASIC_TEXT_QUIT
                 Severity: 0
                 OfficerReq: 0
                 TurnReq: 0
@@ -4280,9 +4323,8 @@ MonoBehaviour:
     Language: Tutorial
     Content:
       Scene:
-        Title: Man with Knife
-        Description: A man has been seen in the city centre threatening people with
-          a knife
+        Title: TUTORIAL_INCIDENT_3_TITLE
+        Description: TUTORIAL_INCIDENT_3_REPORT
         Severity: 1
         OfficerReq: 2
         TurnReq: 2
@@ -4291,10 +4333,10 @@ MonoBehaviour:
         - Choice:
             ChoiceType: Officer
             FeedbackRating: 3
-            Feedback: Officers required to make sure nobody gets hurt
+            Feedback: TUTORIAL_INCIDENT_3_FEEDBACK
           Scene:
-            Title: null
-            Description: null
+            Title: APP_NAME
+            Description: BASIC_TEXT_QUIT
             Severity: 0
             OfficerReq: 0
             TurnReq: 0
@@ -4584,6 +4626,7 @@ GameObject:
   - component: {fileID: 1250475900}
   - component: {fileID: 1250475902}
   - component: {fileID: 1250475901}
+  - component: {fileID: 1250475903}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -4641,18 +4684,29 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'At the end of each turn, you are shown a summary of how well you have done.
-
-
-    Every turn has a number of incidents that you must review. Your 2 officers are
-    still dispatched and will remain until another turn has been completed, as shown
-    on the icons below'
+  m_Text: At the end of each turn, you are shown a summary of how well you have done.\n\nEvery
+    turn has a number of incidents that you must review. Your 2 officers are still
+    dispatched and will remain until another turn has been completed, as shown on
+    the icons below.
 --- !u!222 &1250475902
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1250475899}
+--- !u!114 &1250475903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1250475899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: TUTORIAL_TEXT_4
+  toUpper: 0
 --- !u!1 &1264312400
 GameObject:
   m_ObjectHideFlags: 0
@@ -4995,6 +5049,7 @@ GameObject:
   - component: {fileID: 1343578420}
   - component: {fileID: 1343578422}
   - component: {fileID: 1343578421}
+  - component: {fileID: 1343578423}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -5052,14 +5107,27 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "For every choice you make, public satisfaction will be affected. \n\nThis
-    is indicated at the top of the screen."
+  m_Text: For every choice you make, public satisfaction will be affected.\n\nThis
+    is indicated at the top of the screen.
 --- !u!222 &1343578422
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1343578419}
+--- !u!114 &1343578423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1343578419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: TUTORIAL_TEXT_7
+  toUpper: 0
 --- !u!1 &1368954158
 GameObject:
   m_ObjectHideFlags: 0
@@ -6658,6 +6726,7 @@ GameObject:
   - component: {fileID: 1879409924}
   - component: {fileID: 1879409926}
   - component: {fileID: 1879409925}
+  - component: {fileID: 1879409927}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -6715,14 +6784,27 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "In some cases, you might not have enough information to act upon. \n\nTry
-    asking citizens for some more information."
+  m_Text: In some cases, you might not have enough information to act upon.\nTry asking
+    citizens for some more information.
 --- !u!222 &1879409926
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1879409923}
+--- !u!114 &1879409927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1879409923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: TUTORIAL_TEXT_2
+  toUpper: 0
 --- !u!1 &1925603572
 GameObject:
   m_ObjectHideFlags: 0
@@ -6845,6 +6927,7 @@ GameObject:
   - component: {fileID: 1932940198}
   - component: {fileID: 1932940200}
   - component: {fileID: 1932940199}
+  - component: {fileID: 1932940201}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -6902,16 +6985,27 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'The severity of this incident has increased.
-
-
-    Now it''s your turn. Read the description above and try to make the best choice.'
+  m_Text: The severity of this incident has increased.\n\nNow it's your turn. Read
+    the description above and try to make the best choice.
 --- !u!222 &1932940200
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1932940197}
+--- !u!114 &1932940201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1932940197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: TUTORIAL_TEXT_6
+  toUpper: 0
 --- !u!1 &1943555902 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1017328880360386, guid: 7142b44ba53241744a8872e52d0ffc42,

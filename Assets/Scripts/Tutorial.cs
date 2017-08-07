@@ -46,6 +46,8 @@ public class Tutorial : MonoBehaviour
 
     void Awake()
     {
+        SetLocalizedText();
+       
         _incidentManager = GetComponent<IncidentManager>();
 
         _tutorialState = TutorialStates.Start;
@@ -59,6 +61,26 @@ public class Tutorial : MonoBehaviour
 
         _incidentManager.ShowIncident(0);
         TurnsText.text = Turn.ToString();
+    }
+
+    private void SetLocalizedText()
+    {
+        foreach (var scenario in TutorialScenarios)
+        {
+            SetContentText(scenario.Content.Scene);
+
+        }
+    }
+
+    private void SetContentText(IncidentContent scenario)
+    {
+        scenario.Title = Localization.Get(scenario.Title);
+        scenario.Description = Localization.Get(scenario.Description);
+        foreach (var choice in scenario.Choices)
+        {
+            choice.Choice.Feedback = Localization.Get(choice.Choice.Feedback);
+            SetContentText(choice.Scene);
+        }
     }
 
     public void OptionPressed()

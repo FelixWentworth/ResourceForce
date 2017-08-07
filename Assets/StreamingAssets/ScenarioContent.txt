@@ -9957,7 +9957,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Wait",
-              "feedback": "Well this is quite common in this neighborhood… I do not blame you for holding off for a bit. ",
+              "feedback": "Well this is quite common in this neighbourhood… I do not blame you for holding off for a bit. ",
               "feedbackRating": 3
             },
             "scene": {
@@ -9979,7 +9979,7 @@
                         "choice": {
                           "_type": "ChoiceAction",
                           "choiceType": "Wait",
-                          "feedback": "You should be more responsive. It seems that things are going out of hand.",
+                          "feedback": "You should be more responsive. It seems that things are getting out of hand.",
                           "feedbackRating": 1
                         },
                         "scene": {
@@ -10001,7 +10001,7 @@
                                     "choice": {
                                       "_type": "ChoiceAction",
                                       "choiceType": "Wait",
-                                      "feedback": "Your lack of action can lead the event escalating to a highest rank.",
+                                      "feedback": "Your lack of action can lead to the event escalating to a higher rank.",
                                       "feedbackRating": 1
                                     },
                                     "scene": {
@@ -10044,7 +10044,7 @@
                                                             "_type": "End"
                                                           }
                                                         ],
-                                                        "description": "The situation escalated with no reason. The woman was saved by miracle and the boy was found by citizens",
+                                                        "description": "The situation escalated forn no reason. The woman was saved by a miracle and the boy was found by citizens",
                                                         "officerReq": 0,
                                                         "satisfactionImpact": -3,
                                                         "severity": 3,
@@ -10069,7 +10069,7 @@
                                                 "choice": {
                                                   "_type": "ChoiceAction",
                                                   "choiceType": "Officer",
-                                                  "feedback": "You are running out of chances to find the kid  ",
+                                                  "feedback": "You are running out of chances to find the kid",
                                                   "feedbackRating": 1
                                                 },
                                                 "scene": {
@@ -10079,7 +10079,7 @@
                                                       "_type": "End"
                                                     }
                                                   ],
-                                                  "description": "The situation escalated with no reason. The woman was saved by miracle and the boy was found by officers",
+                                                  "description": "The situation escalated for no reason. The woman was saved by a miracle and the boy was found by officers",
                                                   "officerReq": 0,
                                                   "satisfactionImpact": -2,
                                                   "severity": 3,
@@ -10102,7 +10102,7 @@
                                                       "_type": "End"
                                                     }
                                                   ],
-                                                  "description": "The situation escalated with no reason. The woman was saved by miracle and the boy was found by citizens",
+                                                  "description": "The situation escalated for no reason. The woman was saved by a miracle and the boy was found by citizens",
                                                   "officerReq": 0,
                                                   "satisfactionImpact": -3,
                                                   "severity": 3,
@@ -10114,7 +10114,7 @@
                                                 "_type": "End"
                                               }
                                             ],
-                                            "description": "The police surrounds the area to avoid any chances of electrocution or the generation of fire",
+                                            "description": "The police surround the area to avoid any chances of electrocution or the generation of fire",
                                             "officerReq": 5,
                                             "satisfactionImpact": 0,
                                             "severity": 3,
@@ -10148,7 +10148,7 @@
                                                       "_type": "End"
                                                     }
                                                   ],
-                                                  "description": "The situation escalated with no reason. The woman was saved by miracle and the boy was found by citizens",
+                                                  "description": "The situation escalated for no reason. The woman was saved by a miracle and the boy was found by citizens",
                                                   "officerReq": 0,
                                                   "satisfactionImpact": -3,
                                                   "severity": 3,
@@ -10172,7 +10172,7 @@
                                           "_type": "End"
                                         }
                                       ],
-                                      "description": " The woman rushes out of the house gets in the car and starts looking for the kid; she is in panic mode and drives recklessly. As a result she hits an electricity pillar",
+                                      "description": " The woman rushes out of the house, gets in the car and starts looking for the kid; she is in panic mode and drives recklessly. As a result she hits an electricity pillar",
                                       "officerReq": 3,
                                       "satisfactionImpact": 0,
                                       "severity": 3,
@@ -10185,7 +10185,7 @@
                                     "choice": {
                                       "_type": "ChoiceAction",
                                       "choiceType": "Officer",
-                                      "feedback": "The event will likely escalate now and will take substantial resources to set things under control",
+                                      "feedback": "The event will likely escalate now and will take substantial resources to get things under control",
                                       "feedbackRating": 1
                                     },
                                     "scene": {
@@ -10195,7 +10195,7 @@
                                           "_type": "End"
                                         }
                                       ],
-                                      "description": "Officers find the kid and they immediately contact hs parents",
+                                      "description": "Officers find the kid and they immediately contact his parents",
                                       "officerReq": 0,
                                       "satisfactionImpact": 2,
                                       "severity": 2,
@@ -10229,7 +10229,7 @@
                                                 "_type": "End"
                                               }
                                             ],
-                                            "description": "The situation escalated with no reason. The woman was saved by miracle and the boy was found by citizens",
+                                            "description": "The situation escalated for no reason. The woman was saved by a miracle and the boy was found by citizens",
                                             "officerReq": 0,
                                             "satisfactionImpact": -3,
                                             "severity": 3,
@@ -10288,11 +10288,11 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "A citizen reports that a kid is heard crying produsely from the back side of the house looking through the slightly open door",
+                          "description": "A citizen reports that a kid is heard crying profusely from the back side of the house looking through the slightly open door",
                           "officerReq": 1,
                           "satisfactionImpact": 0,
                           "severity": 2,
-                          "title": "Kid is crying profusly",
+                          "title": "Kid is crying profusely",
                           "turnReq": 3
                         }
                       },
@@ -10346,7 +10346,7 @@
                                     "choice": {
                                       "_type": "ChoiceAction",
                                       "choiceType": "Wait",
-                                      "feedback": "Your lack of action can lead the event escalating to a highest rank.",
+                                      "feedback": "Your lack of action can lead to the event escalating to a higher rank.",
                                       "feedbackRating": 1
                                     },
                                     "scene": {
@@ -10389,7 +10389,7 @@
                                                             "_type": "End"
                                                           }
                                                         ],
-                                                        "description": "The situation escalated with no reason. The woman was saved by miracle and the boy was found by citizens",
+                                                        "description": "The situation escalated for no reason. The woman was saved by a miracle and the boy was found by citizens",
                                                         "officerReq": 0,
                                                         "satisfactionImpact": -3,
                                                         "severity": 3,
@@ -10414,7 +10414,7 @@
                                                 "choice": {
                                                   "_type": "ChoiceAction",
                                                   "choiceType": "Officer",
-                                                  "feedback": "You are running out of chances to find the kid  ",
+                                                  "feedback": "You are running out of chances to find the kid",
                                                   "feedbackRating": 1
                                                 },
                                                 "scene": {
@@ -10424,7 +10424,7 @@
                                                       "_type": "End"
                                                     }
                                                   ],
-                                                  "description": "The situation escalated with no reason. The woman was saved by miracle and the boy was found by officers",
+                                                  "description": "The situation escalated for no reason. The woman was saved by a miracle and the boy was found by officers",
                                                   "officerReq": 0,
                                                   "satisfactionImpact": -2,
                                                   "severity": 3,
@@ -10447,7 +10447,7 @@
                                                       "_type": "End"
                                                     }
                                                   ],
-                                                  "description": "The situation escalated with no reason. The woman was saved by miracle and the boy was found by citizens",
+                                                  "description": "The situation escalated for no reason. The woman was saved by a miracle and the boy was found by citizens",
                                                   "officerReq": 0,
                                                   "satisfactionImpact": -3,
                                                   "severity": 3,
@@ -10463,7 +10463,7 @@
                                             "officerReq": 5,
                                             "satisfactionImpact": 0,
                                             "severity": 3,
-                                            "title": "Damages on vehicle, Passenger lightly injured",
+                                            "title": "Damages to vehicle, Passenger lightly injured",
                                             "turnReq": 4
                                           }
                                         },
@@ -10493,7 +10493,7 @@
                                                       "_type": "End"
                                                     }
                                                   ],
-                                                  "description": "The situation escalated with no reason. The woman was saved by miracle and the boy was found by citizens",
+                                                  "description": "The situation escalated for no reason. The woman was saved by a miracle and the boy was found by citizens",
                                                   "officerReq": 0,
                                                   "satisfactionImpact": -3,
                                                   "severity": 3,
@@ -10517,7 +10517,7 @@
                                           "_type": "End"
                                         }
                                       ],
-                                      "description": " The woman rushes out of the house gets in the car and starts looking for the kid; she is in panic mode and drives recklessly. As a result she hits an electricity pillar",
+                                      "description": " The woman rushes out of the house, gets in the car and starts looking for the kid; she is in panic mode and drives recklessly. As a result she hits an electricity pillar",
                                       "officerReq": 3,
                                       "satisfactionImpact": 0,
                                       "severity": 3,
@@ -10530,7 +10530,7 @@
                                     "choice": {
                                       "_type": "ChoiceAction",
                                       "choiceType": "Officer",
-                                      "feedback": "The event will likely escalate now and will take substantial resources to set things under control",
+                                      "feedback": "The event will likely escalate now and will take substantial resources to get things under control",
                                       "feedbackRating": 1
                                     },
                                     "scene": {
@@ -10574,7 +10574,7 @@
                                                 "_type": "End"
                                               }
                                             ],
-                                            "description": "The situation escalated with no reason. The woman was saved by miracle and the boy was found by citizens",
+                                            "description": "The situation escalated for no reason. The woman was saved by a miracle and the boy was found by citizens",
                                             "officerReq": 0,
                                             "satisfactionImpact": -3,
                                             "severity": 3,
@@ -10633,11 +10633,11 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "A citizen reports that a kid is heard crying produsely from the back side of the house looking through the slightly open door",
+                          "description": "A citizen reports that a kid is heard crying profusely from the back side of the house looking through the slightly open door",
                           "officerReq": 1,
                           "satisfactionImpact": 0,
                           "severity": 2,
-                          "title": "Kid is crying profusly",
+                          "title": "Kid is crying profusely",
                           "turnReq": 3
                         }
                       },
@@ -10645,11 +10645,11 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "As a result of the fight a woman is screaming out of her lungs to her husband regarding a difference they had related to their child.",
+                    "description": "As a result of the fight a woman is screaming to her husband regarding a difference they had related to their child.",
                     "officerReq": 1,
                     "satisfactionImpact": 0,
                     "severity": 2,
-                    "title": "Woman is acreaming",
+                    "title": "Woman is screaming",
                     "turnReq": 2
                   }
                 },
@@ -10680,7 +10680,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "A neighbor's dog is barking",
+              "description": "A neighbour's dog is barking",
               "officerReq": 1,
               "satisfactionImpact": 0,
               "severity": 1,
@@ -10715,7 +10715,7 @@
             "_type": "End"
           }
         ],
-        "description": "A neighbor complains about noise from nearby house",
+        "description": "A neighbour complains about noise from nearby house",
         "officerReq": 1,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -10783,7 +10783,7 @@
                                     "_type": "End"
                                   }
                                 ],
-                                "description": "The argument escalated on a fight which required the intervention of the police.  The two neighbours seem to be unfriendly with each other with the issue between them still unresolved",
+                                "description": "The argument escalated to a fight which required the intervention of the police. The two neighbours seem to be unfriendly with each other with the issue between them still unresolved",
                                 "officerReq": 0,
                                 "satisfactionImpact": -2,
                                 "severity": 2,
@@ -10796,7 +10796,7 @@
                               "choice": {
                                 "_type": "ChoiceAction",
                                 "choiceType": "Officer",
-                                "feedback": "Well things didn’t turn out as good.  ",
+                                "feedback": "Well things didn’t turn out as good.",
                                 "feedbackRating": 2
                               },
                               "scene": {
@@ -10853,7 +10853,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "A citizen reported littering in around his neighbourhood for the second time",
+                    "description": "A citizen reported littering around his neighbourhood for the second time",
                     "officerReq": 1,
                     "satisfactionImpact": 0,
                     "severity": 1,
@@ -10900,7 +10900,7 @@
             "_type": "End"
           }
         ],
-        "description": "A citizen reported littering in around his neighbourhood. His newly moved neighbors do not seem to respect others' space",
+        "description": "A citizen reported littering around his neighbourhood. His newly moved neighbors do not seem to respect others' space",
         "officerReq": 1,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -10992,7 +10992,7 @@
                                     "choice": {
                                       "_type": "ChoiceAction",
                                       "choiceType": "Officer",
-                                      "feedback": "Wow that was truly impressive  ",
+                                      "feedback": "Wow that was truly impressive",
                                       "feedbackRating": 5
                                     },
                                     "scene": {
@@ -11002,7 +11002,7 @@
                                           "_type": "End"
                                         }
                                       ],
-                                      "description": "The suspect is being arrested and is sent for questioning",
+                                      "description": "The suspect has been arrested and is sent for questioning",
                                       "officerReq": 0,
                                       "satisfactionImpact": 1,
                                       "severity": 2,
@@ -11014,7 +11014,7 @@
                                     "_type": "End"
                                   }
                                 ],
-                                "description": "Multiple citizens provided key information to the police about a person that seems to be responsible for putting the poison to the area",
+                                "description": "Multiple citizens provided key information to the police about a person that seems to be responsible for putting the poison in the area",
                                 "officerReq": 1,
                                 "satisfactionImpact": 0,
                                 "severity": 1,
@@ -11084,7 +11084,7 @@
                                     "choice": {
                                       "_type": "ChoiceAction",
                                       "choiceType": "Officer",
-                                      "feedback": "Wow that was truly impressive  ",
+                                      "feedback": "Wow that was truly impressive",
                                       "feedbackRating": 5
                                     },
                                     "scene": {
@@ -11094,7 +11094,7 @@
                                           "_type": "End"
                                         }
                                       ],
-                                      "description": "The suspect is being arrested and is sent for questioning",
+                                      "description": "The suspect has been arrested and is sent for questioning",
                                       "officerReq": 0,
                                       "satisfactionImpact": 1,
                                       "severity": 2,
@@ -11106,7 +11106,7 @@
                                     "_type": "End"
                                   }
                                 ],
-                                "description": "Multiple citizens provided key information to the police about a person that seems to be responsible for putting the poison to the area",
+                                "description": "Multiple citizens provided key information to the police about a person that seems to be responsible for putting the poison in the area",
                                 "officerReq": 1,
                                 "satisfactionImpact": 0,
                                 "severity": 1,
@@ -11143,7 +11143,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Officer",
-                    "feedback": "Well this is quite a commitment, but I’m sure it will turn out for the good.",
+                    "feedback": "Well this is quite a commitment, but I’m sure it will turn out for the better.",
                     "feedbackRating": 3
                   },
                   "scene": {
@@ -11153,7 +11153,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The officers spent a long time on this but it paid off. They have managed to identify the poison and cleared the area.",
+                    "description": "The officers spent a long time on this but it paid off. They have managed to identify the poison and clear the area",
                     "officerReq": 0,
                     "satisfactionImpact": 2,
                     "severity": 2,
@@ -11165,11 +11165,11 @@
                   "_type": "End"
                 }
               ],
-              "description": "Multiple citizens reported the existense of pet poison through the use of the INSPEC2T app. Some of them also associated the event with a number of locations. Thanks to the spatiotemporal processing in INSPEC2T. The system suggested the correlation of some reports and provided an estimation of the location.",
+              "description": "Multiple citizens reported the existence of pet poison through the use of the INSPEC2T app. Some of them also associated the event with a number of locations. Thanks to the GPS in INSPEC2T, the system suggested the correlation of some reports and we have an estimated location",
               "officerReq": 1,
               "satisfactionImpact": 0,
               "severity": 2,
-              "title": "Multiple complaints about poisons",
+              "title": "Multiple complaints about poison",
               "turnReq": 2
             }
           },
@@ -11178,7 +11178,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Officer",
-              "feedback": "It was tough call but you did an excellent job  ",
+              "feedback": "It was tough call but you did an excellent job",
               "feedbackRating": 5
             },
             "scene": {
@@ -11188,7 +11188,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "The officers spent a long time on this but it paid off. They have managed to identify the poison and cleared the area.",
+              "description": "The officers spent a long time on this but it paid off. They have managed to identify the poison and clear the area",
               "officerReq": 0,
               "satisfactionImpact": 2,
               "severity": 2,
@@ -11200,7 +11200,7 @@
             "_type": "End"
           }
         ],
-        "description": "A citizen reported that her dog got sick after their walk around the neighbourhood and claimed the existence of pet poison around the area",
+        "description": "A citizen reported that her dog got sick after their walk around the neighbourhood and claimed there was pet poison in the area",
         "officerReq": 2,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -11246,7 +11246,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Ignoring the case resulted in the generation of even more aggressive hostile reaction on behalf of the two parties",
+                    "description": "Ignoring the case resulted in the the two parties becoming more agressive to each other",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 2,
@@ -11269,7 +11269,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Affter a lot of effort the officers managed to calm down the situation and suggested the intervention of consulting for resolving their issues",
+                    "description": "After a lot of effort the officers managed to calm down the situation and suggested the intervention of consultation for resolving their issues",
                     "officerReq": 0,
                     "satisfactionImpact": 2,
                     "severity": 1,
@@ -11304,7 +11304,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "George who has previously filed a report called a suspect messing with his parck car. George comes in arguments outside his hhouse and a neighbour files an anonymous report",
+              "description": "George who has previously filed a report called a suspect messing with his parked car. George gets involved in an argument outside his house and a neighbour files an anonymous report",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -11349,7 +11349,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Progress on the investigation revealed that George and the reported suspect have a long run of financial differences. The police suggests the invasion of lawyers for resolving the issue",
+                          "description": "Progress on the investigation revealed that George and the reported suspect have a long run of financial difficulties. The police suggest that lawyers should be involved for resolving the issue",
                           "officerReq": 0,
                           "satisfactionImpact": 2,
                           "severity": 1,
@@ -11372,7 +11372,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Ignoring the case resulted in the generation of even more aggressive hostile reaction on behalf of the two parties",
+                          "description": "Ignoring the case resulted in the the two parties becoming more agressive to each other",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 2,
@@ -11408,7 +11408,7 @@
             "_type": "End"
           }
         ],
-        "description": "Report from user George names a suspect and reports multiple harassment events and damages on his asstes",
+        "description": "Report from user George names a suspect and reports multiple harassment events and damages on his assets",
         "officerReq": 2,
         "satisfactionImpact": 0,
         "severity": 2,
@@ -11433,7 +11433,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Wait",
-              "feedback": "You may not think that this case is an urgent incident, but things could escalate quikcly",
+              "feedback": "You may not think that this case is an urgent incident, but things could escalate quickly",
               "feedbackRating": 2
             },
             "scene": {
@@ -11477,7 +11477,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Your officer tried to exploain the restrictions of police when it comes to their resources but it wasn't enough",
+                    "description": "Your officer tried to explain the restrictions of police when it comes to their resources but it wasn't enough",
                     "officerReq": 0,
                     "satisfactionImpact": -2,
                     "severity": 2,
@@ -11489,7 +11489,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "The reporter is in the process of forming an awareness campaign against their employer, clearly stating the ignorance of police,. Dedicate some forces to minimise the dissatisfaction",
+              "description": "The reporter is in the process of forming an awareness campaign against their employer, clearly stating the ignorance of police. Dedicate some forces to minimise the dissatisfaction",
               "officerReq": 1,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -11523,7 +11523,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Your actions weren't transparent to the public and the victim dim not come to closure",
+                    "description": "Your actions weren't transparent to the public and the victim did not come to closure",
                     "officerReq": 0,
                     "satisfactionImpact": -1,
                     "severity": 2,
@@ -11581,7 +11581,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "The officer approached the employer and the apporpriate public body and explained the policies behind equal rights. You are now presented with an option to find the employer",
+              "description": "The officer approached the employer and the apporpriate public body and explained the policies behind equal rights. You are now presented with an option to fine the employer",
               "officerReq": 1,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -11639,7 +11639,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The room tenant returns to the room after the police has departed from the area. The hotel manager was assaulted while damages were caused in the reception area. The manager ended up in the nearest hospital with a serious concussion",
+                    "description": "The tenant returns after the police have left the area. The hotel manager was assaulted while damages were caused in the reception area. The manager ended up in the nearest hospital with a serious concussion",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 3,
@@ -11673,7 +11673,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "The room tenant returns to the room after the police has departed from the area. The hotel manager was assaulted while damages were caused in the reception area. The manager ended up in the nearest hospital with a serious concussion",
+                          "description": "The tenant returns after the police have left the area. The hotel manager was assaulted while damages were caused in the reception area. The manager ended up in the nearest hospital with a serious concussion",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 3,
@@ -11696,7 +11696,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "The officers manage to trace down the suspect and after organised efforts he was apprehended and was sent to questioning. The hotel manager is satisfied",
+                          "description": "The officers manage to trace down the suspect and after organised efforts he was apprehended and was sent for questioning. The hotel manager is satisfied",
                           "officerReq": 0,
                           "satisfactionImpact": 2,
                           "severity": 1,
@@ -11730,7 +11730,7 @@
                                     "_type": "End"
                                   }
                                 ],
-                                "description": "The room tenant returns to the room after the police has departed from the area. The hotel manager was assaulted while damages were caused in the reception area. The manager ended up in the nearest hospital with a serious concussion",
+                                "description": "The tenant returns after the police have left the area. The hotel manager was assaulted while damages were caused in the reception area. The manager ended up in the nearest hospital with a serious concussion",
                                 "officerReq": 0,
                                 "satisfactionImpact": -3,
                                 "severity": 3,
@@ -11753,7 +11753,7 @@
                                     "_type": "End"
                                   }
                                 ],
-                                "description": "The officer managed to trace down the suspect after organised efforts he was apprehended and was sent to questioning. The hotel manager is satisfied and the citizens' trust in the police has increased due to transparency",
+                                "description": "The officer managed to trace down the suspect after organised efforts he was apprehended and was sent for questioning. The hotel manager is satisfied and the citizens' trust in the police has increased due to transparency",
                                 "officerReq": 0,
                                 "satisfactionImpact": 3,
                                 "severity": 3,
@@ -11765,7 +11765,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "You have requested citizens contribution. Through which you managed to get valuable information. allowing you to trace down the suspec's location",
+                          "description": "You have requested citizens contribution. Through which you managed to get valuable information. allowing you to trace down the suspect's location",
                           "officerReq": 1,
                           "satisfactionImpact": 0,
                           "severity": 3,
@@ -11777,7 +11777,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Your officers have visited the hotel, carefully collected the substance which was sent to the appropriate lab which confirmed the existence of large amounts of drugs. The room tenant has gone missing",
+                    "description": "Your officers have visited the hotel, carefully collected the substance which was sent to the appropriate lab which confirmed the existence of large amounts of drugs. The tenant has gone missing",
                     "officerReq": 3,
                     "satisfactionImpact": 0,
                     "severity": 3,
@@ -11823,7 +11823,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The room tenant returns to the room after the police has departed from the area. The hotel manager was assaulted while damages were caused in the reception area. The manager ended up in the nearest hospital with a serious concussion",
+                    "description": "The tenant returns after the police have left the area. The hotel manager was assaulted while damages were caused in the reception area. The manager ended up in the nearest hospital with a serious concussion",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 3,
@@ -11846,7 +11846,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The officers manage to trace down the suspect and after organised efforts he was apprehended and was sent to questioning. The hotel manager is satisfied",
+                    "description": "The officers manage to trace down the suspect and after organised efforts he was apprehended and was sent for questioning. The hotel manager is satisfied",
                     "officerReq": 0,
                     "satisfactionImpact": 2,
                     "severity": 1,
@@ -11880,7 +11880,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "The room tenant returns to the room after the police has departed from the area. The hotel manager was assaulted while damages were caused in the reception area. The manager ended up in the nearest hospital with a serious concussion",
+                          "description": "The tenant returns after the police have left the area. The hotel manager was assaulted while damages were caused in the reception area. The manager ended up in the nearest hospital with a serious concussion",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 3,
@@ -11903,7 +11903,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "The officer managed to trace down the suspect after organised efforts he was apprehended and was sent to questioning. The hotel manager is satisfied and the citizens' trust in the police has increased due to transparency",
+                          "description": "The officer managed to trace down the suspect after organised efforts he was apprehended and was sent for questioning. The hotel manager is satisfied and the citizens' trust in the police has increased due to transparency",
                           "officerReq": 0,
                           "satisfactionImpact": 3,
                           "severity": 3,
@@ -11915,7 +11915,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "You have requested citizens contribution. Through which you managed to get valuable information. allowing you to trace down the suspec's location",
+                    "description": "You have requested citizens contribution. Through which you managed to get valuable information. allowing you to trace down the suspect's location",
                     "officerReq": 1,
                     "satisfactionImpact": 0,
                     "severity": 3,
@@ -11927,7 +11927,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Your officers have visited the hotel, carefully collected the substance which was sent to the appropriate lab which confirmed the existence of large amounts of drugs. The room tenant has gone missing",
+              "description": "Your officers have visited the hotel, carefully collected the substance which was sent to the appropriate lab which confirmed the existence of large amounts of drugs. The tenant has gone missing",
               "officerReq": 3,
               "satisfactionImpact": 0,
               "severity": 3,
@@ -11996,7 +11996,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Intelligence coming from citizens reports that the reporting victim was found on the streets in apretty bad shape. The public opinion in negative and does not support your actions",
+                          "description": "Intelligence coming from citizens reports that the reporting victim was found on the streets in a pretty bad shape. The public do not support your actions",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 2,
@@ -12064,7 +12064,7 @@
                                           "_type": "End"
                                         }
                                       ],
-                                      "description": "You decided to ignore the case. Th public opinion is negative and does not support your actions",
+                                      "description": "You decided to ignore the case. The public opinion is negative and does not support your actions",
                                       "officerReq": 0,
                                       "satisfactionImpact": -2,
                                       "severity": 2,
@@ -12087,7 +12087,7 @@
                                           "_type": "End"
                                         }
                                       ],
-                                      "description": "Your officers managed to apprehend the offending employer. Well done, you have managed to dela with the situation in resonable time",
+                                      "description": "Your officers managed to apprehend the offending employer. Well done, you have managed to deal with the situation in resonable time",
                                       "officerReq": 0,
                                       "satisfactionImpact": 1,
                                       "severity": 1,
@@ -12146,7 +12146,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Working together with public services resulted in finding a new home for the victim and filing charges to the offender. The extra time you have taken did not cause any significant consequences",
+                    "description": "Working together with the public services resulted in finding a new home for the victim and filing charges to the offender. The extra time you have taken did not cause any significant consequences",
                     "officerReq": 0,
                     "satisfactionImpact": 2,
                     "severity": 1,
@@ -12192,7 +12192,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Working together with public services resulted in finding a new home for the victim and filing charges to the offender.",
+                    "description": "Working together with the public services resulted in finding a new home for the victim and filing charges to the offender.",
                     "officerReq": 0,
                     "satisfactionImpact": 3,
                     "severity": 1,
@@ -12226,7 +12226,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Intelligence coming from citizens reports that the reporting victim was found on the streets in apretty bad shape. The public opinion in negative and does not support your actions",
+                          "description": "Intelligence coming from citizens reports that the reporting victim was found on the streets in a pretty bad shape. The public do not support your actions",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 2,
@@ -12294,7 +12294,7 @@
                                           "_type": "End"
                                         }
                                       ],
-                                      "description": "You decided to ignore the case. Th public opinion is negative and does not support your actions",
+                                      "description": "You decided to ignore the case. The public opinion is negative and does not support your actions",
                                       "officerReq": 0,
                                       "satisfactionImpact": -2,
                                       "severity": 2,
@@ -12317,7 +12317,7 @@
                                           "_type": "End"
                                         }
                                       ],
-                                      "description": "Your officers managed to apprehend the offending employer. Well done, you have managed to dela with the situation in resonable time",
+                                      "description": "Your officers managed to apprehend the offending employer. Well done, you have managed to deal with the situation in resonable time",
                                       "officerReq": 0,
                                       "satisfactionImpact": 1,
                                       "severity": 1,
@@ -12402,7 +12402,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Wait",
-              "feedback": "Really? Is this the best you can do? Eved if you didn’t have the resources you could communicated with citizens",
+              "feedback": "Really? Is this the best you can do? Even if you didn’t have the resources you could have communicated with citizens",
               "feedbackRating": 1
             },
             "scene": {
@@ -12492,7 +12492,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The area is now open for use by the public. You are now faced with the choice to inform the publice about the event or close the case",
+                    "description": "The area is now open for use by the public. You are now faced with the choice to inform the public about the event or close the case",
                     "officerReq": 2,
                     "satisfactionImpact": 0,
                     "severity": 1,
@@ -12630,7 +12630,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The area is now open for use by the public. You are now faced with the choice to inform the publice about the event or close the case",
+                    "description": "The area is now open for use by the public. You are now faced with the choice to inform the public about the event or close the case",
                     "officerReq": 2,
                     "satisfactionImpact": 0,
                     "severity": 1,
@@ -12966,7 +12966,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Officer",
-                    "feedback": "Collaborating with citizen intelligence has prover helpful previously",
+                    "feedback": "Collaborating with citizen intelligence has proven helpful previously",
                     "feedbackRating": 4
                   },
                   "scene": {
@@ -13000,7 +13000,7 @@
                         "choice": {
                           "_type": "ChoiceAction",
                           "choiceType": "Officer",
-                          "feedback": "Excellent , you make great decisions on this case",
+                          "feedback": "Excellent, you made great decisions on this case",
                           "feedbackRating": 5
                         },
                         "scene": {
@@ -13034,7 +13034,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "The officer went to the area. The suspicious person pretended to be busy on their phone. The officer approached the suspect who claimed that he parker there to speak on the phone and he immediately drove away",
+              "description": "The officer went to the area. The suspicious person pretended to be busy on their phone. The officer approached the suspect who claimed that he parked there to speak on the phone and he immediately drove away",
               "officerReq": 1,
               "satisfactionImpact": 0,
               "severity": 1,
@@ -13115,7 +13115,7 @@
                         "choice": {
                           "_type": "ChoiceAction",
                           "choiceType": "Officer",
-                          "feedback": "Excellent , you make great decisions on this case",
+                          "feedback": "Excellent, you made great decisions on this case",
                           "feedbackRating": 5
                         },
                         "scene": {
@@ -13220,7 +13220,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Wait",
-                    "feedback": "Really? Is this the best you can do? Eved if you didn’t have the resources you could have communicated with citizens",
+                    "feedback": "Really? Is this the best you can do? Even if you didn’t have the resources you could have communicated with citizens",
                     "feedbackRating": 1
                   },
                   "scene": {
@@ -13254,7 +13254,7 @@
                         "choice": {
                           "_type": "ChoiceAction",
                           "choiceType": "Officer",
-                          "feedback": "Good choice,  a citizen's life might be on the line",
+                          "feedback": "Good choice, a citizen's life might be on the line",
                           "feedbackRating": 4
                         },
                         "scene": {
@@ -13298,7 +13298,7 @@
                                     "_type": "End"
                                   }
                                 ],
-                                "description": "Thank the citizen for their participation in bringing the matter to the plice's attention",
+                                "description": "Thank the citizen for their participation in bringing the matter to the police's attention",
                                 "officerReq": 0,
                                 "satisfactionImpact": 3,
                                 "severity": 1,
@@ -13310,7 +13310,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "An officer visited the abandoned car and gathered some evidence They also managed to trace down the girl. Who mentioned that a few days ago she went to a party and on the way back she lost her orientation and forgot where she left her car",
+                          "description": "An officer visited the abandoned car and gathered some evidence They also managed to trace down the girl. Who mentioned that a few days ago she went to a party and on the way back she forgot where she left her car",
                           "officerReq": 2,
                           "satisfactionImpact": 0,
                           "severity": 1,
@@ -13335,7 +13335,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Officer",
-                    "feedback": "Good choice,  a citizen's life might be on the line",
+                    "feedback": "Good choice, a citizen's life might be on the line",
                     "feedbackRating": 4
                   },
                   "scene": {
@@ -13379,7 +13379,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Thank the citizen for their participation in bringing the matter to the plice's attention",
+                          "description": "Thank the citizen for their participation in bringing the matter to the police's attention",
                           "officerReq": 0,
                           "satisfactionImpact": 3,
                           "severity": 1,
@@ -13391,7 +13391,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "An officer visited the abandoned car and gathered some evidence They also managed to trace down the girl. Who mentioned that a few days ago she went to a party and on the way back she lost her orientation and forgot where she left her car",
+                    "description": "An officer visited the abandoned car and gathered some evidence They also managed to trace down the girl. Who mentioned that a few days ago she went to a party and on the way back she forgot where she left her car",
                     "officerReq": 2,
                     "satisfactionImpact": 0,
                     "severity": 1,
@@ -13473,7 +13473,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Officer",
-                    "feedback": "Good choice,  a citizen's life might be on the line",
+                    "feedback": "Good choice, a citizen's life might be on the line",
                     "feedbackRating": 4
                   },
                   "scene": {
@@ -13517,7 +13517,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Thank the citizen for their participation in bringing the matter to the plice's attention",
+                          "description": "Thank the citizen for their participation in bringing the matter to the police's attention",
                           "officerReq": 0,
                           "satisfactionImpact": 3,
                           "severity": 1,
@@ -13529,7 +13529,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "An officer visited the abandoned car and gathered some evidence They also managed to trace down the girl. Who mentioned that a few days ago she went to a party and on the way back she lost her orientation and forgot where she left her car",
+                    "description": "An officer visited the abandoned car and gathered some evidence They also managed to trace down the girl. Who mentioned that a few days ago she went to a party and on the way back she forgot where she left her car",
                     "officerReq": 2,
                     "satisfactionImpact": 0,
                     "severity": 1,
@@ -13553,7 +13553,7 @@
             "_type": "End"
           }
         ],
-        "description": "A report mentions that a car is left on the side of a field a few days now. parked in a messy way. They also provide the number plates.",
+        "description": "A report mentions that a car is left on the side of a field a few days now. They also provide the number plates.",
         "officerReq": 1,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -13611,7 +13611,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "The group makes more damage by throwing stones to the windows of the library",
+              "description": "The group causes more damage by throwing stones ay the windows of the library",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -13624,7 +13624,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Officer",
-              "feedback": "By sending officers quickly prevent more graffitis, although the group can flee as soon as they see them.",
+              "feedback": "By sending officers you can prevent more graffiti, although the group can flee as soon as they see them.",
               "feedbackRating": 4
             },
             "scene": {
@@ -13668,7 +13668,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The supervisor recognizes one of the teenagers as a user of the library, making possible to catch the group",
+                    "description": "The supervisor recognizes one of the teenagers as a user of the library, making it possible to catch the group",
                     "officerReq": 0,
                     "satisfactionImpact": 3,
                     "severity": 2,
@@ -13692,7 +13692,7 @@
             "_type": "End"
           }
         ],
-        "description": "A group of minors is tagging and painting graffiti on the walls if a city library after working hours in the middle of the night",
+        "description": "A group of minors is tagging and painting graffiti on the walls of a city library in the middle of the night",
         "officerReq": 2,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -13749,7 +13749,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "A school-boy founds the syringe used by drug-addicts and pinches himself with a needle.",
+                          "description": "A school-boy finds the syringe used by drug addicts and injects himself with a needle.",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 2,
@@ -13761,7 +13761,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "One of the drug-addicts is identified, but the other one tries to run, throwing away the syringes.",
+                    "description": "One of the drug addicts is identified, but the other one tries to run, throwing away the syringes.",
                     "officerReq": 2,
                     "satisfactionImpact": 0,
                     "severity": 2,
@@ -13796,7 +13796,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "The injured receive medical assistance; one of the drug-addicts is arrested for the result of his aggression.",
+              "description": "The injured receive medical assistance; one of the drug addicts is arrested for the result of his aggression.",
               "officerReq": 0,
               "satisfactionImpact": 1,
               "severity": 2,
@@ -13830,7 +13830,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Drug-addicts are identified, fined and the syringes are located",
+                    "description": "Drug addicts are identified, fined and the syringes are located",
                     "officerReq": 0,
                     "satisfactionImpact": 3,
                     "severity": 2,
@@ -13842,7 +13842,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "A witness records drug-addicts and the place where they leave their syringes",
+              "description": "A witness records drug addicts and the place where they leave their syringes",
               "officerReq": 1,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -13854,7 +13854,7 @@
             "_type": "End"
           }
         ],
-        "description": "Two drug-addicts are consuming drugs on the street that leads to a school when minors are supposed to leave",
+        "description": "Two drug addicts are consuming drugs on the street that leads to a school when minors are supposed to leave",
         "officerReq": 1,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -13935,7 +13935,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Other drivers are inattentive watching the scene; and another accident happen, this time with serious injuries.",
+              "description": "Other drivers are inattentive watching the scene; and another accident happens, this time with serious injuries.",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 3,
@@ -13992,7 +13992,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The accident is taken care of and however one of the drivers ran, it was possible to localize him knowing license plate numbers of his car",
+                    "description": "The accident is taken care of, however one of the drivers ran, it was possible to locate him knowing license plate numbers of his car",
                     "officerReq": 0,
                     "satisfactionImpact": 2,
                     "severity": 3,
@@ -14016,7 +14016,7 @@
             "_type": "End"
           }
         ],
-        "description": "Two cars had an accident inside of the tunnel of the Ronda Norte and got stuck unmoving. The drivers started an argument outside of their respective cars, creating a dangerous situation for other cars and drivers.",
+        "description": "Two cars had an accident inside of the tunnel of the Ronda Norte and got stuck. The drivers started an argument outside of their respective cars, creating a dangerous situation for other cars and drivers.",
         "officerReq": 2,
         "satisfactionImpact": 0,
         "severity": 2,
@@ -14052,7 +14052,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Wait",
-                    "feedback": "We can not wait any longer, the situation IS already complicated",
+                    "feedback": "We can not wait any longer, the situation is already complicated",
                     "feedbackRating": 1
                   },
                   "scene": {
@@ -14154,7 +14154,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The fight was stopped, but two officers had been injured.",
+                    "description": "The fight was stopped, but two officers have been injured.",
                     "officerReq": 0,
                     "satisfactionImpact": 1,
                     "severity": 2,
@@ -14200,7 +14200,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "They could intercept the fled car and detain the driver. Thanks to the INSPEC2T they manage to find the rest of the group.",
+                    "description": "They could intercept the fled car and detain the driver. Thanks to the INSPEC2T platform they manage to find the rest of the group.",
                     "officerReq": 0,
                     "satisfactionImpact": 3,
                     "severity": 2,
@@ -14224,7 +14224,7 @@
             "_type": "End"
           }
         ],
-        "description": "In the residential area of the Pelayo Street, by the night club on the San Vicente Mártir Street a group of young people is drinking alcohol in public with the music blaring from one of their cars",
+        "description": "In the residential area of the Pelayo Street, by the night club on the San Vicente Mártir Street a group of young people are drinking alcohol in public with the music blaring from one of their cars",
         "officerReq": 2,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -14270,7 +14270,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "They are able to localize the minor, but he is injured and his mother has irreversible head injuries since she never was given medical assistance",
+                    "description": "They are able to locate the minor, but he is injured and his mother has irreversible head injuries since she never was given medical assistance",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 2,
@@ -14282,7 +14282,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "The aggressor takes the minor somewhere.",
+              "description": "The aggressive takes the minor somewhere.",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -14327,7 +14327,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "They are able to localize the minor, but he is injured and his mother has irreversible head injuries since she never was given medical assistance",
+                          "description": "They are able to locate the minor, but he is injured and his mother has irreversible head injuries since she never was given medical assistance",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 2,
@@ -14339,7 +14339,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The aggressor takes the minor somewhere.",
+                    "description": "The aggressive takes the minor somewhere.",
                     "officerReq": 2,
                     "satisfactionImpact": 0,
                     "severity": 2,
@@ -14362,7 +14362,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Trace the aggressor, but not provide the victim with proper medical assistance.",
+                    "description": "Trace the aggressive, but not provide the victim with proper medical assistance.",
                     "officerReq": 0,
                     "satisfactionImpact": 1,
                     "severity": 2,
@@ -14387,7 +14387,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Citizen",
-              "feedback": "A citizen will put his/her own integrity in danger by interceding in a fighting.",
+              "feedback": "A citizen will put his/her own integrity in danger by interrupting a fight.",
               "feedbackRating": 2
             },
             "scene": {
@@ -14408,7 +14408,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Guarantee medical assistance for the victim and prevent the aggression against the minor due to his prompt localization.",
+                    "description": "Guarantee medical assistance for the victim and prevent the aggression against the minor due to his prompt locating.",
                     "officerReq": 0,
                     "satisfactionImpact": 3,
                     "severity": 2,
@@ -14420,7 +14420,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Via INSPEC2T a witness uploads the recording of the escape of the aggressor and his location",
+              "description": "Via INSPEC2T a witness uploads the recording of the escape of the aggressive and his location",
               "officerReq": 1,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -14478,7 +14478,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "They provided medical assistance for the injured person. The aggressor dog is still being sought. The injured dog dies",
+                    "description": "They provided medical assistance for the injured person. The aggressive dog is still being sought. The injured dog dies",
                     "officerReq": 0,
                     "satisfactionImpact": -2,
                     "severity": 2,
@@ -14490,11 +14490,11 @@
                   "_type": "End"
                 }
               ],
-              "description": "After having searched the area, the police wasn’t able to find neither the aggressor dog, nor his owner.",
+              "description": "After having searched the area, the police wasn’t able to find neither the aggressive dog, nor his owner.",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 2,
-              "title": "Escape of the aggressor dog",
+              "title": "Escape of the aggressive dog",
               "turnReq": 3
             }
           },
@@ -14513,7 +14513,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "The aggressor dog is still being sought, but the injured person and his dog receive medical assistance on time",
+              "description": "The aggressive dog is still being sought, but the injured person and his dog receive medical assistance on time",
               "officerReq": 0,
               "satisfactionImpact": 1,
               "severity": 2,
@@ -14547,7 +14547,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The injured person received medical assistance, the wounded dog was saved and due to the photo that added to the verbal description provided, the police was able to localize the owner of the aggressor dog with his pet",
+                    "description": "The injured person received medical assistance, the wounded dog was saved and due to the photo that added to the verbal description provided, the police was able to locate the owner of the aggressive dog with his pet",
                     "officerReq": 0,
                     "satisfactionImpact": 3,
                     "severity": 2,
@@ -14619,7 +14619,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Officer",
-              "feedback": "Good idea! A police patrol can prevent more robberies committed.",
+              "feedback": "Good idea! A police patrol can prevent more robberies being committed.",
               "feedbackRating": 4
             },
             "scene": {
@@ -14640,7 +14640,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The author of the robberies is found and more damages are avoided. The owners of the damaged vehicles aren’t attended or advised",
+                    "description": "The culprit of the robberies is found and more damages are avoided. The owners of the damaged vehicles aren’t in the area",
                     "officerReq": 0,
                     "satisfactionImpact": 2,
                     "severity": 1,
@@ -14756,11 +14756,11 @@
             "_type": "End"
           }
         ],
-        "description": "In the surrounding area of the Mestalla football stadium broke windows and robbed from the inside few vehicles.",
+        "description": "In the surrounding area of the Mestalla football stadium, there are broken windows and items stolen from the inside few vehicles.",
         "officerReq": 1,
         "satisfactionImpact": 0,
         "severity": 1,
-        "title": "Theft from the inside vehicles",
+        "title": "Theft from inside vehicles",
         "turnReq": 2
       }
     },
@@ -14802,7 +14802,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The man jumps and falls into the channel. Results seriously wounded.",
+                    "description": "The man jumps and falls into the channel. He is seriously wounded.",
                     "officerReq": 0,
                     "satisfactionImpact": -2,
                     "severity": 3,
@@ -14814,7 +14814,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "One anonymous citizen climbs the bridge trying to help the suicidal. Unfortunately he drops into the void.",
+              "description": "One anonymous citizen climbs the bridge trying to help the suicidal. Unfortunately he drops into the channel.",
               "officerReq": 0,
               "satisfactionImpact": 0,
               "severity": 3,
@@ -14827,7 +14827,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Officer",
-              "feedback": "It´s not a bad idea sending a normal patrol, but, perhaps this situation would require more specialized police action , such as negotiation teams.",
+              "feedback": "It´s not a bad idea sending a normal patrol, but, perhaps this situation would require more specialized police action, such as negotiation teams.",
               "feedbackRating": 2
             },
             "scene": {
@@ -14848,7 +14848,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The CPO of the area recognizes the suicidal and goes to the bridge, in order to convince him to stop his attempt, since he knows him for a long time. Makes the negotiation of the police team faster and the suicidal desists and goes down the bridge.",
+                    "description": "The CPO of the area recognizes the suicidal and goes to the bridge, in order to convince him to stop his attempt, since he knows him for a long time. This makes the negotiation of the police team faster and the suicidal climbs down from the bridge.",
                     "officerReq": 0,
                     "satisfactionImpact": 3,
                     "severity": 3,
@@ -14871,7 +14871,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The man jumps and falls into the channel. Results seriously wounded.",
+                    "description": "The man jumps and falls into the channel. He is seriously wounded.",
                     "officerReq": 0,
                     "satisfactionImpact": -2,
                     "severity": 3,
@@ -14883,7 +14883,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "The police negotiation team arrive and catch the man while the negotiation was being performed. Unfortunately one office is damaged during the struggle with the man, trying to help him from falling",
+              "description": "The police negotiation team arrive and catch the man while the negotiation was being performed. Unfortunately one officer is hurt during the struggle with the man, trying to help him from falling",
               "officerReq": 2,
               "satisfactionImpact": 2,
               "severity": 3,
@@ -15012,7 +15012,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Officer",
-              "feedback": "Well-done! By sending police officials prevent more crimes and calm down citizens, giving advise to the person who has suffered the robbery.",
+              "feedback": "Well-done! Sending police officials prevent more crimes and calm down citizens, giving advise to the person who has suffered the robbery.",
               "feedbackRating": 4
             },
             "scene": {
@@ -15046,7 +15046,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Citizen",
-                    "feedback": "If we receive a multimedia file through INSPEC2T, the description is complete and moreover the program can check if it matches previous images of well-known pickpockets.",
+                    "feedback": "A multimedia file is received through INSPEC2T, the description is complete and moreover the program can check if it matches previous images of well-known pickpockets.",
                     "feedbackRating": 5
                   },
                   "scene": {
@@ -15056,7 +15056,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The municipal services of clean up  while working in the area after the market find a wallet and send an image of it through INSPEC2T to the police coordinator. He compares the image and checks that is the one of the old woman. The woman is called to pick her wallet.",
+                    "description": "The municipal services clean up while working in the area after the market find a wallet and send an image of it through INSPEC2T to the police coordinator. He compares the image and checks that is the one of the old woman. The woman is called to pick up her wallet.",
                     "officerReq": 0,
                     "satisfactionImpact": -1,
                     "severity": 3,
@@ -15068,7 +15068,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "A witness can afford a description of the thief. The problem is that it is a vague description of the colthes that the burglar wears",
+              "description": "A witness can afford a description of the thief. The problem is that it is a vague description of the clothes that the burglar wears",
               "officerReq": 0,
               "satisfactionImpact": 0,
               "severity": 3,
@@ -15137,7 +15137,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "The exhibitionist flees and one person results wounded. Traumatized minors.",
+                          "description": "The exhibitionist flees and one person is wounded. Multiple minors are traumatized.",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 2,
@@ -15149,7 +15149,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "A witness apprehends the attitude of the exhibitionist and starts a fight with him, resulting injuries. The disturbed exhibitionist flees.",
+                    "description": "A witness apprehends the attitude of the exhibitionist and starts a fight with him, resulting in injuries. The disturbed exhibitionist flees.",
                     "officerReq": 0,
                     "satisfactionImpact": 0,
                     "severity": 2,
@@ -15172,7 +15172,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The exhibitionist flees and one person results wounded. Traumatized minors.",
+                    "description": "The exhibitionist flees and one person is wounded. Multiple minors are traumatized.",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 2,
@@ -15197,7 +15197,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Officer",
-              "feedback": "It is the most coherent act. Sending an unit is always a good option. But if we don´t have more than one policeman in the ward, one disturbed person can put him on the spot.",
+              "feedback": "It is the most coherent act. Sending a unit is always a good option. But if we don´t have more than one policeman in the ward, one disturbed person can put him on the spot.",
               "feedbackRating": 4
             },
             "scene": {
@@ -15240,7 +15240,7 @@
                                     "_type": "End"
                                   }
                                 ],
-                                "description": "The exhibitionist flees and one person results wounded. Traumatized minors.",
+                                "description": "The exhibitionist flees and one person is wounded. Multiple minors are traumatized.",
                                 "officerReq": 0,
                                 "satisfactionImpact": -3,
                                 "severity": 2,
@@ -15275,7 +15275,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "The exhibitionist flees and one person results wounded. Traumatized minors.",
+                          "description": "The exhibitionist flees and one person is wounded. Multiple minors are traumatized.",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 2,
@@ -15335,7 +15335,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Citizen",
-              "feedback": "For the citizen, asking the exhibitionist abandon his/her stance can cause him/her problems. They should notify the polices to act in his/her place.",
+              "feedback": "For the citizen, asking the exhibitionist to abandon his/her stance can cause him/her problems. They should notify the polices to act in his/her place.",
               "feedbackRating": 2
             },
             "scene": {
@@ -15356,7 +15356,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The exhibitionist flees and one person results wounded. Traumatized minors.",
+                    "description": "The exhibitionist flees and one person is wounded. Multiple minors are traumatized.",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 2,
@@ -15442,7 +15442,7 @@
               "officerReq": 4,
               "satisfactionImpact": 0,
               "severity": 3,
-              "title": "More Police effectives are required",
+              "title": "More Police officers are required",
               "turnReq": 4
             }
           },
@@ -15462,7 +15462,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Officer",
-                    "feedback": "It doesn't affect this. We need more reliable clues in order to find the menor.",
+                    "feedback": "It doesn't affect this. We need more reliable clues in order to find the minor.",
                     "feedbackRating": 3
                   },
                   "scene": {
@@ -15472,7 +15472,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "One boy, the disappeared one, appear in the proximities, naked and injured. Seems that has been raped. No one has seen the author of the aggression",
+                    "description": "The boy who had disappeared, appears in the area, naked and injured. Seems that has been raped. No one has seen the author of the aggression",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 3,
@@ -15529,7 +15529,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "The testimony of the beggar is crucial for solving the case. He saw one old aged man with a boy getting in a parked car. The car is founded in the very moment when the man was trying to abuse the child. The man is captured and the boy is rescued without damage.",
+                          "description": "The testimony of the beggar is crucial for solving the case. He saw one old aged man with a boy getting in a parked car. The car is found in the very moment when the man was trying to abuse the child. The man is captured and the boy is rescued without damage.",
                           "officerReq": 0,
                           "satisfactionImpact": 3,
                           "severity": 3,
@@ -15541,7 +15541,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The representative of the neighborhood association of the area, as a request of the INSPEC2T   coordinator, gives information of potential eyewitnesses, like one beggar who is always near the main door of the church but leaves the place when the police arrive. He usually spends his time in a near park.",
+                    "description": "The representative of the neighborhood association of the area, as a request of the INSPEC2T   coordinator, gives information of potential eyewitnesses, like one beggar who is always near the main door of the church but leaves the place when the police arrive. He usually spends his time in a nearby park.",
                     "officerReq": 0,
                     "satisfactionImpact": 0,
                     "severity": 2,
@@ -15565,7 +15565,7 @@
             "_type": "End"
           }
         ],
-        "description": "In the old town, inside an ancient church called “church of San Nicolás”, an advanced age male is visiting the frescoes of the building with a group of tourists. Suddenly, the man and one little minor of 5 years old who was also visiting the church with his parents disappear without the parents aware for him.",
+        "description": "In the old town, inside an ancient church called “church of San Nicolás”, an older male is visiting the frescoes of the building with a group of tourists. Suddenly, the man and one little minor of 5 years old who was also visiting the church with his parents disappear without the parents aware for him.",
         "officerReq": 1,
         "satisfactionImpact": 3,
         "severity": 2,
@@ -15636,7 +15636,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Officer",
-              "feedback": "By sending patrols can avoid the commision of the crime, but we need another testimony for more details.",
+              "feedback": "Sending patrols can avoid the committing of the crime, but we need another testimony for more details.",
               "feedbackRating": 3
             },
             "scene": {
@@ -15668,7 +15668,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "The presence of police patrols in the area avoid the group of burglaries committing more robberies, but flee from there before the arrival of the officers",
+                          "description": "The presence of police patrols in the area avoid the group of burglars committing more robberies, but they manager to flee before the officers arrive",
                           "officerReq": 0,
                           "satisfactionImpact": 1,
                           "severity": 3,
@@ -15751,7 +15751,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Citizen",
-              "feedback": "Good! The collaboration of the citizens provides key datos.",
+              "feedback": "Good! The collaboration of the citizens provides key data.",
               "feedbackRating": 4
             },
             "scene": {
@@ -15795,7 +15795,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "In the INSPEC2T archive, the coordinator finds info about previous incidents in the area about burglaries. The address of the gang isstored",
+                    "description": "In the INSPEC2T archive, the coordinator finds info about previous incidents in the area about burglaries. The address of the gang is stored",
                     "officerReq": 0,
                     "satisfactionImpact": 0,
                     "severity": 3,
@@ -15887,8 +15887,8 @@
                       {
                         "_type": "End"
                       }
-                    ],
-                    "description": "One police motorbike and two police patrols arrives but only find two students with serious wounds, produced by a knife.",
+                    ],u
+                    "description": "One police motorbike and two police patrols arrives but only find two students with serious wounds, caused by a knife.",
                     "officerReq": 3,
                     "satisfactionImpact": 0,
                     "severity": 2,
@@ -15934,7 +15934,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "After the aggression, the group escapes, leaving the CPO on the ground , wounded.",
+                    "description": "After the aggression, the group escapes, leaving the CPO on the ground, wounded.",
                     "officerReq": 0,
                     "satisfactionImpact": -2,
                     "severity": 2,
@@ -15946,7 +15946,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "One CPO is sent to speak with the youth group and, when he tries to mediate with them, receives a hit in his head with a bottle of glass, resulting wounded.",
+              "description": "One CPO is sent to speak with the youth group and, when he tries to mediate with them, receives a hit in his head with a glass bottle.",
               "officerReq": 1,
               "satisfactionImpact": 0,
               "severity": 3,
@@ -15959,7 +15959,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Citizen",
-              "feedback": "We can't send a citizen because we could put her/his own integrity in danger!",
+              "feedback": "We can't send a citizen because we could put them in danger!",
               "feedbackRating": 2
             },
             "scene": {
@@ -16003,7 +16003,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The images sent by the concierge and the information of some of the contenders give the clue to identify previous facts of fights in the area. But another witness and user of the system sends another picture of a young boy fleeing while carrying a bloody knife with large size.",
+                    "description": "The images sent by the concierge and the information of some of the contenders give the clue to identify previous facts of fights in the area. But another witness and user of the system sends another picture of a young boy fleeing while carrying a large bloody knife.",
                     "officerReq": 1,
                     "satisfactionImpact": 0,
                     "severity": 2,
@@ -16027,7 +16027,7 @@
             "_type": "End"
           }
         ],
-        "description": "In a close park of a school, a numerous student’s group is coming together, apparently to organize a big fight.",
+        "description": "In a park close to a school, numerous student groups are coming together, apparently to organize a big fight.",
         "officerReq": 1,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -16062,7 +16062,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Waiting in this type of quick frauds causes the success of the criminal act",
+              "description": "Waiting in this type of quick frauds results in the criminal act being successful",
               "officerReq": 0,
               "satisfactionImpact": -3,
               "severity": 2,
@@ -16096,7 +16096,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Waiting in this type of quick frauds causes the success of the criminal act",
+                    "description": "Waiting in this type of quick frauds results in the criminal act being successful",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 2,
@@ -16109,7 +16109,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Officer",
-                    "feedback": "Good! We should chase the fled vehicle and we need more patrols in order to coordinate them and stop the vehicle.",
+                    "feedback": "Good! We should chase the vehicle and we need more patrols in order to coordinate them and stop the vehicle.",
                     "feedbackRating": 3
                   },
                   "scene": {
@@ -16120,7 +16120,7 @@
                         "choice": {
                           "_type": "ChoiceAction",
                           "choiceType": "Wait",
-                          "feedback": "It doesn't make sense to wait a retained vehicle.",
+                          "feedback": "It doesn't make sense to ignore a retained vehicle.",
                           "feedbackRating": 2
                         },
                         "scene": {
@@ -16130,7 +16130,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Waiting in this type of quick frauds causes the success of the criminal act",
+                          "description": "Waiting in this type of quick frauds results in the criminal act being successful",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 2,
@@ -16165,7 +16165,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "In order to slow down the traffic in the city and stop the robbed car, the coordinator of INSPEC2T decides to demand a regulation of the red phase in the traffic lights, and this makes the robbed car get trapped in a main avenue by prolonging this phase",
+                    "description": "In order to slow down the traffic in the city and stop the stolen car, the coordinator of INSPEC2T decides to demand a regulation of the red phase in the traffic lights, causing the stolen car to be slowed down on the main avenue",
                     "officerReq": 0,
                     "satisfactionImpact": 0,
                     "severity": 2,
@@ -16177,7 +16177,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "A two officer’s patrol is sent to the place. However, as the group see the police arriving, rob a car and flee from there quickly. Begins a pursuit.",
+              "description": "Two officer patrols are sent to the place. However, as the group see the police arriving, rob a car and flee from there quickly. A pursuit begins.",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -16235,7 +16235,7 @@
             "_type": "End"
           }
         ],
-        "description": "At the main entry of the city a group of false police officers stops cars to fine them and get cash, mainly foreign cars.",
+        "description": "At the main entry of the city a group of false police officers stop cars to fine them and get cash, mainly foreign cars.",
         "officerReq": 2,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -16281,7 +16281,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Two women seriously injured, being no clues of who was the attacker, since both of them have a different version of the facts.",
+                    "description": "Two women seriously injured, there are no clues of who was the attacker, since both of them have a different version of the facts.",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 3,
@@ -16304,7 +16304,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Two women seriously injured, being no clues of who was the attacker, since both of them have a different version of the facts.",
+                    "description": "Two women seriously injured, there are no clues of who was the attacker, since both of them have a different version of the facts.",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 3,
@@ -16316,7 +16316,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "After a while, one woman enters at her home and takes a kitchen knife, and attacks the other women, who results seriously injured. In the fight, the attacker woman falls downstairs, hitting her head with the floor, remaining unconscious",
+              "description": "After a while, one woman enters her home and takes a kitchen knife, and attacks the other women, who is seriously injured. In the fight, the attacking woman falls down stairs, hitting her head on the floor, remaining unconscious",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 3,
@@ -16329,7 +16329,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Officer",
-              "feedback": "Good, it's a good option. We should solve any dispute although appears to be slight.",
+              "feedback": "Good. We should solve any dispute although appears to be slight.",
               "feedbackRating": 3
             },
             "scene": {
@@ -16361,7 +16361,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Two women seriously injured, being no clues of who was the attacker, since both of them have a different version of the facts.",
+                          "description": "Two women seriously injured, there are no clues of who was the attacker, since both of them have a different version of the facts.",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 3,
@@ -16384,7 +16384,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Two women seriously injured, being no clues of who was the attacker, since both of them have a different version of the facts.",
+                          "description": "Two women seriously injured, there are no clues of who was the attacker, since both of them have a different version of the facts.",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 3,
@@ -16396,7 +16396,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "After a while, one woman enters at her home and takes a kitchen knife, and attacks the other women, who results seriously injured. In the fight, the attacker woman falls downstairs, hitting her head with the floor, remaining unconscious",
+                    "description": "After a while, one woman enters her home and takes a kitchen knife, and attacks the other women, who is seriously injured. In the fight, the attacking woman falls down stairs, hitting her head on the floor, remaining unconscious",
                     "officerReq": 2,
                     "satisfactionImpact": 0,
                     "severity": 3,
@@ -16430,7 +16430,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Two women seriously injured, being no clues of who was the attacker, since both of them have a different version of the facts.",
+                          "description": "Two women seriously injured, there are no clues of who was the attacker, since both of them have a different version of the facts.",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 3,
@@ -16453,7 +16453,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Two women seriously injured, being no clues of who was the attacker, since both of them have a different version of the facts.",
+                          "description": "Two women seriously injured, there are no clues of who was the attacker, since both of them have a different version of the facts.",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 3,
@@ -16465,7 +16465,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "After a while, one woman enters at her home and takes a kitchen knife, and attacks the other women, who results seriously injured. In the fight, the attacker woman falls downstairs, hitting her head with the floor, remaining unconscious",
+                    "description": "After a while, one woman enters her home and takes a kitchen knife, and attacks the other women, who is seriously injured. In the fight, the attacking woman falls down stairs, hitting her head on the floor, remaining unconscious",
                     "officerReq": 2,
                     "satisfactionImpact": 0,
                     "severity": 3,
@@ -16477,7 +16477,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Two neighbor women are disputing and begin to fight, not only verbally",
+              "description": "Two neighbour women are disputing and begin to fight, not only verbally",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 1,
@@ -16490,7 +16490,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Citizen",
-              "feedback": "Excellent! There's no better information than the neighborhood.Even better if they are users of INSPEC2T and can provide recordings.",
+              "feedback": "Excellent! There's no better information than the neighbourhood. Even better if they are users of INSPEC2T and can provide recordings.",
               "feedbackRating": 4
             },
             "scene": {
@@ -16511,7 +16511,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Listening the recorded archive of the witness is possible to determinate who was the attacker in first place, solving the case",
+                    "description": "Listening to the recorded archive of the witness is possible to determinate who was the attacker in first place, solving the case",
                     "officerReq": 0,
                     "satisfactionImpact": 3,
                     "severity": 3,
@@ -16523,7 +16523,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Another neighbor of the women records the insults hiding himself in his home, and the women don’t notice it. He sends the recording through INSPEC2T.",
+              "description": "Another neighbour of the women records the insults hiding himself in his home, and the women don’t notice it. He sends the recording through INSPEC2T.",
               "officerReq": 1,
               "satisfactionImpact": 0,
               "severity": 1,
@@ -16535,7 +16535,7 @@
             "_type": "End"
           }
         ],
-        "description": "Two neighbor women are disputing and begin to fight, not only verbally",
+        "description": "Two neighbour women are disputing and begin to fight, not only verbally",
         "officerReq": 1,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -16560,7 +16560,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Wait",
-              "feedback": "Careful! A left suicase can be a false alarm or a clear danger (there is nothing in between). We have to act!",
+              "feedback": "Careful! An abandoned suitcase can be a false alarm or a clear danger (there is nothing in between). We have to act!",
               "feedbackRating": 2
             },
             "scene": {
@@ -16593,7 +16593,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Close to the entrance of the train station appears a left suitcase",
+              "description": "Close to the entrance of the train station appears an abandoned suitcase",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 1,
@@ -16638,7 +16638,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "The bomb disposal experts discover a bomb in the suitcase. The area is cordoned off by another police units and, finally, the bomb is disconnected",
+                          "description": "The bomb disposal experts discover a bomb in the suitcase. The area is cordoned off by another police unit and, finally, the bomb is defused",
                           "officerReq": 0,
                           "satisfactionImpact": 3,
                           "severity": 2,
@@ -16650,7 +16650,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "According to the message received of the witness, the police coordinator decides to begin the protocol of objects left that could represent a menace. Call the bomb disposal experts",
+                    "description": "According to the message received of the witness, the police coordinator decides to begin the protocol of objects left that could represent a menace. Bomb disposal experts are called",
                     "officerReq": 3,
                     "satisfactionImpact": 0,
                     "severity": 2,
@@ -16730,7 +16730,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "The bomb disposal experts discover a bomb in the suitcase. The area is cordoned off by another police units and, finally, the bomb is disconnected",
+                          "description": "The bomb disposal experts discover a bomb in the suitcase. The area is cordoned off by another police unit and, finally, the bomb is defused",
                           "officerReq": 0,
                           "satisfactionImpact": 3,
                           "severity": 2,
@@ -16742,7 +16742,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "According to the message received of the witness, the police coordinator decides to begin the protocol of objects left that could represent a menace. Call the bomb disposal experts",
+                    "description": "According to the message received of the witness, the police coordinator decides to begin the protocol of objects left that could represent a menace. Bomb disposal experts are called",
                     "officerReq": 3,
                     "satisfactionImpact": 0,
                     "severity": 2,
@@ -16754,7 +16754,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "One train driver who was ending his shift sees a nervous man leaving deliberately a suitcase at the entrance of the train station. He decides to send the advice through INSPEC2T.",
+              "description": "One train driver who was ending his shift sees a nervous man deliberately leaving a suitcase at the entrance of the train station. He decides to send the advice through INSPEC2T.",
               "officerReq": 0,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -16766,7 +16766,7 @@
             "_type": "End"
           }
         ],
-        "description": "Close to the entrance of the train station appears a left suitcase",
+        "description": "Close to the entrance of the train station appears an abandoned suitcase",
         "officerReq": 1,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -16812,7 +16812,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Once the firemen have arrived and begin to do their work, an explosion occurs and hurts some of them, because the firecrackers stored.",
+                    "description": "Once the firemen have arrived and begin to do their work, an explosion occurs and hurts some of them.",
                     "officerReq": 0,
                     "satisfactionImpact": -1,
                     "severity": 3,
@@ -16837,7 +16837,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Officer",
-              "feedback": "Great! It is essential a swift action when there is a fire!",
+              "feedback": "Great! It is essential to act swiftly when there is a fire!",
               "feedbackRating": 4
             },
             "scene": {
@@ -16858,7 +16858,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Once the firemen have arrived and begin to do their work, an explosion occurs and hurts some of them, because the firecrackers stored.",
+                    "description": "Once the firemen have arrived and begin to do their work, an explosion occurs and hurts some of them.",
                     "officerReq": 0,
                     "satisfactionImpact": -1,
                     "severity": 3,
@@ -16881,7 +16881,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The first police patrols rescue some people but suddenly a great explosion (the fireworks and firecrackers stored) causes serious burn injuries on them and also on other falleros",
+                    "description": "The first police patrols rescue some people but suddenly a great explosion causes serious burn injuries on them and also on other falleros",
                     "officerReq": 0,
                     "satisfactionImpact": -2,
                     "severity": 3,
@@ -16893,7 +16893,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "One patrol arrives and enter in the local while the firemen are coming, to rescue some people who were yet inside.",
+              "description": "One patrol arrives and enter while the firemen are coming, to rescue some people who were still inside.",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 1,
@@ -16927,7 +16927,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The information provided through the image allows to the police units to prevent the firemen of the presence of the firework stored, and they act on that assumption, without exposing themselves to a dangerous situation.",
+                    "description": "The information provided through the image allows to the police units to alert the firemen of the presence of the firework stored, and they act on that assumption, without exposing themselves to a dangerous situation.",
                     "officerReq": 0,
                     "satisfactionImpact": 3,
                     "severity": 3,
@@ -16976,7 +16976,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Wait",
-              "feedback": "Great! The most appropiate thing to do in this events is to wait for more police units.",
+              "feedback": "Great! The most appropiate thing to do in this event is to wait for more police units.",
               "feedbackRating": 4
             },
             "scene": {
@@ -16987,7 +16987,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Wait",
-                    "feedback": "Excellent! If we have more police officals, we will control better the situation.",
+                    "feedback": "Excellent! If we have more police officials, we can control the situation better.",
                     "feedbackRating": 4
                   },
                   "scene": {
@@ -17020,7 +17020,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "At the checkpoint the officers confiscate 50 g of cocaine and another dangerous drugs, and make 5 arrests",
+                    "description": "At the checkpoint the officers confiscate 50g of cocaine and another dangerous drug, and make 5 arrests",
                     "officerReq": 0,
                     "satisfactionImpact": 3,
                     "severity": 3,
@@ -17032,7 +17032,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Since there are in the place around 2000 people, its preferable to use more police effectives in order to manage the situation. With 6 police officers is possible to stablish a check at the entrance to identify the suspects",
+              "description": "Since there are around 2000 people in the place, its preferable to use more police officers in order to manage the situation. With more police officers it is possible to establish a check at the entrance to identify the suspects",
               "officerReq": 4,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -17136,7 +17136,7 @@
                         "choice": {
                           "_type": "ChoiceAction",
                           "choiceType": "Wait",
-                          "feedback": "Excellent! If we have more police officals, we will control better the situation.",
+                          "feedback": "Excellent! If we have more police officials, we can control the situation better.",
                           "feedbackRating": 4
                         },
                         "scene": {
@@ -17159,7 +17159,7 @@
                         "choice": {
                           "_type": "ChoiceAction",
                           "choiceType": "Officer",
-                          "feedback": "It's correct to send more police officials one they are available-",
+                          "feedback": "It's correct to send more police officials once they are available.",
                           "feedbackRating": 4
                         },
                         "scene": {
@@ -17169,7 +17169,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "At the checkpoint the officers confiscate 50 g of cocaine and another dangerous drugs, and make 5 arrests",
+                          "description": "At the checkpoint the officers confiscate 50g of cocaine and another dangerous drug, and make 5 arrests",
                           "officerReq": 0,
                           "satisfactionImpact": 3,
                           "severity": 3,
@@ -17181,7 +17181,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Since there are in the place around 2000 people, its preferable to use more police effectives in order to manage the situation. With 6 police officers is possible to stablish a check at the entrance to identify the suspects",
+                    "description": "Since there are around 2000 people in the place, its preferable to use more police officers in order to manage the situation. With more police officers it is possible to establish a check at the entrance to identify the suspects",
                     "officerReq": 4,
                     "satisfactionImpact": 0,
                     "severity": 2,
@@ -17297,7 +17297,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Some students are injured and the lion is shot by the police effectives.",
+                    "description": "Some students are injured and the lion is shot by the police officers.",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 3,
@@ -17344,7 +17344,7 @@
                         "choice": {
                           "_type": "ChoiceAction",
                           "choiceType": "Wait",
-                          "feedback": "We can't wait more in this kind of situation!",
+                          "feedback": "We can't wait any more in this kind of situation!",
                           "feedbackRating": 1
                         },
                         "scene": {
@@ -17354,7 +17354,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Some students are injured and the lion is shot by the police effectives.",
+                          "description": "Some students are injured and the lion is shot by the police officers.",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 3,
@@ -17401,7 +17401,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "A two officer’s patrol is sent to the place. With their guns ready, they try to find the lion. During the research, one officer is injured by the lion and the other tries to shoot, but fails and the lion escapes into the park",
+              "description": "Two officer patrols are sent to the place. With their guns ready, they try to find the lion. During the search, one officer is injured by the lion and the other tries to shoot, but fails and the lion escapes into the park",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -17414,7 +17414,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Citizen",
-              "feedback": "Good decision! A testimony may show us the area where the animal is in order to get closer carefuly with the appropiate resources.",
+              "feedback": "Good decision! A testimony may show us the area where the animal is in order to get closer with the appropiate resources.",
               "feedbackRating": 4
             },
             "scene": {
@@ -17435,7 +17435,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "The information of the specific area where probably the lion goes allow the police to mobilize resources of action (such as take tranquilizer darts avoiding guns, since the area is out of danger for the visitors) in order to not killing the animal. Finally is found and immobilized.",
+                    "description": "The information of the specific area where the lion goes allows the police to mobilize resources of action (such as take tranquilizer darts, avoiding guns, since the area is out of danger for the visitors) in order to not kill the animal. Finally it is found and immobilized.",
                     "officerReq": 0,
                     "satisfactionImpact": 3,
                     "severity": 3,
@@ -17505,7 +17505,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "One police patrol boat arrives to the area and can rescue half of the fishermen in the sea, but due to the bad conditions of the water, returns to the port. Two fishermen are disappeared.",
+                    "description": "One police patrol boat arrives to the area and can rescue half of the fishermen in the sea, but due to the bad conditions of the water, returns to the port. Two fishermen have disappeared",
                     "officerReq": 0,
                     "satisfactionImpact": -3,
                     "severity": 3,
@@ -17517,7 +17517,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Waiting for a patrol boat causes that the rest of the fishermen try to rescue their partner and now 4 people are drowning. The patrol rescue 2 of them, but the other 2 are lost.",
+              "description": "Waiting for a patrol boat causes that the rest of the fishermen try to rescue their partner and now 4 people are drowning. The patrol rescues 2 of them, but the other 2 are lost.",
               "officerReq": 4,
               "satisfactionImpact": 0,
               "severity": 3,
@@ -17530,7 +17530,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Officer",
-              "feedback": "It is a good decision to send a patrol in order to prevent an obvious DROWNING.",
+              "feedback": "It is a good decision to send a patrol in order to prevent an obvious drowning.",
               "feedbackRating": 4
             },
             "scene": {
@@ -17562,7 +17562,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "One police patrol boat arrives to the area and can rescue half of the fishermen in the sea, but due to the bad conditions of the water, returns to the port. Two fishermen are disappeared.",
+                          "description": "One police patrol boat arrives to the area and can rescue half of the fishermen in the sea, but due to the bad conditions of the water, returns to the port. Two fishermen have disappeared",
                           "officerReq": 0,
                           "satisfactionImpact": -3,
                           "severity": 3,
@@ -17597,7 +17597,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Although no fishermen are jeopardizing themselves thanks to the quick presence of the patrol, unfortunately the officer can’t find the fallen fisherman. Two days later, a dead body is found in the beach",
+                    "description": "Although no fishermen are putting themselves in danger thanks to the quick presence of the patrol, unfortunately the officer can’t find the fallen fisherman. Two days later, a dead body is found on the beach",
                     "officerReq": 0,
                     "satisfactionImpact": -2,
                     "severity": 3,
@@ -17609,7 +17609,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "A two officer’s patrol is sent to the place. The officers prevent the rest of the fishermen to dive into the sea in their attempt to rescue the rugged. Even so, one officer decides to do it by himself.",
+              "description": "A two officer’s patrol is sent to the place. The officers prevent the rest of the fishermen from diving into the sea in a rescue attempt. Even so, one officer decides to do it by himself.",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -17886,7 +17886,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Another neighbor has reported a complaint about people talking loudly to eachother on the street",
+              "description": "Another neighbour has reported a complaint about people talking loudly to eachother on the street",
               "officerReq": 1,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -17959,7 +17959,7 @@
               "officerReq": -1,
               "satisfactionImpact": 0,
               "severity": 1,
-              "title": "Help from neighbors",
+              "title": "Help from neighbours",
               "turnReq": 0
             }
           },
@@ -17967,7 +17967,7 @@
             "_type": "End"
           }
         ],
-        "description": "A neighbor complains about noise from a party nearby",
+        "description": "A neighbour complains about noise from a party nearby",
         "officerReq": 1,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -18059,7 +18059,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Police officers offers help and support to victims. Police presence also creates deterrence.",
+                    "description": "Police officers offers help and support the victims. Police presence also creates deterrence.",
                     "officerReq": -1,
                     "satisfactionImpact": 0,
                     "severity": 2,
@@ -18693,7 +18693,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix series.",
+                          "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix.",
                           "officerReq": -1,
                           "satisfactionImpact": 1,
                           "severity": 1,
@@ -18728,7 +18728,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix series.",
+                    "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix.",
                     "officerReq": -1,
                     "satisfactionImpact": 1,
                     "severity": 1,
@@ -18785,7 +18785,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix series.",
+                          "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix.",
                           "officerReq": -1,
                           "satisfactionImpact": 1,
                           "severity": 1,
@@ -18888,7 +18888,7 @@
                                     "_type": "End"
                                   }
                                 ],
-                                "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix series.",
+                                "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix.",
                                 "officerReq": -1,
                                 "satisfactionImpact": 1,
                                 "severity": 1,
@@ -18923,7 +18923,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix series.",
+                          "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix.",
                           "officerReq": -1,
                           "satisfactionImpact": 1,
                           "severity": 1,
@@ -18980,7 +18980,7 @@
                                     "_type": "End"
                                   }
                                 ],
-                                "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix series.",
+                                "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix.",
                                 "officerReq": -1,
                                 "satisfactionImpact": 1,
                                 "severity": 1,
@@ -19061,7 +19061,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix series.",
+                          "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix.",
                           "officerReq": -1,
                           "satisfactionImpact": 1,
                           "severity": 1,
@@ -19142,7 +19142,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix series.",
+                    "description": "Due to the extensive police investigation the student is finally found. After work she went for a drink and met a friend with whom she spent the night and watched some Netflix.",
                     "officerReq": -1,
                     "satisfactionImpact": 1,
                     "severity": 1,
@@ -36029,7 +36029,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Resolution due to delay in rape being reported vital evidence is lost no arrests made.",
+              "description": "Resolution due to dealy in rape being reported vital evidence is lost no arrests made.",
               "officerReq": 0,
               "satisfactionImpact": -2,
               "severity": 2,
@@ -36607,7 +36607,7 @@
                               "choice": {
                                 "_type": "ChoiceAction",
                                 "choiceType": "Officer",
-                                "feedback": "Great choice, officers are needed to close this case and arrest the aggressor",
+                                "feedback": "Great choice, officers are needed to close this case and arrest the aggressive",
                                 "feedbackRating": 4
                               },
                               "scene": {
@@ -36629,7 +36629,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Information allows officers to identify which of the males was the aggressor. Officer attends and arrests aggressor thus preventing situation escalating",
+                          "description": "Information allows officers to identify which of the males was the aggressive. Officer attends and arrests aggressor thus preventing situation escalating",
                           "officerReq": 1,
                           "satisfactionImpact": 0,
                           "severity": 2,
@@ -36699,7 +36699,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Officer attends and defuses the situation before it gets out of hand however unable to identify who was the aggressor. Both males warned and go their separate ways",
+              "description": "Officer attends and defuses the situation before it gets out of hand however unable to identify who was the aggressive. Both males warned and go their separate ways",
               "officerReq": 0,
               "satisfactionImpact": 1,
               "severity": 1,
@@ -36746,7 +36746,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Officer",
-                    "feedback": "Great choice, officers are needed to close this case and arrest the aggressor",
+                    "feedback": "Great choice, officers are needed to close this case and arrest the aggressive",
                     "feedbackRating": 4
                   },
                   "scene": {
@@ -36768,7 +36768,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Information allows officers to identify which of the males was the aggressor. Officer attends and arrests aggressor thus preventing situation escalating",
+              "description": "Information allows officers to identify which of the males was the aggressive. Officer attends and arrests aggressor thus preventing situation escalating",
               "officerReq": 1,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -38014,7 +38014,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Driver eventually transported to custody, due to delay in driver getting into custody alcohol level reduced and driver released without being charged",
+                          "description": "Driver eventually transported to custody, due to dealy in driver getting into custody alcohol level reduced and driver released without being charged",
                           "officerReq": 0,
                           "satisfactionImpact": -1,
                           "severity": 2,
@@ -38106,7 +38106,7 @@
                               "_type": "End"
                             }
                           ],
-                          "description": "Driver eventually transported to custody, due to delay in driver getting into custody alcohol level reduced and driver released without being charged",
+                          "description": "Driver eventually transported to custody, due to dealy in driver getting into custody alcohol level reduced and driver released without being charged",
                           "officerReq": 0,
                           "satisfactionImpact": -1,
                           "severity": 2,
@@ -38211,7 +38211,7 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Due to delay in deployment key evidence is lost & prosecution no longer possible",
+                    "description": "Due to dealy in deployment key evidence is lost & prosecution no longer possible",
                     "officerReq": 0,
                     "satisfactionImpact": -2,
                     "severity": 2,
