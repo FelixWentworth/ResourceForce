@@ -67,7 +67,7 @@ public class Feedback : MonoBehaviour
         var body = _game + "\n" + _otherInfo + "\n\n" + _feedbackText.text;
         if (_emailText.text != "")
         {
-            body += "\n\nFrom: " + _emailText.text;
+            body += "\n\nFrom: " + _emailText.text + "\n\n";
         }
 
 
