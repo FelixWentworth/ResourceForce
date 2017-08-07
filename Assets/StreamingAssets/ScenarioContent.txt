@@ -15887,7 +15887,7 @@
                       {
                         "_type": "End"
                       }
-                    ],u
+                    ],
                     "description": "One police motorbike and two police patrols arrives but only find two students with serious wounds, caused by a knife.",
                     "officerReq": 3,
                     "satisfactionImpact": 0,

@@ -41,7 +41,7 @@ public class DeviceLocation : MonoBehaviour {
 
         SetButtonClicks();
 
-        UpdateLanguagesAvailable();
+        UpdateLanguagesAvailable(-1);
     }
 
     private void SetButtonClicks()
@@ -165,53 +165,52 @@ public class DeviceLocation : MonoBehaviour {
         var greekParent = GreekButton.transform.parent.gameObject;
         var spanishParent = SpanishButton.transform.parent.gameObject;
 
-        _locationIndex = locationSelected;
-        if (locationSelected == 0)
+        if (locationSelected == -1)
         {
-            // no language chosen, disable all language choices
             englishParent.SetActive(false);
             dutchParent.SetActive(false);
             greekParent.SetActive(false);
             spanishParent.SetActive(false);
+
             TitleText.gameObject.SetActive(false);
+            return;
         }
-        else
+
+        _locationIndex = locationSelected + 1;
+        switch ((LanguageMapping)_locationIndex)
         {
-            switch ((LanguageMapping)locationSelected)
-            {
-                case LanguageMapping.Preston:
-                    englishParent.SetActive(_config.English_Preston);
-                    dutchParent.SetActive(_config.Dutch_Preston);
-                    greekParent.SetActive(_config.Greek_Preston);
-                    spanishParent.SetActive(_config.Spanish_Preston);
-                    break;
-                case LanguageMapping.Belfast:
-                    englishParent.SetActive(_config.English_Belfast);
-                    dutchParent.SetActive(_config.Dutch_Belfast);
-                    greekParent.SetActive(_config.Greek_Belfast);
-                    spanishParent.SetActive(_config.Spanish_Belfast);
-                    break;
-                case LanguageMapping.Nicosia:
-                    englishParent.SetActive(_config.English_Nicosia);
-                    dutchParent.SetActive(_config.Dutch_Nicosia);
-                    greekParent.SetActive(_config.Greek_Nicosia);
-                    spanishParent.SetActive(_config.Spanish_Nicosia);
-                    break;
-                case LanguageMapping.Groningen:
-                    englishParent.SetActive(_config.English_Groningen);
-                    dutchParent.SetActive(_config.Dutch_Groningen);
-                    greekParent.SetActive(_config.Greek_Groningen);
-                    spanishParent.SetActive(_config.Spanish_Groningen);
-                    break;
-                case LanguageMapping.Valencia:
-                    englishParent.SetActive(_config.English_Valencia);
-                    dutchParent.SetActive(_config.Dutch_Valencia);
-                    greekParent.SetActive(_config.Greek_Valencia);
-                    spanishParent.SetActive(_config.Spanish_Valencia);
-                    break;
-            }
-            _gridLayout.cellSize = new Vector2(grid.rect.width/2f, grid.rect.height/2f);
-            TitleText.gameObject.SetActive(true);
+            case LanguageMapping.Preston:
+                englishParent.SetActive(_config.English_Preston);
+                dutchParent.SetActive(_config.Dutch_Preston);
+                greekParent.SetActive(_config.Greek_Preston);
+                spanishParent.SetActive(_config.Spanish_Preston);
+                break;
+            case LanguageMapping.Belfast:
+                englishParent.SetActive(_config.English_Belfast);
+                dutchParent.SetActive(_config.Dutch_Belfast);
+                greekParent.SetActive(_config.Greek_Belfast);
+                spanishParent.SetActive(_config.Spanish_Belfast);
+                break;
+            case LanguageMapping.Nicosia:
+                englishParent.SetActive(_config.English_Nicosia);
+                dutchParent.SetActive(_config.Dutch_Nicosia);
+                greekParent.SetActive(_config.Greek_Nicosia);
+                spanishParent.SetActive(_config.Spanish_Nicosia);
+                break;
+            case LanguageMapping.Groningen:
+                englishParent.SetActive(_config.English_Groningen);
+                dutchParent.SetActive(_config.Dutch_Groningen);
+                greekParent.SetActive(_config.Greek_Groningen);
+                spanishParent.SetActive(_config.Spanish_Groningen);
+                break;
+            case LanguageMapping.Valencia:
+                englishParent.SetActive(_config.English_Valencia);
+                dutchParent.SetActive(_config.Dutch_Valencia);
+                greekParent.SetActive(_config.Greek_Valencia);
+                spanishParent.SetActive(_config.Spanish_Valencia);
+                break;
         }
+        _gridLayout.cellSize = new Vector2(grid.rect.width/2f, grid.rect.height/2f);
+        TitleText.gameObject.SetActive(true);
     }
 }

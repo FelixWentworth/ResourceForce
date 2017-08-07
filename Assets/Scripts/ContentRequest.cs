@@ -83,7 +83,7 @@ public class ContentRequest : MonoBehaviour
         }
         else
         {
-            yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NO_CONTENT"), 1.5f);
+            Loading.LoadingSpinner.StopSpinner("");
         }
 
         // Set content number
