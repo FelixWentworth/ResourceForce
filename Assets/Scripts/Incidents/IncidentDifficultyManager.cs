@@ -213,17 +213,17 @@ public class IncidentDifficultyManager : MonoBehaviour
             incidentList = incidentList.Take(countNewIncidents).ToList();
         }
 
-        // Check the player has enough officers to complete the round
-        var officersRequired = newIncidentOfficerLimit > availableOfficers;
+        //// Check the player has enough officers to complete the round
+        //var officersRequired = newIncidentOfficerLimit > availableOfficers;
 
-        if (officersRequired)
-        {
-            if (ShouldAwardMoreOfficers(newIncidentOfficerLimit, availableOfficers, turnNumber))
-            {
-                AddOfficersAction(newIncidentOfficerLimit - availableOfficers);
-            }
+        //if (officersRequired)
+        //{
+        //    if (ShouldAwardMoreOfficers(newIncidentOfficerLimit, availableOfficers, turnNumber))
+        //    {
+        //        AddOfficersAction(newIncidentOfficerLimit - availableOfficers);
+        //    }
             
-        }
+        //}
 
         return incidentList;
     }

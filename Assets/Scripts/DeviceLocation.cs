@@ -98,13 +98,7 @@ public class DeviceLocation : MonoBehaviour {
     private void SetLocation(int value)
     {
         UpdateLanguagesAvailable(value);
-        
-        // check a location has been set
-        if (value == 0)
-            return;
-
-
-        loc.SetSite(value - 1);
+        loc.SetSite(value);
     }
 
     private void EnglishSelected()
