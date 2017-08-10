@@ -63,6 +63,13 @@ public class Feedback : MonoBehaviour
     {
         if (_sending)
             return;
+
+        // Stop the game spamming useless feedback, allow email to be provided if players want further information
+        if (_feedbackText.text == "" && _emailText.text == "")
+        {
+            CancelPressed();
+            return;
+        }
         _sending = true;
         var body = _game + "\n" + _otherInfo + "\n\n" + _feedbackText.text;
         if (_emailText.text != "")
