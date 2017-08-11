@@ -24,15 +24,16 @@ public class ContentRequest : MonoBehaviour
     {
         get
         {
-            var serial = PlayerPrefs.GetString("SerialNumber");
-            if (serial == "")
-            {
-                return 0;
-            }
-            else
-            {
-                return Convert.ToInt64(serial);
-            }
+            return 0;
+            //var serial = PlayerPrefs.GetString("SerialNumber");
+            //if (serial == "")
+            //{
+            //    return 0;
+            //}
+            //else
+            //{
+            //    return Convert.ToInt64(serial);
+            //}
         }
         set { }
     }
@@ -72,9 +73,8 @@ public class ContentRequest : MonoBehaviour
 
     public IEnumerator GetContent()
     {
-        
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_RETRIEVING_CONTENT"));
-        yield return GetStreamingAssetsScenario();
+        yield return GetSavedScenarios();
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
         yield return FetchNewContent();
         if (_contentFound)
@@ -100,7 +100,7 @@ public class ContentRequest : MonoBehaviour
         _currentState = State.Retrieving;
         yield return www;
 
-        if (string.IsNullOrEmpty(www.text))
+        if (string.IsNullOrEmpty(www.text) || www.text == "[]")
         {
             Debug.Log("Unable to find any new content from authoring tool");
             _contentFound = false;
@@ -138,12 +138,15 @@ public class ContentRequest : MonoBehaviour
             {
                 if (scenario.SerialNumber > _serialNumber)
                 {
+
                     // TODO Save serial number
-                    _serialNumber = scenario.SerialNumber;
+                    PlayerPrefs.SetString("SerialNumber", scenario.SerialNumber.ToString());
+
+                    Debug.Log("---" + _serialNumber);
                 }
             }
 
-            PlayerPrefs.SetString("SerialNumber", _serialNumber.ToString());
+            
 
             _currentState = State.Finalizing;
         }
@@ -175,18 +178,18 @@ public class ContentRequest : MonoBehaviour
 
     private IEnumerator WriteToFile(string content)
     {
-        var path = Application.streamingAssetsPath + "/" + _fileName;
+        var path = Application.persistentDataPath + "/" + _fileName;
 
-        if (Application.platform == RuntimePlatform.WindowsEditor ||
-            Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
-            Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.LinuxPlayer)
-        {
-            path = "file:///" + path;
-        }
-        else if (Application.platform == RuntimePlatform.Android)
-        {
-            path = "jar:file://" + Application.dataPath + "!/assets/" + _fileName;
-        }
+        //if (Application.platform == RuntimePlatform.WindowsEditor ||
+        //    Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
+        //    Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.LinuxPlayer)
+        //{
+        //    path = "file:///" + path;
+        //}
+        //else if (Application.platform == RuntimePlatform.Android)
+        //{
+        //    path = "jar:file://" + path;
+        //}
 
         var www = new WWW(path);
 
@@ -194,7 +197,11 @@ public class ContentRequest : MonoBehaviour
         if (www.text != null)
         {
             var newtext = www.text + content;
-            using (var sw = new StreamWriter(Application.streamingAssetsPath + "/" + _fileName))
+            Debug.Log(path);
+            
+            File.WriteAllText(path, newtext);
+
+            using (var sw = new StreamWriter(path))
             {
                 sw.Write(newtext);
             }
@@ -225,11 +232,48 @@ public class ContentRequest : MonoBehaviour
         {
             path = "file:///" + path;
         }
+        else if (Application.platform == RuntimePlatform.Android)
+        {
+            path = "jar:file://" + Application.dataPath + "!/assets/" + _fileName;
+        }
 
         var www = new WWW(path);
 
         yield return www;
         if (www.text != null)
+        {
+            _contentString = www.text;
+            var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
+            _allScenarios = scenarios;
+        }
+    }
+
+    private IEnumerator GetSavedScenarios()
+    {
+        var path = Application.persistentDataPath + "/" + _fileName;
+
+        if (Application.platform == RuntimePlatform.WindowsEditor ||
+            Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
+            Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.LinuxPlayer)
+        {
+            path = "file:///" + path;
+        }
+        else if (Application.platform == RuntimePlatform.Android)
+        {
+            path = "jar:file://" + path;
+        }
+
+        var www = new WWW(path);
+
+        yield return www;
+        if (string.IsNullOrEmpty(www.text))
+        {
+            // write the data from streaming assets to the persistent data file
+            yield return GetStreamingAssetsScenario();
+            var contentString = JsonConvert.SerializeObject(_allScenarios);
+            yield return WriteToFile(contentString);
+        }
+        else
         {
             _contentString = www.text;
             var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
