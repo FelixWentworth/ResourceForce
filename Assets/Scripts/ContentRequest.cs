@@ -15,6 +15,7 @@ public class ContentRequest : MonoBehaviour
     [SerializeField] private string _port;
 
     [SerializeField] private string _fileName;
+    [SerializeField] private string _resourcesFileName;
 
     private static List<Scenario> _allScenarios = new List<Scenario>();
     private string _contentString;
@@ -240,12 +241,24 @@ public class ContentRequest : MonoBehaviour
         var www = new WWW(path);
 
         yield return www;
-        if (www.text != null)
+        if (!string.IsNullOrEmpty(www.text))
         {
             _contentString = www.text;
             var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
             _allScenarios = scenarios;
         }
+        else
+        {
+            Debug.LogError("Unable to get file at: " + path);
+        }
+    }
+
+    public void GetResourcesScenario()
+    {
+        var textAsset = Resources.Load(_resourcesFileName) as TextAsset;
+        _contentString = textAsset.text;
+        var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(textAsset.text);
+        _allScenarios = scenarios;
     }
 
     private IEnumerator GetSavedScenarios()
@@ -269,7 +282,7 @@ public class ContentRequest : MonoBehaviour
         if (string.IsNullOrEmpty(www.text))
         {
             // write the data from streaming assets to the persistent data file
-            yield return GetStreamingAssetsScenario();
+            GetResourcesScenario();
             var contentString = JsonConvert.SerializeObject(_allScenarios);
             yield return WriteToFile(contentString);
         }
