@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: START_SCREEN_FEEDBACK_TEXT
+  Key: START_SCREEN_INSPECT_TEXT
   toUpper: 1
 --- !u!114 &97056310
 MonoBehaviour:
@@ -591,7 +591,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: START_SCREEN_FEEDBACK_TEXT
+  m_Text: START_SCREEN_INSPECT_TEXT
 --- !u!222 &97056311
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2475,7 +2475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: START_SCREEN_SEND_FEEDBACK
+  Key: BASIC_TEXT_DOWNLOAD
   toUpper: 1
 --- !u!114 &254575394
 MonoBehaviour:
@@ -2510,7 +2510,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: START_SCREEN_SEND_FEEDBACK
+  m_Text: BASIC_TEXT_DOWNLOAD
 --- !u!222 &254575395
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4029,7 +4029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e365c62730ec7647be5d121247be415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Url: http://inspec2t-project.eu/en/
+  Url: http://inspec2t-project.eu
 --- !u!114 &465423276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4167,7 +4167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d70cd5f69b0b945a8ccf2fc42e427d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: START_SCREEN_SEND_FEEDBACK
+  Key: BASIC_TEXT_DOWNLOAD
   toUpper: 1
 --- !u!114 &466845803
 MonoBehaviour:
@@ -4202,7 +4202,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: START_SCREEN_SEND_FEEDBACK
+  m_Text: BASIC_TEXT_DOWNLOAD
 --- !u!222 &466845804
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10574,6 +10574,7 @@ GameObject:
   - component: {fileID: 1250968846}
   - component: {fileID: 1250968845}
   - component: {fileID: 1250968844}
+  - component: {fileID: 1250968847}
   m_Layer: 5
   m_Name: DownloadInspectButton
   m_TagString: Untagged
@@ -10641,18 +10642,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1250968845}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 222560486}
-        m_MethodName: GoToInspect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1250968845
@@ -10690,6 +10680,18 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1250968842}
+--- !u!114 &1250968847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1250968842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e365c62730ec7647be5d121247be415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Url: http://inspec2t-project.eu
 --- !u!1 &1251015075
 GameObject:
   m_ObjectHideFlags: 0
@@ -15744,6 +15746,7 @@ GameObject:
   - component: {fileID: 1917911204}
   - component: {fileID: 1917911203}
   - component: {fileID: 1917911202}
+  - component: {fileID: 1917911205}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -15809,18 +15812,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2021711098}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 222560486}
-        m_MethodName: GoToInspect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1917911203
@@ -15858,6 +15850,18 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1917911200}
+--- !u!114 &1917911205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1917911200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e365c62730ec7647be5d121247be415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Url: http://inspec2t-project.eu
 --- !u!1 &1925603572
 GameObject:
   m_ObjectHideFlags: 0
