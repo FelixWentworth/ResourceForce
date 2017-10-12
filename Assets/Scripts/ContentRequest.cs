@@ -25,16 +25,19 @@ public class ContentRequest : MonoBehaviour
     {
         get
         {
-            return 0;
-            //var serial = PlayerPrefs.GetString("SerialNumber");
-            //if (serial == "")
-            //{
-            //    return 0;
-            //}
-            //else
-            //{
-            //    return Convert.ToInt64(serial);
-            //}
+            // ------------------------
+            // TESTING 
+            // return 0;
+            // ------------------------
+            var serial = PlayerPrefs.GetString("SerialNumber");
+            if (serial == "")
+            {
+                return 0;
+            }
+            else
+            {
+                return Convert.ToInt64(serial);
+            }
         }
         set { }
     }
@@ -104,6 +107,7 @@ public class ContentRequest : MonoBehaviour
         if (string.IsNullOrEmpty(www.text) || www.text == "[]")
         {
             Debug.Log("Unable to find any new content from authoring tool");
+            Debug.Log("Current Serial Number: " + _serialNumber);
             _contentFound = false;
         }
         else
@@ -132,7 +136,7 @@ public class ContentRequest : MonoBehaviour
 
             if (contentString != "")
             {
-                StartCoroutine(WriteToFile(contentString));
+                yield return WriteToFile(contentString);
             }
             // update the scenario number
             foreach (var scenario in scenarios)
@@ -143,11 +147,9 @@ public class ContentRequest : MonoBehaviour
                     // TODO Save serial number
                     PlayerPrefs.SetString("SerialNumber", scenario.SerialNumber.ToString());
 
-                    Debug.Log("---" + _serialNumber);
+                    Debug.Log("---" + scenario.SerialNumber);
                 }
             }
-
-            
 
             _currentState = State.Finalizing;
         }

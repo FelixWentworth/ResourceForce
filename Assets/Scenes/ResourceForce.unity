@@ -16593,7 +16593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectLocationScreen: {fileID: 371280199}
   _hostName: localhost
-  _port: 8728
+  _port: 5000
   _fileName: ScenarioContent.txt
   _resourcesFileName: ScenarioContent
 --- !u!4 &1964525949
