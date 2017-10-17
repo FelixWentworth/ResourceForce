@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour {
 
-    public int turn = 0;
+    public int turn;
     IncidentManager _incidentManager;
     public GameOver GameOver;
 
@@ -89,7 +89,7 @@ public class TurnManager : MonoBehaviour {
         //reset the case identifier to ensure that the case numbers are reset
         SimplifiedJson.Identifier = 1;
         AudioManager.Instance.PlayBackgroundMusic();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
         AudioManager.Instance.NegativeButtonPress();
     }
     public void GoToInspect()

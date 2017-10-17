@@ -1,9 +1,4 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
-using System.Reflection;
-using JetBrains.Annotations;
-using UnityEngine.Events;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,7 +13,7 @@ public class DeviceLocation : MonoBehaviour {
     public Button GreekButton;
     public Button SpanishButton;
 
-    public static bool shouldOverrideLanguage = false;
+    public static bool shouldOverrideLanguage;
     public static SystemLanguage overrideLanguage = SystemLanguage.English;
 
     public WarningBox WarningBox;

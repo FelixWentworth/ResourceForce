@@ -39,7 +39,6 @@ public class ContentRequest : MonoBehaviour
                 return Convert.ToInt64(serial);
             }
         }
-        set { }
     }
 
     private enum State
@@ -258,6 +257,11 @@ public class ContentRequest : MonoBehaviour
     public void GetResourcesScenario()
     {
         var textAsset = Resources.Load(_resourcesFileName) as TextAsset;
+        if (textAsset == null)
+        {
+            Debug.LogError("Resources file not found");
+            return;
+        }
         _contentString = textAsset.text;
         var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(textAsset.text);
         _allScenarios = scenarios;

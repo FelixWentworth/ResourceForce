@@ -8,7 +8,6 @@ public class SimplifiedJson : MonoBehaviour {
 
     public Location m_location;
 
-    private TextAsset _myText;
     private TurnManager _manager;
     private Tutorial _tutorial;
 
