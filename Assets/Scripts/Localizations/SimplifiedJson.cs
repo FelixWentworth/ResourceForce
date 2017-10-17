@@ -43,7 +43,7 @@ public class SimplifiedJson : MonoBehaviour {
 
     public void WaitPressed(ref Incident incident)
     {
-        GoToChoice(ref incident, "Wait");
+        GoToChoice(ref incident, "Ignore");
     }
     public void OfficerPressed(ref Incident incident)
     {

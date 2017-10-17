@@ -55,7 +55,7 @@ public class ContentRequest : MonoBehaviour
 
     private string _api
     {
-        get { return "http://" + _hostName + ":" + _port + "/api"; }
+        get { return _hostName + ":" + _port + "/api"; }
     }
 
     private string _extension
@@ -220,7 +220,7 @@ public class ContentRequest : MonoBehaviour
         }
         else
         {
-            return _allScenarios.Where(s => s.Language == language && s.Location == location).ToList();
+            return _allScenarios.Where(s => s.Language == language && (s.Location == location || s.Location == "Any")).ToList();
         }
     }
 

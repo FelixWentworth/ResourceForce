@@ -110,7 +110,7 @@ public class TurnManager : MonoBehaviour {
         var inGame = turn > 0;
 
         SettingsScreenQuitToMenuOption.SetActive(inGame);
-        SettingsScreenScenarioReportOption.SetActive(inGame);
+        //SettingsScreenScenarioReportOption.SetActive(inGame);
         SettingsScreenReplayTutorialOption.SetActive(!inGame);
         settingsScreen.SetActive(!settingsScreen.activeSelf);
     }

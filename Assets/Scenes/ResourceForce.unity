@@ -16592,8 +16592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectLocationScreen: {fileID: 371280199}
-  _hostName: localhost
-  _port: 5000
+  _hostName: https://resource-force.playgen.internal
+  _port: 
   _fileName: ScenarioContent.txt
   _resourcesFileName: ScenarioContent
 --- !u!4 &1964525949

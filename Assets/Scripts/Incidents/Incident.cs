@@ -27,7 +27,7 @@ public class Incident
 
     public bool IsEndCase()
     {
-        return IncidentContent.Choices.Count == 0 || IncidentContent.Choices[0].Choice == null;
+        return IncidentContent.Choices.Count == 1 && IncidentContent.Choices[0].Choice == null;
     }
 
     public IncidentContent GetChoiceContent(string choice)
@@ -47,7 +47,11 @@ public class Incident
 
     public ChoiceFeedback GetChoiceFeedback(string choice)
     {
-        var content = IncidentContent.Choices.FirstOrDefault(c => c.Choice.ChoiceType == choice);
+        var content = IncidentContent.Choices.FirstOrDefault(c => c.Choice != null && c.Choice.ChoiceType == choice);
+        if (content.Choice == null)
+        {
+            return new ChoiceFeedback() {ChoiceType = null, Feedback = "", FeedbackRating = -1};
+        }
         return content.Choice;
     }
 }

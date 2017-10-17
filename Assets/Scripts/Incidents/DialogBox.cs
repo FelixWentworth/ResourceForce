@@ -141,12 +141,12 @@ public class DialogBox : MonoBehaviour {
         }
         else
         {
-            SetButtonActive(_waitButton, zIncident.GetChoiceContent("Wait") != null);
+            SetButtonActive(_waitButton, zIncident.GetChoiceContent("Ignore") != null);
             SetButtonActive(_sendOfficerButton, zIncident.GetChoiceContent("Officer") != null);
             SetButtonActive(_citizenHelpButton, zIncident.GetChoiceContent("Citizen") != null);
         }
 
-        //_waitButton.SetActive(zIncident.GetChoiceContent("Wait") != null);
+        //_waitButton.SetActive(zIncident.GetChoiceContent("Ignore") != null);
         //_sendOfficerButton.SetActive(zIncident.GetChoiceContent("Officer") != null);
         //_citizenHelpButton.SetActive(zIncident.GetChoiceContent("Citizen") != null);
 
@@ -189,7 +189,7 @@ public class DialogBox : MonoBehaviour {
 
         _buttonFade.SetActive(true);
 
-        var feedback = CurrentIncident.GetChoiceFeedback("Wait");
+        var feedback = CurrentIncident.GetChoiceFeedback("Ignore");
 
         ShowImmediateFeedback(feedback.FeedbackRating, CurrentIncident.IncidentContent.Severity, _waitButton.transform);
 
