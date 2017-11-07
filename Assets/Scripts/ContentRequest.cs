@@ -12,7 +12,6 @@ public class ContentRequest : MonoBehaviour
     public GameObject SelectLocationScreen;
 
     [SerializeField] private string _hostName;
-    [SerializeField] private string _port;
 
     [SerializeField] private string _fileName;
     [SerializeField] private string _resourcesFileName;
@@ -27,17 +26,17 @@ public class ContentRequest : MonoBehaviour
         {
             // ------------------------
             // TESTING 
-            // return 0;
+             return 0;
             // ------------------------
-            var serial = PlayerPrefs.GetString("SerialNumber");
-            if (serial == "")
-            {
-                return 0;
-            }
-            else
-            {
-                return Convert.ToInt64(serial);
-            }
+            //var serial = PlayerPrefs.GetString("SerialNumber");
+            //if (serial == "")
+            //{
+            //    return 0;
+            //}
+            //else
+            //{
+            //    return Convert.ToInt64(serial);
+            //}
         }
     }
 
@@ -54,7 +53,7 @@ public class ContentRequest : MonoBehaviour
 
     private string _api
     {
-        get { return _hostName + ":" + _port + "/api"; }
+        get { return _hostName + "/api"; }
     }
 
     private string _extension
@@ -164,15 +163,25 @@ public class ContentRequest : MonoBehaviour
         var allScenarios = currentScenarios;
         foreach (var newScenario in newScenarios)
         {
+            // check if the scenario currently exists and therefore has been modified
             var modified = currentScenarios.FirstOrDefault(s => s.Id == newScenario.Id);
 
             if (modified != null)
             {
                 allScenarios.Remove(modified);
                 modified.Content = newScenario.Content;
+                if (!newScenario.Deleted)
+                {
+                    allScenarios.Add(modified);
+                }
             }
-
-            allScenarios.Add(newScenario);
+            else
+            {
+                if (!newScenario.Deleted)
+                {
+                    allScenarios.Add(newScenario);
+                }
+            }
         }
 
         return JsonConvert.SerializeObject(allScenarios);

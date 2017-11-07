@@ -10,6 +10,7 @@ public class Scenario
     public long SerialNumber;
     public string Location;
     public string Language;
+    public bool Deleted;
     public ScenarioWrapper Content;
 }
 

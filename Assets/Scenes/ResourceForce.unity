@@ -12268,7 +12268,7 @@ Prefab:
     - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 244.00002
+      value: 244
       objectReference: {fileID: 0}
     - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
@@ -16592,7 +16592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectLocationScreen: {fileID: 371280199}
-  _hostName: https://resource-force.playgen.internal
+  _hostName: http://localhost:5000
   _port: 
   _fileName: ScenarioContent.txt
   _resourcesFileName: ScenarioContent
