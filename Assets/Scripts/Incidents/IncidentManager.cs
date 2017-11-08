@@ -77,7 +77,7 @@ public class IncidentManager : MonoBehaviour
         jsonReader.CreateNewScenario(location, language, incidents);
 #endif
         newIncident.TurnToShow = zTurn;
-        newIncident.TurnToDevelop = zTurn + newIncident.IncidentContent.TurnReq + 1;
+        newIncident.TurnToDevelop = zTurn + newIncident.IncidentContent.TurnReq;
         //our complete list of incidents
         incidents.Add(newIncident);
         //our list of incidents waiting to show this turn
@@ -109,7 +109,7 @@ public class IncidentManager : MonoBehaviour
             foreach (var newIncident in newIncidents)
             {
                 newIncident.TurnToShow = turn;
-                newIncident.TurnToDevelop = turn + newIncident.IncidentContent.TurnReq + 1;
+                newIncident.TurnToDevelop = turn + newIncident.IncidentContent.TurnReq;
                 //our complete list of incidents
                 incidents.Add(newIncident);
 

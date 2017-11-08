@@ -84,8 +84,8 @@ public class DialogBox : MonoBehaviour {
         
         _caseNum = zIncident.Scenario.Id;
 
-        OfficerButtonTurns.text = "x" + zIncident.IncidentContent.TurnReq;
-        OfficerButtonRequired.text = "x" + zIncident.IncidentContent.OfficerReq;
+        OfficerButtonTurns.text = "x" + (zIncident.IncidentContent.TurnReq > 0 ? zIncident.IncidentContent.TurnReq.ToString() : "0");
+        OfficerButtonRequired.text = "x" + (zIncident.IncidentContent.OfficerReq > 0 ? zIncident.IncidentContent.OfficerReq.ToString() : "0");
         RightButton.text = zIncident.IncidentContent.OfficerReq == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
         //wait for anim to finish

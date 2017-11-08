@@ -46,7 +46,7 @@ public class SimplifiedJson : MonoBehaviour {
     }
     public void OfficerPressed(ref Incident incident)
     {
-        GoToChoice(ref incident, "Officer", incident.IncidentContent.OfficerReq);
+        GoToChoice(ref incident, "Officer", incident.IncidentContent.TurnReq);
     }
     public void CitizenPressed(ref Incident incident)
     {
