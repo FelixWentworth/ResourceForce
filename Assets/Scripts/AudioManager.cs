@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour {
 
     //setup singleton
 
-    private static AudioManager instance = null;
+    private static AudioManager instance;
 
     public static AudioManager Instance
     {

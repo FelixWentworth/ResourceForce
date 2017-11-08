@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
-using System.Runtime.InteropServices;
 using UnityEngine.UI;
 
 public class WarningBox : MonoBehaviour

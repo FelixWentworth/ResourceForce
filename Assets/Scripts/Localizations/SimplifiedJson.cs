@@ -8,7 +8,6 @@ public class SimplifiedJson : MonoBehaviour {
 
     public Location m_location;
 
-    private TextAsset _myText;
     private TurnManager _manager;
     private Tutorial _tutorial;
 
@@ -43,11 +42,11 @@ public class SimplifiedJson : MonoBehaviour {
 
     public void WaitPressed(ref Incident incident)
     {
-        GoToChoice(ref incident, "Wait");
+        GoToChoice(ref incident, "Ignore");
     }
     public void OfficerPressed(ref Incident incident)
     {
-        GoToChoice(ref incident, "Officer", incident.IncidentContent.OfficerReq);
+        GoToChoice(ref incident, "Officer", incident.IncidentContent.TurnReq);
     }
     public void CitizenPressed(ref Incident incident)
     {

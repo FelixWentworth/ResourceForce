@@ -5,7 +5,7 @@ public class IncidentQueue : MonoBehaviour {
     //create a list of gameobjects that we will use to keep track of incidents
     public IncidentCase[] allCases;
 
-    private int cases = 0;
+    private int cases;
     void Awake()
     {
         for (int i=0; i<allCases.Length; i++)

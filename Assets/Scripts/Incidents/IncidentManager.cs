@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -31,7 +30,7 @@ public class IncidentManager : MonoBehaviour
 
     public GameObject SatisfactionImpactGameObject;
 
-    private Dictionary<string, IncidentHistory> _incidentHistories = new Dictionary<string, IncidentHistory>();
+    private readonly Dictionary<string, IncidentHistory> _incidentHistories = new Dictionary<string, IncidentHistory>();
 
     private int _casesClosed;
     private int _casesClosedWell;
@@ -78,7 +77,7 @@ public class IncidentManager : MonoBehaviour
         jsonReader.CreateNewScenario(location, language, incidents);
 #endif
         newIncident.TurnToShow = zTurn;
-        newIncident.TurnToDevelop = zTurn + newIncident.IncidentContent.TurnReq + 1;
+        newIncident.TurnToDevelop = zTurn + newIncident.IncidentContent.TurnReq;
         //our complete list of incidents
         incidents.Add(newIncident);
         //our list of incidents waiting to show this turn
@@ -110,7 +109,7 @@ public class IncidentManager : MonoBehaviour
             foreach (var newIncident in newIncidents)
             {
                 newIncident.TurnToShow = turn;
-                newIncident.TurnToDevelop = turn + newIncident.IncidentContent.TurnReq + 1;
+                newIncident.TurnToDevelop = turn + newIncident.IncidentContent.TurnReq;
                 //our complete list of incidents
                 incidents.Add(newIncident);
 
@@ -615,9 +614,11 @@ public class IncidentManager : MonoBehaviour
         {
             _incidentHistories.TryGetValue(incident.Scenario.Id, out incidentHistory);
         }
-
-        incidentHistory.IncidentHistoryElements.Add(element);
-        _incidentHistories[incident.Scenario.Id] = incidentHistory;
+        if (incidentHistory != null)
+        {
+            incidentHistory.IncidentHistoryElements.Add(element);
+            _incidentHistories[incident.Scenario.Id] = incidentHistory;
+        }
     }
 
     public List<IncidentHistoryElement> GetIncidentHistory(string scenarioId)
@@ -650,19 +651,15 @@ public class IncidentManager : MonoBehaviour
             _incidentDifficultyManager = this.GetComponent<IncidentDifficultyManager>();
         }
 
-        var location = Location.CurrentLocation;
-        var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
-
-        
-
         foreach (var scenario in scenarios)
         {
-            var newIncident = new Incident();
+            var newIncident = new Incident
+            {
+                IncidentContent = scenario.Content.Scene,
+                Scenario = scenario,
+                TurnToShow = 0,
+            };
 
-            newIncident.IncidentContent = scenario.Content.Scene;
-            newIncident.Scenario = scenario;
-
-            newIncident.TurnToShow = 0;
             newIncident.TurnToDevelop = 0 + newIncident.IncidentContent.TurnReq + 1;
 
             //our complete list of incidents

@@ -41,7 +41,11 @@ public class Localization : MonoBehaviour {
         var dict = new Dictionary<string, string>();
 
         jsonTextAsset_Basic = Resources.Load("StringLocalizations_BasicText") as TextAsset;
-
+        if (jsonTextAsset_Basic == null)
+        {
+            Debug.LogError("Unable to load localizations from file: StringLocalizations_BasicText from resources");
+            return new Dictionary<string, string>();
+        }
         var B = JSON.Parse(jsonTextAsset_Basic.text);
 
         for (int i = 0; B[i] != null; i++)

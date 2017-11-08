@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 public class IncidentInformationDisplay : MonoBehaviour
 {
@@ -96,7 +95,7 @@ public class IncidentInformationDisplay : MonoBehaviour
     }
     private void CreateElement(IncidentHistoryElement element, float offset, bool isCurrent = true)
     {
-        var go = GameObject.Instantiate(IncidentHistoryElement);
+        var go = Instantiate(IncidentHistoryElement);
 
         var setup = go.GetComponent<IncidentHistoryUISetup>();
         var rectTransform = go.GetComponent<RectTransform>();

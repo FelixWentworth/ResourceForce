@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class IncidentHistoryElement
+﻿public class IncidentHistoryElement
 {
     public string Type;
     public string Description;

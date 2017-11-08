@@ -16,7 +16,7 @@ public class OfficerController : MonoBehaviour {
 
     public OfficerIndicator[] officerIndicators;
     public RectTransform OfficerPanel;
-    private float _offset = 0f;
+    private float _offset;
 
     public Color AvailableOfficerColor;
     public Color InUseOfficerColor;
@@ -30,7 +30,7 @@ public class OfficerController : MonoBehaviour {
         for (int i = 0; i<officerIndicators.Length; i++)
         {
             officerIndicators[i].gameObject.SetActive(true);
-            officerIndicators[i].UpdateText("");
+            officerIndicators[i].UpdateText();
             var rectTransform = officerIndicators[i].GetComponent<RectTransform>();
             rectTransform.anchoredPosition3D = new Vector3(_offset, 0f, 0f);
             _offset += rectTransform.rect.width;
@@ -104,7 +104,6 @@ public class OfficerController : MonoBehaviour {
         var inUseIndex = 0;
 
         var inUseOffset = OfficerPanel.rect.width;
-        var availableOffset = 0f;
 
         for (var i = TotalOfficers - 1; i >= 0; i--)
         {
@@ -123,10 +122,10 @@ public class OfficerController : MonoBehaviour {
             }
             else
             {
-                officerIndicators[i].UpdateText("");
+                officerIndicators[i].UpdateText();
                 officerIndicators[i].UpdateColor(AvailableOfficerColor);
 
-                availableOffset = i * officerIndicators[i].GetComponent<RectTransform>().rect.width;
+                var availableOffset = i * officerIndicators[i].GetComponent<RectTransform>().rect.width;
                 StartCoroutine(TransitionToPosition(officerIndicators[i].GetComponent<RectTransform>(),
                     new Vector3(availableOffset, 0f, 0f), 0.5f));              
             }

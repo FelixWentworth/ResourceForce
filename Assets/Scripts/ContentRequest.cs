@@ -12,9 +12,9 @@ public class ContentRequest : MonoBehaviour
     public GameObject SelectLocationScreen;
 
     [SerializeField] private string _hostName;
-    [SerializeField] private string _port;
 
     [SerializeField] private string _fileName;
+    [SerializeField] private string _resourcesFileName;
 
     private static List<Scenario> _allScenarios = new List<Scenario>();
     private string _contentString;
@@ -24,17 +24,20 @@ public class ContentRequest : MonoBehaviour
     {
         get
         {
-            var serial = PlayerPrefs.GetString("SerialNumber");
-            if (serial == "")
-            {
-                return 0;
-            }
-            else
-            {
-                return Convert.ToInt64(serial);
-            }
+            // ------------------------
+            // TESTING 
+             return 0;
+            // ------------------------
+            //var serial = PlayerPrefs.GetString("SerialNumber");
+            //if (serial == "")
+            //{
+            //    return 0;
+            //}
+            //else
+            //{
+            //    return Convert.ToInt64(serial);
+            //}
         }
-        set { }
     }
 
     private enum State
@@ -50,7 +53,7 @@ public class ContentRequest : MonoBehaviour
 
     private string _api
     {
-        get { return "http://" + _hostName + ":" + _port + "/api"; }
+        get { return _hostName + "/api"; }
     }
 
     private string _extension
@@ -72,9 +75,8 @@ public class ContentRequest : MonoBehaviour
 
     public IEnumerator GetContent()
     {
-        
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_RETRIEVING_CONTENT"));
-        yield return GetStreamingAssetsScenario();
+        yield return GetSavedScenarios();
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
         yield return FetchNewContent();
         if (_contentFound)
@@ -100,9 +102,10 @@ public class ContentRequest : MonoBehaviour
         _currentState = State.Retrieving;
         yield return www;
 
-        if (string.IsNullOrEmpty(www.text))
+        if (string.IsNullOrEmpty(www.text) || www.text == "[]")
         {
             Debug.Log("Unable to find any new content from authoring tool");
+            Debug.Log("Current Serial Number: " + _serialNumber);
             _contentFound = false;
         }
         else
@@ -131,19 +134,20 @@ public class ContentRequest : MonoBehaviour
 
             if (contentString != "")
             {
-                StartCoroutine(WriteToFile(contentString));
+                yield return WriteToFile(contentString);
             }
             // update the scenario number
             foreach (var scenario in scenarios)
             {
                 if (scenario.SerialNumber > _serialNumber)
                 {
+
                     // TODO Save serial number
-                    _serialNumber = scenario.SerialNumber;
+                    PlayerPrefs.SetString("SerialNumber", scenario.SerialNumber.ToString());
+
+                    Debug.Log("---" + scenario.SerialNumber);
                 }
             }
-
-            PlayerPrefs.SetString("SerialNumber", _serialNumber.ToString());
 
             _currentState = State.Finalizing;
         }
@@ -159,21 +163,77 @@ public class ContentRequest : MonoBehaviour
         var allScenarios = currentScenarios;
         foreach (var newScenario in newScenarios)
         {
+            // check if the scenario currently exists and therefore has been modified
             var modified = currentScenarios.FirstOrDefault(s => s.Id == newScenario.Id);
 
             if (modified != null)
             {
                 allScenarios.Remove(modified);
                 modified.Content = newScenario.Content;
+                if (!newScenario.Deleted)
+                {
+                    allScenarios.Add(modified);
+                }
             }
-
-            allScenarios.Add(newScenario);
+            else
+            {
+                if (!newScenario.Deleted)
+                {
+                    allScenarios.Add(newScenario);
+                }
+            }
         }
 
         return JsonConvert.SerializeObject(allScenarios);
     }
 
     private IEnumerator WriteToFile(string content)
+    {
+        var path = Application.persistentDataPath + "/" + _fileName;
+
+        //if (Application.platform == RuntimePlatform.WindowsEditor ||
+        //    Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
+        //    Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.LinuxPlayer)
+        //{
+        //    path = "file:///" + path;
+        //}
+        //else if (Application.platform == RuntimePlatform.Android)
+        //{
+        //    path = "jar:file://" + path;
+        //}
+
+        var www = new WWW(path);
+
+        yield return www;
+        if (www.text != null)
+        {
+            var newtext = www.text + content;
+            Debug.Log(path);
+            
+            File.WriteAllText(path, newtext);
+
+            using (var sw = new StreamWriter(path))
+            {
+                sw.Write(newtext);
+            }
+        }
+    }
+
+    public List<Scenario> GetScenarios(string location, string language)
+    {
+        if (_allScenarios.Count == 0)
+        {
+            StartCoroutine(GetStreamingAssetsScenario());
+            return null;
+        }
+        else
+        {
+            return _allScenarios.Where(s => s.Language == language && (s.Location == location || s.Location == "Any")).ToList();
+        }
+    }
+
+
+    private IEnumerator GetStreamingAssetsScenario()
     {
         var path = Application.streamingAssetsPath + "/" + _fileName;
 
@@ -191,33 +251,34 @@ public class ContentRequest : MonoBehaviour
         var www = new WWW(path);
 
         yield return www;
-        if (www.text != null)
+        if (!string.IsNullOrEmpty(www.text))
         {
-            var newtext = www.text + content;
-            using (var sw = new StreamWriter(Application.streamingAssetsPath + "/" + _fileName))
-            {
-                sw.Write(newtext);
-            }
-        }
-    }
-
-    public List<Scenario> GetScenarios(string location, string language)
-    {
-        if (_allScenarios.Count == 0)
-        {
-            StartCoroutine(GetStreamingAssetsScenario());
-            return null;
+            _contentString = www.text;
+            var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
+            _allScenarios = scenarios;
         }
         else
         {
-            return _allScenarios.Where(s => s.Language == language && s.Location == location).ToList();
+            Debug.LogError("Unable to get file at: " + path);
         }
     }
 
-
-    private IEnumerator GetStreamingAssetsScenario()
+    public void GetResourcesScenario()
     {
-        var path = Application.streamingAssetsPath + "/" + _fileName;
+        var textAsset = Resources.Load(_resourcesFileName) as TextAsset;
+        if (textAsset == null)
+        {
+            Debug.LogError("Resources file not found");
+            return;
+        }
+        _contentString = textAsset.text;
+        var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(textAsset.text);
+        _allScenarios = scenarios;
+    }
+
+    private IEnumerator GetSavedScenarios()
+    {
+        var path = Application.persistentDataPath + "/" + _fileName;
 
         if (Application.platform == RuntimePlatform.WindowsEditor ||
             Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
@@ -225,11 +286,22 @@ public class ContentRequest : MonoBehaviour
         {
             path = "file:///" + path;
         }
+        else if (Application.platform == RuntimePlatform.Android)
+        {
+            path = "jar:file://" + path;
+        }
 
         var www = new WWW(path);
 
         yield return www;
-        if (www.text != null)
+        if (string.IsNullOrEmpty(www.text))
+        {
+            // write the data from streaming assets to the persistent data file
+            GetResourcesScenario();
+            var contentString = JsonConvert.SerializeObject(_allScenarios);
+            yield return WriteToFile(contentString);
+        }
+        else
         {
             _contentString = www.text;
             var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);

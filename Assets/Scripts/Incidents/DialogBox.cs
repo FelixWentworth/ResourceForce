@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Timers;
 using UnityEngine.UI;
 
 public class DialogBox : MonoBehaviour {
@@ -31,11 +30,6 @@ public class DialogBox : MonoBehaviour {
     private string _caseNum;
 
     private const float TransitionTime = 0.75f;
-
-    private const int CitizenTips = 5;
-	private const int WaitTips = 5;
-	private const int OfficerTips = 2;
-	private const int PositiveTips = 5;
     private string _tip = "";
 
     private GameObject _citizenHelpButton;
@@ -90,8 +84,8 @@ public class DialogBox : MonoBehaviour {
         
         _caseNum = zIncident.Scenario.Id;
 
-        OfficerButtonTurns.text = "x" + zIncident.IncidentContent.TurnReq;
-        OfficerButtonRequired.text = "x" + zIncident.IncidentContent.OfficerReq;
+        OfficerButtonTurns.text = "x" + (zIncident.IncidentContent.TurnReq > 0 ? zIncident.IncidentContent.TurnReq.ToString() : "0");
+        OfficerButtonRequired.text = "x" + (zIncident.IncidentContent.OfficerReq > 0 ? zIncident.IncidentContent.OfficerReq.ToString() : "0");
         RightButton.text = zIncident.IncidentContent.OfficerReq == 1 ? Localization.Get("BASIC_TEXT_SEND_ONE") : RightButton.text = Localization.Get("BASIC_TEXT_SEND_MANY");
 
         //wait for anim to finish
@@ -141,12 +135,12 @@ public class DialogBox : MonoBehaviour {
         }
         else
         {
-            SetButtonActive(_waitButton, zIncident.GetChoiceContent("Wait") != null);
+            SetButtonActive(_waitButton, zIncident.GetChoiceContent("Ignore") != null);
             SetButtonActive(_sendOfficerButton, zIncident.GetChoiceContent("Officer") != null);
             SetButtonActive(_citizenHelpButton, zIncident.GetChoiceContent("Citizen") != null);
         }
 
-        //_waitButton.SetActive(zIncident.GetChoiceContent("Wait") != null);
+        //_waitButton.SetActive(zIncident.GetChoiceContent("Ignore") != null);
         //_sendOfficerButton.SetActive(zIncident.GetChoiceContent("Officer") != null);
         //_citizenHelpButton.SetActive(zIncident.GetChoiceContent("Citizen") != null);
 
@@ -184,21 +178,18 @@ public class DialogBox : MonoBehaviour {
     }
     public void LeftButtonPressed()
     {
-		// Check if the citizen option was available
-	    var isCitizensAvailable = _citizenHelpButton.activeSelf;
-
         _buttonFade.SetActive(true);
 
-        var feedback = CurrentIncident.GetChoiceFeedback("Wait");
+        var feedback = CurrentIncident.GetChoiceFeedback("Ignore");
 
         ShowImmediateFeedback(feedback.FeedbackRating, CurrentIncident.IncidentContent.Severity, _waitButton.transform);
 
-        StartCoroutine(LeftButtonWithAnim(feedback, isCitizensAvailable));
+        StartCoroutine(LeftButtonWithAnim(feedback));
 
         ButtonFeedbackManager.Instance.ShowFeedback(ButtonFeedbackManager.FeedbackType.Ignore, CurrentIncident.IncidentContent.Severity);
     }
 
-    private IEnumerator LeftButtonWithAnim(ChoiceFeedback feedback, bool  citizensAvailable = false)
+    private IEnumerator LeftButtonWithAnim(ChoiceFeedback feedback)
     {
 
         if (feedback.FeedbackRating != -1)
@@ -221,13 +212,12 @@ public class DialogBox : MonoBehaviour {
     {
         if (OfficerController.m_officers.Count >= CurrentIncident.IncidentContent.OfficerReq)
         {
-			var isCitizensAvailable = _citizenHelpButton.activeSelf;
 			//double check if we have enough officers otherwise the game will break
 			_buttonFade.SetActive(true);
 
             var feedback = CurrentIncident.GetChoiceFeedback("Officer");
 
-            StartCoroutine(RightButtonWithAnim(feedback, isCitizensAvailable));
+            StartCoroutine(RightButtonWithAnim(feedback));
 
             ShowImmediateFeedback(feedback.FeedbackRating, CurrentIncident.IncidentContent.Severity, _sendOfficerButton.transform);
 
@@ -239,7 +229,7 @@ public class DialogBox : MonoBehaviour {
         }
     }
 
-    private IEnumerator RightButtonWithAnim(ChoiceFeedback feedback, bool citizensAvailable = false)
+    private IEnumerator RightButtonWithAnim(ChoiceFeedback feedback)
     {
         if (OfficerController.m_officers.Count >= CurrentIncident.IncidentContent.OfficerReq)
         {

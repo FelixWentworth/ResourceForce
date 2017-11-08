@@ -13,9 +13,6 @@ public class SatisfactionDisplays : MonoBehaviour {
 
     public Color BackgroundColor;
 
-    private Transform _segmentParent;
-    private Image _segment;
-
     private Text _satisfactionValue;
 
     private float _maxValue = 20f;
