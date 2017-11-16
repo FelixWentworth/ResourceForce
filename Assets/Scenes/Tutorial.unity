@@ -4235,6 +4235,7 @@ MonoBehaviour:
     SerialNumber: 0
     Location: Tutorial
     Language: Tutorial
+    Deleted: 0
     Content:
       Scene:
         Title: TUTORIAL_INCIDENT_1_TITLE
@@ -4245,7 +4246,7 @@ MonoBehaviour:
         SatisfactionImpact: 0
         Choices:
         - Choice:
-            ChoiceType: Wait
+            ChoiceType: Ignore
             FeedbackRating: 3
             Feedback: TUTORIAL_INCIDENT_1_FEEDBACK
           Scene:
@@ -4254,12 +4255,13 @@ MonoBehaviour:
             Severity: 1
             OfficerReq: 0
             TurnReq: 0
-            SatisfactionImpact: 0
+            SatisfactionImpact: 1
             Choices: []
   - Id: 1
     SerialNumber: 0
     Location: Tutorial
     Language: Tutorial
+    Deleted: 0
     Content:
       Scene:
         Title: TUTORIAL_INCIDENT_2_TITLE
@@ -4282,7 +4284,7 @@ MonoBehaviour:
             SatisfactionImpact: 0
             Choices:
             - Choice:
-                ChoiceType: Wait
+                ChoiceType: Ignore
                 FeedbackRating: 1
                 Feedback: TUTORIAL_INCIDENT_5_FEEDBACK_WAIT
               Scene:
@@ -4321,6 +4323,7 @@ MonoBehaviour:
     SerialNumber: 0
     Location: Tutorial
     Language: Tutorial
+    Deleted: 0
     Content:
       Scene:
         Title: TUTORIAL_INCIDENT_3_TITLE
@@ -7051,8 +7054,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectLocationScreen: {fileID: 0}
   _hostName: localhost
-  _port: 8728
   _fileName: ScenarioContent.txt
+  _resourcesFileName: 
 --- !u!4 &1964525949
 Transform:
   m_ObjectHideFlags: 0

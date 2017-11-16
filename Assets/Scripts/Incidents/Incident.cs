@@ -23,7 +23,7 @@ public class Incident
 
     public bool IsEndCase()
     {
-        return IncidentContent.Choices.Count == 1 && IncidentContent.Choices[0].Choice == null;
+        return IncidentContent.Choices.Count == 0 || (IncidentContent.Choices.Count == 1 && IncidentContent.Choices[0].Choice == null);
     }
 
     public IncidentContent GetChoiceContent(string choice)
