@@ -26,17 +26,17 @@ public class ContentRequest : MonoBehaviour
         {
             // ------------------------
             // TESTING 
-             return 0;
+            //return 0;
             // ------------------------
-            //var serial = PlayerPrefs.GetString("SerialNumber");
-            //if (serial == "")
-            //{
-            //    return 0;
-            //}
-            //else
-            //{
-            //    return Convert.ToInt64(serial);
-            //}
+            var serial = PlayerPrefs.GetString("SerialNumber");
+            if (serial == "")
+            {
+                return 0;
+            }
+            else
+            {
+                return Convert.ToInt64(serial);
+            }
         }
     }
 
@@ -87,11 +87,15 @@ public class ContentRequest : MonoBehaviour
         {
             Loading.LoadingSpinner.StopSpinner("");
         }
-
         // Set content number
         var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
         Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language);
         Debug.Log(Location.NumIncidents + " Scenarios available");
+        //var all = _allScenarios.Where(s => s.Location == Location.CurrentLocation && s.Language == language).ToList();
+        //foreach (var scenario in all)
+        //{
+        //    Debug.Log("scenario name: " + scenario.Content.Scene.Title);
+        //}
     }
 
     private IEnumerator FetchNewContent()
@@ -280,19 +284,18 @@ public class ContentRequest : MonoBehaviour
     {
         var path = Application.persistentDataPath + "/" + _fileName;
 
-        if (Application.platform == RuntimePlatform.WindowsEditor ||
-            Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
-            Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.LinuxPlayer)
-        {
+        //if (Application.platform == RuntimePlatform.WindowsEditor ||
+        //    Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
+        //    Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.LinuxPlayer)
+        //{
             path = "file:///" + path;
-        }
-        else if (Application.platform == RuntimePlatform.Android)
-        {
-            path = "jar:file://" + path;
-        }
+        //}
+        //else if (Application.platform == RuntimePlatform.Android)
+        //{
+        //    path = "jar:file://" + path;
+        //}
 
         var www = new WWW(path);
-
         yield return www;
         if (string.IsNullOrEmpty(www.text))
         {
