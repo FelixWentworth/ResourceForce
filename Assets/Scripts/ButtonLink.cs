@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GameAnalyticsSDK;
+using UnityEngine;
 
 /// <summary>
 /// Attach to a button object to open a specified link
@@ -6,6 +7,8 @@
 public class ButtonLink : MonoBehaviour
 {
     public string Url;
+	public bool SendEvent;
+	public string EventName;
 
 	void Start ()
 	{
@@ -14,6 +17,10 @@ public class ButtonLink : MonoBehaviour
 
     private void Open()
     {
+	    if (SendEvent)
+	    {
+			GameAnalytics.NewDesignEvent(EventName);
+		}
         Application.OpenURL(Url);
     }
 }
