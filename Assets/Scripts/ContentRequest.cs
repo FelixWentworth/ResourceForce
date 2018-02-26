@@ -61,6 +61,11 @@ public class ContentRequest : MonoBehaviour
         get { return "/scenario/new/" + _serialNumber; }
     }
 
+	public void SetUrl(string url)
+	{
+		_hostName = url;
+	}
+
     IEnumerator Start()
     {
         if (SelectLocationScreen != null)

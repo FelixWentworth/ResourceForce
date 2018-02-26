@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.83448267, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.8352941, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4031,7 +4031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Url: http://inspec2t-project.eu
   SendEvent: 1
-  EventName: Click_Inspec2t
+  EventName: Click_Website
 --- !u!114 &465423276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9981,6 +9981,109 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1187506670}
+--- !u!1 &1190364754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1190364756}
+  - component: {fileID: 1190364755}
+  m_Layer: 0
+  m_Name: MarketingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1190364755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1190364754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc24d4c2254ccc4a855b764669aced4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseManager: 0
+  AppMetadata:
+    AppName: Resource Force
+    BundleId: com.playgen.ResourceForce
+    Version: 1.1.2
+    AuthoringToolUrl: https://resource-force.playgen.com
+    Location: 
+  Elements:
+  - Name: Start Screen Logo
+    ImageElement: {fileID: 140148059}
+    NewSprite: {fileID: 21300000, guid: 29a3eb6e4e6b4814e882313c0fefde8f, type: 3}
+    Tint: {r: 0, g: 0.8352941, b: 1, a: 1}
+  - Name: Game Logo
+    ImageElement: {fileID: 1442076085}
+    NewSprite: {fileID: 21300000, guid: 763588d7bdfc68b46bb6c0ac3137a95c, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 0.1764706}
+  - Name: Citizen Button Icon
+    ImageElement: {fileID: 1442076084}
+    NewSprite: {fileID: 21300000, guid: a1f1c2e8c9efdb64686ea961aa3a0424, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: End Game Link Icon
+    ImageElement: {fileID: 1222166773}
+    NewSprite: {fileID: 21300000, guid: a1f1c2e8c9efdb64686ea961aa3a0424, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: ExternalLink1
+    ImageElement: {fileID: 465423278}
+    NewSprite: {fileID: 21300000, guid: 12056fd66dfdb2e45b3fb0f2139eadc7, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: ExternalLink2
+    ImageElement: {fileID: 482289784}
+    NewSprite: {fileID: 21300000, guid: 7c661c5b697eb8542a154661935caa26, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: ExternalLink3
+    ImageElement: {fileID: 1444796108}
+    NewSprite: {fileID: 21300000, guid: 5fe3a97e055ea1f4ab6c9eaef50045b6, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  Links:
+  - Name: Home App Download
+    Button: {fileID: 1917911205}
+    Url: http://inspec2t-project.eu
+    SendEvent: 1
+    EventName: Click_Inspec2t
+  - Name: End App Download
+    Button: {fileID: 1250968847}
+    Url: http://inspec2t-project.eu
+    SendEvent: 1
+    EventName: Click_Inspec2t
+  - Name: Options Website
+    Button: {fileID: 465423275}
+    Url: http://inspec2t-project.eu
+    SendEvent: 1
+    EventName: Click_Website
+  - Name: Options Facebook
+    Button: {fileID: 482289781}
+    Url: https://www.facebook.com/inspec2tproject.eu/
+    SendEvent: 1
+    EventName: Click_Facebook
+  - Name: Options Twitter
+    Button: {fileID: 1444796105}
+    Url: https://twitter.com/INSPEC2T
+    SendEvent: 1
+    EventName: Click_Twitter
+  Apply: 0
+--- !u!4 &1190364756
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1190364754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 600, y: 960, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1193320161
 GameObject:
   m_ObjectHideFlags: 0
@@ -12351,6 +12454,35 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 719.99994
       objectReference: {fileID: 0}
+    - target: {fileID: 1018367361010926, guid: 7142b44ba53241744a8872e52d0ffc42, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891456143165106, guid: 7142b44ba53241744a8872e52d0ffc42, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1134468553630164, guid: 7142b44ba53241744a8872e52d0ffc42, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017328880360386, guid: 7142b44ba53241744a8872e52d0ffc42, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224968914083273430, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -152.69505
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662130077180154, guid: 7142b44ba53241744a8872e52d0ffc42, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1146161841967554, guid: 7142b44ba53241744a8872e52d0ffc42, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7142b44ba53241744a8872e52d0ffc42, type: 2}
   m_IsPrefabParent: 0
@@ -12407,6 +12539,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1442076084 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114900030405400078, guid: 7142b44ba53241744a8872e52d0ffc42,
+    type: 2}
+  m_PrefabInternal: {fileID: 1442076076}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1442076085 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114969896103944234, guid: 7142b44ba53241744a8872e52d0ffc42,
+    type: 2}
+  m_PrefabInternal: {fileID: 1442076076}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1444796103
 GameObject:
   m_ObjectHideFlags: 0
@@ -15886,7 +16030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Url: http://inspec2t-project.eu
   SendEvent: 1
-  EventName: Click_Website
+  EventName: Click_Inspec2t
 --- !u!1 &1925603572
 GameObject:
   m_ObjectHideFlags: 0
