@@ -96,11 +96,6 @@ public class ContentRequest : MonoBehaviour
         var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
         Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language);
         Debug.Log(Location.NumIncidents + " Scenarios available");
-        //var all = _allScenarios.Where(s => s.Location == Location.CurrentLocation && s.Language == language).ToList();
-        //foreach (var scenario in all)
-        //{
-        //    Debug.Log("scenario name: " + scenario.Content.Scene.Title);
-        //}
     }
 
     private IEnumerator FetchNewContent()

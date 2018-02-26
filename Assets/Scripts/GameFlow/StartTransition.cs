@@ -19,7 +19,7 @@ public class StartTransition : MonoBehaviour {
 
     private bool _gameStarted;
 
-    void Awake()
+    void Start()
     {
 
         //reset the start screen whilst taking note of the text that used to be used as the password
@@ -27,11 +27,23 @@ public class StartTransition : MonoBehaviour {
         _gameStarted = false;
         backgroundColor = background.color;
         fadedBackgroundColor = new Color(backgroundColor.r, backgroundColor.g, backgroundColor.b, 0f);
-
-        bool newLogIn = PlayerPrefs.GetInt("SetLocation") == 0 || overrideShowLocation;
+		
+	    bool newLogIn = PlayerPrefs.GetInt("SetLocation") == 0 || overrideShowLocation;
         overrideShowLocation = false;
-        SelectLocationScreen.SetActive(newLogIn);
-        this.gameObject.SetActive(!newLogIn);
+
+		var deviceLocation = SelectLocationScreen.GetComponent<DeviceLocation>();
+	    var useMarketingManager = MarketingManager.Instance.UseManager;
+
+		deviceLocation.SetRequiredSelection(languageOnly: useMarketingManager);
+
+	    if (useMarketingManager)
+	    {
+		    deviceLocation.SetLanguages(MarketingManager.Instance.Languages);
+	    }
+
+	    SelectLocationScreen.SetActive(newLogIn);
+
+		this.gameObject.SetActive(!newLogIn);
     }
 
     public void StartGameTransition()

@@ -8,6 +8,9 @@ public class DeviceLocation : MonoBehaviour {
     public Location loc;
     public GameObject startScreen;
 
+	public GameObject LangAndLocGameObject;
+	public GameObject LangGameObject;
+
     public Button EnglishButton;
     public Button DutchButton;
     public Button GreekButton;
@@ -27,7 +30,9 @@ public class DeviceLocation : MonoBehaviour {
 
     private Dropdown _dropdown;
 
-    void Awake()
+	private Transform _languageButtonPanel;
+
+    void Start()
     {
         _dropdown = GetComponentInChildren<Dropdown>();
         _gridLayout = grid.GetComponent<GridLayoutGroup>();
@@ -36,13 +41,18 @@ public class DeviceLocation : MonoBehaviour {
 
         SetButtonClicks();
 
-        UpdateLanguagesAvailable(-1);
+		// By default the language and location object should be active
+		LangAndLocGameObject.SetActive(true);
+	    LangGameObject.SetActive(false);
+
+	    if (!MarketingManager.Instance.UseManager)
+	    {
+		    UpdateLanguagesAvailable(-1);
+	    }
     }
 
     private void SetButtonClicks()
     {
-        
-
         EnglishButton.onClick.AddListener(EnglishSelected);
         DutchButton.onClick.AddListener(DutchSelected);
         GreekButton.onClick.AddListener(GreekSelected);
@@ -51,10 +61,13 @@ public class DeviceLocation : MonoBehaviour {
 
     void Update()
     {
-        if (_dropdown.transform.childCount != 4)
-        {
-            SetToggleToButtons();
-        }
+	    if (!MarketingManager.Instance.UseManager)
+	    {
+		    if (_dropdown.transform.childCount != 4)
+		    {
+			    SetToggleToButtons();
+		    }
+	    }
     }
 
     private void SetToggleToButtons()
@@ -97,6 +110,40 @@ public class DeviceLocation : MonoBehaviour {
         loc.SetSite(value);
     }
 
+	public void SetRequiredSelection(bool languageOnly)
+	{
+		LangAndLocGameObject.SetActive(!languageOnly);
+		LangGameObject.SetActive(languageOnly);
+	}
+
+	public void SetLanguages(MarketingManager.SupportedLanguages languages)
+	{
+		SetButtonPanel();
+		EnglishButton.gameObject.SetActive(languages.English);
+		DutchButton.gameObject.SetActive(languages.Dutch);
+		SpanishButton.gameObject.SetActive(languages.Spanish);
+		GreekButton.gameObject.SetActive(languages.Greek);
+	}
+
+	private void SetButtonPanel()
+	{
+		var activeObj = LangAndLocGameObject.activeSelf ? LangAndLocGameObject : LangGameObject;
+		Debug.Log(activeObj.name);
+		_languageButtonPanel = activeObj.GetComponentInChildren<GridLayoutGroup>().transform;
+
+		Debug.Log(_languageButtonPanel);
+
+		var englishParent = EnglishButton.transform.parent.transform;
+		var dutchParent = DutchButton.transform.parent.transform;
+		var greekParent = GreekButton.transform.parent.transform;
+		var spanishParent = SpanishButton.transform.parent.transform;
+
+		englishParent.parent = _languageButtonPanel;
+		dutchParent.parent = _languageButtonPanel;
+		greekParent.parent = _languageButtonPanel;
+		spanishParent.parent = _languageButtonPanel;
+	}
+
     private void EnglishSelected()
     {
         shouldOverrideLanguage = true;
@@ -130,7 +177,7 @@ public class DeviceLocation : MonoBehaviour {
         // Set num incidents to 0 to recalculate the number available on start
         Location.NumIncidents = 0;
 
-        if (_locationIndex == 0)
+        if (_locationIndex == 0 && !MarketingManager.Instance.UseManager)
         {
             // Notify the player to select a location
             StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LOCATION"), Color.yellow, true));
@@ -150,7 +197,8 @@ public class DeviceLocation : MonoBehaviour {
     }
     private void UpdateLanguagesAvailable(int locationSelected = 0)
     {
-        var englishParent = EnglishButton.transform.parent.gameObject;
+	    SetButtonPanel();
+		var englishParent = EnglishButton.transform.parent.gameObject;
         var dutchParent = DutchButton.transform.parent.gameObject;
         var greekParent = GreekButton.transform.parent.gameObject;
         var spanishParent = SpanishButton.transform.parent.gameObject;

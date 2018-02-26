@@ -17,12 +17,24 @@ public class MarketingManager : MonoBehaviour
 
 	void Awake()
 	{
-		if (Instance != null)
+		if (Application.isPlaying)
 		{
-			Destroy(this);
+			if (Instance != null)
+			{
+				Destroy(this);
+			}
+			Instance = this;
+			DontDestroyOnLoad(this);
 		}
-		Instance = this;
-		DontDestroyOnLoad(this);
+	}	
+
+	void Start()
+	{
+		if (UseManager)
+		{
+			// 5 == Custom
+			GameObject.Find("LocationMaster").GetComponent<Location>().SetSite(5);
+		}
 	}
 
 	[Tooltip("if the manager will be used to override elements")]
@@ -59,12 +71,19 @@ public class MarketingManager : MonoBehaviour
 		public string EventName;
 	}
 
+	[Serializable]
+	public struct SupportedLanguages
+	{
+		public bool English;
+		public bool Spanish;
+		public bool Dutch;
+		public bool Greek;
+	}
+
 	public Metadata AppMetadata;
-
+	public SupportedLanguages Languages;
 	public List<ElementImages> Elements;
-
 	public List<ExternalLinks> Links;
-
 
 	[Space(25)]
 
@@ -74,22 +93,31 @@ public class MarketingManager : MonoBehaviour
 		if (Apply)
 		{
 			Apply = false;
-			foreach (var e in Elements)
-			{
-				e.ImageElement.sprite = e.NewSprite;
-				e.ImageElement.color = e.Tint;
-			}
-
-			foreach (var link in Links)
-			{
-				link.Button.Url = link.Url;
-				link.Button.SendEvent = link.SendEvent;
-				link.Button.EventName = link.EventName;
-			}
-
+		
+			SetImages();
+			SetLinks();
 			SetMetadata();
 		}
 
+	}
+
+	private void SetImages()
+	{
+		foreach (var e in Elements)
+		{
+			e.ImageElement.sprite = e.NewSprite;
+			e.ImageElement.color = e.Tint;
+		}
+	}
+
+	private void SetLinks()
+	{
+		foreach (var link in Links)
+		{
+			link.Button.Url = link.Url;
+			link.Button.SendEvent = link.SendEvent;
+			link.Button.EventName = link.EventName;
+		}
 	}
 
 	private void SetMetadata()
