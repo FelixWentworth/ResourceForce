@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -122,9 +124,11 @@ public class BrandingManager : MonoBehaviour
 
 	private void SetMetadata()
 	{
+#if UNITY_EDITOR
 		PlayerSettings.productName = AppMetadata.AppName;
 		PlayerSettings.bundleVersion = AppMetadata.Version;
 		PlayerSettings.applicationIdentifier = AppMetadata.BundleId;
+#endif
 
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(AppMetadata.AuthoringToolUrl);
 	}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using GameAnalyticsSDK;
@@ -43,47 +44,45 @@ public class GameOver : MonoBehaviour
         var totalScore = turnScore + goodCaseScore + badCaseScore;
 
         var highScore = PlayerPrefs.GetInt("HighScore");
-
+	    var newHighScore = highScore;
         if (totalScore > highScore)
         {
-            highScore = totalScore;
-            PlayerPrefs.SetInt("HighScore", highScore);
-
+            newHighScore = totalScore;
+            PlayerPrefs.SetInt("HighScore", newHighScore);
         }
 
         GameAnalytics.NewDesignEvent(Location.CurrentLocation + "_TurnsSurvived", turns);
         GameAnalytics.NewDesignEvent(Location.CurrentLocation + "_Score", totalScore);
 
-        StartCoroutine(ShowScores(turns, casesClosedWell, (cases - casesClosedWell), turnScore, goodCaseScore, badCaseScore, totalScore, highScore));
+        StartCoroutine(ShowScores(turns, casesClosedWell, (cases - casesClosedWell), turnScore, goodCaseScore, badCaseScore, totalScore, highScore, newHighScore));
     }
 
-    private IEnumerator ShowScores(int turns, int goodCases, int badCases, int turnsScore, int goodCaseScore, int badCaseScore,  int score, int highScore)
+    private IEnumerator ShowScores(int turns, int goodCases, int badCases, int turnsScore, int goodCaseScore, int badCaseScore,  int score, int highScore, int newHighScore)
     {
         TurnsText.text = "";
         GoodCaseText.text = "";
         BadCaseText.text = "";
-        ScoreText.text = "";
-        HighScoreText.text = "";
+        ScoreText.text = "0";
+        HighScoreText.text = highScore.ToString();
         // We want to display the scores one at a time to make the page more interesting
         yield return new WaitForSeconds(0.5f);
 
         TurnsLabel.text = turns + " " + Localization.Get(TurnsLabelKey);
-        StartCoroutine(IncrementTextNumber(ScoreText, 0, turnsScore));
-        yield return IncrementTextNumber(TurnsText, 0, turnsScore);
+        //StartCoroutine(IncrementTextNumber(ScoreText, 0, turnsScore));
+        yield return IncrementTextNumber(TurnsText, 0, turnsScore, 0, true);
 
         GoodCasesLabel.text = goodCases + " " + Localization.Get(GoodCasesLabelKey);
-        StartCoroutine(IncrementTextNumber(ScoreText, turnsScore, (turnsScore + goodCaseScore)));
-        yield return IncrementTextNumber(GoodCaseText, 0, goodCaseScore);
+        //StartCoroutine(IncrementTextNumber(ScoreText, turnsScore, (turnsScore + goodCaseScore)));
+        yield return IncrementTextNumber(GoodCaseText, 0, goodCaseScore, turnsScore, true);
 
         BadCasesLabel.text = badCases + " " + Localization.Get(BadCasesLabelKey);
-        StartCoroutine(IncrementTextNumber(ScoreText, (turnsScore + goodCaseScore), score));
-        yield return IncrementTextNumber(BadCaseText, 0, badCaseScore);  
+        //StartCoroutine(IncrementTextNumber(ScoreText, (turnsScore + goodCaseScore), score));
+        yield return IncrementTextNumber(BadCaseText, 0, badCaseScore, (turnsScore + goodCaseScore), true);  
 
-        //yield return IncrementTextNumber(ScoreText, 0, score);
-        yield return IncrementTextNumber(HighScoreText, 0, highScore);
+        yield return IncrementTextNumber(HighScoreText, highScore, newHighScore, 0, false);
     }
 
-    private IEnumerator IncrementTextNumber(Text text, int start, int end)
+    private IEnumerator IncrementTextNumber(Text text, int start, int end, int currentScore, bool incrementScore)
     {
         var num = start;
         var speed = 1.0f;
@@ -95,10 +94,19 @@ public class GameOver : MonoBehaviour
             t += speed*Time.deltaTime;
             num = (int)Mathf.Lerp(start, end, t/speed);
             text.text = num.ToString();
-            
 
+	        if (incrementScore)
+	        {
+		        ScoreText.text = (currentScore + num).ToString();
+	        }
+				
             yield return null;
         }
         text.text = end.ToString();
+	    if (incrementScore)
+	    {
+		    ScoreText.text = (currentScore + num).ToString();
+	    }
+
     }
 }
