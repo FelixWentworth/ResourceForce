@@ -10073,7 +10073,7 @@ GameObject:
   - component: {fileID: 1190364756}
   - component: {fileID: 1190364755}
   m_Layer: 0
-  m_Name: MarketingManager
+  m_Name: BrandingManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10085,7 +10085,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1190364754}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bc24d4c2254ccc4a855b764669aced4, type: 3}
   m_Name: 

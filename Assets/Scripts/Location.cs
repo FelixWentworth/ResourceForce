@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Location : MonoBehaviour
 {
-	// Sites that are supported, custom is a specific city. If list is changed, be sure to change call to SetSite in MarketingManager.cs
+	// Sites that are supported, custom is a specific city. If list is changed, be sure to change call to SetSite in BrandingManager.cs
     public enum Site { Preston = 0, Belfast = 1, Nicosia = 2, Groningen = 3, Valencia = 4, Custom = 5 }
     public static Site m_site;
 
@@ -12,7 +12,7 @@ public class Location : MonoBehaviour
 	    {
 		    if (m_site == Site.Custom)
 		    {
-			    return MarketingManager.Instance.AppMetadata.Location;
+			    return BrandingManager.Instance.AppMetadata.Location;
 		    }
 		    return m_site.ToString();
 	    }

@@ -45,7 +45,7 @@ public class DeviceLocation : MonoBehaviour {
 		LangAndLocGameObject.SetActive(true);
 	    LangGameObject.SetActive(false);
 
-	    if (!MarketingManager.Instance.UseManager)
+	    if (!BrandingManager.Instance.UseManager)
 	    {
 		    UpdateLanguagesAvailable(-1);
 	    }
@@ -61,7 +61,7 @@ public class DeviceLocation : MonoBehaviour {
 
     void Update()
     {
-	    if (!MarketingManager.Instance.UseManager)
+	    if (!BrandingManager.Instance.UseManager)
 	    {
 		    if (_dropdown.transform.childCount != 4)
 		    {
@@ -116,7 +116,7 @@ public class DeviceLocation : MonoBehaviour {
 		LangGameObject.SetActive(languageOnly);
 	}
 
-	public void SetLanguages(MarketingManager.SupportedLanguages languages)
+	public void SetLanguages(BrandingManager.SupportedLanguages languages)
 	{
 		SetButtonPanel();
 		EnglishButton.gameObject.SetActive(languages.English);
@@ -177,7 +177,7 @@ public class DeviceLocation : MonoBehaviour {
         // Set num incidents to 0 to recalculate the number available on start
         Location.NumIncidents = 0;
 
-        if (_locationIndex == 0 && !MarketingManager.Instance.UseManager)
+        if (_locationIndex == 0 && !BrandingManager.Instance.UseManager)
         {
             // Notify the player to select a location
             StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LOCATION"), Color.yellow, true));

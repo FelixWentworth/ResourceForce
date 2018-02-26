@@ -6,14 +6,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [ExecuteInEditMode]
-public class MarketingManager : MonoBehaviour
+public class BrandingManager : MonoBehaviour
 {
 
 	/// <summary>
 	/// Handles aspects of the game that can be altered for use as a standalone app
 	/// </summary>
 
-	public static MarketingManager Instance;
+	public static BrandingManager Instance;
 
 	void Awake()
 	{
