@@ -6,6 +6,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class ContentRequest : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class ContentRequest : MonoBehaviour
     private static List<Scenario> _allScenarios = new List<Scenario>();
     private string _contentString;
     private bool _contentFound;
+
+	public GameObject CancelButton;
 
     private long _serialNumber
     {
@@ -46,7 +49,8 @@ public class ContentRequest : MonoBehaviour
         Retrieving,
         Updating,
         Saving,
-        Finalizing
+        Finalizing,
+		Error
     };
 
     private State _currentState;
@@ -73,30 +77,52 @@ public class ContentRequest : MonoBehaviour
 
             if (!SelectLocationScreen.activeSelf && Location.NumIncidents == 0)
             {
+	            StartCoroutine(WaitToActivateCancel(10f));
                 yield return GetContent();
             }
         }
     }
 
-    public IEnumerator GetContent()
+	private IEnumerator WaitToActivateCancel(float wait)
+	{
+		CancelButton.SetActive(false);
+		yield return new WaitForSeconds(wait);
+		if ((int) _currentState <= 1)
+		{
+			CancelButton.SetActive(true);
+			CancelButton.GetComponentInChildren<Button>().onClick.AddListener(Cancel);
+		}
+	}
+
+	public void Cancel()
+	{
+		StopCoroutine("GetContent");
+		Failed();
+		Loading.LoadingSpinner.StopSpinner("");
+		var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
+		Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language);
+		Debug.Log(Location.NumIncidents + " Scenarios available");
+	}
+
+	public IEnumerator GetContent()
     {
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_RETRIEVING_CONTENT"));
         yield return GetSavedScenarios();
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
-        yield return FetchNewContent();
-        if (_contentFound)
-        {
-            yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
-        }
-        else
-        {
-            Loading.LoadingSpinner.StopSpinner("");
-        }
-        // Set content number
-        var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
-        Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language);
-        Debug.Log(Location.NumIncidents + " Scenarios available");
-    }
+		yield return FetchNewContent();
+		if (_contentFound)
+		{
+			yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
+		}
+		else
+		{
+			Loading.LoadingSpinner.StopSpinner("");
+		}
+		// Set content number
+		var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
+		Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language);
+		Debug.Log(Location.NumIncidents + " Scenarios available");
+	}
 
     private IEnumerator FetchNewContent()
     {
@@ -108,9 +134,7 @@ public class ContentRequest : MonoBehaviour
 
         if (string.IsNullOrEmpty(www.text) || www.text == "[]")
         {
-            Debug.Log("Unable to find any new content from authoring tool");
-            Debug.Log("Current Serial Number: " + _serialNumber);
-            _contentFound = false;
+            Failed();
         }
         else
         {
@@ -156,6 +180,14 @@ public class ContentRequest : MonoBehaviour
             _currentState = State.Finalizing;
         }
     }
+
+	private void Failed()
+	{
+		Debug.Log("Unable to find any new content from authoring tool");
+		Debug.Log("Current Serial Number: " + _serialNumber);
+		_contentFound = false;
+		_currentState = State.Error;
+	}
 
     private string UpdateExistingContent(List<Scenario> currentScenarios, List<Scenario> newScenarios)
     {
