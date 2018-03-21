@@ -50,6 +50,7 @@ public class BrandingManager : MonoBehaviour
 		public string Version;
 		public string AuthoringToolUrl;
 		public string Location;
+		public Sprite[] SplashScreenLogos;
 	}
 
 	[Serializable]
@@ -142,8 +143,13 @@ public class BrandingManager : MonoBehaviour
 		PlayerSettings.productName = AppMetadata.AppName;
 		PlayerSettings.bundleVersion = AppMetadata.Version;
 		PlayerSettings.applicationIdentifier = AppMetadata.BundleId;
+		var logos = new PlayerSettings.SplashScreenLogo[AppMetadata.SplashScreenLogos.Length];
+		for (var i = 0; i < AppMetadata.SplashScreenLogos.Length; i++)
+		{
+			logos[i].logo = AppMetadata.SplashScreenLogos[i];
+		}
+		PlayerSettings.SplashScreen.logos = logos;
 #endif
-
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(AppMetadata.AuthoringToolUrl);
 	}
 
