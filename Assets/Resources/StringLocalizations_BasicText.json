@@ -44,7 +44,7 @@
 {"key":"BASIC_TEXT_SOUND","en-gb":"Sound","de":"Geluid","el":"Ήχος","es":"Sonido"},
 {"key":"BASIC_TEXT_SETTINGS","en-gb":"Settings","de":"Instellingen","el":"Ρυθμίσεις","es":"Ajustes"},
 {"key":"BASIC_TEXT_CREDITS","en-gb":"Credits","de":"Credits","el":"Πόντοι","es":"Créditos"},
-{"key":"BASIC_TEXT_CHANGE_LOCATION","en-gb":"Change Location","de":"Verander locatie","el":"Αλλαγή τοποθεσίας","es":"Cambiar la ubicación"},
+{"key":"BASIC_TEXT_CHANGE_LOCATION","en-gb":"Change Preferences","de":"Verander locatie","el":"Αλλαγή τοποθεσίας","es":"Cambiar la ubicación"},
 {"key":"BASIC_TEXT_CLOSE_CASE","en-gb":"Close Case","de":"Sluit zaak","el":"Κλείσιμο Υπόθεσης","es":"Caso cerrado"},
 {"key":"BASIC_TEXT_CASES","en-gb":"Total Cases","de":"Totaal aantal zaken","el":"Σύνολο Υποθέσεων","es":"Total de casos"},
 {"key":"BASIC_TEXT_CLOSED","en-gb":"Closed","de":"Gesloten","el":"Κλειστές","es":"Cerrados"},
@@ -126,4 +126,7 @@
 {"key":"TUTORIAL_INCIDENT_5_REPORT","en-gb":"Citizens provided a full description along with further information of assault, the exact location is unknown","de":"Burgers leverden een volledige beschrijving, samen met de melding van mishandeling, de exacte locatie is niet bekend","el":"Οι πολίτες δώσανε περισσότερες πληροφορίες για το παραστατικό, αλλά όχι και την ακριβή τοποθεσία του","es":"La ciudadanía proporcionó una descripción completa con más detalles respecto al asalto. Se desconoce la ubicación exacta"},
 {"key":"TUTORIAL_INCIDENT_5_FEEDBACK_WAIT","en-gb":"Bad Idea, you should have sent officers to prevent further escalation","de":"Slecht plan, je had agenten moeten sturen om escalatie te voorkomen","el":"Λανθασμένη απόφαση. Έπρεπε να είχατε στείλει την αστυνομία","es":"Mala idea. Deberías haber enviado policías para prevenir problemas"},
 {"key":"TUTORIAL_INCIDENT_5_FEEDBACK_CITIZEN","en-gb":"Ok, you might be able to get a location, but you may be putting citizens at risk","de":"Oké, je kan wellicht een locatie krijgen, maar je kan daarmee burgers in gevaar brengen","el":"μπορεί να λάβετε πληροφορία για την τοποθεσία, αλλά ενδέχεται να διακινδυνεύσουν πολίτες.","es":"De acuerdo; puede que consigas la ubicación, pero quizá estés poniendo en peligro a la ciudadanía"},
-{"key":"TUTORIAL_INCIDENT_5_FEEDBACK_OFFICER","en-gb":"Well Done! Officers need to be sent to make sure that nobody gets hurt","de":"Goed gedaan! Agenten moeten worden gestuurd om ervoor te zorgen dat niemand gewond raakt","el":"Συγχαρητήρια. Πρέπει να αποσταλούν αστυνομικοί για να επιληφθούνε του συμβάντος","es":"¡Bien hecho! Es necesario enviar policías para asegurar de que nadie resulte herido"}]
+{"key":"TUTORIAL_INCIDENT_5_FEEDBACK_OFFICER","en-gb":"Well Done! Officers need to be sent to make sure that nobody gets hurt","de":"Goed gedaan! Agenten moeten worden gestuurd om ervoor te zorgen dat niemand gewond raakt","el":"Συγχαρητήρια. Πρέπει να αποσταλούν αστυνομικοί για να επιληφθούνε του συμβάντος","es":"¡Bien hecho! Es necesario enviar policías para asegurar de que nadie resulte herido"},
+{"key":"BRANDING_WELCOME_TEXT","en-gb":"Welcome to Resource Force - Lancashire, before you start, set your preferences for the best experience","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BRANDING_DOWNLOAD_NOW","en-gb":"Get In The Know Now!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BRANDING_DOWNLOAD_MESSAGE","en-gb":"Stay up to date with the things that concern you and your community!","de":"XXXX","el":"XXXX","es":"XXXX"}]

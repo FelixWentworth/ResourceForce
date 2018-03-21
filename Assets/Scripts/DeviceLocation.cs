@@ -129,7 +129,7 @@ public class DeviceLocation : MonoBehaviour {
 	{
 		var activeObj = LangAndLocGameObject.activeSelf ? LangAndLocGameObject : LangGameObject;
 		Debug.Log(activeObj.name);
-		_languageButtonPanel = activeObj.GetComponentInChildren<GridLayoutGroup>().transform;
+		_languageButtonPanel = activeObj.GetComponentInChildren<LayoutGroup>().transform;
 
 		Debug.Log(_languageButtonPanel);
 

@@ -82,10 +82,23 @@ public class BrandingManager : MonoBehaviour
 		public bool Greek;
 	}
 
+	[Serializable]
+	public struct BrandingObjects
+	{
+		[Tooltip("Name Not used, for ease of use only")]
+		public string Name;
+		public GameObject Obj;
+		/// <summary>
+		/// On apply, will check if using the manager then set the object with <param name="IsBrandingObject"></param> to be active
+		/// </summary>
+		public bool IsBrandingObject;
+	}
+
 	public Metadata AppMetadata;
 	public SupportedLanguages Languages;
 	public List<ElementImages> Elements;
 	public List<ExternalLinks> Links;
+	public List<BrandingObjects> ObjectsForBranding;
 
 	[Space(25)]
 
@@ -99,6 +112,7 @@ public class BrandingManager : MonoBehaviour
 			SetImages();
 			SetLinks();
 			SetMetadata();
+			SetBrandingObjects();
 		}
 
 	}
@@ -131,5 +145,15 @@ public class BrandingManager : MonoBehaviour
 #endif
 
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(AppMetadata.AuthoringToolUrl);
+	}
+
+	private void SetBrandingObjects()
+	{
+		foreach (var branding in ObjectsForBranding)
+		{
+			var active = (branding.IsBrandingObject && UseManager) || (!branding.IsBrandingObject && !UseManager);
+			
+			branding.Obj.SetActive(active);
+		}
 	}
 }
