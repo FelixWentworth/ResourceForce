@@ -17771,10 +17771,8 @@ MonoBehaviour:
   objectsToDisableOnStart:
   - {fileID: 2082217212}
   - {fileID: 865007740}
-  - {fileID: 2021711097}
-  - {fileID: 1194807386}
-  - {fileID: 1590836742}
   - {fileID: 709674617}
+  - {fileID: 1194807386}
   tut: {fileID: 0}
 --- !u!222 &1962434810
 CanvasRenderer:
