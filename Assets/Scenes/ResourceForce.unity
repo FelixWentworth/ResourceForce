@@ -16744,7 +16744,9 @@ MonoBehaviour:
     BundleId: com.playgen.ResourceForceLancs
     Version: 1.1.2
     AuthoringToolUrl: https://resource-force.playgen.com
-    Location: Preston
+    Location: Lancashire
+    FileName: BasicContent.txt
+    ResourcesFileName: BasicContent
     SplashScreenLogos:
     - {fileID: 21300000, guid: 3b34e252791acdb4295285e3b649d06c, type: 3}
     - {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
@@ -19577,7 +19579,9 @@ MonoBehaviour:
   SelectLocationScreen: {fileID: 67}
   _hostName: https://resource-force.playgen.com
   _fileName: ScenarioContent.txt
+  _brandedFileName: BasicContent.txt
   _resourcesFileName: ScenarioContent
+  _brandedResourcesFileName: BasicContent
   CancelButton: {fileID: 346}
 --- !u!114 &1746
 MonoBehaviour:
@@ -20577,6 +20581,96 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 713.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 124
+      objectReference: {fileID: 0}
+    - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -25.164993
+      objectReference: {fileID: 0}
+    - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 184
+      objectReference: {fileID: 0}
+    - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -25.164993
+      objectReference: {fileID: 0}
+    - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 244
+      objectReference: {fileID: 0}
+    - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -25.164993
+      objectReference: {fileID: 0}
+    - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7142b44ba53241744a8872e52d0ffc42, type: 2}

@@ -15,9 +15,20 @@ public class ContentRequest : MonoBehaviour
     [SerializeField] private string _hostName;
 
     [SerializeField] private string _fileName;
-    [SerializeField] private string _resourcesFileName;
+	[SerializeField]private string _brandedFileName = "";
+	private string FileName
+	{
+		get { return _brandedFileName == "" ? _fileName : _brandedFileName; }
+	}
 
-    private static List<Scenario> _allScenarios = new List<Scenario>();
+    [SerializeField] private string _resourcesFileName;
+	[SerializeField] private string _brandedResourcesFileName = "";
+	private string ResourcesFileName
+	{
+		get { return _brandedResourcesFileName == "" ? _resourcesFileName : _brandedResourcesFileName; }
+	}
+
+	private static List<Scenario> _allScenarios = new List<Scenario>();
     private string _contentString;
     private bool _contentFound;
 
@@ -70,7 +81,17 @@ public class ContentRequest : MonoBehaviour
 		_hostName = url;
 	}
 
-    IEnumerator Start()
+	public void SetFileName(string filename)
+	{
+		_brandedFileName = filename;
+	}
+
+	public void SetResourcesFileName(string filename)
+	{
+		_brandedResourcesFileName = filename;
+	}
+
+	IEnumerator Start()
     {
         if (SelectLocationScreen != null)
         {
@@ -225,7 +246,7 @@ public class ContentRequest : MonoBehaviour
 
     private IEnumerator WriteToFile(string content)
     {
-        var path = Application.persistentDataPath + "/" + _fileName;
+        var path = Application.persistentDataPath + "/" + FileName;
 
         //if (Application.platform == RuntimePlatform.WindowsEditor ||
         //    Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
@@ -257,51 +278,17 @@ public class ContentRequest : MonoBehaviour
 
     public List<Scenario> GetScenarios(string location, string language)
     {
-        if (_allScenarios.Count == 0)
-        {
-            StartCoroutine(GetStreamingAssetsScenario());
-            return null;
-        }
-        else
-        {
-            return _allScenarios.Where(s => s.Language == language && (s.Location == location || s.Location == "Any")).ToList();
-        }
-    }
-
-
-    private IEnumerator GetStreamingAssetsScenario()
-    {
-        var path = Application.streamingAssetsPath + "/" + _fileName;
-
-        if (Application.platform == RuntimePlatform.WindowsEditor ||
-            Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
-            Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.LinuxPlayer)
-        {
-            path = "file:///" + path;
-        }
-        else if (Application.platform == RuntimePlatform.Android)
-        {
-            path = "jar:file://" + Application.dataPath + "!/assets/" + _fileName;
-        }
-
-        var www = new WWW(path);
-
-        yield return www;
-        if (!string.IsNullOrEmpty(www.text))
-        {
-            _contentString = www.text;
-            var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
-            _allScenarios = scenarios;
-        }
-        else
-        {
-            Debug.LogError("Unable to get file at: " + path);
-        }
+	    if (_allScenarios.Count == 0)
+	    {
+			// Fall back to the basic scenarios
+		    GetResourcesScenario();
+	    }
+	    return _allScenarios.Where(s => s.Language == language && (s.Location == location || s.Location == "Any")).ToList();
     }
 
     public void GetResourcesScenario()
     {
-        var textAsset = Resources.Load(_resourcesFileName) as TextAsset;
+        var textAsset = Resources.Load(ResourcesFileName) as TextAsset;
         if (textAsset == null)
         {
             Debug.LogError("Resources file not found");
@@ -314,7 +301,7 @@ public class ContentRequest : MonoBehaviour
 
     private IEnumerator GetSavedScenarios()
     {
-        var path = Application.persistentDataPath + "/" + _fileName;
+        var path = Application.persistentDataPath + "/" + FileName;
 
         //if (Application.platform == RuntimePlatform.WindowsEditor ||
         //    Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
@@ -331,7 +318,7 @@ public class ContentRequest : MonoBehaviour
         yield return www;
         if (string.IsNullOrEmpty(www.text))
         {
-            // write the data from streaming assets to the persistent data file
+            // write the data from Resources to the persistent data file
             GetResourcesScenario();
             var contentString = JsonConvert.SerializeObject(_allScenarios);
             yield return WriteToFile(contentString);

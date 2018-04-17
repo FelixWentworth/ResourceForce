@@ -50,6 +50,8 @@ public class BrandingManager : MonoBehaviour
 		public string Version;
 		public string AuthoringToolUrl;
 		public string Location;
+		public string FileName;
+		public string ResourcesFileName;
 		public Sprite[] SplashScreenLogos;
 	}
 
@@ -151,6 +153,8 @@ public class BrandingManager : MonoBehaviour
 		PlayerSettings.SplashScreen.logos = logos;
 #endif
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(AppMetadata.AuthoringToolUrl);
+		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetFileName(UseManager ? AppMetadata.FileName : "");
+		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetResourcesFileName(UseManager ? AppMetadata.ResourcesFileName : "");
 	}
 
 	private void SetBrandingObjects()
