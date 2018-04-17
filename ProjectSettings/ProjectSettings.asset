@@ -11,7 +11,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: PlayGen
-  productName: Resource Force - Lancahshire
+  productName: Resource Force - Lancashire
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -144,6 +144,7 @@ PlayerSettings:
     Android: com.playgen.ResourceForceLancs
     Standalone: com.playgen.ResourceForceLancashire
     Tizen: com.playgen.ResourceForce
+    WebGL: com.playgen.ResourceForceLancs
     iOS: com.playgen.ResourceForce
     tvOS: com.playgen.ResourceForce
   buildNumber:
