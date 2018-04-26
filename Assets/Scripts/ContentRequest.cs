@@ -106,7 +106,11 @@ public class ContentRequest : MonoBehaviour
         _currentState = State.Retrieving;
         yield return www;
 
-        if (string.IsNullOrEmpty(www.text) || www.text == "[]")
+        if (!string.IsNullOrEmpty(www.error))
+        {
+            Debug.LogError(www.error);
+        }
+        else if (string.IsNullOrEmpty(www.text) || www.text == "[]")
         {
             Debug.Log("Unable to find any new content from authoring tool");
             Debug.Log("Current Serial Number: " + _serialNumber);

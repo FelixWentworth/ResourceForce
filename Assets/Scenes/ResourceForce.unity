@@ -16617,7 +16617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectLocationScreen: {fileID: 371280199}
-  _hostName: https://resource-force.playgen.com
+  _hostName: https://resource-force.playgen.com/v0
   _fileName: ScenarioContent.txt
   _resourcesFileName: ScenarioContent
 --- !u!4 &1964525949
