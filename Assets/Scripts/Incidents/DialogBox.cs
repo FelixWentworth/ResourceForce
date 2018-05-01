@@ -178,6 +178,10 @@ public class DialogBox : MonoBehaviour {
     }
     public void LeftButtonPressed()
     {
+		if (_buttonFade.activeSelf)
+		{
+			return;
+		}
         _buttonFade.SetActive(true);
 
         var feedback = CurrentIncident.GetChoiceFeedback("Ignore");
@@ -210,7 +214,11 @@ public class DialogBox : MonoBehaviour {
     }
     public void RightButtonPressed()
     {
-        if (OfficerController.m_officers.Count >= CurrentIncident.IncidentContent.OfficerReq)
+		if (_buttonFade.activeSelf)
+		{
+			return;
+		}
+		if (OfficerController.m_officers.Count >= CurrentIncident.IncidentContent.OfficerReq)
         {
 			//double check if we have enough officers otherwise the game will break
 			_buttonFade.SetActive(true);
@@ -270,7 +278,11 @@ public class DialogBox : MonoBehaviour {
 
     public void CitizenButtonPressed()
     {
-        _buttonFade.SetActive(true);
+		if (_buttonFade.activeSelf)
+		{
+			return;
+		}
+		_buttonFade.SetActive(true);
 
         var feedback = CurrentIncident.GetChoiceFeedback("Citizen");
 
