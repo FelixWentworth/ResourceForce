@@ -3,10 +3,20 @@ using System.Collections;
 
 public class Location : MonoBehaviour
 {
-    public enum Site { Preston = 0, Belfast = 1, Nicosia = 2, Groningen = 3, Valencia = 4 }
+	// Sites that are supported, custom is a specific city. If list is changed, be sure to change call to SetSite in BrandingManager.cs
+    public enum Site { Preston = 0, Belfast = 1, Nicosia = 2, Groningen = 3, Valencia = 4, Custom = 5 }
     public static Site m_site;
 
-    public static string CurrentLocation { get { return m_site.ToString(); } }
+    public static string CurrentLocation {
+	    get
+	    {
+		    if (m_site == Site.Custom)
+		    {
+			    return BrandingManager.Instance.AppMetadata.Location;
+		    }
+		    return m_site.ToString();
+	    }
+	}
 
     public static int NumIncidents { get; set; }
 

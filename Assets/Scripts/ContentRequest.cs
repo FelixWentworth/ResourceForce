@@ -6,6 +6,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class ContentRequest : MonoBehaviour
 {
@@ -14,11 +15,24 @@ public class ContentRequest : MonoBehaviour
     [SerializeField] private string _hostName;
 
     [SerializeField] private string _fileName;
-    [SerializeField] private string _resourcesFileName;
+	[SerializeField]private string _brandedFileName = "";
+	private string FileName
+	{
+		get { return _brandedFileName == "" ? _fileName : _brandedFileName; }
+	}
 
-    private static List<Scenario> _allScenarios = new List<Scenario>();
+    [SerializeField] private string _resourcesFileName;
+	[SerializeField] private string _brandedResourcesFileName = "";
+	private string ResourcesFileName
+	{
+		get { return _brandedResourcesFileName == "" ? _resourcesFileName : _brandedResourcesFileName; }
+	}
+
+	private static List<Scenario> _allScenarios = new List<Scenario>();
     private string _contentString;
     private bool _contentFound;
+
+	public GameObject CancelButton;
 
     private long _serialNumber
     {
@@ -46,7 +60,8 @@ public class ContentRequest : MonoBehaviour
         Retrieving,
         Updating,
         Saving,
-        Finalizing
+        Finalizing,
+		Error
     };
 
     private State _currentState;
@@ -61,42 +76,74 @@ public class ContentRequest : MonoBehaviour
         get { return "/scenario/new/" + _serialNumber; }
     }
 
-    IEnumerator Start()
+	public void SetUrl(string url)
+	{
+		_hostName = url;
+	}
+
+	public void SetFileName(string filename)
+	{
+		_brandedFileName = filename;
+	}
+
+	public void SetResourcesFileName(string filename)
+	{
+		_brandedResourcesFileName = filename;
+	}
+
+	IEnumerator Start()
     {
         if (SelectLocationScreen != null)
         {
 
             if (!SelectLocationScreen.activeSelf && Location.NumIncidents == 0)
             {
+	            StartCoroutine(WaitToActivateCancel(10f));
                 yield return GetContent();
             }
         }
     }
 
-    public IEnumerator GetContent()
+	private IEnumerator WaitToActivateCancel(float wait)
+	{
+		CancelButton.SetActive(false);
+		yield return new WaitForSeconds(wait);
+		if ((int) _currentState <= 1)
+		{
+			CancelButton.SetActive(true);
+			CancelButton.GetComponentInChildren<Button>().onClick.AddListener(Cancel);
+		}
+	}
+
+	public void Cancel()
+	{
+		StopCoroutine("GetContent");
+		Failed();
+		Loading.LoadingSpinner.StopSpinner("");
+		var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
+		Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language);
+		Debug.Log(Location.NumIncidents + " Scenarios available");
+	}
+
+	public IEnumerator GetContent()
     {
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_RETRIEVING_CONTENT"));
         yield return GetSavedScenarios();
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
-        yield return FetchNewContent();
-        if (_contentFound)
-        {
-            yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
-        }
-        else
-        {
-            Loading.LoadingSpinner.StopSpinner("");
-        }
-        // Set content number
-        var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
-        Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language);
-        Debug.Log(Location.NumIncidents + " Scenarios available");
-        //var all = _allScenarios.Where(s => s.Location == Location.CurrentLocation && s.Language == language).ToList();
-        //foreach (var scenario in all)
-        //{
-        //    Debug.Log("scenario name: " + scenario.Content.Scene.Title);
-        //}
-    }
+		yield return FetchNewContent();
+		if (_contentFound)
+		{
+			yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
+		}
+		else
+		{
+			Loading.LoadingSpinner.StopSpinner("");
+		}
+		// Set content number
+		var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
+		Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language);
+		Debug.Log(Location.NumIncidents + " Scenarios available");
+	}
 
     private IEnumerator FetchNewContent()
     {
@@ -112,9 +159,7 @@ public class ContentRequest : MonoBehaviour
         }
         else if (string.IsNullOrEmpty(www.text) || www.text == "[]")
         {
-            Debug.Log("Unable to find any new content from authoring tool");
-            Debug.Log("Current Serial Number: " + _serialNumber);
-            _contentFound = false;
+            Failed();
         }
         else
         {
@@ -161,6 +206,14 @@ public class ContentRequest : MonoBehaviour
         }
     }
 
+	private void Failed()
+	{
+		Debug.Log("Unable to find any new content from authoring tool");
+		Debug.Log("Current Serial Number: " + _serialNumber);
+		_contentFound = false;
+		_currentState = State.Error;
+	}
+
     private string UpdateExistingContent(List<Scenario> currentScenarios, List<Scenario> newScenarios)
     {
         if (newScenarios == null)
@@ -197,7 +250,7 @@ public class ContentRequest : MonoBehaviour
 
     private IEnumerator WriteToFile(string content)
     {
-        var path = Application.persistentDataPath + "/" + _fileName;
+        var path = Application.persistentDataPath + "/" + FileName;
 
         //if (Application.platform == RuntimePlatform.WindowsEditor ||
         //    Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
@@ -229,51 +282,17 @@ public class ContentRequest : MonoBehaviour
 
     public List<Scenario> GetScenarios(string location, string language)
     {
-        if (_allScenarios.Count == 0)
-        {
-            StartCoroutine(GetStreamingAssetsScenario());
-            return null;
-        }
-        else
-        {
-            return _allScenarios.Where(s => s.Language == language && (s.Location == location || s.Location == "Any")).ToList();
-        }
-    }
-
-
-    private IEnumerator GetStreamingAssetsScenario()
-    {
-        var path = Application.streamingAssetsPath + "/" + _fileName;
-
-        if (Application.platform == RuntimePlatform.WindowsEditor ||
-            Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
-            Application.platform == RuntimePlatform.WSAPlayerX64 || Application.platform == RuntimePlatform.LinuxPlayer)
-        {
-            path = "file:///" + path;
-        }
-        else if (Application.platform == RuntimePlatform.Android)
-        {
-            path = "jar:file://" + Application.dataPath + "!/assets/" + _fileName;
-        }
-
-        var www = new WWW(path);
-
-        yield return www;
-        if (!string.IsNullOrEmpty(www.text))
-        {
-            _contentString = www.text;
-            var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
-            _allScenarios = scenarios;
-        }
-        else
-        {
-            Debug.LogError("Unable to get file at: " + path);
-        }
+	    if (_allScenarios.Count == 0)
+	    {
+			// Fall back to the basic scenarios
+		    GetResourcesScenario();
+	    }
+	    return _allScenarios.Where(s => s.Language == language && (s.Location == location || s.Location == "Any")).ToList();
     }
 
     public void GetResourcesScenario()
     {
-        var textAsset = Resources.Load(_resourcesFileName) as TextAsset;
+        var textAsset = Resources.Load(ResourcesFileName) as TextAsset;
         if (textAsset == null)
         {
             Debug.LogError("Resources file not found");
@@ -286,7 +305,7 @@ public class ContentRequest : MonoBehaviour
 
     private IEnumerator GetSavedScenarios()
     {
-        var path = Application.persistentDataPath + "/" + _fileName;
+        var path = Application.persistentDataPath + "/" + FileName;
 
         //if (Application.platform == RuntimePlatform.WindowsEditor ||
         //    Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WSAPlayerX86 ||
@@ -303,7 +322,7 @@ public class ContentRequest : MonoBehaviour
         yield return www;
         if (string.IsNullOrEmpty(www.text))
         {
-            // write the data from streaming assets to the persistent data file
+            // write the data from Resources to the persistent data file
             GetResourcesScenario();
             var contentString = JsonConvert.SerializeObject(_allScenarios);
             yield return WriteToFile(contentString);

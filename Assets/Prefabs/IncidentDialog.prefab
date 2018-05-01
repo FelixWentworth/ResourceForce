@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 222097437251229442}
   - component: {fileID: 114202181389902698}
   - component: {fileID: 114853074139611240}
+  - component: {fileID: 225349395181438696}
   m_Layer: 5
   m_Name: SendOfficersButton
   m_TagString: Untagged
@@ -540,6 +541,7 @@ GameObject:
   - component: {fileID: 222168960290540582}
   - component: {fileID: 114304474220390882}
   - component: {fileID: 114655434734713306}
+  - component: {fileID: 225764453709722594}
   m_Layer: 5
   m_Name: CitizenHelpButton
   m_TagString: Untagged
@@ -2153,6 +2155,7 @@ GameObject:
   - component: {fileID: 222891024650286118}
   - component: {fileID: 114828612651403894}
   - component: {fileID: 114210614368537010}
+  - component: {fileID: 225995388958258566}
   m_Layer: 5
   m_Name: WaitButton
   m_TagString: Untagged
@@ -4090,7 +4093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.222}
+  m_Color: {r: 0.058823533, g: 0.12941177, b: 0.227451, a: 0.816}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5903,14 +5906,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.509}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ce113ebf258daaf459a6b5f12d7a6067, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7c5bd56a31bc704eb2952eb0641388b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8702,14 +8705,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.178}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 763588d7bdfc68b46bb6c0ac3137a95c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d800ec6c76ff18f4788c57233ed06c23, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -10440,7 +10443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -201.51}
+  m_AnchoredPosition: {x: 0, y: -201.51001}
   m_SizeDelta: {x: -10, y: -279.71}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224159572606002680
@@ -13128,7 +13131,7 @@ RectTransform:
   m_AnchorMin: {x: 0.1, y: 0.575}
   m_AnchorMax: {x: 0.9, y: 0.98}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -144.48639, y: 0}
+  m_SizeDelta: {x: -152.69505, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224974656915950730
 RectTransform:
@@ -13252,8 +13255,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.67, y: 0.1}
   m_AnchorMax: {x: 0.98, y: 0.9}
-  m_AnchoredPosition: {x: 0, y: 0.59199905}
-  m_SizeDelta: {x: 0, y: -1.1839981}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224984256645690142
 RectTransform:
@@ -13291,3 +13294,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.024780273}
   m_SizeDelta: {x: 0, y: 0.049972534}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &225349395181438696
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1017328880360386}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!225 &225764453709722594
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1146161841967554}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!225 &225995388958258566
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662130077180154}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
