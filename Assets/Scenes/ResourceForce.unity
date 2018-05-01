@@ -7713,7 +7713,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 474.18, y: -69.725006}
+  m_AnchoredPosition: {x: 474.18002, y: -69.725006}
   m_SizeDelta: {x: 262.36, y: 139.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &935
@@ -8635,7 +8635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 181.82, y: -239.17506}
+  m_AnchoredPosition: {x: 181.82, y: -239.17508}
   m_SizeDelta: {x: 262.36, y: 139.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1012
@@ -8909,7 +8909,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 474.18, y: -239.17506}
+  m_AnchoredPosition: {x: 474.18002, y: -239.17508}
   m_SizeDelta: {x: 262.36, y: 139.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1033
@@ -16743,7 +16743,7 @@ MonoBehaviour:
     AppName: Resource Force - Lancashire
     BundleId: com.playgen.ResourceForceLancs
     Version: 1.1.2
-    AuthoringToolUrl: https://resource-force.playgen.com
+    AuthoringToolUrl: https://resource-force.playgen.com/v0
     Location: Lancashire
     FileName: BasicContent.txt
     ResourcesFileName: BasicContent
