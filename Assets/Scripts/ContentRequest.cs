@@ -141,7 +141,7 @@ public class ContentRequest : MonoBehaviour
 		}
 		// Set content number
 		var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
-		Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language);
+		Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language && s.Enabled);
 		Debug.Log(Location.NumIncidents + " Scenarios available");
 	}
 

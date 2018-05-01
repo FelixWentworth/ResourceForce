@@ -11,6 +11,7 @@ public class Scenario
     public string Location;
     public string Language;
     public bool Deleted;
+	public bool Enabled;
     public ScenarioWrapper Content;
 }
 
