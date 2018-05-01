@@ -121,7 +121,7 @@ public class ContentRequest : MonoBehaviour
 		Failed();
 		Loading.LoadingSpinner.StopSpinner("");
 		var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
-		Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language);
+		Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language && s.Enabled);
 		Debug.Log(Location.NumIncidents + " Scenarios available");
 	}
 
@@ -287,7 +287,7 @@ public class ContentRequest : MonoBehaviour
 			// Fall back to the basic scenarios
 		    GetResourcesScenario();
 	    }
-	    return _allScenarios.Where(s => s.Language == language && (s.Location == location || s.Location == "Any")).ToList();
+	    return _allScenarios.Where(s => s.Language == language && (s.Location == location || s.Location == "Any") && s.Enabled).ToList();
     }
 
     public void GetResourcesScenario()
