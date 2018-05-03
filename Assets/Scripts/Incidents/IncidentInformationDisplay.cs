@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 public class IncidentInformationDisplay : MonoBehaviour
 {
+	public GameObject IncidentElement;
     public GameObject IncidentHistoryElement;
+
+	public GameObject HistoryPanel;
+
     private IncidentManager _incidentManager;
 
     private List<IncidentHistoryUISetup> _setupObjects;
@@ -23,12 +27,25 @@ public class IncidentInformationDisplay : MonoBehaviour
 
         _offset = 0f;
 
-        foreach (var incidentHistory in elements)
-        {
-            CreateElement(incidentHistory, _offset, false);
-            _totalElements++;
-        }
-        CreateElement(currentElement, _offset);
+		// populate our history dialog
+	    HistoryPanel.SetActive(false);	
+
+		for (var i = elements.Count - 1; i >= 0; i--)
+	    {
+		    CreateHistoryElement(elements[i], _offset);
+		    _totalElements++;
+	    }
+
+		//foreach (var incidentHistory in elements)
+		//{
+		//	CreateHistoryElement(incidentHistory, _offset);
+		//	_totalElements++;
+		//}
+
+		HistoryPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(0f, -_offset);
+
+		// add our main element to incident dialog
+		CreateElement(currentElement);
         _totalElements++;
         _shownElement = _totalElements-1;
     }
@@ -39,46 +56,18 @@ public class IncidentInformationDisplay : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        _setupObjects = new List<IncidentHistoryUISetup>();
+	    foreach (Transform child in HistoryPanel.transform)
+	    {
+		    Destroy(child.gameObject);
+	    }
+		_setupObjects = new List<IncidentHistoryUISetup>();
     }
 
-    public void ElementSelected(int pos)
+    public void ElementSelected(RectTransform icon)
     {
-        if (pos == _shownElement)
-        {
-            // out early as there is no animating to do here
-            pos = _setupObjects.Count-1;
-        }
-        // move the Header objects to expose the selected element
-
-        // HACK reset all items then set the one we want explicitly for testing
-        _offset = 0f;
-        var foundPos = false;
-        var rectHeight = this.GetComponent<RectTransform>().rect.height;
-
-        for (var i =0; i < _setupObjects.Count; i++)
-        {
-           _setupObjects[i].DropDownImage.localRotation = Quaternion.Euler(0f, 0f, 0f);
-            if (!foundPos)
-            {
-                StartCoroutine(TransitionToPosition(_setupObjects[i].Header, new Vector3(0f, _offset * i, 0f), 0.5f));
-                //_setupObjects[i].Header.anchoredPosition3D = new Vector3(0f, _offset * i, 0f);
-                foundPos = i == pos;
-                if (foundPos)
-                {
-                    _setupObjects[i].DropDownImage.localRotation = Quaternion.Euler(0f, 0f, 270f);
-                }
-            }
-            else
-            {
-                var offsetFromBottom = rectHeight + (_offset * (_setupObjects.Count - (i) ) );
-                StartCoroutine(TransitionToPosition(_setupObjects[i].Header, new Vector3(0f, offsetFromBottom * -1f, 0f), 0.5f));
-                //_setupObjects[i].Header.anchoredPosition3D = new Vector3(0f, offsetFromBottom * -1f , 0f);
-            }
-            
-            _offset = _setupObjects[i].Header.rect.height * -1f;
-        }
-        _shownElement = pos;
+		HistoryPanel.SetActive(!HistoryPanel.activeSelf);
+	    var iconRotation = HistoryPanel.activeSelf ? Quaternion.Euler(0f, 0f, 270f) : Quaternion.Euler(0f, 0f, 0f);
+	    icon.localRotation = iconRotation;
     }
 
     private IEnumerator TransitionToPosition(RectTransform transform, Vector3 position, float time)
@@ -93,9 +82,54 @@ public class IncidentInformationDisplay : MonoBehaviour
         }
         transform.anchoredPosition3D = position;
     }
-    private void CreateElement(IncidentHistoryElement element, float offset, bool isCurrent = true)
+
+	private void CreateHistoryElement(IncidentHistoryElement element, float offset)
+	{
+		var go = Instantiate(IncidentHistoryElement);
+
+		var setup = go.GetComponent<IncidentHistoryUISetup>();
+		var rectTransform = go.GetComponent<RectTransform>();
+
+		go.transform.SetParent(HistoryPanel.transform);
+
+		rectTransform.anchorMin = Vector2.zero;
+		rectTransform.anchorMax = Vector2.one;
+
+		rectTransform.offsetMin = Vector2.zero;
+		rectTransform.offsetMax = Vector2.zero;
+
+		rectTransform.localScale = Vector3.one;
+
+		var sprite = setup.Icon.sprite;
+
+		switch (element.PlayerDecision)
+		{
+			case global::IncidentHistoryElement.Decision.Ignore:
+				sprite = WaitSprite;
+				break;
+			case global::IncidentHistoryElement.Decision.Citizen:
+				sprite = CitizenSprite;
+				break;
+			case global::IncidentHistoryElement.Decision.Officer:
+				sprite = OfficerSprite;
+				break;
+		}
+
+		if (_incidentManager == null)
+		{
+			_incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
+		}
+
+		setup.Setup(element.Type , element.Description, sprite, _totalElements, _incidentManager.GetSeverityColor(element.Severity));
+		setup.Header.anchoredPosition3D = new Vector3(0f, offset, 0f);
+
+		_setupObjects.Add(setup);
+		_offset -= setup.Header.rect.height;
+	}
+
+    private void CreateElement(IncidentHistoryElement element)
     {
-        var go = Instantiate(IncidentHistoryElement);
+        var go = Instantiate(IncidentElement);
 
         var setup = go.GetComponent<IncidentHistoryUISetup>();
         var rectTransform = go.GetComponent<RectTransform>();
@@ -111,36 +145,28 @@ public class IncidentInformationDisplay : MonoBehaviour
         rectTransform.localScale = Vector3.one;
 
         var sprite = setup.Icon.sprite;
-        if (!isCurrent)
+        setup.Icon.gameObject.SetActive(false);
+        switch (element.PlayerDecision)
         {
-            setup.Icon.gameObject.SetActive(true);
-            switch (element.PlayerDecision)
-            {
-                case global::IncidentHistoryElement.Decision.Ignore:
-                    sprite = WaitSprite;
-                    break;
-                case global::IncidentHistoryElement.Decision.Citizen:
-                    sprite = CitizenSprite;
-                    break;
-                case global::IncidentHistoryElement.Decision.Officer:
-                    sprite = OfficerSprite;
-                    break;
-            }
+            case global::IncidentHistoryElement.Decision.Ignore:
+                sprite = WaitSprite;
+                break;
+            case global::IncidentHistoryElement.Decision.Citizen:
+                sprite = CitizenSprite;
+                break;
+            case global::IncidentHistoryElement.Decision.Officer:
+                sprite = OfficerSprite;
+                break;
         }
-        else
-        {
-            setup.Icon.gameObject.SetActive(false);
-            setup.DropDownImage.localRotation = Quaternion.Euler(0f, 0f, 270f);
-        }
+    
         if (_incidentManager == null)
         {
             _incidentManager = GameObject.Find("TurnManager").GetComponent<IncidentManager>();
         }
 
         setup.Setup(element.Type, element.Description, sprite, _totalElements, _incidentManager.GetSeverityColor(element.Severity));
-        setup.Header.anchoredPosition3D = new Vector3(0f, offset, 0f);
+        setup.Header.anchoredPosition3D = Vector3.zero;
 
         _setupObjects.Add(setup);
-        _offset -= setup.Header.rect.height;
     }
 }

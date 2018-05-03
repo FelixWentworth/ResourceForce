@@ -9,7 +9,7 @@ public class IncidentHistoryUISetup : MonoBehaviour
     public Text DescriptionText;
     public Image Icon;
 
-    public int ListPoition;
+    public int ListPosition;
 
     public Image HeaderImageOverlay;
     public Image BorderImageOverlay;
@@ -21,23 +21,29 @@ public class IncidentHistoryUISetup : MonoBehaviour
         Header = this.transform.Find("Header").GetComponent<RectTransform>();
     }
 
-    public void Setup(string titleText, string descriptionText, Sprite icon, int listPoition, Color severity)
+    public void Setup(string titleText, string descriptionText, Sprite icon, int listPosition, Color severity)
     {
         TitleText.text = titleText;
-        DescriptionText.text = descriptionText;
         Icon.sprite = icon;
-        ListPoition = listPoition;
+        ListPosition = listPosition;
         SetColor(severity);
-    }
 
-    public void Selected()
+		if (DescriptionText)
+			DescriptionText.text = descriptionText;
+	    if (DropDownImage)
+			DropDownImage.gameObject.SetActive(ListPosition > 0);
+	}
+
+	public void Selected()
     {
-        transform.parent.GetComponent<IncidentInformationDisplay>().ElementSelected(ListPoition);
+        transform.parent.GetComponent<IncidentInformationDisplay>().ElementSelected(DropDownImage);
     }
 
     private void SetColor(Color severity)
     {
-        HeaderImageOverlay.color = severity;
-        BorderImageOverlay.color = severity;
+		if (HeaderImageOverlay)
+			HeaderImageOverlay.color = severity;
+		if (BorderImageOverlay)
+			BorderImageOverlay.color = severity;
     }
 }
