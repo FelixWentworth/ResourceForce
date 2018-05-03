@@ -124,7 +124,7 @@ public class IncidentInformationDisplay : MonoBehaviour
 		setup.Header.anchoredPosition3D = new Vector3(0f, offset, 0f);
 
 		_setupObjects.Add(setup);
-		_offset -= setup.Header.rect.height;
+		_offset -= (setup.Header.rect.height + 5f);
 	}
 
     private void CreateElement(IncidentHistoryElement element)
