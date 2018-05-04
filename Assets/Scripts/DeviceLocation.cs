@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 
 public class DeviceLocation : MonoBehaviour {
 
@@ -116,13 +117,22 @@ public class DeviceLocation : MonoBehaviour {
 		LangGameObject.SetActive(languageOnly);
 	}
 
-	public void SetLanguages(BrandingManager.SupportedLanguages languages)
+	public void SetLanguages(BrandingManager.SupportedLanguages supported)
 	{
+		if (supported.Languages.Count == 1)
+		{
+			// get language to be used
+			var language = supported.Languages[0];
+			shouldOverrideLanguage = true;
+			overrideLanguage = language;
+			LanguageSelectd();
+			return;
+		}
 		SetButtonPanel();
-		EnglishButton.gameObject.SetActive(languages.English);
-		DutchButton.gameObject.SetActive(languages.Dutch);
-		SpanishButton.gameObject.SetActive(languages.Spanish);
-		GreekButton.gameObject.SetActive(languages.Greek);
+		EnglishButton.gameObject.SetActive(supported.Languages.Any(l => l == SystemLanguage.English));
+		DutchButton.gameObject.SetActive(supported.Languages.Any(l => l == SystemLanguage.Dutch));
+		SpanishButton.gameObject.SetActive(supported.Languages.Any(l => l == SystemLanguage.Spanish));
+		GreekButton.gameObject.SetActive(supported.Languages.Any(l => l == SystemLanguage.Greek));
 	}
 
 	private void SetButtonPanel()

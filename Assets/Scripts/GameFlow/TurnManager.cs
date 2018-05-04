@@ -21,7 +21,8 @@ public class TurnManager : MonoBehaviour {
     public GameObject SettingsScreenQuitToMenuOption;
     public GameObject SettingsScreenScenarioReportOption;
     public GameObject SettingsScreenReplayTutorialOption;
-    public GameObject NextTurnButton;
+	public GameObject SettingsScreenChangePreferenceButton;
+	public GameObject NextTurnButton;
     public GameObject EndTurnSatisfaction;
 
     public Feedback FeedbackObject;
@@ -110,6 +111,8 @@ public class TurnManager : MonoBehaviour {
         var inGame = turn > 0;
 
         SettingsScreenQuitToMenuOption.SetActive(inGame);
+		if (BrandingManager.Instance.UseManager)
+			SettingsScreenChangePreferenceButton.SetActive(BrandingManager.Instance.Languages.Languages.Count > 1);
         //SettingsScreenScenarioReportOption.SetActive(inGame);
         SettingsScreenReplayTutorialOption.SetActive(!inGame);
         settingsScreen.SetActive(!settingsScreen.activeSelf);

@@ -36,7 +36,7 @@ public class StartTransition : MonoBehaviour {
 
 		deviceLocation.SetRequiredSelection(languageOnly: useMarketingManager);
 
-	    if (useMarketingManager)
+	    if (useMarketingManager && newLogIn)
 	    {
 		    deviceLocation.SetLanguages(BrandingManager.Instance.Languages);
 	    }
