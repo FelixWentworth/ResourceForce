@@ -28,9 +28,7 @@ public class ContentRequest : MonoBehaviour
 		get { return _brandedResourcesFileName == "" ? _resourcesFileName : _brandedResourcesFileName; }
 	}
 
-	private static List<Scenario> _allScenarios = new List<Scenario>();
-    private string _contentString;
-    private bool _contentFound;
+	private static List<Scenario> AllScenarios { get; set; }
 
 	public GameObject CancelButton;
 
@@ -43,14 +41,9 @@ public class ContentRequest : MonoBehaviour
             //return 0;
             // ------------------------
             var serial = PlayerPrefs.GetString("SerialNumber");
-            if (serial == "")
-            {
-                return 0;
-            }
-            else
-            {
-                return Convert.ToInt64(serial);
-            }
+            return string.IsNullOrEmpty(serial) 
+                ? 0 
+                : Convert.ToInt64(serial);
         }
     }
 
@@ -121,31 +114,42 @@ public class ContentRequest : MonoBehaviour
 		Failed();
 		Loading.LoadingSpinner.StopSpinner("");
 		var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
-		Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language && s.Enabled);
+		Location.NumIncidents = AllScenarios.Count(s => s.Region == Location.CurrentLocation && s.Language == language && s.Enabled);
 		Debug.Log(Location.NumIncidents + " Scenarios available");
 	}
 
 	public IEnumerator GetContent()
     {
+        var loadedScenarios = new List<Scenario>();
+
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_RETRIEVING_CONTENT"));
-        yield return GetSavedScenarios();
+        yield return GetSavedScenarios(loadedScenarios);
+
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
-		yield return FetchNewContent();
-		if (_contentFound)
+		yield return FetchNewContent(loadedScenarios);
+		if (loadedScenarios.Any())
 		{
 			yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
 		}
 		else
 		{
-			Loading.LoadingSpinner.StopSpinner("");
-		}
-		// Set content number
-		var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
-		Location.NumIncidents = _allScenarios.Count(s => s.Location == Location.CurrentLocation && s.Language == language && s.Enabled);
-		Debug.Log(Location.NumIncidents + " Scenarios available");
-	}
+		    yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_FALLBACK_CONTENT"), 1.5f);
+		    
+		    Debug.Log("Loading fallback content from Resources.");
+            GetResourcesScenario(loadedScenarios);
+		    
+            Loading.LoadingSpinner.StopSpinner("");
+        }
 
-    private IEnumerator FetchNewContent()
+        // Set content number
+        var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
+		Location.NumIncidents = loadedScenarios.Count(s => s.Region == Location.CurrentLocation && s.Language == language && s.Enabled);
+		Debug.Log(Location.NumIncidents + " Scenarios available");
+
+        AllScenarios = loadedScenarios;
+    }
+
+    private IEnumerator FetchNewContent(List<Scenario> loadedScenarios)
     {
         _currentState = State.Initializing;
         var www = new WWW(_api + _extension);
@@ -163,43 +167,36 @@ public class ContentRequest : MonoBehaviour
         }
         else
         {
-            _contentFound = true;
             var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
 
             _currentState = State.Updating;
 
-            var contentString = _contentString;
+            string allScenariosContent;
 
             // Update any scenarios that may have been edited
-            if (contentString != "")
+            if (loadedScenarios.Any())
             {
-                var existingScenarios = JsonConvert.DeserializeObject<List<Scenario>>(contentString);
-
-                contentString = UpdateExistingContent(existingScenarios, scenarios);
-
+                allScenariosContent = UpdateExistingContent(loadedScenarios, scenarios);
             }
             else
             {
-                contentString = www.text;
+                allScenariosContent = www.text;
+                loadedScenarios.AddRange(scenarios);
             }
 
             _currentState = State.Saving;
 
-            if (contentString != "")
+            if (!string.IsNullOrEmpty(allScenariosContent))
             {
-                yield return WriteToFile(contentString);
+                yield return WriteToFile(allScenariosContent);
             }
+
             // update the scenario number
-            foreach (var scenario in scenarios)
+            var maxSerial = scenarios.Max(s => s.SerialNumber);
+            if (maxSerial > _serialNumber)
             {
-                if (scenario.SerialNumber > _serialNumber)
-                {
-
-                    // TODO Save serial number
-                    PlayerPrefs.SetString("SerialNumber", scenario.SerialNumber.ToString());
-
-                    Debug.Log("---" + scenario.SerialNumber);
-                }
+                PlayerPrefs.SetString("SerialNumber", maxSerial.ToString());
+                Debug.Log("Saved new Max serial number: " + maxSerial);
             }
 
             _currentState = State.Finalizing;
@@ -210,7 +207,6 @@ public class ContentRequest : MonoBehaviour
 	{
 		Debug.Log("Unable to find any new content from authoring tool");
 		Debug.Log("Current Serial Number: " + _serialNumber);
-		_contentFound = false;
 		_currentState = State.Error;
 	}
 
@@ -221,7 +217,6 @@ public class ContentRequest : MonoBehaviour
             return "";
         }
 
-        var allScenarios = currentScenarios;
         foreach (var newScenario in newScenarios)
         {
             // check if the scenario currently exists and therefore has been modified
@@ -229,23 +224,23 @@ public class ContentRequest : MonoBehaviour
 
             if (modified != null)
             {
-                allScenarios.Remove(modified);
+                currentScenarios.Remove(modified);
                 modified.Content = newScenario.Content;
                 if (!newScenario.Deleted)
                 {
-                    allScenarios.Add(modified);
+                    currentScenarios.Add(modified);
                 }
             }
             else
             {
                 if (!newScenario.Deleted)
                 {
-                    allScenarios.Add(newScenario);
+                    currentScenarios.Add(newScenario);
                 }
             }
         }
 
-        return JsonConvert.SerializeObject(allScenarios);
+        return JsonConvert.SerializeObject(currentScenarios);
     }
 
     private IEnumerator WriteToFile(string content)
@@ -282,15 +277,20 @@ public class ContentRequest : MonoBehaviour
 
     public List<Scenario> GetScenarios(string location, string language)
     {
-	    if (_allScenarios.Count == 0)
+	    if (AllScenarios.Count == 0)
 	    {
 			// Fall back to the basic scenarios
 		    GetResourcesScenario();
 	    }
-	    return _allScenarios.Where(s => s.Language == language && (s.Location == location || s.Location == "Any") && s.Enabled).ToList();
+	    return AllScenarios.Where(s => s.Language == language && (s.Region == location || s.Region == "Any") && s.Enabled).ToList();
     }
 
     public void GetResourcesScenario()
+    {
+        GetResourcesScenario(new List<Scenario>());
+    }
+
+    public void GetResourcesScenario(List<Scenario> loadedScenarios)
     {
         var textAsset = Resources.Load(ResourcesFileName) as TextAsset;
         if (textAsset == null)
@@ -298,12 +298,11 @@ public class ContentRequest : MonoBehaviour
             Debug.LogError("Resources file not found");
             return;
         }
-        _contentString = textAsset.text;
         var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(textAsset.text);
-        _allScenarios = scenarios;
+        loadedScenarios.AddRange(scenarios);
     }
 
-    private IEnumerator GetSavedScenarios()
+    private IEnumerator GetSavedScenarios(List<Scenario> loadedScenarios)
     {
         var path = Application.persistentDataPath + "/" + FileName;
 
@@ -320,18 +319,14 @@ public class ContentRequest : MonoBehaviour
 
         var www = new WWW(path);
         yield return www;
-        if (string.IsNullOrEmpty(www.text))
+        if (!string.IsNullOrEmpty(www.text))
         {
-            // write the data from Resources to the persistent data file
-            GetResourcesScenario();
-            var contentString = JsonConvert.SerializeObject(_allScenarios);
-            yield return WriteToFile(contentString);
+            var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
+            loadedScenarios.AddRange(scenarios);
         }
         else
         {
-            _contentString = www.text;
-            var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(www.text);
-            _allScenarios = scenarios;
+            Debug.Log("No saved scenarios to load.");
         }
     }
 }
