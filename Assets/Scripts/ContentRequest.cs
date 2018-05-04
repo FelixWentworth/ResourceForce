@@ -13,6 +13,7 @@ public class ContentRequest : MonoBehaviour
     public GameObject SelectLocationScreen;
 
     [SerializeField] private string _hostName;
+    [SerializeField] private int _downloadTimeout;
 
     [SerializeField] private string _fileName;
 	[SerializeField]private string _brandedFileName = "";
@@ -155,9 +156,20 @@ public class ContentRequest : MonoBehaviour
         var www = new WWW(_api + _extension);
 
         _currentState = State.Retrieving;
-        yield return www;
 
-        if (!string.IsNullOrEmpty(www.error))
+        var elapsedTime = 0f;
+        while (!www.isDone && elapsedTime < _downloadTimeout)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        if (!www.isDone)
+        {
+            www.Dispose();
+            Debug.LogError("Request timed out.");
+        }
+        else if (!string.IsNullOrEmpty(www.error))
         {
             Debug.LogError(www.error);
         }
