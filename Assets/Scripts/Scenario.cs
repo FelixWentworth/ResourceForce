@@ -8,7 +8,7 @@ public class Scenario
 {
     public string Id;
     public long SerialNumber;
-    public string Location;
+    public string Region;
     public string Language;
     public bool Deleted;
 	public bool Enabled;
