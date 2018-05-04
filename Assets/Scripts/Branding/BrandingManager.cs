@@ -79,10 +79,7 @@ public class BrandingManager : MonoBehaviour
 	[Serializable]
 	public struct SupportedLanguages
 	{
-		public bool English;
-		public bool Spanish;
-		public bool Dutch;
-		public bool Greek;
+		public List<SystemLanguage> Languages;
 	}
 
 	[Serializable]

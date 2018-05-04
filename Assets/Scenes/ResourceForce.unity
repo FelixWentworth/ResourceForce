@@ -12822,6 +12822,7 @@ MonoBehaviour:
   SettingsScreenQuitToMenuOption: {fileID: 334}
   SettingsScreenScenarioReportOption: {fileID: 145}
   SettingsScreenReplayTutorialOption: {fileID: 277}
+  SettingsScreenChangePreferenceButton: {fileID: 247}
   NextTurnButton: {fileID: 325}
   EndTurnSatisfaction: {fileID: 163}
   FeedbackObject: {fileID: 1605}
@@ -16745,10 +16746,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 3b34e252791acdb4295285e3b649d06c, type: 3}
     - {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
   Languages:
-    English: 1
-    Spanish: 0
-    Dutch: 0
-    Greek: 0
+    Languages: 0a000000
   Elements:
   - Name: Start Screen Logo
     ImageElement: {fileID: 1326}
