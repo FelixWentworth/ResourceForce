@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class Feedback : MonoBehaviour
 {
     private string _game = "New Game";
-    public string _otherInfo = "Location";
+    public string _otherInfo = "Region";
 
     private string _feedbackSendLocation;
 
