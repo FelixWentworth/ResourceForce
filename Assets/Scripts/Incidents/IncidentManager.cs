@@ -136,7 +136,7 @@ public class IncidentManager : MonoBehaviour
     }
     public void UpdateIncidents()
     {
-        string status = Localization.Get("BASIC_TEXT_ACTIVE_CASES") + "\n";
+        //string status = Localization.Get("BASIC_TEXT_ACTIVE_CASES") + "\n";
         for (int i = 0; i < incidents.Count; i++)
         {
             //an incident has been resolved so remove it from our list
@@ -145,7 +145,7 @@ public class IncidentManager : MonoBehaviour
                 m_IncidentQueue.UpdateSeverity(incidents[i].Scenario.Id, incidents[i].IncidentContent.Severity);
             }
         }
-        CaseStatus.text = status;
+        //CaseStatus.text = status;
     }
     public void CheckExpiredIncidents(int turn)
     {
@@ -170,7 +170,7 @@ public class IncidentManager : MonoBehaviour
         {
             AddNewIncidents(turn + 1);
         }
-
+			
         var currentIncident = NextIncident[0];
         if (m_dialogBox == null)
         {

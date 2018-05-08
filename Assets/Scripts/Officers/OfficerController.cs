@@ -93,7 +93,7 @@ public class OfficerController : MonoBehaviour {
         {
             status += count + " - " + m_officersInUse[i].turnsTilAvailable + Localization.Get("BASIC_TEXT_TURNS_UNTIL_AVAILABLE") + "\n";
         }
-        officerStatus.text = status;
+        //officerStatus.text = status;
         UpdateOfficerIndicators();
     }
 

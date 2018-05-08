@@ -41,7 +41,7 @@ public class DialogBox : MonoBehaviour {
 
     private List<Transform> _ratingTransforms;
 
-    void Start()
+    void Awake()
     {        
         _citizenHelpButton = ButtonPanel.Find("CitizenHelpButton").gameObject;
         _sendOfficerButton = ButtonPanel.Find("SendOfficersButton").gameObject;

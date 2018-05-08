@@ -1,0 +1,182 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1093791876184174}
+  m_IsPrefabParent: 1
+--- !u!1 &1093791876184174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4509126086054598}
+  - component: {fileID: 114536125886377504}
+  m_Layer: 0
+  m_Name: BrandingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4509126086054598
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1093791876184174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 600, y: 960, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114536125886377504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1093791876184174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc24d4c2254ccc4a855b764669aced4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseManager: 1
+  AppMetadata:
+    AppName: Resource Force - Lancashire
+    BundleId: com.playgen.ResourceForceLancs
+    Version: 1.1.2
+    AuthoringToolUrl: https://resource-force.playgen.com/v0
+    Location: Lancashire
+    FileName: BasicContent.txt
+    ResourcesFileName: 
+    SplashScreenLogos:
+    - {fileID: 21300000, guid: 3b34e252791acdb4295285e3b649d06c, type: 3}
+    - {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
+  Languages:
+    Languages: 0a000000
+  Elements:
+  - Name: Start Screen Logo
+    ImageElement: {fileID: 0}
+    NewSprite: {fileID: 21300000, guid: f11d3d17c2d04be449d76051927d2bf7, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: Game Logo
+    ImageElement: {fileID: 0}
+    NewSprite: {fileID: 21300000, guid: d800ec6c76ff18f4788c57233ed06c23, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 0.1764706}
+  - Name: Citizen Button Icon
+    ImageElement: {fileID: 0}
+    NewSprite: {fileID: 21300000, guid: a1f1c2e8c9efdb64686ea961aa3a0424, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: End Game Link Icon
+    ImageElement: {fileID: 0}
+    NewSprite: {fileID: 21300000, guid: f11d3d17c2d04be449d76051927d2bf7, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: ExternalLinkWebsite
+    ImageElement: {fileID: 0}
+    NewSprite: {fileID: 21300000, guid: 1687d3012c10523478c6b1d670e7c8e0, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: ExternalLinkFacebook
+    ImageElement: {fileID: 0}
+    NewSprite: {fileID: 21300000, guid: 7c661c5b697eb8542a154661935caa26, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: ExternalLinkTwitter
+    ImageElement: {fileID: 0}
+    NewSprite: {fileID: 21300000, guid: 5fe3a97e055ea1f4ab6c9eaef50045b6, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: Location Select Logo
+    ImageElement: {fileID: 0}
+    NewSprite: {fileID: 21300000, guid: f11d3d17c2d04be449d76051927d2bf7, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: Tap Screen Start Background
+    ImageElement: {fileID: 0}
+    NewSprite: {fileID: 21300000, guid: 91a231c5299b52d4290cf8ba4ab7df2a, type: 3}
+    Tint: {r: 0, g: 1, b: 0.827451, a: 0.63529414}
+  - Name: InGameMap
+    ImageElement: {fileID: 0}
+    NewSprite: {fileID: 21300000, guid: c7c5bd56a31bc704eb2952eb0641388b, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  - Name: Home Screen Map
+    ImageElement: {fileID: 0}
+    NewSprite: {fileID: 21300000, guid: c7c5bd56a31bc704eb2952eb0641388b, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  Links:
+  - Name: Home App Download
+    Button: {fileID: 0}
+    Url: https://www.lancashire.police.uk/help-advice/in-the-know/
+    SendEvent: 0
+    EventName: Click_InTheKnow
+  - Name: End App Download
+    Button: {fileID: 0}
+    Url: https://www.lancashire.police.uk/help-advice/in-the-know/
+    SendEvent: 0
+    EventName: Click_InTheKnow
+  - Name: Options Website
+    Button: {fileID: 0}
+    Url: https://www.lancashire.police.uk/
+    SendEvent: 0
+    EventName: Click_Website
+  - Name: Options Facebook
+    Button: {fileID: 0}
+    Url: https://www.facebook.com/lancspolice/
+    SendEvent: 0
+    EventName: Click_Facebook
+  - Name: Options Twitter
+    Button: {fileID: 0}
+    Url: https://twitter.com/LancsPolice?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
+    SendEvent: 0
+    EventName: Click_Twitter
+  ObjectsForBranding:
+  - Name: button home inspect
+    Obj: {fileID: 0}
+    IsBrandingObject: 0
+  - Name: button home branding
+    Obj: {fileID: 0}
+    IsBrandingObject: 1
+  - Name: Set Location
+    Obj: {fileID: 0}
+    IsBrandingObject: 0
+  - Name: Set language only
+    Obj: {fileID: 0}
+    IsBrandingObject: 1
+  - Name: Home Screen Inspect logo
+    Obj: {fileID: 0}
+    IsBrandingObject: 0
+  - Name: Home Screeen Branding Logo
+    Obj: {fileID: 0}
+    IsBrandingObject: 1
+  - Name: End Game Inspect
+    Obj: {fileID: 0}
+    IsBrandingObject: 0
+  - Name: End Game Branding
+    Obj: {fileID: 0}
+    IsBrandingObject: 1
+  - Name: Home Description Border Inspect
+    Obj: {fileID: 0}
+    IsBrandingObject: 0
+  - Name: Home Description Border branded
+    Obj: {fileID: 0}
+    IsBrandingObject: 1
+  - Name: Warning Inspect
+    Obj: {fileID: 0}
+    IsBrandingObject: 0
+  - Name: Warning Branded
+    Obj: {fileID: 0}
+    IsBrandingObject: 1
+  - Name: Select Location Inspect
+    Obj: {fileID: 0}
+    IsBrandingObject: 0
+  - Name: Select Location Branded
+    Obj: {fileID: 0}
+    IsBrandingObject: 1
+  Apply: 0
