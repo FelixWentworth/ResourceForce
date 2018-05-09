@@ -22,8 +22,8 @@
                 }
               ],
               "description": "Body has been found in a river and has been identified as the missing person",
-              "officerReq": 0,
-              "satisfactionImpact": -6,
+              "officerReq": 1,
+              "satisfactionImpact": -5,
               "severity": 3,
               "title": "RESOLUTION",
               "turnReq": 1
@@ -56,8 +56,8 @@
                       }
                     ],
                     "description": "Body has been found in a river and has been identified as the missing person",
-                    "officerReq": 0,
-                    "satisfactionImpact": -6,
+                    "officerReq": 1,
+                    "satisfactionImpact": -5,
                     "severity": 3,
                     "title": "RESOLUTION",
                     "turnReq": 1
@@ -79,7 +79,7 @@
                       }
                     ],
                     "description": "Officers search a larger area and eventually find the woman and return her to her home",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 4,
                     "severity": 3,
                     "title": "RESOLUTION",
@@ -113,8 +113,8 @@
                             }
                           ],
                           "description": "Body has been found in a river and has been identified as the missing person",
-                          "officerReq": 0,
-                          "satisfactionImpact": -6,
+                          "officerReq": 1,
+                          "satisfactionImpact": -5,
                           "severity": 3,
                           "title": "RESOLUTION",
                           "turnReq": 1
@@ -136,7 +136,7 @@
                             }
                           ],
                           "description": "Officers locate the missing woman and take her to hospital for a checkup, she later returned home and is now safe",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 4,
                           "severity": 3,
                           "title": "RESOLUTION",
@@ -164,7 +164,7 @@
               "satisfactionImpact": 0,
               "severity": 3,
               "title": "Investigate",
-              "turnReq": 6
+              "turnReq": 1
             }
           },
           {
@@ -172,8 +172,8 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Citizen",
-              "feedback": "-1",
-              "feedbackRating": -1
+              "feedback": "Good, Citizens may be able to provide up to date information on a last known location",
+              "feedbackRating": 4
             },
             "scene": {
               "_type": "Scene",
@@ -183,7 +183,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Ignore",
-                    "feedback": "You should use  the new information, the woman could be in significant danger",
+                    "feedback": "You should use the new information, the woman could be in significant danger",
                     "feedbackRating": 1
                   },
                   "scene": {
@@ -194,8 +194,8 @@
                       }
                     ],
                     "description": "Body has been found in a river and has been identified as the missing person",
-                    "officerReq": 0,
-                    "satisfactionImpact": -6,
+                    "officerReq": 1,
+                    "satisfactionImpact": -5,
                     "severity": 3,
                     "title": "RESOLUTION",
                     "turnReq": 1
@@ -217,7 +217,7 @@
                       }
                     ],
                     "description": "Officers locate the missing woman and take her to hospital for a checkup, she later returned home and is now safe",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 4,
                     "severity": 3,
                     "title": "RESOLUTION",
@@ -250,9 +250,9 @@
     },
     "id": "7be72088-7965-4e20-b988-f3eef35205c2",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -310,7 +310,7 @@
                                   }
                                 ],
                                 "description": "Man has been left on the street until paramedics arrive, no arrests made, general public happiness decreases",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": -3,
                                 "severity": 3,
                                 "title": "RESOLUTION",
@@ -333,7 +333,7 @@
                                   }
                                 ],
                                 "description": "Offender has been arrested by police after finding him in a shed nearby",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": 4,
                                 "severity": 3,
                                 "title": "RESOLUTION",
@@ -367,7 +367,7 @@
                                         }
                                       ],
                                       "description": "Officers clean up and a man is arrested for the assault",
-                                      "officerReq": 0,
+                                      "officerReq": 1,
                                       "satisfactionImpact": 4,
                                       "severity": 3,
                                       "title": "RESOLUTION",
@@ -390,7 +390,7 @@
                                         }
                                       ],
                                       "description": "Man has been left on the street until paramedics arrive, no arrests made, general public happiness decreases",
-                                      "officerReq": 0,
+                                      "officerReq": 1,
                                       "satisfactionImpact": -3,
                                       "severity": 3,
                                       "title": "RESOLUTION",
@@ -418,7 +418,7 @@
                           "satisfactionImpact": 0,
                           "severity": 3,
                           "title": "Development - physical assault",
-                          "turnReq": 5
+                          "turnReq": 4
                         }
                       },
                       {
@@ -437,7 +437,7 @@
                             }
                           ],
                           "description": "The officer manages to break up the fight and send the two neighbours on their way",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -471,7 +471,7 @@
                                   }
                                 ],
                                 "description": "Man has been left on the street until paramedics arrive, no arrests made, general public happiness decreases",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": -3,
                                 "severity": 3,
                                 "title": "RESOLUTION",
@@ -494,7 +494,7 @@
                                   }
                                 ],
                                 "description": "Using citizen information, the officers manage to locate the man and arrest him",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": 5,
                                 "severity": 2,
                                 "title": "RESOLUTION",
@@ -541,7 +541,7 @@
                       }
                     ],
                     "description": "The officer has calmed down the two neighbours and the verbal abuse stops",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -576,7 +576,7 @@
                 }
               ],
               "description": "The officer has managed to stop the incident from developing, both neighbours have agreed to ignore the incident",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -597,9 +597,9 @@
     },
     "id": "111a9397-7481-44d8-b1e1-fda0190a28d5",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -624,7 +624,7 @@
                 }
               ],
               "description": "Resolution due to delay in rape being reported vital evidence is lost no arrests made.",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": -2,
               "severity": 2,
               "title": "RESOLUTION",
@@ -658,7 +658,7 @@
                       }
                     ],
                     "description": "Wait to start rape investigation leading to evidence being lost and although suspect arrested not enough evidence to secure a charge ",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -681,7 +681,7 @@
                       }
                     ],
                     "description": "Wait to start rape investigation leading to evidence being lost and although suspect arrested not enough evidence to secure a charge ",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -697,7 +697,7 @@
               "satisfactionImpact": 0,
               "severity": 2,
               "title": "Rape",
-              "turnReq": 6
+              "turnReq": 1
             }
           },
           {
@@ -727,7 +727,7 @@
                       }
                     ],
                     "description": "Wait to start rape investigation leading to evidence being lost and although suspect arrested not enough evidence to secure a charge ",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -750,7 +750,7 @@
                       }
                     ],
                     "description": "Rape investigation conducted and offender identified and arrested ",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 3,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -766,7 +766,7 @@
               "satisfactionImpact": 0,
               "severity": 2,
               "title": "Rape",
-              "turnReq": 6
+              "turnReq": 1
             }
           },
           {
@@ -783,9 +783,9 @@
     },
     "id": "2e3b00e2-c90a-4517-a1b6-7a4caac0c16d",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -821,7 +821,7 @@
                       }
                     ],
                     "description": "Patrol attends and fines that vehicle is not causing an obstruction & cannot do anything refers the matter to council parking services.",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 1,
                     "title": "RESOLUTION",
@@ -844,7 +844,7 @@
                       }
                     ],
                     "description": "Information allows dispatch to determine that the matter is not a police one & issue is referred to council parking services. However due to the delay in resolving matter confidence is lost.",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -2,
                     "severity": 1,
                     "title": "RESOLUTION",
@@ -855,7 +855,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Public are asking for police to dispatch officers to the region",
+              "description": "Public are asking for police to dispatch officers to the location",
               "officerReq": 1,
               "satisfactionImpact": -1,
               "severity": 1,
@@ -879,7 +879,7 @@
                 }
               ],
               "description": "Information allows dispatch to determine that the matter is not a police one & issue is referred to council parking services.",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -902,7 +902,7 @@
                 }
               ],
               "description": "Patrol attends and fines that vehicle is not causing an obstruction & cannot do anything refers the matter to council parking services.",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -923,9 +923,9 @@
     },
     "id": "0469c666-c964-4a47-8f2f-9a5ab31ffabf",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -950,7 +950,7 @@
                 }
               ],
               "description": "Due to lack of deployment not enough evidence can be obtained to identify & prosecute the offender",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": -1,
               "severity": 2,
               "title": "RESOLUTION",
@@ -984,7 +984,7 @@
                       }
                     ],
                     "description": "Suspect eventually arrested and successfully prosecuted at the cost of public confidence",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -1007,7 +1007,7 @@
                       }
                     ],
                     "description": "Arrest the suspect, using victim & witness statements suspect is successfully prosecuted ",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -1053,7 +1053,7 @@
                       }
                     ],
                     "description": "Suspect is successfully prosecuted",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -1076,7 +1076,7 @@
                       }
                     ],
                     "description": "Suspect eventually arrested and successfully prosecuted at the cost of public confidence",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -1109,9 +1109,9 @@
     },
     "id": "bedd89eb-8b9b-4007-913c-30a242da65ef",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -1147,7 +1147,7 @@
                       }
                     ],
                     "description": "Victim bleeds out & dies due to lack of deployment",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 3,
                     "title": "RESOLUTION",
@@ -1192,7 +1192,7 @@
                                   }
                                 ],
                                 "description": "Victim bleeds out & dies due to lack of deployment",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": -3,
                                 "severity": 3,
                                 "title": "RESOLUTION",
@@ -1215,7 +1215,7 @@
                                   }
                                 ],
                                 "description": "Aggressor is successfully prosecuted ",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": 2,
                                 "severity": 2,
                                 "title": "RESOLUTION",
@@ -1250,7 +1250,7 @@
                             }
                           ],
                           "description": "Forensic evidence allows offender to be successfully prosecuted",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 3,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -1262,11 +1262,11 @@
                       }
                     ],
                     "description": "Deploy officers, arrest the offender. Due to the severity of the injury a scene is identified and officers allocated to staff it awaiting CSI",
-                    "officerReq": 5,
+                    "officerReq": 3,
                     "satisfactionImpact": 0,
                     "severity": 2,
                     "title": "Assault",
-                    "turnReq": 7
+                    "turnReq": 3
                   }
                 },
                 {
@@ -1297,7 +1297,7 @@
                 }
               ],
               "description": "Officer attends and defuses the situation before it gets out of hand however unable to identify who was the aggressive. Both males warned and go their separate ways",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -1331,7 +1331,7 @@
                       }
                     ],
                     "description": "Victim bleeds out & dies due to lack of deployment",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 3,
                     "title": "RESOLUTION",
@@ -1354,7 +1354,7 @@
                       }
                     ],
                     "description": "Aggressor is successfully prosecuted ",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -1387,9 +1387,9 @@
     },
     "id": "b4813a71-c9dc-4c2e-8c01-eb6a1df9d435",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -1436,7 +1436,7 @@
                             }
                           ],
                           "description": "Male reporting assault inside the club is unable to provide full information and no further arrests can be made",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -1470,7 +1470,7 @@
                                   }
                                 ],
                                 "description": "Due to drunken state male isn’t able to provide full information and no arrests can be made ",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": -1,
                                 "severity": 2,
                                 "title": "RESOLUTION",
@@ -1504,7 +1504,7 @@
                                         }
                                       ],
                                       "description": "Due to drunken state male isn’t able to provide full information and no arrests can be made ",
-                                      "officerReq": 0,
+                                      "officerReq": 1,
                                       "satisfactionImpact": -1,
                                       "severity": 2,
                                       "title": "RESOLUTION",
@@ -1527,7 +1527,7 @@
                                         }
                                       ],
                                       "description": "Male reporting assault inside the club is unable to provide full information and no further arrests can be made",
-                                      "officerReq": 0,
+                                      "officerReq": 1,
                                       "satisfactionImpact": 2,
                                       "severity": 2,
                                       "title": "RESOLUTION",
@@ -1597,7 +1597,7 @@
                             }
                           ],
                           "description": "Due to drunken state male isn’t able to provide full information and no arrests can be made ",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -1,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -1631,7 +1631,7 @@
                                   }
                                 ],
                                 "description": "Due to drunken state male isn’t able to provide full information and no arrests can be made ",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": -1,
                                 "severity": 2,
                                 "title": "RESOLUTION",
@@ -1654,7 +1654,7 @@
                                   }
                                 ],
                                 "description": "Suspect is successfully prosecuted ",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": 2,
                                 "severity": 1,
                                 "title": "RESOLUTION",
@@ -1724,7 +1724,7 @@
                       }
                     ],
                     "description": "Due to drunken state male isn’t able to provide full information and no arrests can be made ",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -1737,7 +1737,7 @@
                     "_type": "ChoiceAction",
                     "choiceType": "Officer",
                     "feedback": "-1",
-                    "feedbackRating": -1
+                    "feedbackRating": 1
                   },
                   "scene": {
                     "_type": "Scene",
@@ -1747,7 +1747,7 @@
                       }
                     ],
                     "description": "Due to drunken state male isn’t able to provide full information and no arrests can be made ",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -1793,7 +1793,7 @@
                       }
                     ],
                     "description": "Due to drunken state male isn’t able to provide full information and no arrests can be made ",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -1816,7 +1816,7 @@
                       }
                     ],
                     "description": "Suspect is successfully prosecuted ",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 1,
                     "title": "RESOLUTION",
@@ -1849,9 +1849,9 @@
     },
     "id": "5ca5cbf9-aba6-41da-a506-f9511f44c69d",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -1898,7 +1898,7 @@
                             }
                           ],
                           "description": "Due to time taken key evidence is lost meaning arrests cannot be made",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -1921,7 +1921,7 @@
                             }
                           ],
                           "description": "Offenders identified and arrested",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -1956,7 +1956,7 @@
                       }
                     ],
                     "description": "Offenders identified and arrested",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -1991,7 +1991,7 @@
                 }
               ],
               "description": "Officer attends resolves current problem but fails to address long term issues.",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -2047,7 +2047,7 @@
                                   }
                                 ],
                                 "description": "Due to time taken key evidence is lost meaning arrests cannot be made",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": -2,
                                 "severity": 2,
                                 "title": "RESOLUTION",
@@ -2070,7 +2070,7 @@
                                   }
                                 ],
                                 "description": "Offenders identified and arrested",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": 2,
                                 "severity": 2,
                                 "title": "RESOLUTION",
@@ -2105,7 +2105,7 @@
                             }
                           ],
                           "description": "Offenders identified and arrested",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -2140,7 +2140,7 @@
                       }
                     ],
                     "description": "Officer attends, resolves current issue & long term issues.",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 1,
                     "title": "RESOLUTION",
@@ -2173,9 +2173,9 @@
     },
     "id": "9d1c2961-df7b-42b5-8d86-4c89f6bd90e3",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -2222,7 +2222,7 @@
                             }
                           ],
                           "description": "Officer returns male to family address & submits reports",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 3,
                           "title": "RESOLUTION",
@@ -2245,7 +2245,7 @@
                             }
                           ],
                           "description": "Officer calms down the elderly man who was distressed",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 4,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -2261,7 +2261,7 @@
                     "satisfactionImpact": 0,
                     "severity": 2,
                     "title": "Missing Person",
-                    "turnReq": 5
+                    "turnReq": 4
                   }
                 },
                 {
@@ -2280,7 +2280,7 @@
                       }
                     ],
                     "description": "Officer returns male to family address & submits reports",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 3,
                     "title": "RESOLUTION",
@@ -2326,7 +2326,7 @@
                       }
                     ],
                     "description": "Officer returns male to family address & submits reports",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 3,
                     "title": "RESOLUTION",
@@ -2360,7 +2360,7 @@
                             }
                           ],
                           "description": "Officer returns male to family address & submits reports",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 3,
                           "title": "RESOLUTION",
@@ -2383,7 +2383,7 @@
                             }
                           ],
                           "description": "Officer calms down the elderly man who was distressed",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 4,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -2399,7 +2399,7 @@
                     "satisfactionImpact": 0,
                     "severity": 2,
                     "title": "Missing Person",
-                    "turnReq": 5
+                    "turnReq": 4
                   }
                 },
                 {
@@ -2428,9 +2428,9 @@
     },
     "id": "3591409a-de8c-4aab-877d-38b124fe86bf",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -2455,7 +2455,7 @@
                 }
               ],
               "description": "Report resolved without police deployment. Slight lose of happiness.",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": -2,
               "severity": 1,
               "title": "RESOLUTION",
@@ -2478,7 +2478,7 @@
                 }
               ],
               "description": "Officer attends no offenses have taken place advices both parties to exchange details. Report resolved",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -2499,9 +2499,9 @@
     },
     "id": "f05823e2-4727-455d-9b9d-02d4a02b6a2c",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -2526,7 +2526,7 @@
                 }
               ],
               "description": "Delay in reporting causes problems with congestion leading to several incidents of road rage.",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": -3,
               "severity": 2,
               "title": "RESOLUTION",
@@ -2560,7 +2560,7 @@
                       }
                     ],
                     "description": "Delay in reporting causes problems with congestion leading to several incidents of road rage.",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -2594,7 +2594,7 @@
                             }
                           ],
                           "description": "Delay in reporting causes problems with congestion leading to several incidents of road rage.",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -2617,7 +2617,7 @@
                             }
                           ],
                           "description": "Driver eventually transported to custody, due to delay in driver getting into custody alcohol level reduced and driver released without being charged",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -1,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -2675,7 +2675,7 @@
                       }
                     ],
                     "description": "Delay in reporting causes problems with congestion leading to several incidents of road rage.",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -2709,7 +2709,7 @@
                             }
                           ],
                           "description": "Driver eventually transported to custody, due to delay in driver getting into custody alcohol level reduced and driver released without being charged",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -1,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -2732,7 +2732,7 @@
                             }
                           ],
                           "description": "Delay in reporting causes problems with congestion leading to several incidents of road rage.",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -2777,9 +2777,9 @@
     },
     "id": "11b1c780-ff81-4675-b45f-2af0b5c09a09",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -2815,7 +2815,7 @@
                       }
                     ],
                     "description": "Due to delay in deployment key evidence is lost & prosecution no longer possible",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -2838,7 +2838,7 @@
                       }
                     ],
                     "description": "Male eventually arrested and prosecuted for theft and assault",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -2873,7 +2873,7 @@
                 }
               ],
               "description": "Information reveals that shoplifter has never been in trouble previously and can issued a fixed penalty for the theft. Report concluded",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -2896,7 +2896,7 @@
                 }
               ],
               "description": "Information reveals that shoplifter has never been in trouble previously and can issued a fixed penalty for the theft. Report concluded",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -2917,9 +2917,9 @@
     },
     "id": "9b8f0c5e-bccf-4632-bb97-9632b638bced",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -2966,7 +2966,7 @@
                             }
                           ],
                           "description": "Male makes off due to lack of response and unable to progress further as there is no CCTV",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -2989,7 +2989,7 @@
                             }
                           ],
                           "description": "Male arrested and charged with public order & section 39 assault",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -3024,7 +3024,7 @@
                       }
                     ],
                     "description": "Male eventually arrested and prosecuted for public order",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -3059,7 +3059,7 @@
                 }
               ],
               "description": "Male Removed from the premises without issue and returned to partner agencies to address long term issue",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -3115,7 +3115,7 @@
                                   }
                                 ],
                                 "description": "Male makes off due to lack of response and unable to progress further as there is no CCTV",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": -2,
                                 "severity": 2,
                                 "title": "RESOLUTION",
@@ -3138,7 +3138,7 @@
                                   }
                                 ],
                                 "description": "Male arrested and charged with public order & section 39 assault",
-                                "officerReq": 0,
+                                "officerReq": 1,
                                 "satisfactionImpact": 2,
                                 "severity": 2,
                                 "title": "RESOLUTION",
@@ -3173,7 +3173,7 @@
                             }
                           ],
                           "description": "Male eventually arrested and prosecuted for public order",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 1,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -3208,7 +3208,7 @@
                       }
                     ],
                     "description": "Male Removed from the premises without issue and returned to partner agencies to address long term issue",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 1,
                     "title": "RESOLUTION",
@@ -3241,9 +3241,9 @@
     },
     "id": "1e1ab215-8cf7-4e7f-9477-d3791a360685",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -3268,7 +3268,7 @@
                 }
               ],
               "description": "Child is hit by a bus trying to cross a busy road",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": -3,
               "severity": 3,
               "title": "RESOLUTION",
@@ -3302,7 +3302,7 @@
                       }
                     ],
                     "description": "Child is hit by a bus trying to cross a busy road",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 3,
                     "title": "RESOLUTION",
@@ -3325,7 +3325,7 @@
                       }
                     ],
                     "description": "After much time used by your officers, mother and child have been reunited",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -3349,7 +3349,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Citizen",
-              "feedback": "This is a great choice, citizens may be able to provide more information as to the region of the child",
+              "feedback": "This is a great choice, citizens may be able to provide more information as to the child's location",
               "feedbackRating": 5
             },
             "scene": {
@@ -3360,7 +3360,7 @@
                 }
               ],
               "description": "Picture of the child was circulated on the INSPEC2T platform and as such, the child was found nearby a shop. Mother and Child have been reunited",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 2,
               "title": "RESOLUTION",
@@ -3381,9 +3381,9 @@
     },
     "id": "b99a9cc0-1eb7-48e5-b100-929ac4f0ac23",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -3430,7 +3430,7 @@
                             }
                           ],
                           "description": "Due to lack of deployment a serious assault occurs due to increasing tensions",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -3453,7 +3453,7 @@
                             }
                           ],
                           "description": "Numerous officers deployed resulting in 2 arrests being made and music being turned down",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 1,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -3469,7 +3469,7 @@
                     "satisfactionImpact": 0,
                     "severity": 2,
                     "title": "Property Damage",
-                    "turnReq": 5
+                    "turnReq": 4
                   }
                 },
                 {
@@ -3488,7 +3488,7 @@
                       }
                     ],
                     "description": "Offender arrested for assault and noise has been turned down",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 1,
                     "title": "RESOLUTION",
@@ -3504,7 +3504,7 @@
               "satisfactionImpact": 0,
               "severity": 2,
               "title": "Assault",
-              "turnReq": 5
+              "turnReq": 4
             }
           },
           {
@@ -3523,7 +3523,7 @@
                 }
               ],
               "description": "Officers attend and ask the problematic property to turn the music down",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -3544,9 +3544,9 @@
     },
     "id": "3091fd69-bdeb-4a16-89b4-57bcc3338bf3",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -3571,7 +3571,7 @@
                 }
               ],
               "description": "Issue subsides without police intervention. The community are very unhappy with the lack of response and no long term solution",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": -3,
               "severity": 1,
               "title": "RESOLUTION",
@@ -3594,7 +3594,7 @@
                 }
               ],
               "description": "On arrival, the youths who have their faces concealed, run away.",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": -1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -3628,7 +3628,7 @@
                       }
                     ],
                     "description": "Issues subside without police intervention, the community are unhappy but with help from citizens some evidence came forward and court orders are obtained",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 1,
                     "title": "RESOLUTION",
@@ -3651,7 +3651,7 @@
                       }
                     ],
                     "description": "Officer deals with incident and is able to provide high quality evidence toward court orders to prevent future issues",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 1,
                     "title": "RESOLUTION",
@@ -3684,9 +3684,9 @@
     },
     "id": "79640deb-7c35-4086-8c5b-c94e3b4b991a",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -3711,7 +3711,7 @@
                 }
               ],
               "description": "Due to lack of deployment the elderly person has had to be admitted to hospital for a fall in the house. The community are not happy with this outcome",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": -3,
               "severity": 1,
               "title": "RESOLUTION",
@@ -3745,7 +3745,7 @@
                       }
                     ],
                     "description": "The condition of the elderly person deteriorates and requires considerably more medical assistance",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -2,
                     "severity": 1,
                     "title": "RESOLUTION",
@@ -3768,7 +3768,7 @@
                       }
                     ],
                     "description": "Patrols gain entry and help the elderly person get medical assistance.",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 1,
                     "title": "RESOLUTION",
@@ -3803,7 +3803,7 @@
                 }
               ],
               "description": "Request locates a close friend that the informant is not aware of. The friend confirms that the elderly family member is safe and well but has broken their phone.",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
               "title": "RESOLUTION",
@@ -3814,7 +3814,7 @@
             "_type": "End"
           }
         ],
-        "description": "Report regarding concerns for the welfare of a family member who is elderly and lives on their own and not answering the telephone. Informant lives in another part of the country and is unable to visit them",
+        "description": "Report regarding concerns for the welfare of a family member who is elderly and lives on their own and not answering the telephone.",
         "officerReq": 1,
         "satisfactionImpact": 0,
         "severity": 1,
@@ -3824,9 +3824,9 @@
     },
     "id": "b74d504f-6985-416c-8aa1-5a4f7c1cf3c1",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -3851,7 +3851,7 @@
                 }
               ],
               "description": "Due to lack of deployment, one of the males fighting is critically injured, resulting in community outrage ",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": -2,
               "severity": 2,
               "title": "RESOLUTION",
@@ -3874,7 +3874,7 @@
                 }
               ],
               "description": "Officers attend and makes several arrests and the community are satisfied, however, as specifics regarding which weapons were being used an officer is hurt",
-              "officerReq": 0,
+              "officerReq": 1,
               "satisfactionImpact": -1,
               "severity": 2,
               "title": "RESOLUTION",
@@ -3886,7 +3886,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Citizen",
-              "feedback": "Citizens may be able to provide more information, but a region is known and the incident is serious, you should have sent officers",
+              "feedback": "Citizens may help, but location is known and the incident is serious, you should have sent officers",
               "feedbackRating": 3
             },
             "scene": {
@@ -3908,7 +3908,7 @@
                       }
                     ],
                     "description": "Officers deal with the incident by making several arrests without any significant harm to officers or the public",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -3931,7 +3931,7 @@
                       }
                     ],
                     "description": "Due to lack of deployment, one of the males fighting is critically injured, resulting in community outrage ",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -3947,26 +3947,26 @@
               "satisfactionImpact": 0,
               "severity": 2,
               "title": "Armed Assault",
-              "turnReq": 5
+              "turnReq": 4
             }
           },
           {
             "_type": "End"
           }
         ],
-        "description": "Report received that there are a group of males fighting outside a shop on a residential estate with weapons. The informant is unable to provide any ID or further information on the weapons as they're driving past",
+        "description": "Group of males fighting outside a shop on a residential estate with weapons. The informant is unable to provide any ID or further information on the weapons as they're driving past",
         "officerReq": 3,
         "satisfactionImpact": 0,
         "severity": 2,
         "title": "Armed Assault",
-        "turnReq": 5
+        "turnReq": 4
       }
     },
     "id": "9727fa79-2554-47c1-ab9b-de279714a6b9",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -4013,7 +4013,7 @@
                             }
                           ],
                           "description": "Driver does not wait and drives off, focusing on the wellbeing of the child, nobody takes note of the registration of the vehicle, no further action can be taken",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 3,
                           "title": "RESOLUTION",
@@ -4036,7 +4036,7 @@
                             }
                           ],
                           "description": "Patrols deal with collision, it comes to light that the driver is under the influence of alcohol is arrested. The child receives medical assistance",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 3,
                           "severity": 3,
                           "title": "RESOLUTION",
@@ -4071,7 +4071,7 @@
                       }
                     ],
                     "description": "A vehicle matching the description is found abandoned nearby. However without a registration it's not possible to confirm that this is the vehicle.",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -2,
                     "severity": 1,
                     "title": "RESOLUTION",
@@ -4095,7 +4095,7 @@
             "choice": {
               "_type": "ChoiceAction",
               "choiceType": "Officer",
-              "feedback": "Sending officers is a good idea to help gather information, but maybe citizens could have provided the same information",
+              "feedback": "Deploying is a good idea to gather information, citizens could have provided the same information",
               "feedbackRating": 3
             },
             "scene": {
@@ -4128,7 +4128,7 @@
                             }
                           ],
                           "description": "Driver does not wait and drives off, focusing on the wellbeing of the child, nobody takes note of the registration of the vehicle, no further action can be taken",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 3,
                           "title": "RESOLUTION",
@@ -4151,7 +4151,7 @@
                             }
                           ],
                           "description": "Patrols deal with collision, it comes to light that the driver is under the influence of alcohol is arrested. The child receives medical assistance",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 3,
                           "severity": 3,
                           "title": "RESOLUTION",
@@ -4186,7 +4186,7 @@
                       }
                     ],
                     "description": "Vehicle stopped near home address. Driver is found to be under the influence of alcohol and arrested.",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -4232,7 +4232,7 @@
                       }
                     ],
                     "description": "Vehicle stopped near home address. Driver is found to be under the influence of alcohol and arrested.",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -4266,7 +4266,7 @@
                             }
                           ],
                           "description": "Driver does not wait and drives off, focusing on the wellbeing of the child, nobody takes note of the registration of the vehicle, no further action can be taken",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 3,
                           "title": "RESOLUTION",
@@ -4289,7 +4289,7 @@
                             }
                           ],
                           "description": "Patrols deal with collision, it comes to light that the driver is under the influence of alcohol is arrested. The child receives medical assistance",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": 3,
                           "severity": 3,
                           "title": "RESOLUTION",
@@ -4324,7 +4324,7 @@
             "_type": "End"
           }
         ],
-        "description": "Report received regarding a transit van driving recklessly and at high speeds around a residential area. There is significant concern as a local primary school is due to finish for the day and pupils will be walking home",
+        "description": "Transit van seen driving recklessly and at high speeds. There is significant concern as a local primary school is due to finish for the day and pupils will be walking home",
         "officerReq": 2,
         "satisfactionImpact": 0,
         "severity": 2,
@@ -4334,9 +4334,9 @@
     },
     "id": "332869e6-5068-4368-97a2-7dbe4af870b9",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   },
   {
     "content": {
@@ -4372,7 +4372,7 @@
                       }
                     ],
                     "description": "No one is able to provide any information regarding the dog or its owner.",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -4384,7 +4384,7 @@
                   "choice": {
                     "_type": "ChoiceAction",
                     "choiceType": "Officer",
-                    "feedback": "Sending officers could help locate the dog, but without a known region it may prove difficult",
+                    "feedback": "Sending officers could help locate the dog, but without a known location it may prove difficult",
                     "feedbackRating": 3
                   },
                   "scene": {
@@ -4395,7 +4395,7 @@
                       }
                     ],
                     "description": "Park is searched but no one is able to provide any more information regarding the dog or its owner, and so, is not located",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -4452,7 +4452,7 @@
                             }
                           ],
                           "description": "No one is able to provide any information regarding the dog or its owner.",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -4464,7 +4464,7 @@
                         "choice": {
                           "_type": "ChoiceAction",
                           "choiceType": "Officer",
-                          "feedback": "Sending officers could help locate the dog, but without a known region it may prove difficult",
+                          "feedback": "Sending officers could help locate the dog, but without a known location it may prove difficult",
                           "feedbackRating": 3
                         },
                         "scene": {
@@ -4475,7 +4475,7 @@
                             }
                           ],
                           "description": "Park is searched but no one is able to provide any more information regarding the dog or its owner, and so, is not located",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -4510,7 +4510,7 @@
                       }
                     ],
                     "description": "Park is searched, but the dog is not found, however, due to the owner information being known, officers go to the address and advise owner on controlling their dog in the future",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -4521,7 +4521,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Information provided on the region of the dog and the person who is believed to be the owner",
+              "description": "Information provided on the location of the dog and the person who is believed to be the owner",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -4556,7 +4556,7 @@
                       }
                     ],
                     "description": "Park is searched, but the dog is not found, however, due to the owner information being known, officers go to the address and advise owner on controlling their dog in the future",
-                    "officerReq": 0,
+                    "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
                     "title": "RESOLUTION",
@@ -4590,7 +4590,7 @@
                             }
                           ],
                           "description": "No one is able to provide any information regarding the dog or its owner.",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -4602,7 +4602,7 @@
                         "choice": {
                           "_type": "ChoiceAction",
                           "choiceType": "Officer",
-                          "feedback": "Sending officers could help locate the dog, but without a known region it may prove difficult",
+                          "feedback": "Sending officers could help locate the dog, but without a known location it may prove difficult",
                           "feedbackRating": 3
                         },
                         "scene": {
@@ -4613,7 +4613,7 @@
                             }
                           ],
                           "description": "Park is searched but no one is able to provide any more information regarding the dog or its owner, and so, is not located",
-                          "officerReq": 0,
+                          "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
                           "title": "RESOLUTION",
@@ -4636,7 +4636,7 @@
                   "_type": "End"
                 }
               ],
-              "description": "Information provided on the region of the dog and the person who is believed to be the owner",
+              "description": "Information provided on the location of the dog and the person who is believed to be the owner",
               "officerReq": 2,
               "satisfactionImpact": 0,
               "severity": 2,
@@ -4658,8 +4658,8 @@
     },
     "id": "080fc372-cd8e-4e91-850a-2e585935e9b0",
     "language": "English",
-    "region": "Lancashire",
-    "serialNumber": 0,
-	"enabled": "true"
+    "region": "Template",
+    "serialNumber": 1,
+    "enabled": "true"
   }
 ]
