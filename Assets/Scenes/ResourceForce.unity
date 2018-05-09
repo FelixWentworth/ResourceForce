@@ -16744,7 +16744,7 @@ MonoBehaviour:
     AppName: Resource Force - Lancashire
     BundleId: com.playgen.ResourceForceLancs
     Version: 1.1.2
-    AuthoringToolUrl: https://resource-force.playgen.com/v0
+    AuthoringToolUrl: https://v0.resource-force.playgen.com
     Location: Lancashire
     FileName: BasicContent.txt
     ResourcesFileName: BasicContent
@@ -19575,8 +19575,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectLocationScreen: {fileID: 67}
-  _hostName: https://resource-force.playgen.com
+  _hostName: http://localhost:8728
   _downloadTimeout: 10
+  _minimumScenariosRequired: 15
   _fileName: ScenarioContent.txt
   _brandedFileName: BasicContent.txt
   _resourcesFileName: ScenarioContent
@@ -20421,6 +20422,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1669489408050068, guid: 6ec1acedfcf970e4a9b5366c4e38b186, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ec1acedfcf970e4a9b5366c4e38b186, type: 2}
   m_IsPrefabParent: 0
@@ -20781,6 +20786,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1669489408050068, guid: 6ec1acedfcf970e4a9b5366c4e38b186, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ec1acedfcf970e4a9b5366c4e38b186, type: 2}
   m_IsPrefabParent: 0
@@ -20880,6 +20889,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669489408050068, guid: 6ec1acedfcf970e4a9b5366c4e38b186, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ec1acedfcf970e4a9b5366c4e38b186, type: 2}

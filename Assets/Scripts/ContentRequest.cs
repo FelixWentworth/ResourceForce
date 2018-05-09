@@ -14,8 +14,9 @@ public class ContentRequest : MonoBehaviour
 
     [SerializeField] private string _hostName;
     [SerializeField] private int _downloadTimeout;
+    [SerializeField] private int _minimumScenariosRequired;
 
-    [SerializeField] private string _fileName;
+	[SerializeField] private string _fileName;
 	[SerializeField]private string _brandedFileName = "";
 	private string FileName
 	{
@@ -39,7 +40,7 @@ public class ContentRequest : MonoBehaviour
         {
             // ------------------------
             // TESTING 
-            //return 0;
+            // return 0;
             // ------------------------
             var serial = PlayerPrefs.GetString("SerialNumber");
             return string.IsNullOrEmpty(serial) 
@@ -89,8 +90,7 @@ public class ContentRequest : MonoBehaviour
     {
         if (SelectLocationScreen != null)
         {
-
-            if (!SelectLocationScreen.activeSelf && Location.NumIncidents == 0)
+            if (!SelectLocationScreen.activeSelf && Location.NumIncidents <= _minimumScenariosRequired)
             {
 	            StartCoroutine(WaitToActivateCancel(10f));
                 yield return GetContent();
@@ -128,15 +128,19 @@ public class ContentRequest : MonoBehaviour
 
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
 		yield return FetchNewContent(loadedScenarios);
-		if (loadedScenarios.Any())
+
+		if (loadedScenarios.Count(s => s.Enabled && !s.Deleted) >= _minimumScenariosRequired)
 		{
 			yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
 		}
 		else
 		{
-		    yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_FALLBACK_CONTENT"), 1.5f);
-		    
-		    Debug.Log("Loading fallback content from Resources.");
+			if (loadedScenarios.Any())
+			{
+				Debug.LogWarning("Not Enough Scenarios valid through web tool to play the game with custom content alone");
+			}
+			// No need to tell players nothing was found, quit quietly
+			Debug.Log("Loading fallback content from Resources.");
             GetResourcesScenario(loadedScenarios);
 		    
             Loading.LoadingSpinner.StopSpinner("");
