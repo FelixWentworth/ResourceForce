@@ -29,7 +29,7 @@ namespace GameWork.Unity.Editor.Build
                     case BuildTarget.StandaloneLinux:
                     case BuildTarget.StandaloneLinux64:
                     case BuildTarget.StandaloneLinuxUniversal:
-                    case BuildTarget.StandaloneOSXUniversal:
+                    case BuildTarget.StandaloneOSX:
                     case BuildTarget.StandaloneOSXIntel:
                     case BuildTarget.StandaloneOSXIntel64:
                     case BuildTarget.WSAPlayer:

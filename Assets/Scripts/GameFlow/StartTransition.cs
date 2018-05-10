@@ -38,7 +38,7 @@ public class StartTransition : MonoBehaviour {
 
 	    if (useMarketingManager && newLogIn)
 	    {
-		    deviceLocation.SetLanguages(BrandingManager.Instance.Languages);
+		    deviceLocation.SetLanguages(BrandingManager.Instance.Config.Languages);
 	    }
 
 	    SelectLocationScreen.SetActive(newLogIn);

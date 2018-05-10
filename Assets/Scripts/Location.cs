@@ -12,7 +12,7 @@ public class Location : MonoBehaviour
 	    {
 		    if (m_site == Site.Custom)
 		    {
-			    return BrandingManager.Instance.AppMetadata.Location;
+			    return BrandingManager.Instance.Config.Metadata.Location;
 		    }
 		    return m_site.ToString();
 	    }
