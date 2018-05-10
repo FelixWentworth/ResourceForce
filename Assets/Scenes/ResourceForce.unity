@@ -47,6 +47,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &5
 GameObject:
@@ -4645,11 +4647,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!81 &441
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5373,7 +5375,7 @@ Behaviour:
 --- !u!157 &467
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 11
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -5385,7 +5387,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 8
+    serializedVersion: 9
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -5408,17 +5410,20 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_ShadowMaskMode: 2
+  m_UseShadowmask: 1
 --- !u!222 &468
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16739,65 +16744,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc24d4c2254ccc4a855b764669aced4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _brandingConfig: {fileID: 11400000, guid: 383c24948fb27c34bba482727dd9de6f, type: 2}
   UseManager: 1
-  AppMetadata:
-    AppName: Resource Force - Lancashire
-    BundleId: com.playgen.ResourceForceLancs
-    Version: 1.1.2
-    AuthoringToolUrl: https://resource-force-v0.playgen.com
-    Location: Lancashire
-    FileName: BasicContent.txt
-    ResourcesFileName: BasicContent
-    SplashScreenLogos:
-    - {fileID: 21300000, guid: 3b34e252791acdb4295285e3b649d06c, type: 3}
-    - {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
-  Languages:
-    Languages: 0a000000
-  Elements:
-  - Name: Start Screen Logo
-    ImageElement: {fileID: 1326}
-    NewSprite: {fileID: 21300000, guid: f11d3d17c2d04be449d76051927d2bf7, type: 3}
-    Tint: {r: 1, g: 1, b: 1, a: 1}
-  - Name: Game Logo
-    ImageElement: {fileID: 1622}
-    NewSprite: {fileID: 21300000, guid: d800ec6c76ff18f4788c57233ed06c23, type: 3}
-    Tint: {r: 1, g: 1, b: 1, a: 0.1764706}
-  - Name: Citizen Button Icon
-    ImageElement: {fileID: 1621}
-    NewSprite: {fileID: 21300000, guid: a1f1c2e8c9efdb64686ea961aa3a0424, type: 3}
-    Tint: {r: 1, g: 1, b: 1, a: 1}
-  - Name: End Game Link Icon
-    ImageElement: {fileID: 1480}
-    NewSprite: {fileID: 21300000, guid: f11d3d17c2d04be449d76051927d2bf7, type: 3}
-    Tint: {r: 1, g: 1, b: 1, a: 1}
-  - Name: ExternalLinkWebsite
-    ImageElement: {fileID: 1404}
-    NewSprite: {fileID: 21300000, guid: 1687d3012c10523478c6b1d670e7c8e0, type: 3}
-    Tint: {r: 1, g: 1, b: 1, a: 1}
-  - Name: ExternalLinkFacebook
-    ImageElement: {fileID: 1416}
-    NewSprite: {fileID: 21300000, guid: 7c661c5b697eb8542a154661935caa26, type: 3}
-    Tint: {r: 1, g: 1, b: 1, a: 1}
-  - Name: ExternalLinkTwitter
-    ImageElement: {fileID: 1626}
-    NewSprite: {fileID: 21300000, guid: 5fe3a97e055ea1f4ab6c9eaef50045b6, type: 3}
-    Tint: {r: 1, g: 1, b: 1, a: 1}
-  - Name: Location Select Logo
-    ImageElement: {fileID: 1467}
-    NewSprite: {fileID: 21300000, guid: f11d3d17c2d04be449d76051927d2bf7, type: 3}
-    Tint: {r: 1, g: 1, b: 1, a: 1}
-  - Name: Tap Screen Start Background
-    ImageElement: {fileID: 1441}
-    NewSprite: {fileID: 21300000, guid: 91a231c5299b52d4290cf8ba4ab7df2a, type: 3}
-    Tint: {r: 0, g: 1, b: 0.827451, a: 0.63529414}
-  - Name: InGameMap
-    ImageElement: {fileID: 1384}
-    NewSprite: {fileID: 21300000, guid: c7c5bd56a31bc704eb2952eb0641388b, type: 3}
-    Tint: {r: 1, g: 1, b: 1, a: 1}
-  - Name: Home Screen Map
-    ImageElement: {fileID: 1771}
-    NewSprite: {fileID: 21300000, guid: c7c5bd56a31bc704eb2952eb0641388b, type: 3}
-    Tint: {r: 1, g: 1, b: 1, a: 1}
+  _startScreenLogo: {fileID: 1326}
+  _gameLogo: {fileID: 1622}
+  _citizenButtonIcon: {fileID: 1621}
+  _endGameLinkIcon: {fileID: 1480}
+  _externalLinkWebsite: {fileID: 1404}
+  _externalLinkFacebook: {fileID: 1416}
+  _externalLinkTwitter: {fileID: 1626}
+  _locationSelectLogo: {fileID: 1467}
+  _tapScreenStartBackground: {fileID: 1441}
+  _inGameMap: {fileID: 1384}
+  _homeScreenMap: {fileID: 1771}
+  _homeAppDownload: {fileID: 1732}
+  _endAppDownload: {fileID: 1583}
+  _optionsWebsite: {fileID: 1401}
+  _optionsFacebook: {fileID: 1413}
+  _optionsTwitter: {fileID: 1623}
   Links:
   - Name: Home App Download
     Button: {fileID: 1732}
@@ -20559,122 +20523,152 @@ Prefab:
     - target: {fileID: 224645295739487424, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 80.64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224789868152854248, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 80.64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224571313895497340, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 80.64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224083678833658338, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 80.64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224407141848805868, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 80.64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224174358469804412, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 713.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 124
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -25.164993
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224511375279182276, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 184
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -25.164993
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224897275899238406, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 244
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -25.164993
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224855634315078914, guid: 7142b44ba53241744a8872e52d0ffc42,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 55
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224497065368172306, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 617.95166
+      objectReference: {fileID: 0}
+    - target: {fileID: 224301986769144918, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 692.95154
+      objectReference: {fileID: 0}
+    - target: {fileID: 224371396897773162, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 692.95154
+      objectReference: {fileID: 0}
+    - target: {fileID: 224497065368172306, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 719.99994
+      objectReference: {fileID: 0}
+    - target: {fileID: 224301986769144918, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 719.99994
+      objectReference: {fileID: 0}
+    - target: {fileID: 224371396897773162, guid: 7142b44ba53241744a8872e52d0ffc42,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 719.99994
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7142b44ba53241744a8872e52d0ffc42, type: 2}
