@@ -16,7 +16,7 @@ MonoBehaviour:
     BundleId: com.playgen.ResourceForceLonMet
     Version: 1.1.2
     AuthoringToolUrl: https://resource-force-v1.playgen.com
-    Location: London Metropolitan
+    Location: LondonMetDemo
     FileName: BasicContent.txt
     ResourcesFileName: BasicContent
     SplashScreenLogos:
