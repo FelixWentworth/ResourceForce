@@ -61,6 +61,9 @@ public class BrandingManager : MonoBehaviour
 		public bool IsBrandingObject;
 	}
 
+    [SerializeField] private Text _policeForceName;
+    [SerializeField] private Text _policeForceStrapline;
+
     [Header("Element Images")]
     [SerializeField] private Image _startScreenLogo;
     [SerializeField] private Image _gameLogo;
@@ -91,7 +94,7 @@ public class BrandingManager : MonoBehaviour
 		if (Apply)
 		{
 			Apply = false;
-		
+
 			SetImages();
 			SetLinks();
 			SetMetadata();
@@ -99,7 +102,7 @@ public class BrandingManager : MonoBehaviour
 		}
 
 	}
-
+    
 	private void SetImages()
 	{
 	    Config.StartScreenLogo.ApplyTo(_startScreenLogo);
@@ -140,9 +143,12 @@ public class BrandingManager : MonoBehaviour
         GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(_brandingConfig.Metadata.AuthoringToolUrl);
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetFileName(UseManager ? _brandingConfig.Metadata.FileName : "");
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetResourcesFileName(UseManager ? _brandingConfig.Metadata.ResourcesFileName : "");
-	}
 
-	private void SetBrandingObjects()
+	    _policeForceName.text = Config.Metadata.PoliceForceName;
+	    _policeForceStrapline.text = Config.Metadata.PoliceForceStrapline;
+    }
+
+    private void SetBrandingObjects()
 	{
 		foreach (var branding in ObjectsForBranding)
 		{
