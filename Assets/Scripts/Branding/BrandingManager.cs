@@ -102,8 +102,13 @@ public class BrandingManager : MonoBehaviour
 		}
 
 	}
-    
-	private void SetImages()
+
+    private void PrefabInstanceUpdated(GameObject instance)
+    {
+        Debug.Log(instance);
+    }
+
+    private void SetImages()
 	{
 	    Config.StartScreenLogo.ApplyTo(_startScreenLogo);
 	    Config.GameLogo.ApplyTo(_gameLogo);
@@ -114,11 +119,21 @@ public class BrandingManager : MonoBehaviour
 	    Config.ExternalLinkTwitter.ApplyTo(_externalLinkTwitter);
 	    Config.LocationSelectLogo.ApplyTo(_locationSelectLogo);
 	    Config.TapScreenStartBackground.ApplyTo(_tapScreenStartBackground);
+
 	    Config.InGameMap.ApplyTo(_inGameMap);
+	    ApplyPrefab(_inGameMap);
+
 	    Config.HomeScreenMap.ApplyTo(_homeScreenMap);
     }
 
-	private void SetLinks()
+    private void ApplyPrefab(Component modified)
+    {
+        var prefabInstancea = PrefabUtility.FindPrefabRoot(modified.gameObject);
+        var prefabMaster = PrefabUtility.GetPrefabParent(prefabInstancea);
+        PrefabUtility.ReplacePrefab(prefabInstancea, prefabMaster);
+    }
+
+    private void SetLinks()
 	{
         Config.HomeAppDownload.ApplyTo(_homeAppDownload);
 	    Config.EndAppDownload.ApplyTo(_endAppDownload);
