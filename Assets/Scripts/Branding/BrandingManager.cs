@@ -7,7 +7,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
 public class BrandingManager : MonoBehaviour
 {
 
@@ -85,22 +84,13 @@ public class BrandingManager : MonoBehaviour
     [SerializeField] private ButtonLink _optionsTwitter;
 
     public List<BrandingObjects> ObjectsForBranding;
-
-	[Space(25)]
-
-	public bool Apply;
-	// Update is called once per frame
-	void Update () {
-		if (Apply)
-		{
-			Apply = false;
-
-			SetImages();
-			SetLinks();
-			SetMetadata();
-			SetBrandingObjects();
-		}
-
+    
+	public void Apply()
+	{
+	    SetImages();
+		SetLinks();
+		SetMetadata();
+		SetBrandingObjects();
 	}
 
     private void PrefabInstanceUpdated(GameObject instance)
