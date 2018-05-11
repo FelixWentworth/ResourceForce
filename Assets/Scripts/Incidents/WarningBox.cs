@@ -18,6 +18,11 @@ public class WarningBox : MonoBehaviour
         ScreenFade.SetActive(false);
     }
 
+    public void StartShowWarning(string message, Color color, bool upperCase = false)
+    {
+        StartCoroutine(ShowWarning(message, color, upperCase));
+    }
+
     public IEnumerator ShowWarning(string message, Color color, bool upperCase = false)
     {
         SetColor(color);
