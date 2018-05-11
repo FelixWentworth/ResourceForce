@@ -30,6 +30,12 @@ public class BrandingConfig : ScriptableObject
     [SerializeField] public ExternalLink OptionsWebsite;
     [SerializeField] public ExternalLink OptionsFacebook;
     [SerializeField] public ExternalLink OptionsTwitter;
+
+    [Header("Localization Mappings")]
+    [SerializeField] private string BRANDING_FORCE_NAME;
+    [SerializeField] private string BRANDING_FORCE_STRAPLINE;
+    [SerializeField] private string BRANDING_DOWNLOAD_NOW;
+    [SerializeField] private string BRANDING_DOWNLOAD_MESSAGE;
 }
 
 [Serializable]
@@ -71,6 +77,4 @@ public struct Metadata
     public string FileName;
     public string ResourcesFileName;
     public Sprite[] SplashScreenLogos;
-    public string PoliceForceName;
-    public string PoliceForceStrapline;
 }

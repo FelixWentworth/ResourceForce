@@ -22,8 +22,6 @@ MonoBehaviour:
     SplashScreenLogos:
     - {fileID: 21300000, guid: 3b34e252791acdb4295285e3b649d06c, type: 3}
     - {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
-    PoliceForceName: Lancashire Constabulary
-    PoliceForceStrapline: police and communities together
   Languages: 0a000000
   StartScreenLogo:
     NewSprite: {fileID: 21300000, guid: f11d3d17c2d04be449d76051927d2bf7, type: 3}
@@ -78,3 +76,8 @@ MonoBehaviour:
     Url: https://twitter.com/LancsPolice?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
     SendEvent: 0
     EventName: Click_Twitter
+  BRANDING_FORCE_NAME: Lancashire Constabulary
+  BRANDING_FORCE_STRAPLINE: police and communities together
+  BRANDING_DOWNLOAD_NOW: Get In The Know Now!
+  BRANDING_DOWNLOAD_MESSAGE: Stay up to date with the things that concern you and
+    your community!
