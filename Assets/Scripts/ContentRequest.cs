@@ -114,10 +114,10 @@ public class ContentRequest : MonoBehaviour
 		StopCoroutine("GetContent");
 		Failed();
 		Loading.LoadingSpinner.StopSpinner("");
-		var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
-		Location.NumIncidents = AllScenarios.Count(s => s.Region == Location.CurrentLocation && s.Language == language && s.Enabled);
-		Debug.Log(Location.NumIncidents + " Scenarios available");
-	}
+
+	    Location.NumIncidents = GetNumIncidents(AllScenarios);
+	    Debug.Log(Location.NumIncidents + " Scenarios available");
+    }
 
 	public IEnumerator GetContent()
     {
@@ -147,11 +147,17 @@ public class ContentRequest : MonoBehaviour
         }
 
         // Set content number
-        var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
-		Location.NumIncidents = loadedScenarios.Count(s => s.Region == Location.CurrentLocation && s.Language == language && s.Enabled);
-		Debug.Log(Location.NumIncidents + " Scenarios available");
+        Location.NumIncidents = GetNumIncidents(loadedScenarios);
+        Debug.Log(Location.NumIncidents + " Scenarios available");
 
         AllScenarios = loadedScenarios;
+    }
+
+    private int GetNumIncidents(List<Scenario> scenarios)
+    {
+        var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
+        var numIncidents = scenarios.Count(s => s.IsRegionMatch(Location.CurrentLocation) && s.Language == language && s.Enabled);
+        return numIncidents;
     }
 
     private IEnumerator FetchNewContent(List<Scenario> loadedScenarios)
@@ -298,7 +304,7 @@ public class ContentRequest : MonoBehaviour
 			// Fall back to the basic scenarios
 		    GetResourcesScenario();
 	    }
-	    return AllScenarios.Where(s => s.Language == language && (s.Region == location || s.Region == "Any") && s.Enabled).ToList();
+	    return AllScenarios.Where(s => s.Language == language && s.IsRegionMatch(location) && s.Enabled).ToList();
     }
 
     public void GetResourcesScenario()
