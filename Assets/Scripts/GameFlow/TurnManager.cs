@@ -44,7 +44,8 @@ public class TurnManager : MonoBehaviour {
 
         NextTurn();
     }
-	private void NextTurn()
+
+	public void NextTurn()
     {
         //PlayerPrefs.DeleteAll();
         AudioManager.Instance.PlayNextTurn();

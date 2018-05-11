@@ -3621,7 +3621,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1347}
         m_MethodName: NextTurn
         m_Mode: 1
         m_Arguments:
@@ -16413,12 +16413,12 @@ MonoBehaviour:
   OfficerButtonTurns: {fileID: 659519127}
   OfficerButtonRequired: {fileID: 1786624834}
   EmailPanel: {fileID: 376984482}
-  OfficerController: {fileID: 0}
-  TurnManager: {fileID: 0}
+  OfficerController: {fileID: 1750}
+  TurnManager: {fileID: 1347}
   ButtonPanel: {fileID: 1823359586}
   PlusSprite: {fileID: 21300000, guid: c5baa1cebfb5fa04fb59fd6bd54c2ed5, type: 3}
   MinusSprite: {fileID: 21300000, guid: a043691eb2f565840ab4dcab3b1f77a9, type: 3}
-  WarningBox: {fileID: 0}
+  WarningBox: {fileID: 1757}
   IncidentInformationDisplay: {fileID: 2108329036}
 --- !u!114 &1534
 MonoBehaviour:
@@ -17171,7 +17171,6 @@ MonoBehaviour:
   - Name: Select Location Branded
     Obj: {fileID: 1248588791}
     IsBrandingObject: 1
-  Apply: 0
 --- !u!114 &1566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27931,32 +27930,32 @@ Prefab:
     - target: {fileID: 224000012352288802, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 720
+      value: 719.99994
       objectReference: {fileID: 0}
     - target: {fileID: 224000012352288802, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 693.0267
+      value: 693.0283
       objectReference: {fileID: 0}
     - target: {fileID: 224000013247032344, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 720
+      value: 719.99994
       objectReference: {fileID: 0}
     - target: {fileID: 224000013247032344, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 693.0267
+      value: 693.0283
       objectReference: {fileID: 0}
     - target: {fileID: 224000013019952322, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 720
+      value: 719.99994
       objectReference: {fileID: 0}
     - target: {fileID: 224000013019952322, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 618.0267
+      value: 618.02814
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 997c207836a2a774db1f798acc9f9a57, type: 2}
