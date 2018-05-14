@@ -23,6 +23,27 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 9d7603ca3db945b419784c2b5f6d00a4, type: 3}
     - {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
   Languages: 0a000000
+  LocalizationOverrides:
+  - Key: BRANDING_FORCE_NAME
+    EnGb: London Metropolitan
+    Nl: 
+    El: 
+    Es: 
+  - Key: BRANDING_FORCE_STRAPLINE
+    EnGb: Making London the safest global city
+    Nl: 
+    El: 
+    Es: 
+  - Key: BRANDING_DOWNLOAD_NOW
+    EnGb: Stay smarter than the criminals
+    Nl: 
+    El: 
+    Es: 
+  - Key: BRANDING_DOWNLOAD_MESSAGE
+    EnGb: Keep up to date with the latest information, helping you and your community!
+    Nl: 
+    El: 
+    Es: 
   StartScreenLogo:
     NewSprite: {fileID: 21300000, guid: aba956b9c3d6a2f4cb8d54320cb14684, type: 3}
     Tint: {r: 1, g: 1, b: 1, a: 1}
@@ -76,8 +97,3 @@ MonoBehaviour:
     Url: https://twitter.com/metpoliceuk
     SendEvent: 0
     EventName: Click_Twitter
-  BRANDING_FORCE_NAME: London Metropolitan
-  BRANDING_FORCE_STRAPLINE: Making London the safest global city
-  BRANDING_DOWNLOAD_NOW: Stay smarter than the criminals
-  BRANDING_DOWNLOAD_MESSAGE: Keep up to date with the latest information, helping
-    you and your community!

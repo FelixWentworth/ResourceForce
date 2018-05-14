@@ -59,7 +59,12 @@ public class BrandingManager : MonoBehaviour
 		/// </summary>
 		public bool IsBrandingObject;
 	}
-    
+
+#if UNITY_EDITOR
+    [Header("Localization")]
+    public string LocalizationSource;
+    public string LocalizationOutput;
+
     [Header("Element Images")]
     [SerializeField] private Image _startScreenLogo;
     [SerializeField] private Image _gameLogo;
@@ -81,19 +86,14 @@ public class BrandingManager : MonoBehaviour
     [SerializeField] private ButtonLink _optionsTwitter;
     
     public List<BrandingObjects> ObjectsForBranding;
-    
-	public void Apply()
+
+    public void Apply()
 	{
 	    SetImages();
 		SetLinks();
 		SetMetadata();
 		SetBrandingObjects();
 	}
-
-    private void PrefabInstanceUpdated(GameObject instance)
-    {
-        Debug.Log(instance);
-    }
 
     private void SetImages()
 	{
@@ -131,7 +131,6 @@ public class BrandingManager : MonoBehaviour
 
 	private void SetMetadata()
 	{
-#if UNITY_EDITOR
 		PlayerSettings.productName = _brandingConfig.Metadata.AppName;
 		PlayerSettings.bundleVersion = _brandingConfig.Metadata.Version;
 		PlayerSettings.applicationIdentifier = _brandingConfig.Metadata.BundleId;
@@ -141,7 +140,7 @@ public class BrandingManager : MonoBehaviour
 			logos[i].logo = _brandingConfig.Metadata.SplashScreenLogos[i];
 		}
 		PlayerSettings.SplashScreen.logos = logos;
-#endif
+
         GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(_brandingConfig.Metadata.AuthoringToolUrl);
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetFileName(UseManager ? _brandingConfig.Metadata.FileName : "");
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetResourcesFileName(UseManager ? _brandingConfig.Metadata.ResourcesFileName : "");
@@ -156,4 +155,5 @@ public class BrandingManager : MonoBehaviour
 			branding.Obj.SetActive(active);
 		}
 	}
+#endif
 }
