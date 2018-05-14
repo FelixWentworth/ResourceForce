@@ -25,7 +25,7 @@
               "officerReq": 1,
               "satisfactionImpact": -5,
               "severity": 3,
-              "title": "RESOLUTION",
+              "title": "Body Found",
               "turnReq": 1
             }
           },
@@ -59,7 +59,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -5,
                     "severity": 3,
-                    "title": "RESOLUTION",
+                    "title": "Body Found",
                     "turnReq": 1
                   }
                 },
@@ -82,7 +82,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 4,
                     "severity": 3,
-                    "title": "RESOLUTION",
+                    "title": "Woman Found",
                     "turnReq": 1
                   }
                 },
@@ -116,7 +116,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -5,
                           "severity": 3,
-                          "title": "RESOLUTION",
+                          "title": "Body Found",
                           "turnReq": 1
                         }
                       },
@@ -139,7 +139,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 4,
                           "severity": 3,
-                          "title": "RESOLUTION",
+                          "title": "Woman Found",
                           "turnReq": 1
                         }
                       },
@@ -147,9 +147,9 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Photo uploaded to INSPEC2T app, a member of the public has informed local police she saw her on top of a bus stop",
+                    "description": "Photo received, a member of the public has informed local police she saw her on top of a bus stop",
                     "officerReq": 2,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 3,
                     "title": "Citizen Help",
                     "turnReq": 2
@@ -161,7 +161,7 @@
               ],
               "description": "Officer sent to investigate and finds more information about the woman, and gets a recent photo",
               "officerReq": 3,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 3,
               "title": "Investigate",
               "turnReq": 1
@@ -197,7 +197,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -5,
                     "severity": 3,
-                    "title": "RESOLUTION",
+                    "title": "Body Found",
                     "turnReq": 1
                   }
                 },
@@ -220,7 +220,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 4,
                     "severity": 3,
-                    "title": "RESOLUTION",
+                    "title": "Woman Found",
                     "turnReq": 1
                   }
                 },
@@ -228,9 +228,9 @@
                   "_type": "End"
                 }
               ],
-              "description": "Photo uploaded to INSPEC2T app, a member of the public has informed local police she saw her on top of a bus stop",
+              "description": "Photo received, a member of the public has informed local police she saw her on top of a bus stop",
               "officerReq": 2,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 3,
               "title": "Citizen Help",
               "turnReq": 2
@@ -242,7 +242,7 @@
         ],
         "description": "Woman has been reported missing from her home",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Missing Person",
         "turnReq": 2
@@ -313,7 +313,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": -3,
                                 "severity": 3,
-                                "title": "RESOLUTION",
+                                "title": "Man left in street",
                                 "turnReq": 1
                               }
                             },
@@ -336,7 +336,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": 4,
                                 "severity": 3,
-                                "title": "RESOLUTION",
+                                "title": "Offender Arrested",
                                 "turnReq": 1
                               }
                             },
@@ -370,7 +370,7 @@
                                       "officerReq": 1,
                                       "satisfactionImpact": 4,
                                       "severity": 3,
-                                      "title": "RESOLUTION",
+                                      "title": "Man Arrested",
                                       "turnReq": 1
                                     }
                                   },
@@ -393,7 +393,7 @@
                                       "officerReq": 1,
                                       "satisfactionImpact": -3,
                                       "severity": 3,
-                                      "title": "RESOLUTION",
+                                      "title": "Man left in street",
                                       "turnReq": 1
                                     }
                                   },
@@ -401,9 +401,9 @@
                                     "_type": "End"
                                   }
                                 ],
-                                "description": "Member of the public provides photographic evidence of man with a mechete using the INSPEC2T app",
+                                "description": "Member of the public provides photographic evidence of man with a mechete",
                                 "officerReq": 4,
-                                "satisfactionImpact": 0,
+                                "satisfactionImpact": -99,
                                 "severity": 3,
                                 "title": "Citizen Help",
                                 "turnReq": 3
@@ -415,7 +415,7 @@
                           ],
                           "description": "A man has been stabbed and is slumped next to the wheelie bin",
                           "officerReq": 3,
-                          "satisfactionImpact": 0,
+                          "satisfactionImpact": -99,
                           "severity": 3,
                           "title": "Development - physical assault",
                           "turnReq": 4
@@ -440,7 +440,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Fight Stopped",
                           "turnReq": 1
                         }
                       },
@@ -474,7 +474,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": -3,
                                 "severity": 3,
-                                "title": "RESOLUTION",
+                                "title": "Man left in street",
                                 "turnReq": 1
                               }
                             },
@@ -497,7 +497,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": 5,
                                 "severity": 2,
-                                "title": "RESOLUTION",
+                                "title": "Man Located",
                                 "turnReq": 1
                               }
                             },
@@ -507,7 +507,7 @@
                           ],
                           "description": "A citizen has informed the police that he saw which person assaulted the other",
                           "officerReq": 1,
-                          "satisfactionImpact": 0,
+                          "satisfactionImpact": -99,
                           "severity": 2,
                           "title": "Citizen Help",
                           "turnReq": 2
@@ -519,7 +519,7 @@
                     ],
                     "description": "Reported that one of the neighbours has assaulted the other outside the property",
                     "officerReq": 1,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Development - physical assault",
                     "turnReq": 3
@@ -544,7 +544,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Calmed Down",
                     "turnReq": 1
                   }
                 },
@@ -554,7 +554,7 @@
               ],
               "description": "The 2 neighbours have started a verbal argument outside the property",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 1,
               "title": "Development - verbal assault",
               "turnReq": 3
@@ -579,7 +579,7 @@
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Calmed down",
               "turnReq": 1
             }
           },
@@ -589,7 +589,7 @@
         ],
         "description": "Reports of someone moving a wheelie bin",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Neighbour dispute",
         "turnReq": 2
@@ -627,7 +627,7 @@
               "officerReq": 1,
               "satisfactionImpact": -2,
               "severity": 2,
-              "title": "RESOLUTION",
+              "title": "Evidence Lost",
               "turnReq": 1
             }
           },
@@ -661,7 +661,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Not enough evidence",
                     "turnReq": 1
                   }
                 },
@@ -684,7 +684,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Not enough evidence",
                     "turnReq": 1
                   }
                 },
@@ -694,7 +694,7 @@
               ],
               "description": "Officer eventually locates female who discloses that she has been raped.",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Rape",
               "turnReq": 1
@@ -730,7 +730,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Not enough evidence",
                     "turnReq": 1
                   }
                 },
@@ -753,7 +753,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 3,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Offender Arrested",
                     "turnReq": 1
                   }
                 },
@@ -763,7 +763,7 @@
               ],
               "description": "Information allows officers to locate female quickly who discloses that she has been raped",
               "officerReq": 2,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Rape",
               "turnReq": 1
@@ -775,7 +775,7 @@
         ],
         "description": "Report of a young female running through the city centre partially clothed and appears distressed.",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Minor Altercation",
         "turnReq": 4
@@ -820,11 +820,11 @@
                         "_type": "End"
                       }
                     ],
-                    "description": "Patrol attends and fines that vehicle is not causing an obstruction & cannot do anything refers the matter to council parking services.",
+                    "description": "Patrol attends and finds that vehicle is not causing an obstruction & cannot do anything refers the matter to council parking services.",
                     "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 1,
-                    "title": "RESOLUTION",
+                    "title": "Officers not needed",
                     "turnReq": 1
                   }
                 },
@@ -847,7 +847,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -2,
                     "severity": 1,
-                    "title": "RESOLUTION",
+                    "title": "Officers not needed",
                     "turnReq": 1
                   }
                 },
@@ -882,7 +882,7 @@
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Officers not needed",
               "turnReq": 1
             }
           },
@@ -901,11 +901,11 @@
                   "_type": "End"
                 }
               ],
-              "description": "Patrol attends and fines that vehicle is not causing an obstruction & cannot do anything refers the matter to council parking services.",
+              "description": "Patrol attends and finds that vehicle is not causing an obstruction & cannot do anything refers the matter to council parking services.",
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Officers not needed",
               "turnReq": 1
             }
           },
@@ -915,7 +915,7 @@
         ],
         "description": "Report of a vehicle being park in an inconsiderate manner on a residential street.",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Traffic Incident",
         "turnReq": 3
@@ -953,7 +953,7 @@
               "officerReq": 1,
               "satisfactionImpact": -1,
               "severity": 2,
-              "title": "RESOLUTION",
+              "title": "Lack of evidence",
               "turnReq": 1
             }
           },
@@ -987,7 +987,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Suspect arrested",
                     "turnReq": 1
                   }
                 },
@@ -1010,7 +1010,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Suspect arrestes",
                     "turnReq": 1
                   }
                 },
@@ -1020,7 +1020,7 @@
               ],
               "description": "Officer attends and take statement from victim and witnesses. Using information suspect is identified",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Verbal Abuse",
               "turnReq": 3
@@ -1056,7 +1056,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Suspect Prosecuted",
                     "turnReq": 1
                   }
                 },
@@ -1079,7 +1079,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Suspect Prosecuted",
                     "turnReq": 1
                   }
                 },
@@ -1089,7 +1089,7 @@
               ],
               "description": "Information allows officers to quickly identify the suspect who is arrested a short distance away",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Verbal Abuse",
               "turnReq": 2
@@ -1101,7 +1101,7 @@
         ],
         "description": "Report of a disabled female in a wheelchair being verbally abused by a young male in the street, there are no CCTV cameras in the area.",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 2,
         "title": "Verbal Abuse",
         "turnReq": 4
@@ -1150,7 +1150,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 3,
-                    "title": "RESOLUTION",
+                    "title": "Bleed Out",
                     "turnReq": 1
                   }
                 },
@@ -1195,7 +1195,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": -3,
                                 "severity": 3,
-                                "title": "RESOLUTION",
+                                "title": "Bleed out",
                                 "turnReq": 1
                               }
                             },
@@ -1218,7 +1218,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": 2,
                                 "severity": 2,
-                                "title": "RESOLUTION",
+                                "title": "Suspect Prosecuted",
                                 "turnReq": 1
                               }
                             },
@@ -1228,7 +1228,7 @@
                           ],
                           "description": "Information allows officers to identify which of the males was the aggressive. Officer attends and arrests aggressor thus preventing situation escalating",
                           "officerReq": 1,
-                          "satisfactionImpact": 0,
+                          "satisfactionImpact": -99,
                           "severity": 2,
                           "title": "Possible Assault",
                           "turnReq": 4
@@ -1253,7 +1253,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 3,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Offender Prosecuted",
                           "turnReq": 1
                         }
                       },
@@ -1263,7 +1263,7 @@
                     ],
                     "description": "Deploy officers, arrest the offender. Due to the severity of the injury a scene is identified and officers allocated to staff it awaiting CSI",
                     "officerReq": 3,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Assault",
                     "turnReq": 3
@@ -1275,7 +1275,7 @@
               ],
               "description": "Fight escalates resulting in one of the males smashing the bottle and stabbing the other.",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Assault",
               "turnReq": 2
@@ -1300,7 +1300,7 @@
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Situation Defused",
               "turnReq": 1
             }
           },
@@ -1334,7 +1334,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 3,
-                    "title": "RESOLUTION",
+                    "title": "Bleed out",
                     "turnReq": 1
                   }
                 },
@@ -1357,7 +1357,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Aggressor prosecuted",
                     "turnReq": 1
                   }
                 },
@@ -1367,7 +1367,7 @@
               ],
               "description": "Information allows officers to identify which of the males was the aggressive. Officer attends and arrests aggressor thus preventing situation escalating",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Possible Assault",
               "turnReq": 4
@@ -1379,7 +1379,7 @@
         ],
         "description": "Report of two homeless males fighting over a bottle of wine in the city centre.",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Possible Assault",
         "turnReq": 3
@@ -1439,7 +1439,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Lack of information",
                           "turnReq": 1
                         }
                       },
@@ -1473,7 +1473,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": -1,
                                 "severity": 2,
-                                "title": "RESOLUTION",
+                                "title": "Male too drunk",
                                 "turnReq": 1
                               }
                             },
@@ -1507,7 +1507,7 @@
                                       "officerReq": 1,
                                       "satisfactionImpact": -1,
                                       "severity": 2,
-                                      "title": "RESOLUTION",
+                                      "title": "Male too drunk",
                                       "turnReq": 1
                                     }
                                   },
@@ -1530,7 +1530,7 @@
                                       "officerReq": 1,
                                       "satisfactionImpact": 2,
                                       "severity": 2,
-                                      "title": "RESOLUTION",
+                                      "title": "Lack of information",
                                       "turnReq": 1
                                     }
                                   },
@@ -1540,7 +1540,7 @@
                                 ],
                                 "description": "Male is successfully prosecuted however still wants to report assault inside the club ",
                                 "officerReq": 2,
-                                "satisfactionImpact": 0,
+                                "satisfactionImpact": -99,
                                 "severity": 2,
                                 "title": "Multiple Assault",
                                 "turnReq": 4
@@ -1552,7 +1552,7 @@
                           ],
                           "description": "Deploy an officer, male is arrested for assault after attacking a member of door staff",
                           "officerReq": 2,
-                          "satisfactionImpact": 0,
+                          "satisfactionImpact": -99,
                           "severity": 2,
                           "title": "Multiple Assault",
                           "turnReq": 4
@@ -1564,7 +1564,7 @@
                     ],
                     "description": "Drunk male has started attacking  a member of door staff",
                     "officerReq": 2,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Assault",
                     "turnReq": 4
@@ -1600,7 +1600,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -1,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Male too drunk",
                           "turnReq": 1
                         }
                       },
@@ -1634,7 +1634,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": -1,
                                 "severity": 2,
-                                "title": "RESOLUTION",
+                                "title": "Male too drunk",
                                 "turnReq": 1
                               }
                             },
@@ -1657,7 +1657,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": 2,
                                 "severity": 1,
-                                "title": "RESOLUTION",
+                                "title": "Suspect prosecuted",
                                 "turnReq": 1
                               }
                             },
@@ -1667,7 +1667,7 @@
                           ],
                           "description": "Information allows officers to identify a suspect and make an arrest",
                           "officerReq": 1,
-                          "satisfactionImpact": 0,
+                          "satisfactionImpact": -99,
                           "severity": 1,
                           "title": "Assault",
                           "turnReq": 3
@@ -1679,7 +1679,7 @@
                     ],
                     "description": "Deploy an officer male is arrested for drunk & disorderly however still wanting to report assault once sober in the morning ",
                     "officerReq": 2,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Multiple Assault",
                     "turnReq": 4
@@ -1691,7 +1691,7 @@
               ],
               "description": "Drunk male becomes aggressive with door staff and tries picking a fight",
               "officerReq": 2,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Assault",
               "turnReq": 4
@@ -1727,7 +1727,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Male too drunk",
                     "turnReq": 1
                   }
                 },
@@ -1750,7 +1750,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Male too drunk",
                     "turnReq": 1
                   }
                 },
@@ -1760,7 +1760,7 @@
               ],
               "description": "Drunk male becomes aggressive with officers which results in him being arrested disorderly however still wanting to report assault once sober in the morning",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 1,
               "title": "Assault",
               "turnReq": 3
@@ -1796,7 +1796,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Male too drunk",
                     "turnReq": 1
                   }
                 },
@@ -1819,7 +1819,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 1,
-                    "title": "RESOLUTION",
+                    "title": "Suspect Prosecuted",
                     "turnReq": 1
                   }
                 },
@@ -1829,7 +1829,7 @@
               ],
               "description": "Information allows officers to identify a suspect and make an arrest",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 1,
               "title": "Assault",
               "turnReq": 3
@@ -1841,7 +1841,7 @@
         ],
         "description": "Report from a drunk male stating that he has been assaulted inside a busy nightclub. Male refuses an ambulance as he is not seriously injured.",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Assault",
         "turnReq": 3
@@ -1901,7 +1901,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Evidence lost",
                           "turnReq": 1
                         }
                       },
@@ -1924,7 +1924,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Offenders arrested",
                           "turnReq": 1
                         }
                       },
@@ -1934,7 +1934,7 @@
                     ],
                     "description": "Groups behaviour escalates further & staff member gets assaulted whilst challenging them",
                     "officerReq": 3,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Assault",
                     "turnReq": 4
@@ -1959,7 +1959,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Offenders arrested",
                     "turnReq": 1
                   }
                 },
@@ -1969,7 +1969,7 @@
               ],
               "description": "Nuisance escalates into criminal damage leading to window being smashed.",
               "officerReq": 2,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 1,
               "title": "Vandalism",
               "turnReq": 3
@@ -1994,7 +1994,7 @@
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Current problem resolved",
               "turnReq": 1
             }
           },
@@ -2050,7 +2050,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": -2,
                                 "severity": 2,
-                                "title": "RESOLUTION",
+                                "title": "Lost Evidence",
                                 "turnReq": 1
                               }
                             },
@@ -2073,7 +2073,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": 2,
                                 "severity": 2,
-                                "title": "RESOLUTION",
+                                "title": "Offenders arrested",
                                 "turnReq": 1
                               }
                             },
@@ -2083,7 +2083,7 @@
                           ],
                           "description": "Groups behaviour escalates further & staff member gets assaulted whilst challenging them",
                           "officerReq": 3,
-                          "satisfactionImpact": 0,
+                          "satisfactionImpact": -99,
                           "severity": 2,
                           "title": "Assault",
                           "turnReq": 4
@@ -2108,7 +2108,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Offenders arrested",
                           "turnReq": 1
                         }
                       },
@@ -2118,7 +2118,7 @@
                     ],
                     "description": "Nuisance escalates into criminal damage leading to window being smashed.",
                     "officerReq": 2,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 1,
                     "title": "Vandalism",
                     "turnReq": 3
@@ -2143,7 +2143,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 1,
-                    "title": "RESOLUTION",
+                    "title": "Officer solves issues",
                     "turnReq": 1
                   }
                 },
@@ -2153,7 +2153,7 @@
               ],
               "description": "Information leads to finding identity of youths and reason for them causing problems",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 1,
               "title": "Loitering",
               "turnReq": 2
@@ -2165,7 +2165,7 @@
         ],
         "description": "Report of a group of 10-15 youths gathering outside a fast food restaurant causing a nuisance",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Loitering",
         "turnReq": 3
@@ -2225,7 +2225,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 3,
-                          "title": "RESOLUTION",
+                          "title": "Male returned home",
                           "turnReq": 1
                         }
                       },
@@ -2248,7 +2248,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 4,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Elderly man calmed",
                           "turnReq": 1
                         }
                       },
@@ -2258,7 +2258,7 @@
                     ],
                     "description": "Male is eventually returned home however becomes increasingly distressed during the wait and requires officer to spend additional time calming him down ",
                     "officerReq": 1,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Missing Person",
                     "turnReq": 4
@@ -2283,7 +2283,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 3,
-                    "title": "RESOLUTION",
+                    "title": "Male returned home",
                     "turnReq": 1
                   }
                 },
@@ -2293,7 +2293,7 @@
               ],
               "description": "Officer attend and discovers that male has been reported missing",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 3,
               "title": "Missing Person",
               "turnReq": 4
@@ -2329,7 +2329,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 3,
-                    "title": "RESOLUTION",
+                    "title": "Male retuned home",
                     "turnReq": 1
                   }
                 },
@@ -2363,7 +2363,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 3,
-                          "title": "RESOLUTION",
+                          "title": "Male returned home",
                           "turnReq": 1
                         }
                       },
@@ -2386,7 +2386,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 4,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Elderly male calmed",
                           "turnReq": 1
                         }
                       },
@@ -2396,7 +2396,7 @@
                     ],
                     "description": "Male is eventually returned home however becomes increasingly distressed during the wait and requires officer to spend additional time calming him down ",
                     "officerReq": 1,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Missing Person",
                     "turnReq": 4
@@ -2408,7 +2408,7 @@
               ],
               "description": "Information obtained identify man as a missing person",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 3,
               "title": "Missing Person",
               "turnReq": 4
@@ -2420,7 +2420,7 @@
         ],
         "description": "Report of an elderly male  being found in a confused state by staff on the train station.",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 2,
         "title": "Possible Missing Person",
         "turnReq": 3
@@ -2458,7 +2458,7 @@
               "officerReq": 1,
               "satisfactionImpact": -2,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Report resolved",
               "turnReq": 1
             }
           },
@@ -2481,7 +2481,7 @@
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Officer attends",
               "turnReq": 1
             }
           },
@@ -2491,7 +2491,7 @@
         ],
         "description": "Report of a collision between two vehicles on a busy road, report states that no persons are injured.",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Traffic Incident",
         "turnReq": 4
@@ -2529,7 +2529,7 @@
               "officerReq": 1,
               "satisfactionImpact": -3,
               "severity": 2,
-              "title": "RESOLUTION",
+              "title": "Road Rage",
               "turnReq": 1
             }
           },
@@ -2563,7 +2563,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Road Rage",
                     "turnReq": 1
                   }
                 },
@@ -2597,7 +2597,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Road Rage",
                           "turnReq": 1
                         }
                       },
@@ -2620,7 +2620,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -1,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Driver under limit",
                           "turnReq": 1
                         }
                       },
@@ -2630,7 +2630,7 @@
                     ],
                     "description": "1 driver arrested at scene but wait until additional resources are available to transport into custody ",
                     "officerReq": 1,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Drunk Driving",
                     "turnReq": 3
@@ -2642,7 +2642,7 @@
               ],
               "description": "Officers attend & closes part of the road and take details. One of the drivers smells of alcohol.",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Drunk Driving",
               "turnReq": 3
@@ -2678,7 +2678,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Road Rage",
                     "turnReq": 1
                   }
                 },
@@ -2712,7 +2712,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -1,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Driver under limit",
                           "turnReq": 1
                         }
                       },
@@ -2735,7 +2735,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Road Rage",
                           "turnReq": 1
                         }
                       },
@@ -2745,7 +2745,7 @@
                     ],
                     "description": "1 driver arrested at scene but wait until additional resources are available to transport into custody ",
                     "officerReq": 1,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Drunk Driving",
                     "turnReq": 3
@@ -2757,7 +2757,7 @@
               ],
               "description": "Officers attend & closes part of the road and take details. One of the drivers smells of alcohol.",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Drunk Driving",
               "turnReq": 3
@@ -2769,7 +2769,7 @@
         ],
         "description": "Report of a collision involving two vehicles on a busy road, report is unable to give a specific junction & states that one of the drivers is complaining of neck pain.",
         "officerReq": 2,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 2,
         "title": "Traffic Incident",
         "turnReq": 4
@@ -2818,7 +2818,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Evidence Lost",
                     "turnReq": 1
                   }
                 },
@@ -2841,7 +2841,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Male Arrested",
                     "turnReq": 1
                   }
                 },
@@ -2851,7 +2851,7 @@
               ],
               "description": "Male becomes aggressive and runs away from security, assaulting them in the process",
               "officerReq": 3,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Assault",
               "turnReq": 3
@@ -2876,7 +2876,7 @@
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Fixed Penalty Given",
               "turnReq": 1
             }
           },
@@ -2899,7 +2899,7 @@
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Fixed Penalty Given",
               "turnReq": 1
             }
           },
@@ -2909,7 +2909,7 @@
         ],
         "description": "Report of a shoplifter being detained by security staff at a large retailer",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Theft",
         "turnReq": 3
@@ -2969,7 +2969,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "No CCTV",
                           "turnReq": 1
                         }
                       },
@@ -2992,7 +2992,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 2,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Male charged",
                           "turnReq": 1
                         }
                       },
@@ -3002,7 +3002,7 @@
                     ],
                     "description": "Male becomes violent towards staff and assaults one of them",
                     "officerReq": 4,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Assault",
                     "turnReq": 3
@@ -3027,7 +3027,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Male arrested",
                     "turnReq": 1
                   }
                 },
@@ -3037,7 +3037,7 @@
               ],
               "description": "Male soils himself and becomes abusive towards staff",
               "officerReq": 3,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Disruption",
               "turnReq": 3
@@ -3062,7 +3062,7 @@
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Male removed",
               "turnReq": 1
             }
           },
@@ -3118,7 +3118,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": -2,
                                 "severity": 2,
-                                "title": "RESOLUTION",
+                                "title": "No CCTV",
                                 "turnReq": 1
                               }
                             },
@@ -3141,7 +3141,7 @@
                                 "officerReq": 1,
                                 "satisfactionImpact": 2,
                                 "severity": 2,
-                                "title": "RESOLUTION",
+                                "title": "Male charged",
                                 "turnReq": 1
                               }
                             },
@@ -3151,7 +3151,7 @@
                           ],
                           "description": "Male becomes violent towards staff and assaults one of them",
                           "officerReq": 4,
-                          "satisfactionImpact": 0,
+                          "satisfactionImpact": -99,
                           "severity": 2,
                           "title": "Assault",
                           "turnReq": 3
@@ -3176,7 +3176,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 1,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Male prosecuted",
                           "turnReq": 1
                         }
                       },
@@ -3186,7 +3186,7 @@
                     ],
                     "description": "Male soils himself and becomes abusive towards staff",
                     "officerReq": 3,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Disruption",
                     "turnReq": 3
@@ -3211,7 +3211,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 1,
-                    "title": "RESOLUTION",
+                    "title": "Male removed",
                     "turnReq": 1
                   }
                 },
@@ -3221,7 +3221,7 @@
               ],
               "description": "Male identified as known individual who has caused similar problems",
               "officerReq": 2,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 1,
               "title": "Citizen Help",
               "turnReq": 2
@@ -3233,7 +3233,7 @@
         ],
         "description": "Report of a drunken male causing problems inside a hotel foyer",
         "officerReq": 2,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Disruption",
         "turnReq": 3
@@ -3271,7 +3271,7 @@
               "officerReq": 1,
               "satisfactionImpact": -3,
               "severity": 3,
-              "title": "RESOLUTION",
+              "title": "Child hit",
               "turnReq": 1
             }
           },
@@ -3305,7 +3305,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 3,
-                    "title": "RESOLUTION",
+                    "title": "Child hit",
                     "turnReq": 1
                   }
                 },
@@ -3328,7 +3328,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Child Reunited",
                     "turnReq": 1
                   }
                 },
@@ -3338,7 +3338,7 @@
               ],
               "description": "Officers begin searching the city centre shops for a child",
               "officerReq": 3,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Search Started",
               "turnReq": 3
@@ -3359,11 +3359,11 @@
                   "_type": "End"
                 }
               ],
-              "description": "Picture of the child was circulated on the INSPEC2T platform and as such, the child was found nearby a shop. Mother and Child have been reunited",
+              "description": "Picture of the child was circulated and as such, the child was found nearby a shop. Mother and Child have been reunited",
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 2,
-              "title": "RESOLUTION",
+              "title": "Photo of child",
               "turnReq": 1
             }
           },
@@ -3373,7 +3373,7 @@
         ],
         "description": "A report has been received regarding a small child who has been separated from their mother in a busy city centre shop",
         "officerReq": 3,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 2,
         "title": "Missing Person",
         "turnReq": 3
@@ -3433,7 +3433,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Serious Assault",
                           "turnReq": 1
                         }
                       },
@@ -3456,7 +3456,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 1,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "2 Arrested",
                           "turnReq": 1
                         }
                       },
@@ -3466,7 +3466,7 @@
                     ],
                     "description": "Informant reacts to the assault and smashes a window due to frustration of having to wait",
                     "officerReq": 4,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Property Damage",
                     "turnReq": 4
@@ -3491,7 +3491,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 1,
-                    "title": "RESOLUTION",
+                    "title": "Offender Arrested",
                     "turnReq": 1
                   }
                 },
@@ -3501,7 +3501,7 @@
               ],
               "description": "Due to the delay in responding, the informant goes to the problematic address and confronts the occupants, which results in the informant getting assaulted",
               "officerReq": 2,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Assault",
               "turnReq": 4
@@ -3526,7 +3526,7 @@
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Officers attend",
               "turnReq": 1
             }
           },
@@ -3536,7 +3536,7 @@
         ],
         "description": "Report received regarding a large amount of musical noise coming from a neighbouring property. The informant says to the call taker that if the police doesn't sort it, they'll do it themselves",
         "officerReq": 2,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Noise Complaint",
         "turnReq": 3
@@ -3574,7 +3574,7 @@
               "officerReq": 1,
               "satisfactionImpact": -3,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Issue subsided",
               "turnReq": 1
             }
           },
@@ -3597,7 +3597,7 @@
               "officerReq": 1,
               "satisfactionImpact": -1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Youths run away",
               "turnReq": 1
             }
           },
@@ -3631,7 +3631,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 1,
-                    "title": "RESOLUTION",
+                    "title": "Issues subsied",
                     "turnReq": 1
                   }
                 },
@@ -3654,7 +3654,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 1,
-                    "title": "RESOLUTION",
+                    "title": "Good Evidence",
                     "turnReq": 1
                   }
                 },
@@ -3664,7 +3664,7 @@
               ],
               "description": "Information provided from a neighbour gives the identity of several of the youths",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 1,
               "title": "Loitering",
               "turnReq": 2
@@ -3676,7 +3676,7 @@
         ],
         "description": "Report of a group of youths causing havoc on a small residential estate. The report can only describe the youths as 'the usual ones'",
         "officerReq": 2,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Loitering",
         "turnReq": 3
@@ -3714,7 +3714,7 @@
               "officerReq": 1,
               "satisfactionImpact": -3,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Elderly in hospital",
               "turnReq": 1
             }
           },
@@ -3748,7 +3748,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -2,
                     "severity": 1,
-                    "title": "RESOLUTION",
+                    "title": "Condition deteriorates",
                     "turnReq": 1
                   }
                 },
@@ -3771,7 +3771,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 1,
                     "severity": 1,
-                    "title": "RESOLUTION",
+                    "title": "Elderly Helped",
                     "turnReq": 1
                   }
                 },
@@ -3781,7 +3781,7 @@
               ],
               "description": "Officer discovers elderly person has fallen inside the property and cannot get up but requires assistance in gaining entry to help them",
               "officerReq": 2,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 1,
               "title": "Assistance Required",
               "turnReq": 3
@@ -3806,7 +3806,7 @@
               "officerReq": 1,
               "satisfactionImpact": 1,
               "severity": 1,
-              "title": "RESOLUTION",
+              "title": "Elderly is safe",
               "turnReq": 1
             }
           },
@@ -3816,7 +3816,7 @@
         ],
         "description": "Report regarding concerns for the welfare of a family member who is elderly and lives on their own and not answering the telephone.",
         "officerReq": 1,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Concern Raised",
         "turnReq": 3
@@ -3854,7 +3854,7 @@
               "officerReq": 1,
               "satisfactionImpact": -2,
               "severity": 2,
-              "title": "RESOLUTION",
+              "title": "Critically Injured",
               "turnReq": 1
             }
           },
@@ -3877,7 +3877,7 @@
               "officerReq": 1,
               "satisfactionImpact": -1,
               "severity": 2,
-              "title": "RESOLUTION",
+              "title": "Several arrests",
               "turnReq": 1
             }
           },
@@ -3911,7 +3911,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Several arrests",
                     "turnReq": 1
                   }
                 },
@@ -3934,7 +3934,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Critically Injured",
                     "turnReq": 1
                   }
                 },
@@ -3944,7 +3944,7 @@
               ],
               "description": "Citizen gives names of males involved and provides specifics of weapons being used",
               "officerReq": 3,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Armed Assault",
               "turnReq": 4
@@ -3956,7 +3956,7 @@
         ],
         "description": "Group of males fighting outside a shop on a residential estate with weapons. The informant is unable to provide any ID or further information on the weapons as they're driving past",
         "officerReq": 3,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 2,
         "title": "Armed Assault",
         "turnReq": 4
@@ -4016,7 +4016,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 3,
-                          "title": "RESOLUTION",
+                          "title": "Registration unknown",
                           "turnReq": 1
                         }
                       },
@@ -4039,7 +4039,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 3,
                           "severity": 3,
-                          "title": "RESOLUTION",
+                          "title": "Drunk Driver",
                           "turnReq": 1
                         }
                       },
@@ -4049,7 +4049,7 @@
                     ],
                     "description": "Vehicle is involved in a high speed collision with a child crossing the road",
                     "officerReq": 3,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 3,
                     "title": "Collision",
                     "turnReq": 4
@@ -4074,7 +4074,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -2,
                     "severity": 1,
-                    "title": "RESOLUTION",
+                    "title": "Vehicle abandoned",
                     "turnReq": 1
                   }
                 },
@@ -4084,7 +4084,7 @@
               ],
               "description": "Due to lack of deployment the behaviour of the driver becomes more reckless, several other calls are received which provide direction of travel",
               "officerReq": 3,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Reckless Driving",
               "turnReq": 4
@@ -4131,7 +4131,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 3,
-                          "title": "RESOLUTION",
+                          "title": "Registration unknown",
                           "turnReq": 1
                         }
                       },
@@ -4154,7 +4154,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 3,
                           "severity": 3,
-                          "title": "RESOLUTION",
+                          "title": "Drunk Driver",
                           "turnReq": 1
                         }
                       },
@@ -4164,7 +4164,7 @@
                     ],
                     "description": "Vehicle is involved in a high speed collision with a child crossing the road",
                     "officerReq": 3,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 3,
                     "title": "Collision",
                     "turnReq": 4
@@ -4189,7 +4189,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Driver Found",
                     "turnReq": 1
                   }
                 },
@@ -4199,7 +4199,7 @@
               ],
               "description": "Information is gathered about the travel direction and number plate of the vehicle",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Information Gathered",
               "turnReq": 2
@@ -4235,7 +4235,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": 2,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Driver Found",
                     "turnReq": 1
                   }
                 },
@@ -4269,7 +4269,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -2,
                           "severity": 3,
-                          "title": "RESOLUTION",
+                          "title": "Rgeistration Unknown",
                           "turnReq": 1
                         }
                       },
@@ -4292,7 +4292,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": 3,
                           "severity": 3,
-                          "title": "RESOLUTION",
+                          "title": "Drunk Driver",
                           "turnReq": 1
                         }
                       },
@@ -4302,7 +4302,7 @@
                     ],
                     "description": "Vehicle is involved in a high speed collision with a child crossing the road",
                     "officerReq": 3,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 3,
                     "title": "Collision",
                     "turnReq": 4
@@ -4314,7 +4314,7 @@
               ],
               "description": "Information is gathered about the travel direction and number plate of the vehicle",
               "officerReq": 1,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Information Gathered",
               "turnReq": 2
@@ -4326,7 +4326,7 @@
         ],
         "description": "Transit van seen driving recklessly and at high speeds. There is significant concern as a local primary school is due to finish for the day and pupils will be walking home",
         "officerReq": 2,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 2,
         "title": "Reckless Driving",
         "turnReq": 3
@@ -4375,7 +4375,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "No Information",
                     "turnReq": 1
                   }
                 },
@@ -4398,7 +4398,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -3,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Park Searched",
                     "turnReq": 1
                   }
                 },
@@ -4408,7 +4408,7 @@
               ],
               "description": "Due to the delay in finding the dog, a further report in made that a dog has bitten a small child in the play area and ran away",
               "officerReq": 2,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Dangerous Dog",
               "turnReq": 3
@@ -4455,7 +4455,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "No Information",
                           "turnReq": 1
                         }
                       },
@@ -4478,7 +4478,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "No Information",
                           "turnReq": 1
                         }
                       },
@@ -4488,7 +4488,7 @@
                     ],
                     "description": "Due to the delay in finding the dog, a further report in made that a dog has bitten a small child in the play area and ran away",
                     "officerReq": 2,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Dangerous Dog",
                     "turnReq": 3
@@ -4513,7 +4513,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Dog not found",
                     "turnReq": 1
                   }
                 },
@@ -4523,7 +4523,7 @@
               ],
               "description": "Information provided on the location of the dog and the person who is believed to be the owner",
               "officerReq": 2,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Dangerous Dog",
               "turnReq": 3
@@ -4559,7 +4559,7 @@
                     "officerReq": 1,
                     "satisfactionImpact": -1,
                     "severity": 2,
-                    "title": "RESOLUTION",
+                    "title": "Dog not found",
                     "turnReq": 1
                   }
                 },
@@ -4593,7 +4593,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "No Information",
                           "turnReq": 1
                         }
                       },
@@ -4616,7 +4616,7 @@
                           "officerReq": 1,
                           "satisfactionImpact": -3,
                           "severity": 2,
-                          "title": "RESOLUTION",
+                          "title": "Park Searched",
                           "turnReq": 1
                         }
                       },
@@ -4626,7 +4626,7 @@
                     ],
                     "description": "Due to the delay in finding the dog, a further report in made that a dog has bitten a small child in the play area and ran away",
                     "officerReq": 2,
-                    "satisfactionImpact": 0,
+                    "satisfactionImpact": -99,
                     "severity": 2,
                     "title": "Dangerous Dog",
                     "turnReq": 3
@@ -4638,7 +4638,7 @@
               ],
               "description": "Information provided on the location of the dog and the person who is believed to be the owner",
               "officerReq": 2,
-              "satisfactionImpact": 0,
+              "satisfactionImpact": -99,
               "severity": 2,
               "title": "Dangerous Dog",
               "turnReq": 3
@@ -4650,7 +4650,7 @@
         ],
         "description": "Report received that there is a dangerous dog out of control in a local park. Nearby there is a play area which is currently very busy",
         "officerReq": 2,
-        "satisfactionImpact": 0,
+        "satisfactionImpact": -99,
         "severity": 1,
         "title": "Dangerous Dog",
         "turnReq": 4
