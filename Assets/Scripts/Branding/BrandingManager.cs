@@ -17,6 +17,13 @@ public class BrandingManager : MonoBehaviour
 
 	public static BrandingManager Instance;
 
+    [SerializeField] private BrandingConfig _brandingConfig;
+
+    public BrandingConfig Config
+    {
+        get { return _brandingConfig; }
+    }
+
 	void Awake()
 	{
 		if (Application.isPlaying)
@@ -41,47 +48,7 @@ public class BrandingManager : MonoBehaviour
 
 	[Tooltip("if the manager will be used to override elements")]
 	public bool UseManager;
-
-	[Serializable]
-	public struct Metadata
-	{
-		public string AppName;
-		public string BundleId;
-		public string Version;
-		public string AuthoringToolUrl;
-		public string Location;
-		public string FileName;
-		public string ResourcesFileName;
-		public Sprite[] SplashScreenLogos;
-	}
-
-	[Serializable]
-	public struct ElementImages
-	{
-		[Tooltip("Name Not used, for ease of use only")]
-		public string Name;
-		public Image ImageElement;
-		public Sprite NewSprite;
-		public Color Tint;
-	}
-
-	[Serializable]
-	public struct ExternalLinks
-	{
-		[Tooltip("Name Not used, for ease of use only")]
-		public string Name;
-		public ButtonLink Button;
-		public string Url;
-		public bool SendEvent;
-		public string EventName;
-	}
-
-	[Serializable]
-	public struct SupportedLanguages
-	{
-		public List<SystemLanguage> Languages;
-	}
-
+    
 	[Serializable]
 	public struct BrandingObjects
 	{
@@ -94,11 +61,27 @@ public class BrandingManager : MonoBehaviour
 		public bool IsBrandingObject;
 	}
 
-	public Metadata AppMetadata;
-	public SupportedLanguages Languages;
-	public List<ElementImages> Elements;
-	public List<ExternalLinks> Links;
-	public List<BrandingObjects> ObjectsForBranding;
+    [Header("Element Images")]
+    [SerializeField] private Image _startScreenLogo;
+    [SerializeField] private Image _gameLogo;
+    [SerializeField] private Image _citizenButtonIcon;
+    [SerializeField] private Image _endGameLinkIcon;
+    [SerializeField] private Image _externalLinkWebsite;
+    [SerializeField] private Image _externalLinkFacebook;
+    [SerializeField] private Image _externalLinkTwitter;
+    [SerializeField] private Image _locationSelectLogo;
+    [SerializeField] private Image _tapScreenStartBackground;
+    [SerializeField] private Image _inGameMap;
+    [SerializeField] private Image _homeScreenMap;
+
+    [Header("External Links")]
+    [SerializeField] private ButtonLink _homeAppDownload;
+    [SerializeField] private ButtonLink _endAppDownload;
+    [SerializeField] private ButtonLink _optionsWebsite;
+    [SerializeField] private ButtonLink _optionsFacebook;
+    [SerializeField] private ButtonLink _optionsTwitter;
+
+    public List<BrandingObjects> ObjectsForBranding;
 
 	[Space(25)]
 
@@ -119,39 +102,44 @@ public class BrandingManager : MonoBehaviour
 
 	private void SetImages()
 	{
-		foreach (var e in Elements)
-		{
-			e.ImageElement.sprite = e.NewSprite;
-			e.ImageElement.color = e.Tint;
-		}
-	}
+	    Config.StartScreenLogo.ApplyTo(_startScreenLogo);
+	    Config.GameLogo.ApplyTo(_gameLogo);
+	    Config.CitizenButtonIcon.ApplyTo(_citizenButtonIcon);
+	    Config.EndGameLinkIcon.ApplyTo(_endGameLinkIcon);
+	    Config.ExternalLinkWebsite.ApplyTo(_externalLinkWebsite);
+	    Config.ExternalLinkFacebook.ApplyTo(_externalLinkFacebook);
+	    Config.ExternalLinkTwitter.ApplyTo(_externalLinkTwitter);
+	    Config.LocationSelectLogo.ApplyTo(_locationSelectLogo);
+	    Config.TapScreenStartBackground.ApplyTo(_tapScreenStartBackground);
+	    Config.InGameMap.ApplyTo(_inGameMap);
+	    Config.HomeScreenMap.ApplyTo(_homeScreenMap);
+    }
 
 	private void SetLinks()
 	{
-		foreach (var link in Links)
-		{
-			link.Button.Url = link.Url;
-			link.Button.SendEvent = link.SendEvent;
-			link.Button.EventName = link.EventName;
-		}
+        Config.HomeAppDownload.ApplyTo(_homeAppDownload);
+	    Config.EndAppDownload.ApplyTo(_endAppDownload);
+	    Config.OptionsWebsite.ApplyTo(_optionsWebsite);
+	    Config.OptionsFacebook.ApplyTo(_optionsFacebook);
+	    Config.OptionsTwitter.ApplyTo(_optionsTwitter);
 	}
 
 	private void SetMetadata()
 	{
 #if UNITY_EDITOR
-		PlayerSettings.productName = AppMetadata.AppName;
-		PlayerSettings.bundleVersion = AppMetadata.Version;
-		PlayerSettings.applicationIdentifier = AppMetadata.BundleId;
-		var logos = new PlayerSettings.SplashScreenLogo[AppMetadata.SplashScreenLogos.Length];
-		for (var i = 0; i < AppMetadata.SplashScreenLogos.Length; i++)
+		PlayerSettings.productName = _brandingConfig.Metadata.AppName;
+		PlayerSettings.bundleVersion = _brandingConfig.Metadata.Version;
+		PlayerSettings.applicationIdentifier = _brandingConfig.Metadata.BundleId;
+		var logos = new PlayerSettings.SplashScreenLogo[_brandingConfig.Metadata.SplashScreenLogos.Length];
+		for (var i = 0; i < _brandingConfig.Metadata.SplashScreenLogos.Length; i++)
 		{
-			logos[i].logo = AppMetadata.SplashScreenLogos[i];
+			logos[i].logo = _brandingConfig.Metadata.SplashScreenLogos[i];
 		}
 		PlayerSettings.SplashScreen.logos = logos;
 #endif
-		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(AppMetadata.AuthoringToolUrl);
-		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetFileName(UseManager ? AppMetadata.FileName : "");
-		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetResourcesFileName(UseManager ? AppMetadata.ResourcesFileName : "");
+        GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(_brandingConfig.Metadata.AuthoringToolUrl);
+		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetFileName(UseManager ? _brandingConfig.Metadata.FileName : "");
+		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetResourcesFileName(UseManager ? _brandingConfig.Metadata.ResourcesFileName : "");
 	}
 
 	private void SetBrandingObjects()

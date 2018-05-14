@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -117,22 +118,22 @@ public class DeviceLocation : MonoBehaviour {
 		LangGameObject.SetActive(languageOnly);
 	}
 
-	public void SetLanguages(BrandingManager.SupportedLanguages supported)
+	public void SetLanguages(SystemLanguage[] supported)
 	{
-		if (supported.Languages.Count == 1)
+		if (supported.Length == 1)
 		{
 			// get language to be used
-			var language = supported.Languages[0];
+			var language = supported[0];
 			shouldOverrideLanguage = true;
 			overrideLanguage = language;
 			LanguageSelectd();
 			return;
 		}
 		SetButtonPanel();
-		EnglishButton.gameObject.SetActive(supported.Languages.Any(l => l == SystemLanguage.English));
-		DutchButton.gameObject.SetActive(supported.Languages.Any(l => l == SystemLanguage.Dutch));
-		SpanishButton.gameObject.SetActive(supported.Languages.Any(l => l == SystemLanguage.Spanish));
-		GreekButton.gameObject.SetActive(supported.Languages.Any(l => l == SystemLanguage.Greek));
+		EnglishButton.gameObject.SetActive(supported.Any(l => l == SystemLanguage.English));
+		DutchButton.gameObject.SetActive(supported.Any(l => l == SystemLanguage.Dutch));
+		SpanishButton.gameObject.SetActive(supported.Any(l => l == SystemLanguage.Spanish));
+		GreekButton.gameObject.SetActive(supported.Any(l => l == SystemLanguage.Greek));
 	}
 
 	private void SetButtonPanel()
