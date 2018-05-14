@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
+using PlayGen.Unity.Utilities.Localization;
 
 public class DeviceLocation : MonoBehaviour {
 
@@ -26,6 +28,14 @@ public class DeviceLocation : MonoBehaviour {
     public RectTransform grid;
 
     private enum LanguageMapping { Preston = 1, Belfast = 2, Nicosia = 3, Groningen = 4, Valencia = 5 }
+    private static readonly Dictionary<SystemLanguage, CultureInfo> LanguageCultureInfoMappings = new Dictionary<SystemLanguage, CultureInfo>
+    {
+        { SystemLanguage.English, new CultureInfo("en-gb") },
+        { SystemLanguage.Dutch, new CultureInfo("nl") },
+        { SystemLanguage.Spanish, new CultureInfo("es") },
+        { SystemLanguage.Greek, new CultureInfo("el") }
+    };
+
     private LocationConfig _config;
     private int _locationIndex;
     private GridLayoutGroup _gridLayout;
@@ -192,10 +202,15 @@ public class DeviceLocation : MonoBehaviour {
         {
             // Notify the player to select a location
             StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LOCATION"), Color.yellow, true));
-
         } 
         else
         {
+            if (shouldOverrideLanguage)
+            {
+                var languageCultureInfo = LanguageCultureInfoMappings[overrideLanguage];
+                Localization.UpdateLanguage(languageCultureInfo);
+            }
+
             //player has successfully set the location, no need to show the popup on load anymore
             PlayerPrefs.SetInt("SetLocation", 1);
 

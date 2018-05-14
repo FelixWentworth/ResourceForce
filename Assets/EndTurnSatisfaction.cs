@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using PlayGen.Unity.Utilities.Localization;
 using UnityEngine;
 using UnityEngine.UI;
 

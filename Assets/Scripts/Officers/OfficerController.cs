@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using PlayGen.Unity.Utilities.Localization;
 using UnityEngine.UI;
 
 public class OfficerController : MonoBehaviour {

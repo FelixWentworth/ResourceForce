@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using PlayGen.Unity.Utilities.Localization;
 
 public class InformationPanel : MonoBehaviour
 {

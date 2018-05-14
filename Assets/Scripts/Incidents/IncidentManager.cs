@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using PlayGen.Unity.Utilities.Localization;
 using UnityEngine.UI;
 
 public class IncidentManager : MonoBehaviour

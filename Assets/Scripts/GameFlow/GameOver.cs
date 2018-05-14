@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using GameAnalyticsSDK;
+using PlayGen.Unity.Utilities.Localization;
 
 public class GameOver : MonoBehaviour
 {

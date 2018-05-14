@@ -253,7 +253,7 @@ PlayerSettings:
   AndroidTargetDevice: 3
   AndroidSplashScreenScale: 1
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/Felix/Documents/Projects/INSPEC2T/ResourceForce/RF_Game/Assets/rfkeystore.keystore
+  AndroidKeystoreName: D:/Projects/resource-force/Assets/rfkeystore.keystore
   AndroidKeyaliasName: releasebuildrf
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
@@ -640,7 +640,8 @@ PlayerSettings:
     iOS: 1
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 0
-  apiCompatibilityLevelPerPlatform: {}
+  apiCompatibilityLevelPerPlatform:
+    Android: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: ResourceForce

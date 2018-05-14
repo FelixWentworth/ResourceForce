@@ -1,5 +1,7 @@
 fileFormatVersion: 2
-guid: 878a269ee50954f5843ce9e2d98a44a6
+guid: 54133ba3f456b7a44bf75a9880a1d7b9
+timeCreated: 1520597626
+licenseType: Free
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -14,15 +16,21 @@ PluginImporter:
       enabled: 0
       settings:
         Exclude Android: 1
-        Exclude Editor: 1
+        Exclude Editor: 0
         Exclude Linux: 1
         Exclude Linux64: 1
         Exclude LinuxUniversal: 1
+        Exclude OSXIntel: 1
+        Exclude OSXIntel64: 1
         Exclude OSXUniversal: 1
+        Exclude SamsungTV: 1
+        Exclude Tizen: 1
         Exclude WebGL: 1
         Exclude Win: 1
         Exclude Win64: 1
+        Exclude WindowsStoreApps: 1
         Exclude iOS: 1
+        Exclude tvOS: 1
   - first:
       Android: Android
     second:
@@ -37,7 +45,7 @@ PluginImporter:
   - first:
       Editor: Editor
     second:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: AnyCPU
         DefaultValueInitialized: true
@@ -55,6 +63,12 @@ PluginImporter:
       settings:
         CPU: AnyCPU
   - first:
+      Samsung TV: SamsungTV
+    second:
+      enabled: 0
+      settings:
+        STV_MODEL: STANDARD_15
+  - first:
       Standalone: Linux
     second:
       enabled: 0
@@ -67,11 +81,17 @@ PluginImporter:
       settings:
         CPU: x86_64
   - first:
-      Standalone: LinuxUniversal
+      Standalone: OSXIntel
     second:
       enabled: 0
       settings:
-        CPU: None
+        CPU: AnyCPU
+  - first:
+      Standalone: OSXIntel64
+    second:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
   - first:
       Standalone: OSXUniversal
     second:
@@ -96,8 +116,19 @@ PluginImporter:
       enabled: 0
       settings:
         CPU: AnyCPU
+        DontProcess: False
+        PlaceholderPath: 
+        SDK: AnySDK
+        ScriptingBackend: AnyScriptingBackend
   - first:
       iPhone: iOS
+    second:
+      enabled: 0
+      settings:
+        CompileFlags: 
+        FrameworkDependencies: 
+  - first:
+      tvOS: tvOS
     second:
       enabled: 0
       settings:

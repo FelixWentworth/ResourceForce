@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using PlayGen.Unity.Utilities.Localization;
 //using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -36,7 +37,7 @@ public class Feedback : MonoBehaviour
     public void SetInformationText()
     {
         _game = "Resource Force";
-        _otherInfo = Location.CurrentLocation + ", Language: " + Localization.GetLanguageString();
+        _otherInfo = Location.CurrentLocation + ", Language: " + Localization.SelectedLanguage.DisplayName;
     }
 
     public void Setup(UnityAction<string> action)

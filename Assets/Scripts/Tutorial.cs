@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using PlayGen.Unity.Utilities.Localization;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
