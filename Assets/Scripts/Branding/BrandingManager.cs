@@ -7,7 +7,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
 public class BrandingManager : MonoBehaviour
 {
 
@@ -60,7 +59,7 @@ public class BrandingManager : MonoBehaviour
 		/// </summary>
 		public bool IsBrandingObject;
 	}
-
+    
     [Header("Element Images")]
     [SerializeField] private Image _startScreenLogo;
     [SerializeField] private Image _gameLogo;
@@ -80,27 +79,23 @@ public class BrandingManager : MonoBehaviour
     [SerializeField] private ButtonLink _optionsWebsite;
     [SerializeField] private ButtonLink _optionsFacebook;
     [SerializeField] private ButtonLink _optionsTwitter;
-
+    
     public List<BrandingObjects> ObjectsForBranding;
-
-	[Space(25)]
-
-	public bool Apply;
-	// Update is called once per frame
-	void Update () {
-		if (Apply)
-		{
-			Apply = false;
-		
-			SetImages();
-			SetLinks();
-			SetMetadata();
-			SetBrandingObjects();
-		}
-
+    
+	public void Apply()
+	{
+	    SetImages();
+		SetLinks();
+		SetMetadata();
+		SetBrandingObjects();
 	}
 
-	private void SetImages()
+    private void PrefabInstanceUpdated(GameObject instance)
+    {
+        Debug.Log(instance);
+    }
+
+    private void SetImages()
 	{
 	    Config.StartScreenLogo.ApplyTo(_startScreenLogo);
 	    Config.GameLogo.ApplyTo(_gameLogo);
@@ -111,11 +106,21 @@ public class BrandingManager : MonoBehaviour
 	    Config.ExternalLinkTwitter.ApplyTo(_externalLinkTwitter);
 	    Config.LocationSelectLogo.ApplyTo(_locationSelectLogo);
 	    Config.TapScreenStartBackground.ApplyTo(_tapScreenStartBackground);
+
 	    Config.InGameMap.ApplyTo(_inGameMap);
+	    ApplyPrefab(_inGameMap);
+
 	    Config.HomeScreenMap.ApplyTo(_homeScreenMap);
     }
 
-	private void SetLinks()
+    private void ApplyPrefab(Component modified)
+    {
+        var prefabInstancea = PrefabUtility.FindPrefabRoot(modified.gameObject);
+        var prefabMaster = PrefabUtility.GetPrefabParent(prefabInstancea);
+        PrefabUtility.ReplacePrefab(prefabInstancea, prefabMaster);
+    }
+
+    private void SetLinks()
 	{
         Config.HomeAppDownload.ApplyTo(_homeAppDownload);
 	    Config.EndAppDownload.ApplyTo(_endAppDownload);
@@ -140,9 +145,9 @@ public class BrandingManager : MonoBehaviour
         GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(_brandingConfig.Metadata.AuthoringToolUrl);
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetFileName(UseManager ? _brandingConfig.Metadata.FileName : "");
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetResourcesFileName(UseManager ? _brandingConfig.Metadata.ResourcesFileName : "");
-	}
+    }
 
-	private void SetBrandingObjects()
+    private void SetBrandingObjects()
 	{
 		foreach (var branding in ObjectsForBranding)
 		{

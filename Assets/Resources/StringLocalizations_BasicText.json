@@ -130,4 +130,6 @@
 {"key":"TUTORIAL_INCIDENT_5_FEEDBACK_OFFICER","en-gb":"Well Done! Officers need to be sent to make sure that nobody gets hurt","de":"Goed gedaan! Agenten moeten worden gestuurd om ervoor te zorgen dat niemand gewond raakt","el":"Συγχαρητήρια. Πρέπει να αποσταλούν αστυνομικοί για να επιληφθούνε του συμβάντος","es":"¡Bien hecho! Es necesario enviar policías para asegurar de que nadie resulte herido"},
 {"key":"BRANDING_WELCOME_TEXT","en-gb":"Welcome to Resource Force - Lancashire, before you start, set your preferences for the best experience","de":"XXXX","el":"XXXX","es":"XXXX"},
 {"key":"BRANDING_DOWNLOAD_NOW","en-gb":"Get In The Know Now!","de":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"BRANDING_DOWNLOAD_MESSAGE","en-gb":"Stay up to date with the things that concern you and your community!","de":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"BRANDING_DOWNLOAD_MESSAGE","en-gb":"Stay up to date with the things that concern you and your community!","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BRANDING_FORCE_NAME","en-gb":"XXXX","de":"XXXX","el":"XXXX","es":"XXXX"},
+{"key":"BRANDING_FORCE_STRAPLINE","en-gb":"XXXX","de":"XXXX","el":"XXXX","es":"XXXX"}]

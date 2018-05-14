@@ -13,6 +13,11 @@ public class Scenario
     public bool Deleted;
 	public bool Enabled;
     public ScenarioWrapper Content;
+
+    public bool IsRegionMatch(string matchRegion)
+    {
+        return Region == matchRegion || Region == "Any";
+    }
 }
 
 [Serializable]
