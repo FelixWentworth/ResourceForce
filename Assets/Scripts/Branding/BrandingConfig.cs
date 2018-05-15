@@ -36,6 +36,25 @@ public class BrandingConfig : ScriptableObject
     [SerializeField] private string BRANDING_FORCE_STRAPLINE;
     [SerializeField] private string BRANDING_DOWNLOAD_NOW;
     [SerializeField] private string BRANDING_DOWNLOAD_MESSAGE;
+
+	[Header("Color Palette")]
+	[SerializeField] public List<ColorMapping> BrandingColors;
+}
+
+
+
+[Serializable]
+public class ColorMapping
+{
+	[HideInInspector] public string Name; // used for unity to name each element rather than naming as 'Element n'
+	public BrandingManager.ColorTheme Theme;
+	public Color Color;
+
+	public ColorMapping(BrandingManager.ColorTheme theme)
+	{
+		Theme = theme;
+		Name = theme.ToString();
+	}
 }
 
 [Serializable]
