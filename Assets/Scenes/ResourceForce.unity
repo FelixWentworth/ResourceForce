@@ -17157,8 +17157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _brandingConfig: {fileID: 11400000, guid: 532c16d9f1402544287c6aea49699539, type: 2}
   UseManager: 1
-  LocalizationSource: Editor/Localization.xlsx
-  LocalizationOutput: Resources/Localization.json
+  LocalizationSource: 
+  LocalizationOutput: 
   _startScreenLogo: {fileID: 1326}
   _gameLogo: {fileID: 1622}
   _citizenButtonIcon: {fileID: 1621}
@@ -17175,6 +17175,26 @@ MonoBehaviour:
   _optionsWebsite: {fileID: 1401}
   _optionsFacebook: {fileID: 1413}
   _optionsTwitter: {fileID: 1623}
+  _brandingColors:
+    Themes:
+    - Name: Background
+      Theme: 0
+      Color: {r: 0.0934256, g: 0.11586921, b: 0.2647059, a: 1}
+    - Name: BasicBorder
+      Theme: 1
+      Color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: MessagePrimary
+      Theme: 2
+      Color: {r: 1, g: 1, b: 1, a: 1}
+    - Name: MessageSecondary
+      Theme: 3
+      Color: {r: 0, g: 0, b: 0, a: 1}
+    - Name: ErrorPrimary
+      Theme: 4
+      Color: {r: 1, g: 0.8896551, b: 0, a: 1}
+    - Name: ErrorSecondary
+      Theme: 5
+      Color: {r: 1, g: 0, b: 0, a: 1}
   ObjectsForBranding:
   - Name: button home inspect
     Obj: {fileID: 398}
@@ -27994,32 +28014,32 @@ Prefab:
     - target: {fileID: 224000012352288802, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 719.99994
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 224000012352288802, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 693.0283
+      value: 832
       objectReference: {fileID: 0}
     - target: {fileID: 224000013247032344, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 719.99994
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 224000013247032344, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 693.0283
+      value: 832
       objectReference: {fileID: 0}
     - target: {fileID: 224000013019952322, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 719.99994
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 224000013019952322, guid: 997c207836a2a774db1f798acc9f9a57,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 618.02814
+      value: 757
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 997c207836a2a774db1f798acc9f9a57, type: 2}
