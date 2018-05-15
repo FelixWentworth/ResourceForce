@@ -7,54 +7,43 @@ using UnityEngine.UI;
 [Serializable]
 public class BrandingConfig : ScriptableObject
 {
-    [SerializeField] public Metadata Metadata;
+    public Metadata Metadata;
 
-    [SerializeField] public SystemLanguage[] Languages;
+    [Header("Languages")]
+    public SystemLanguage[] Languages;
+
+    [Header("Localization Overrides")]
+    public LocalizationOverride[] LocalizationOverrides;
 
     [Header("Element Images")]
-    [SerializeField] public ElementImage StartScreenLogo;
-    [SerializeField] public ElementImage GameLogo;
-    [SerializeField] public ElementImage CitizenButtonIcon;
-    [SerializeField] public ElementImage EndGameLinkIcon;
-    [SerializeField] public ElementImage ExternalLinkWebsite;
-    [SerializeField] public ElementImage ExternalLinkFacebook;
-    [SerializeField] public ElementImage ExternalLinkTwitter;
-    [SerializeField] public ElementImage LocationSelectLogo;
-    [SerializeField] public ElementImage TapScreenStartBackground;
-    [SerializeField] public ElementImage InGameMap;
-    [SerializeField] public ElementImage HomeScreenMap;
+    public ElementImage StartScreenLogo;
+    public ElementImage GameLogo;
+    public ElementImage CitizenButtonIcon;
+    public ElementImage EndGameLinkIcon;
+    public ElementImage ExternalLinkWebsite;
+    public ElementImage ExternalLinkFacebook;
+    public ElementImage ExternalLinkTwitter;
+    public ElementImage LocationSelectLogo;
+    public ElementImage TapScreenStartBackground;
+    public ElementImage InGameMap;
+    public ElementImage HomeScreenMap;
 
     [Header("External Links")]
-    [SerializeField] public ExternalLink HomeAppDownload;
-    [SerializeField] public ExternalLink EndAppDownload;
-    [SerializeField] public ExternalLink OptionsWebsite;
-    [SerializeField] public ExternalLink OptionsFacebook;
-    [SerializeField] public ExternalLink OptionsTwitter;
-
-    [Header("Localization Mappings")]
-    [SerializeField] private string BRANDING_FORCE_NAME;
-    [SerializeField] private string BRANDING_FORCE_STRAPLINE;
-    [SerializeField] private string BRANDING_DOWNLOAD_NOW;
-    [SerializeField] private string BRANDING_DOWNLOAD_MESSAGE;
-
-	[Header("Color Palette")]
-	[SerializeField] public List<ColorMapping> BrandingColors;
+    public ExternalLink HomeAppDownload;
+    public ExternalLink EndAppDownload;
+    public ExternalLink OptionsWebsite;
+    public ExternalLink OptionsFacebook;
+    public ExternalLink OptionsTwitter;
 }
 
-
-
 [Serializable]
-public class ColorMapping
+public struct LocalizationOverride
 {
-	[HideInInspector] public string Name; // used for unity to name each element rather than naming as 'Element n'
-	public BrandingManager.ColorTheme Theme;
-	public Color Color;
-
-	public ColorMapping(BrandingManager.ColorTheme theme)
-	{
-		Theme = theme;
-		Name = theme.ToString();
-	}
+    public string Key;
+    public string EnGb;
+    public string Nl;
+    public string El;
+    public string Es;
 }
 
 [Serializable]

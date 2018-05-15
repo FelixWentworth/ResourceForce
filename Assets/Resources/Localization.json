@@ -128,5 +128,7 @@
 {"key":"TUTORIAL_INCIDENT_5_FEEDBACK_CITIZEN","en-gb":"Ok, you might be able to get a location, but you may be putting citizens at risk","nl":"Oké, je kan wellicht een locatie krijgen, maar je kan daarmee burgers in gevaar brengen","el":"μπορεί να λάβετε πληροφορία για την τοποθεσία, αλλά ενδέχεται να διακινδυνεύσουν πολίτες.","es":"De acuerdo; puede que consigas la ubicación, pero quizá estés poniendo en peligro a la ciudadanía"},
 {"key":"TUTORIAL_INCIDENT_5_FEEDBACK_OFFICER","en-gb":"Well Done! Officers need to be sent to make sure that nobody gets hurt","nl":"Goed gedaan! Agenten moeten worden gestuurd om ervoor te zorgen dat niemand gewond raakt","el":"Συγχαρητήρια. Πρέπει να αποσταλούν αστυνομικοί για να επιληφθούνε του συμβάντος","es":"¡Bien hecho! Es necesario enviar policías para asegurar de que nadie resulte herido"},
 {"key":"BRANDING_WELCOME_TEXT","en-gb":"Welcome to Resource Force - Lancashire, before you start, set your preferences for the best experience","nl":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"BRANDING_DOWNLOAD_NOW","en-gb":"Get In The Know Now!","nl":"XXXX","el":"XXXX","es":"XXXX"},
-{"key":"BRANDING_DOWNLOAD_MESSAGE","en-gb":"Stay up to date with the things that concern you and your community!","nl":"XXXX","el":"XXXX","es":"XXXX"}]
+{"key":"BRANDING_DOWNLOAD_NOW","en-gb":"Stay smarter than the criminals","nl":"","el":"","es":""},
+{"key":"BRANDING_DOWNLOAD_MESSAGE","en-gb":"Keep up to date with the latest information, helping you and your community!","nl":"","el":"","es":""},
+{"key":"BRANDING_FORCE_NAME","en-gb":"London Metropolitan","nl":"","el":"","es":""},
+{"key":"BRANDING_FORCE_STRAPLINE","en-gb":"Making London the safest global city","nl":"","el":"","es":""}]

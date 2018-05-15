@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -61,25 +60,11 @@ public class BrandingManager : MonoBehaviour
 		public bool IsBrandingObject;
 	}
 
-	[Serializable]
-	public enum ColorTheme
-	{
-		Background, 
-		BasicBorder,
-		MessagePrimary,
-		MessageSecondary,
-		ErrorPrimary,
-		ErrorSecondary
-	}
+#if UNITY_EDITOR
+    [Header("Localization")]
+    public string LocalizationSource;
+    public string LocalizationOutput;
 
-	[Serializable]
-	public struct ColorPalette
-	{
-		public ColorTheme Theme;
-		public Color Color;
-	}
-
-    
     [Header("Element Images")]
     [SerializeField] private Image _startScreenLogo;
     [SerializeField] private Image _gameLogo;
@@ -99,41 +84,16 @@ public class BrandingManager : MonoBehaviour
     [SerializeField] private ButtonLink _optionsWebsite;
     [SerializeField] private ButtonLink _optionsFacebook;
     [SerializeField] private ButtonLink _optionsTwitter;
+    
+    public List<BrandingObjects> ObjectsForBranding;
 
-	[Header("Color Palette")]
-	[SerializeField] private Colors BrandingColors;
-
-	[Space(10)]
-
-	public List<BrandingObjects> ObjectsForBranding;
-
-
-	[Serializable]
-	public class Colors
-	{
-		public List<ColorMapping> Themes = new List<ColorMapping>()
-		{
-			new ColorMapping(ColorTheme.Background),
-			new ColorMapping(ColorTheme.BasicBorder),
-			new ColorMapping(ColorTheme.MessagePrimary),
-			new ColorMapping(ColorTheme.MessageSecondary),
-			new ColorMapping(ColorTheme.ErrorPrimary),
-			new ColorMapping(ColorTheme.ErrorSecondary)
-		};
-	}
-
-	public void Apply()
+    public void Apply()
 	{
 	    SetImages();
 		SetLinks();
 		SetMetadata();
 		SetBrandingObjects();
 	}
-
-    private void PrefabInstanceUpdated(GameObject instance)
-    {
-        Debug.Log(instance);
-    }
 
     private void SetImages()
 	{
@@ -171,7 +131,6 @@ public class BrandingManager : MonoBehaviour
 
 	private void SetMetadata()
 	{
-#if UNITY_EDITOR
 		PlayerSettings.productName = _brandingConfig.Metadata.AppName;
 		PlayerSettings.bundleVersion = _brandingConfig.Metadata.Version;
 		PlayerSettings.applicationIdentifier = _brandingConfig.Metadata.BundleId;
@@ -181,7 +140,7 @@ public class BrandingManager : MonoBehaviour
 			logos[i].logo = _brandingConfig.Metadata.SplashScreenLogos[i];
 		}
 		PlayerSettings.SplashScreen.logos = logos;
-#endif
+
         GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(_brandingConfig.Metadata.AuthoringToolUrl);
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetFileName(UseManager ? _brandingConfig.Metadata.FileName : "");
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetResourcesFileName(UseManager ? _brandingConfig.Metadata.ResourcesFileName : "");
@@ -196,11 +155,5 @@ public class BrandingManager : MonoBehaviour
 			branding.Obj.SetActive(active);
 		}
 	}
-
-	public Color GetColor(ColorTheme theme)
-	{
-		// Check if config is overriding the color
-		var overrideColor = Config.BrandingColors.FirstOrDefault(c => c.Theme == theme);
-		return overrideColor != null ? overrideColor.Color : BrandingColors.Themes.Find(c => c.Theme == theme).Color;
-	}
+#endif
 }
