@@ -10,22 +10,25 @@ public class WarningBox : MonoBehaviour
     ///This class will show and hide the warning box when called by the dialogBox class
     public bool ShowingPopup { get; private set; }
     private Text _warningText;
-    private Image _borderImage;
+	[SerializeField] private GameObject _messageBorder;
+	[SerializeField] private GameObject _errorBorder;
 
-    void Awake()
+	void Awake()
     {
         // make sure the fade is disabled
         ScreenFade.SetActive(false);
     }
 
-    public void StartShowWarning(string message, Color color, bool upperCase = false)
+    public void StartShowWarning(string message, bool error, bool upperCase = false)
     {
-        StartCoroutine(ShowWarning(message, color, upperCase));
+        StartCoroutine(ShowWarning(message, error, upperCase));
     }
 
-    public IEnumerator ShowWarning(string message, Color color, bool upperCase = false)
-    {
-        SetColor(color);
+    public IEnumerator ShowWarning(string message, bool error, bool upperCase = false)
+	{
+		_messageBorder.SetActive(!error);
+		_errorBorder.SetActive(error);
+
         if (!ShowingPopup)
         {
             ScreenFade.SetActive(true);
@@ -63,19 +66,5 @@ public class WarningBox : MonoBehaviour
                 tutorial.FeedbackDismissed();
             }
         }
-    }
-
-    private void SetColor(Color color)
-    {
-        if (_borderImage == null)
-        {
-            _borderImage = transform.Find("Border").GetComponent<Image>();
-        }
-        if (_warningText == null)
-        {
-            _warningText = transform.Find("Text").GetComponent<Text>();
-        }
-        _warningText.color = color;
-        _borderImage.color = color;
     }
 }

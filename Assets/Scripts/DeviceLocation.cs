@@ -201,7 +201,7 @@ public class DeviceLocation : MonoBehaviour {
         if (_locationIndex == 0 && !BrandingManager.Instance.UseManager)
         {
             // Notify the player to select a location
-            StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LOCATION"), Color.yellow, true));
+            StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LOCATION"), error:true, upperCase:true));
         } 
         else
         {

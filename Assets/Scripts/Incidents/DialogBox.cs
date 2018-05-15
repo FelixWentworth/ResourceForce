@@ -199,7 +199,7 @@ public class DialogBox : MonoBehaviour {
 
         if (feedback.FeedbackRating != -1)
         {
-            yield return WarningBox.ShowWarning(feedback.Feedback, Color.cyan);
+            yield return WarningBox.ShowWarning(feedback.Feedback, error: false);
         }
         DisableButtons();
 
@@ -234,7 +234,7 @@ public class DialogBox : MonoBehaviour {
         }
         else
         {
-            StartCoroutine(WarningBox.ShowWarning(Localization.Get("BASIC_TEXT_NO_OFFICERS"), Color.yellow, true));
+            StartCoroutine(WarningBox.ShowWarning(Localization.Get("BASIC_TEXT_NO_OFFICERS"), error: true, upperCase:true));
         }
     }
 
@@ -245,7 +245,7 @@ public class DialogBox : MonoBehaviour {
             OfficerController.RemoveOfficer(CurrentIncident.IncidentContent.OfficerReq, CurrentIncident.IncidentContent.TurnReq);
             if (feedback.FeedbackRating != -1)
             {
-                yield return WarningBox.ShowWarning(feedback.Feedback, Color.cyan);
+                yield return WarningBox.ShowWarning(feedback.Feedback, error: false);
             }
             DisableButtons();
             //send officers to resolve issue
@@ -296,7 +296,7 @@ public class DialogBox : MonoBehaviour {
     {
         if (feedback.FeedbackRating != -1)
         {
-            yield return WarningBox.ShowWarning(feedback.Feedback, Color.cyan);
+            yield return WarningBox.ShowWarning(feedback.Feedback, error: false);
         }
         DisableButtons();
 
