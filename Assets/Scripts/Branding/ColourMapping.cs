@@ -14,7 +14,10 @@ public class ColourMapping : MonoBehaviour {
 
 	public void Refresh()
 	{
-		GetComponent<Image>().color = BrandingManager.Instance.GetColor(Theme);
+		var image = GetComponent<Image>();
+		var text = GetComponent<Text>();
+		if (image != null) image.color = BrandingManager.Instance.GetColor(Theme);
+		if (text != null) text.color = BrandingManager.Instance.GetColor(Theme);
 	}
 
 }

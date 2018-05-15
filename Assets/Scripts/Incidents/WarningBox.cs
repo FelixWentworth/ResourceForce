@@ -38,8 +38,11 @@ public class WarningBox : MonoBehaviour
             }
 
             _warningText.text = upperCase ? message.ToUpper() : message;
+	        _warningText.color = error
+		        ? BrandingManager.Instance.GetColor(BrandingManager.ColorTheme.ErrorText)
+		        : BrandingManager.Instance.GetColor(BrandingManager.ColorTheme.StandardText);
 
-            AudioManager.Instance.ShowWarningMessage();
+			AudioManager.Instance.ShowWarningMessage();
 
             ShowingPopup = true;
 

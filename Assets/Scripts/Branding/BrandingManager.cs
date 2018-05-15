@@ -68,7 +68,9 @@ public class BrandingManager : MonoBehaviour
 		MessagePrimary,
 		MessageSecondary,
 		ErrorPrimary,
-		ErrorSecondary
+		ErrorSecondary,
+		StandardText,
+		ErrorText
 	}
 
 	[Serializable]
@@ -121,7 +123,9 @@ public class BrandingManager : MonoBehaviour
 			new ColorMapping(ColorTheme.MessagePrimary),
 			new ColorMapping(ColorTheme.MessageSecondary),
 			new ColorMapping(ColorTheme.ErrorPrimary),
-			new ColorMapping(ColorTheme.ErrorSecondary)
+			new ColorMapping(ColorTheme.ErrorSecondary),
+			new ColorMapping(ColorTheme.StandardText),
+			new ColorMapping(ColorTheme.ErrorText)
 		};
 	}
 
