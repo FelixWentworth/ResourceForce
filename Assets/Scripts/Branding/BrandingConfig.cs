@@ -34,6 +34,9 @@ public class BrandingConfig : ScriptableObject
     public ExternalLink OptionsWebsite;
     public ExternalLink OptionsFacebook;
     public ExternalLink OptionsTwitter;
+
+	[Header("Color Palette")]
+	public List<ColorMapping> BrandingColors;
 }
 
 [Serializable]
@@ -85,4 +88,18 @@ public struct Metadata
     public string FileName;
     public string ResourcesFileName;
     public Sprite[] SplashScreenLogos;
+}
+
+[Serializable]
+public class ColorMapping
+{
+	[HideInInspector] public string Name; // used for unity to name each element rather than naming as 'Element n'
+	public BrandingManager.ColorTheme Theme;
+	public Color Color;
+
+	public ColorMapping(BrandingManager.ColorTheme theme)
+	{
+		Theme = theme;
+		Name = theme.ToString();
+	}
 }

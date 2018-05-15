@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -59,9 +60,26 @@ public class BrandingManager : MonoBehaviour
 		/// </summary>
 		public bool IsBrandingObject;
 	}
+	[Serializable]
+	public enum ColorTheme
+	{
+		Background,
+		BasicBorder,
+		MessagePrimary,
+		MessageSecondary,
+		ErrorPrimary,
+		ErrorSecondary
+	}
+
+	[Serializable]
+	public struct ColorPalette
+	{
+		public ColorTheme Theme;
+		public Color Color;
+	}
 
 #if UNITY_EDITOR
-    [Header("Localization")]
+	[Header("Localization")]
     public string LocalizationSource;
     public string LocalizationOutput;
 
@@ -84,10 +102,30 @@ public class BrandingManager : MonoBehaviour
     [SerializeField] private ButtonLink _optionsWebsite;
     [SerializeField] private ButtonLink _optionsFacebook;
     [SerializeField] private ButtonLink _optionsTwitter;
-    
-    public List<BrandingObjects> ObjectsForBranding;
 
-    public void Apply()
+	[Header("Color Palette")]
+	[SerializeField] private Colors _brandingColors;
+
+	[Space(10)]
+
+	public List<BrandingObjects> ObjectsForBranding;
+
+
+	[Serializable]
+	public class Colors
+	{
+		public List<ColorMapping> Themes = new List<ColorMapping>()
+		{
+			new ColorMapping(ColorTheme.Background),
+			new ColorMapping(ColorTheme.BasicBorder),
+			new ColorMapping(ColorTheme.MessagePrimary),
+			new ColorMapping(ColorTheme.MessageSecondary),
+			new ColorMapping(ColorTheme.ErrorPrimary),
+			new ColorMapping(ColorTheme.ErrorSecondary)
+		};
+	}
+
+	public void Apply()
 	{
 	    SetImages();
 		SetLinks();
@@ -155,5 +193,13 @@ public class BrandingManager : MonoBehaviour
 			branding.Obj.SetActive(active);
 		}
 	}
+
+	public Color GetColor(ColorTheme theme)
+	{
+		// Check if config is overriding the color
+		var overrideColor = Config.BrandingColors.FirstOrDefault(c => c.Theme == theme);
+		return overrideColor != null ? overrideColor.Color : _brandingColors.Themes.Find(c => c.Theme == theme).Color;
+	}
+
 #endif
 }
