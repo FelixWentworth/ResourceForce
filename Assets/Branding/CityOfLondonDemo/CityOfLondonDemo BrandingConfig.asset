@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27c216dc222026449c038f879e08a36, type: 3}
+  m_Name: CityOfLondonDemo BrandingConfig
+  m_EditorClassIdentifier: 
+  Metadata:
+    AppName: Resource Force - City of London
+    BundleId: com.playgen.ResourceForceCityOfLondon
+    Version: 1.1.2
+    AuthoringToolUrl: https://resource-force-v1.playgen.com
+    Location: CityOfLondon
+    FileName: BasicContent.txt
+    ResourcesFileName: BasicContent
+    SplashScreenLogos:
+    - {fileID: 21300000, guid: 1e293d8aceb77ec429bf12c97b32a168, type: 3}
+    - {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
+  Languages: 0a000000
+  LocalizationOverrides:
+  - Key: BRANDING_FORCE_NAME
+    EnGb: City of London Police
+    Nl: 
+    El: 
+    Es: 
+  - Key: BRANDING_FORCE_STRAPLINE
+    EnGb: Proud to deliver an exceptional policing service
+    Nl: 
+    El: 
+    Es: 
+  - Key: BRANDING_DOWNLOAD_NOW
+    EnGb: Stay smarter than the criminals
+    Nl: 
+    El: 
+    Es: 
+  - Key: BRANDING_DOWNLOAD_MESSAGE
+    EnGb: Keep up to date with the latest information, helping you and your community!
+    Nl: 
+    El: 
+    Es: 
+  StartScreenLogo:
+    NewSprite: {fileID: 21300000, guid: 9f1d5e008141bd54d9637955a9b59fb3, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  GameLogo:
+    NewSprite: {fileID: 21300000, guid: e0201dff8b3d2a04ea5b870a3e088273, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 0.1764706}
+  CitizenButtonIcon:
+    NewSprite: {fileID: 21300000, guid: a1f1c2e8c9efdb64686ea961aa3a0424, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  EndGameLinkIcon:
+    NewSprite: {fileID: 21300000, guid: 9f1d5e008141bd54d9637955a9b59fb3, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  ExternalLinkWebsite:
+    NewSprite: {fileID: 21300000, guid: 60cab9540bd553c4aa4dfa5d18467d1d, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  ExternalLinkFacebook:
+    NewSprite: {fileID: 21300000, guid: 7c661c5b697eb8542a154661935caa26, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  ExternalLinkTwitter:
+    NewSprite: {fileID: 21300000, guid: 5fe3a97e055ea1f4ab6c9eaef50045b6, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  LocationSelectLogo:
+    NewSprite: {fileID: 21300000, guid: 9f1d5e008141bd54d9637955a9b59fb3, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  TapScreenStartBackground:
+    NewSprite: {fileID: 21300000, guid: 91a231c5299b52d4290cf8ba4ab7df2a, type: 3}
+    Tint: {r: 0, g: 1, b: 0.827451, a: 0.63529414}
+  InGameMap:
+    NewSprite: {fileID: 21300000, guid: 22098f00e4f4fa44ea92186f4748f573, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  HomeScreenMap:
+    NewSprite: {fileID: 21300000, guid: 22098f00e4f4fa44ea92186f4748f573, type: 3}
+    Tint: {r: 1, g: 1, b: 1, a: 1}
+  HomeAppDownload:
+    Url: https://www.cityoflondon.police.uk/advice-and-support/Pages/default.aspx
+    SendEvent: 0
+    EventName: Click_AdviceAndInfo
+  EndAppDownload:
+    Url: https://www.cityoflondon.police.uk/community-policing/Pages/default.aspx
+    SendEvent: 0
+    EventName: Click_CommunityPolicing
+  OptionsWebsite:
+    Url: https://www.met.police.uk/
+    SendEvent: 0
+    EventName: Click_Website
+  OptionsFacebook:
+    Url: https://en-gb.facebook.com/metpoliceuk/
+    SendEvent: 0
+    EventName: Click_Facebook
+  OptionsTwitter:
+    Url: https://twitter.com/metpoliceuk
+    SendEvent: 0
+    EventName: Click_Twitter
+  BrandingColors:
+  - Name: 
+    Theme: 2
+    Color: {r: 1, g: 0, b: 0, a: 1}
+  - Name: 
+    Theme: 3
+    Color: {r: 1, g: 1, b: 1, a: 1}
