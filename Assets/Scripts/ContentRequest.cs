@@ -31,7 +31,7 @@ public class ContentRequest : MonoBehaviour
 		get { return _brandedResourcesFileName == "" ? _resourcesFileName : _brandedResourcesFileName; }
 	}
 
-	private static List<Scenario> AllScenarios { get; set; }
+	public static List<Scenario> Scenarios { get; private set; }
 
 	public GameObject CancelButton;
 
@@ -116,7 +116,7 @@ public class ContentRequest : MonoBehaviour
 		Failed();
 		Loading.LoadingSpinner.StopSpinner("");
 
-	    Location.NumIncidents = GetNumIncidents(AllScenarios);
+	    Location.NumIncidents = Scenarios.Count;
 	    Debug.Log(Location.NumIncidents + " Scenarios available");
     }
 
@@ -130,37 +130,39 @@ public class ContentRequest : MonoBehaviour
         Loading.LoadingSpinner.StartSpinner(Localization.Get("BASIC_TEXT_CHECKING_NEW_CONTENT"));
 		yield return FetchNewContent(loadedScenarios);
 
-		if (loadedScenarios.Count(s => s.Enabled && !s.Deleted) >= _minimumScenariosRequired)
+        var filteredScenarios = FilterScenarios(loadedScenarios);
+
+        if (filteredScenarios.Count(s => s.Enabled && !s.Deleted) >= _minimumScenariosRequired)
 		{
 			yield return Loading.LoadingSpinner.StopSpinner(Localization.Get("BASIC_TEXT_NEW_CONTENT"), 1.5f);
 		}
 		else
 		{
-			if (loadedScenarios.Any())
+			if (filteredScenarios.Any())
 			{
 				Debug.LogWarning("Not Enough Scenarios valid through web tool to play the game with custom content alone");
 			}
 			// No need to tell players nothing was found, quit quietly
 			Debug.Log("Loading fallback content from Resources.");
-            GetResourcesScenario(loadedScenarios);
+            GetResourcesScenario(filteredScenarios);
 		    
             Loading.LoadingSpinner.StopSpinner("");
         }
 
         // Set content number
-        Location.NumIncidents = GetNumIncidents(loadedScenarios);
+        Location.NumIncidents = filteredScenarios.Count;
         Debug.Log(Location.NumIncidents + " Scenarios available");
 
-        AllScenarios = loadedScenarios;
+        Scenarios = filteredScenarios;
     }
 
-    private int GetNumIncidents(List<Scenario> scenarios)
+    private List<Scenario> FilterScenarios(List<Scenario> unfilteredScenarios)
     {
         var language = DeviceLocation.shouldOverrideLanguage ? DeviceLocation.overrideLanguage.ToString() : "English";
-        var numIncidents = scenarios.Count(s => s.IsRegionMatch(Location.CurrentLocation) && s.Language == language && s.Enabled);
-        return numIncidents;
+        var validScenarios = unfilteredScenarios.Where(s => s.IsRegionMatch(Location.CurrentLocation) && s.Language == language && s.Enabled).ToList();
+        return validScenarios;
     }
-
+    
     private IEnumerator FetchNewContent(List<Scenario> loadedScenarios)
     {
         _currentState = State.Initializing;
@@ -296,16 +298,6 @@ public class ContentRequest : MonoBehaviour
                 sw.Write(newtext);
             }
         }
-    }
-
-    public List<Scenario> GetScenarios(string location, string language)
-    {
-	    if (AllScenarios.Count == 0)
-	    {
-			// Fall back to the basic scenarios
-		    GetResourcesScenario();
-	    }
-	    return AllScenarios.Where(s => s.Language == language && s.IsRegionMatch(location) && s.Enabled).ToList();
     }
 
     public void GetResourcesScenario()
