@@ -80,6 +80,26 @@ public class BrandingManager : MonoBehaviour
 		public Color Color;
 	}
 
+	[Serializable]
+	public class Colors
+	{
+		public List<ColorMapping> Themes = new List<ColorMapping>()
+		{
+			new ColorMapping(ColorTheme.Background),
+			new ColorMapping(ColorTheme.BasicBorder),
+			new ColorMapping(ColorTheme.MessagePrimary),
+			new ColorMapping(ColorTheme.MessageSecondary),
+			new ColorMapping(ColorTheme.ErrorPrimary),
+			new ColorMapping(ColorTheme.ErrorSecondary),
+			new ColorMapping(ColorTheme.StandardText),
+			new ColorMapping(ColorTheme.ErrorText)
+		};
+	}
+
+	// Branding colors outside of unity editor as it is needed at runtime
+	[Header("Color Palette")]
+	[SerializeField] private Colors _brandingColors;
+	
 #if UNITY_EDITOR
 	[Header("Localization")]
     public string LocalizationSource;
@@ -105,29 +125,9 @@ public class BrandingManager : MonoBehaviour
     [SerializeField] private ButtonLink _optionsFacebook;
     [SerializeField] private ButtonLink _optionsTwitter;
 
-	[Header("Color Palette")]
-	[SerializeField] private Colors _brandingColors;
-
 	[Space(10)]
 
 	public List<BrandingObjects> ObjectsForBranding;
-
-
-	[Serializable]
-	public class Colors
-	{
-		public List<ColorMapping> Themes = new List<ColorMapping>()
-		{
-			new ColorMapping(ColorTheme.Background),
-			new ColorMapping(ColorTheme.BasicBorder),
-			new ColorMapping(ColorTheme.MessagePrimary),
-			new ColorMapping(ColorTheme.MessageSecondary),
-			new ColorMapping(ColorTheme.ErrorPrimary),
-			new ColorMapping(ColorTheme.ErrorSecondary),
-			new ColorMapping(ColorTheme.StandardText),
-			new ColorMapping(ColorTheme.ErrorText)
-		};
-	}
 
 	public void Apply()
 	{
@@ -198,12 +198,11 @@ public class BrandingManager : MonoBehaviour
 		}
 	}
 
+#endif
 	public Color GetColor(ColorTheme theme)
 	{
 		// Check if config is overriding the color
 		var overrideColor = Config.BrandingColors.FirstOrDefault(c => c.Theme == theme);
 		return overrideColor != null ? overrideColor.Color : _brandingColors.Themes.Find(c => c.Theme == theme).Color;
 	}
-
-#endif
 }

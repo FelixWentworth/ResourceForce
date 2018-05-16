@@ -9,10 +9,10 @@ public class ColourMapping : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Refresh();
+		SetColor();
 	}
 
-	public void Refresh()
+	public void SetColor()
 	{
 		var image = GetComponent<Image>();
 		var text = GetComponent<Text>();
