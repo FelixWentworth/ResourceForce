@@ -43,7 +43,7 @@ The analytics by default will send generic data, but it is possible to send data
 simply check all links where you want to track clicks, press apply in the branding manager and save.
 
 ## 5. Update Authoring Tool
-In the config file in the authoring tool, app.config.js, make sure taht the Location specified in the config file is added to the regions available in the authoring tool.
+In the config file in the authoring tool, app.config.js, make sure that the Location specified in the config file is added to the regions available in the authoring tool.
 Update the auth tool on files.playgen.com and make sure URL is correct
 
 ## 6. Deploying to Asset Atore

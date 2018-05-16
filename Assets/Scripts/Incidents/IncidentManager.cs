@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using PlayGen.Unity.Utilities.Localization;
 using UnityEngine.UI;
 
@@ -38,12 +39,20 @@ public class IncidentManager : MonoBehaviour
     private int _casesClosedThisTurn;
 
     private int _endTurnSatisfaction;
+    private WarningBox _warningPopup;
 
     private const int MaxIncidents = 7;
-   
+
 #if SELECT_INCIDENTS
     private int incidentShowingIndex = 1;
 #endif
+
+    private void Awake()
+    {
+        _warningPopup = GameObject.Find("WarningPopup").GetComponent<WarningBox>();
+    }
+
+
     void Start()
     {
         m_satisfactionDisplay.SetSatisfactionDisplays(Happiness, MaxHappiness);
@@ -172,7 +181,19 @@ public class IncidentManager : MonoBehaviour
             AddNewIncidents(turn + 1);
         }
 
-        var currentIncident = NextIncident[0];
+        var currentIncident = NextIncident.FirstOrDefault();
+        if (currentIncident == null)
+        {
+            Debug.LogError("No incident found to show");
+            // ReSharper disable once MustUseReturnValue
+            _warningPopup.StartShowWarning("No incidents found! " +
+                                           "\n\nYour area appears to be completely crime free, lucky you! " +
+                                           "\n\nBut unfortunately this is a bug. " +
+                                           "\nPlease report this to the developers.", 
+                true);
+            return;
+        }
+
         if (m_dialogBox == null)
         {
             m_dialogBox = GameObject.Find("IncidentDialog").GetComponent<DialogBox>();
