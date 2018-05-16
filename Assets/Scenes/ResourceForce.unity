@@ -17365,8 +17365,8 @@ MonoBehaviour:
     - Name: ErrorSecondary
       Theme: 7
       Color: {r: 1, g: 1, b: 0, a: 1}
-  LocalizationSource: 
-  LocalizationOutput: 
+  LocalizationSource: Editor/Localization.xlsx
+  LocalizationOutput: Resources/Localization.json
   _startScreenLogo: {fileID: 1326}
   _gameLogo: {fileID: 1622}
   _citizenButtonIcon: {fileID: 1621}
