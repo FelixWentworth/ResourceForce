@@ -52,10 +52,17 @@ public class GameOver : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", newHighScore);
         }
 
-        GameAnalytics.NewDesignEvent(Location.CurrentLocation + "_TurnsSurvived", turns);
-        GameAnalytics.NewDesignEvent(Location.CurrentLocation + "_Score", totalScore);
-
-        StartCoroutine(ShowScores(turns, casesClosedWell, (cases - casesClosedWell), turnScore, goodCaseScore, badCaseScore, totalScore, highScore, newHighScore));
+	    if (BrandingManager.Instance.UseManager)
+	    {
+		    GameAnalytics.NewDesignEvent("TurnsSurvived", turns);
+		    GameAnalytics.NewDesignEvent("Score", totalScore);
+		}
+	    else
+	    {
+		    GameAnalytics.NewDesignEvent(Location.CurrentLocation + "_TurnsSurvived", turns);
+		    GameAnalytics.NewDesignEvent(Location.CurrentLocation + "_Score", totalScore);
+	    }
+	    StartCoroutine(ShowScores(turns, casesClosedWell, (cases - casesClosedWell), turnScore, goodCaseScore, badCaseScore, totalScore, highScore, newHighScore));
     }
 
     private IEnumerator ShowScores(int turns, int goodCases, int badCases, int turnsScore, int goodCaseScore, int badCaseScore,  int score, int highScore, int newHighScore)
