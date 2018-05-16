@@ -223,6 +223,13 @@ namespace GameAnalyticsSDK.Wrapper
 			}
 		}
 
+		private static void setUsePlayerSettingsBundleVersionForBuild (bool enabled)
+		{
+			if (GameAnalytics.SettingsGA.InfoLogEditor) {
+				Debug.Log ("Using Player Settings bundle version for build(" + enabled + ")");
+			}
+		}
+
 		private static void gameAnalyticsStartSession ()
 		{
 			if (GameAnalytics.SettingsGA.InfoLogEditor) {
@@ -236,7 +243,7 @@ namespace GameAnalyticsSDK.Wrapper
 				Debug.Log ("gameAnalyticsEndSession()");
 			}
 		}
-			
+
 		#endif
 
 		public static void SetAvailableCustomDimensions01 (string list)
@@ -332,37 +339,20 @@ namespace GameAnalyticsSDK.Wrapper
 
 		public static void SetCustomDimension01 (string customDimension)
 		{
-#if UNITY_EDITOR
-            if (GameAnalyticsSDK.Validators.GAValidator.ValidateDimension01 (customDimension)) {
-				setCustomDimension01 (customDimension);
-			}
-#else
-				setCustomDimension01 (customDimension);
-#endif
+			setCustomDimension01 (customDimension);
         }
 
 		public static void SetCustomDimension02 (string customDimension)
 		{
-#if UNITY_EDITOR
-            if (GameAnalyticsSDK.Validators.GAValidator.ValidateDimension02 (customDimension)) {
-				setCustomDimension02 (customDimension);
-			}
-#else
-				setCustomDimension02 (customDimension);
-#endif
+
+			setCustomDimension02 (customDimension);
         }
 
 		public static void SetCustomDimension03 (string customDimension)
 		{
-#if UNITY_EDITOR
-            if (GameAnalyticsSDK.Validators.GAValidator.ValidateDimension03 (customDimension)) {
-				setCustomDimension03 (customDimension);
-			}
-#else
-				setCustomDimension03 (customDimension);
-#endif
+			setCustomDimension03 (customDimension);
         }
-		
+
 #if UNITY_IOS || UNITY_TVOS
 		public static void AddBusinessEvent(string currency, int amount, string itemType, string itemId, string cartType, string receipt)
 		{
@@ -382,7 +372,7 @@ namespace GameAnalyticsSDK.Wrapper
 		}
 #endif
 
-#if !UNITY_IOS && !UNITY_TVOS 
+#if !UNITY_IOS && !UNITY_TVOS
 		public static void AddBusinessEvent (string currency, int amount, string itemType, string itemId, string cartType)
 		{
 #if UNITY_EDITOR

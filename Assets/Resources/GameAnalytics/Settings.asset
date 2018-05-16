@@ -24,25 +24,33 @@ MonoBehaviour:
   UserMessagesSubmitted: 0
   UserMessagesFailed: 0
   CustomArea: 
-  gameKey: []
-  secretKey: []
-  Build: []
-  SelectedPlatformStudio: []
-  SelectedPlatformGame: []
-  SelectedPlatformGameID: 
-  SelectedStudio: 
-  SelectedGame: 
-  NewVersion: 
-  Changes: 
-  SignUpOpen: 1
-  FirstName: 
-  LastName: 
+  gameKey:
+  - c7781ccb2e81f2ae6dcd56ab7fa63ce2
+  - e1893ea92bcb5b083799bbe1799e7956
+  secretKey:
+  - c90bf071328ceca050e04e0d82163629490163bc
+  - 25968ceebb764c127319d3644ec7e700cb6375e9
+  Build:
+  - 1.0
+  - 1.0
+  SelectedPlatformStudio:
+  - Playgen
+  - Playgen
+  SelectedPlatformGame:
+  - Resource Force Android
+  - Resource Force iOS
+  SelectedPlatformGameID: d4830000d6830000
+  SelectedStudio: 0100000001000000
+  SelectedGame: 0100000002000000
+  NewVersion: 3.11.3
+  Changes: '- fixed session length bug
+
+    - fixed not allowing to send event when session is not started'
+  SignUpOpen: 0
   StudioName: 
   GameName: 
-  PasswordConfirm: 
-  EmailOptIn: 1
-  EmailGA: 
-  IntroScreen: 1
+  EmailGA: felix@playgen.com
+  IntroScreen: 0
   InfoLogEditor: 1
   InfoLogBuild: 1
   VerboseLogBuild: 0
@@ -54,34 +62,35 @@ MonoBehaviour:
   CustomDimensions03: []
   ResourceItemTypes: []
   ResourceCurrencies: []
-  LastCreatedGamePlatform: 0
-  Platforms: 
-  CurrentInspectorState: 0
+  LastCreatedGamePlatform: -1
+  Platforms: 0b00000008000000
+  CurrentInspectorState: 1
   ClosedHints: 
   DisplayHints: 0
   DisplayHintsScrollState: {x: 0, y: 0}
-  Logo: {fileID: 0}
-  UpdateIcon: {fileID: 0}
-  InfoIcon: {fileID: 0}
-  DeleteIcon: {fileID: 0}
-  GameIcon: {fileID: 0}
-  HomeIcon: {fileID: 0}
-  InstrumentIcon: {fileID: 0}
-  QuestionIcon: {fileID: 0}
-  UserIcon: {fileID: 0}
+  Logo: {fileID: 2800000, guid: 98df8f9c5678a4e5d964caa1244e8958, type: 3}
+  UpdateIcon: {fileID: 2800000, guid: 810bbb19deed24f3cb7b854f9bafde26, type: 3}
+  InfoIcon: {fileID: 2800000, guid: 1b4dd779aadd54ac88856975af0d3c0a, type: 3}
+  DeleteIcon: {fileID: 2800000, guid: 85a626f1668244d30a4e9f616991a793, type: 3}
+  GameIcon: {fileID: 2800000, guid: a9ac7103fc40b4e00923bf8c2cb5d30f, type: 3}
+  HomeIcon: {fileID: 2800000, guid: fe7e2ecc9b2fe447bafe90f6395d4709, type: 3}
+  InstrumentIcon: {fileID: 2800000, guid: 2ba470b4dffd848c6b267c34770cc63e, type: 3}
+  QuestionIcon: {fileID: 2800000, guid: f8ea67e311b0c4b2ea05718e90fd3b5b, type: 3}
+  UserIcon: {fileID: 2800000, guid: f49ef75333ff247cfb5dad4dab0d4dac, type: 3}
   AmazonIcon: {fileID: 0}
   GooglePlayIcon: {fileID: 0}
   iosIcon: {fileID: 0}
   macIcon: {fileID: 0}
   windowsPhoneIcon: {fileID: 0}
-  UseCustomId: 0
+  UsePlayerSettingsBuildNumber: 0
   SubmitErrors: 1
   MaxErrorCount: 10
   SubmitFpsAverage: 1
   SubmitFpsCritical: 1
+  IncludeGooglePlay: 1
   FpsCriticalThreshold: 20
   FpsCirticalSubmitInterval: 1
-  PlatformFoldOut: 
+  PlatformFoldOut: 0101
   CustomDimensions01FoldOut: 0
   CustomDimensions02FoldOut: 0
   CustomDimensions03FoldOut: 0

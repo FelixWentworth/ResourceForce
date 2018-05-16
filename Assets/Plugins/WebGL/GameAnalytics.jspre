@@ -330,8 +330,8 @@ code.google.com/p/crypto-js/wiki/License
     }
 })();
 
-var ga;
-(function (ga) {
+var gameanalytics;
+(function (gameanalytics) {
     var EGAErrorSeverity;
     (function (EGAErrorSeverity) {
         EGAErrorSeverity[EGAErrorSeverity["Undefined"] = 0] = "Undefined";
@@ -340,26 +340,26 @@ var ga;
         EGAErrorSeverity[EGAErrorSeverity["Warning"] = 3] = "Warning";
         EGAErrorSeverity[EGAErrorSeverity["Error"] = 4] = "Error";
         EGAErrorSeverity[EGAErrorSeverity["Critical"] = 5] = "Critical";
-    })(EGAErrorSeverity = ga.EGAErrorSeverity || (ga.EGAErrorSeverity = {}));
+    })(EGAErrorSeverity = gameanalytics.EGAErrorSeverity || (gameanalytics.EGAErrorSeverity = {}));
     var EGAGender;
     (function (EGAGender) {
         EGAGender[EGAGender["Undefined"] = 0] = "Undefined";
         EGAGender[EGAGender["Male"] = 1] = "Male";
         EGAGender[EGAGender["Female"] = 2] = "Female";
-    })(EGAGender = ga.EGAGender || (ga.EGAGender = {}));
+    })(EGAGender = gameanalytics.EGAGender || (gameanalytics.EGAGender = {}));
     var EGAProgressionStatus;
     (function (EGAProgressionStatus) {
         EGAProgressionStatus[EGAProgressionStatus["Undefined"] = 0] = "Undefined";
         EGAProgressionStatus[EGAProgressionStatus["Start"] = 1] = "Start";
         EGAProgressionStatus[EGAProgressionStatus["Complete"] = 2] = "Complete";
         EGAProgressionStatus[EGAProgressionStatus["Fail"] = 3] = "Fail";
-    })(EGAProgressionStatus = ga.EGAProgressionStatus || (ga.EGAProgressionStatus = {}));
+    })(EGAProgressionStatus = gameanalytics.EGAProgressionStatus || (gameanalytics.EGAProgressionStatus = {}));
     var EGAResourceFlowType;
     (function (EGAResourceFlowType) {
         EGAResourceFlowType[EGAResourceFlowType["Undefined"] = 0] = "Undefined";
         EGAResourceFlowType[EGAResourceFlowType["Source"] = 1] = "Source";
         EGAResourceFlowType[EGAResourceFlowType["Sink"] = 2] = "Sink";
-    })(EGAResourceFlowType = ga.EGAResourceFlowType || (ga.EGAResourceFlowType = {}));
+    })(EGAResourceFlowType = gameanalytics.EGAResourceFlowType || (gameanalytics.EGAResourceFlowType = {}));
     var http;
     (function (http) {
         var EGASdkErrorType;
@@ -380,10 +380,14 @@ var ga;
             EGAHTTPApiResponse[EGAHTTPApiResponse["UnknownResponseCode"] = 8] = "UnknownResponseCode";
             EGAHTTPApiResponse[EGAHTTPApiResponse["Ok"] = 9] = "Ok";
         })(EGAHTTPApiResponse = http.EGAHTTPApiResponse || (http.EGAHTTPApiResponse = {}));
-    })(http = ga.http || (ga.http = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(http = gameanalytics.http || (gameanalytics.http = {}));
+})(gameanalytics || (gameanalytics = {}));
+var EGAErrorSeverity = gameanalytics.EGAErrorSeverity;
+var EGAGender = gameanalytics.EGAGender;
+var EGAProgressionStatus = gameanalytics.EGAProgressionStatus;
+var EGAResourceFlowType = gameanalytics.EGAResourceFlowType;
+var gameanalytics;
+(function (gameanalytics) {
     var logging;
     (function (logging) {
         var EGALoggerMessageType;
@@ -395,7 +399,7 @@ var ga;
         })(EGALoggerMessageType || (EGALoggerMessageType = {}));
         var GALogger = (function () {
             function GALogger() {
-                GALogger.debugEnabled = true;
+                GALogger.debugEnabled = false;
             }
             GALogger.setInfoLog = function (value) {
                 GALogger.instance.infoLogEnabled = value;
@@ -466,13 +470,13 @@ var ga;
         GALogger.instance = new GALogger();
         GALogger.Tag = "GameAnalytics";
         logging.GALogger = GALogger;
-    })(logging = ga.logging || (ga.logging = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(logging = gameanalytics.logging || (gameanalytics.logging = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
     var utilities;
     (function (utilities) {
-        var GALogger = ga.logging.GALogger;
+        var GALogger = gameanalytics.logging.GALogger;
         var GAUtilities = (function () {
             function GAUtilities() {
             }
@@ -581,15 +585,15 @@ var ga;
         }());
         GAUtilities.keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
         utilities.GAUtilities = GAUtilities;
-    })(utilities = ga.utilities || (ga.utilities = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(utilities = gameanalytics.utilities || (gameanalytics.utilities = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
     var validators;
     (function (validators) {
-        var GALogger = ga.logging.GALogger;
-        var EGASdkErrorType = ga.http.EGASdkErrorType;
-        var GAUtilities = ga.utilities.GAUtilities;
+        var GALogger = gameanalytics.logging.GALogger;
+        var EGASdkErrorType = gameanalytics.http.EGASdkErrorType;
+        var GAUtilities = gameanalytics.utilities.GAUtilities;
         var GAValidator = (function () {
             function GAValidator() {
             }
@@ -621,7 +625,7 @@ var ga;
                 return true;
             };
             GAValidator.validateResourceEvent = function (flowType, currency, amount, itemType, itemId, availableCurrencies, availableItemTypes) {
-                if (flowType == ga.EGAResourceFlowType.Undefined) {
+                if (flowType == gameanalytics.EGAResourceFlowType.Undefined) {
                     GALogger.i("Validation fail - resource event - flowType: Invalid flow type.");
                     return false;
                 }
@@ -664,7 +668,7 @@ var ga;
                 return true;
             };
             GAValidator.validateProgressionEvent = function (progressionStatus, progression01, progression02, progression03) {
-                if (progressionStatus === ga.EGAProgressionStatus.Undefined) {
+                if (progressionStatus == gameanalytics.EGAProgressionStatus.Undefined) {
                     GALogger.i("Validation fail - progression event: Invalid progression status.");
                     return false;
                 }
@@ -722,7 +726,7 @@ var ga;
                 return true;
             };
             GAValidator.validateErrorEvent = function (severity, message) {
-                if (severity === ga.EGAErrorSeverity.Undefined) {
+                if (severity == gameanalytics.EGAErrorSeverity.Undefined) {
                     GALogger.i("Validation fail - error event - severity: Severity was unsupported value.");
                     return false;
                 }
@@ -831,13 +835,13 @@ var ga;
                 return true;
             };
             GAValidator.validateSdkWrapperVersion = function (wrapperVersion) {
-                if (!GAUtilities.stringMatch(wrapperVersion, /^(unity|unreal) [0-9]{0,5}(\.[0-9]{0,5}){0,2}$/)) {
+                if (!GAUtilities.stringMatch(wrapperVersion, /^(unity|unreal|gamemaker|cocos2d|construct|defold) [0-9]{0,5}(\.[0-9]{0,5}){0,2}$/)) {
                     return false;
                 }
                 return true;
             };
             GAValidator.validateEngineVersion = function (engineVersion) {
-                if (!engineVersion || !GAUtilities.stringMatch(engineVersion, /^(unity|unreal) [0-9]{0,5}(\.[0-9]{0,5}){0,2}$/)) {
+                if (!engineVersion || !GAUtilities.stringMatch(engineVersion, /^(unity|unreal|gamemaker|cocos2d|construct|defold) [0-9]{0,5}(\.[0-9]{0,5}){0,2}$/)) {
                     return false;
                 }
                 return true;
@@ -886,7 +890,7 @@ var ga;
                 if (!GAValidator.validateArrayOfStrings(20, 64, false, "resource currencies", resourceCurrencies)) {
                     return false;
                 }
-                for (var i in resourceCurrencies) {
+                for (var i = 0; i < resourceCurrencies.length; ++i) {
                     if (!GAUtilities.stringMatch(resourceCurrencies[i], /^[A-Za-z]+$/)) {
                         GALogger.i("resource currencies validation failed: a resource currency can only be A-Z, a-z. String was: " + resourceCurrencies[i]);
                         return false;
@@ -898,7 +902,7 @@ var ga;
                 if (!GAValidator.validateArrayOfStrings(20, 32, false, "resource item types", resourceItemTypes)) {
                     return false;
                 }
-                for (var i in resourceItemTypes) {
+                for (var i = 0; i < resourceItemTypes.length; ++i) {
                     if (!GAValidator.validateEventPartCharacters(resourceItemTypes[i])) {
                         GALogger.i("resource item types validation failed: a resource item type cannot contain other characters than A-z, 0-9, -_., ()!?. String was: " + resourceItemTypes[i]);
                         return false;
@@ -950,10 +954,10 @@ var ga;
                     GALogger.i(arrayTag + " validation failed: array cannot exceed " + maxCount + " values. It has " + arrayOfStrings.length + " values.");
                     return false;
                 }
-                for (var i in arrayOfStrings) {
+                for (var i = 0; i < arrayOfStrings.length; ++i) {
                     var stringLength = !arrayOfStrings[i] ? 0 : arrayOfStrings[i].length;
                     if (stringLength === 0) {
-                        GALogger.i(arrayTag + " validation failed: contained an empty string.");
+                        GALogger.i(arrayTag + " validation failed: contained an empty string. Array=" + JSON.stringify(arrayOfStrings));
                         return false;
                     }
                     if (maxStringLength > 0 && stringLength > maxStringLength) {
@@ -971,9 +975,17 @@ var ga;
                 return true;
             };
             GAValidator.validateGender = function (gender) {
-                if (gender === ga.EGAGender.Undefined || !(gender === ga.EGAGender.Male || gender === ga.EGAGender.Female)) {
-                    GALogger.i("Validation fail - gender: Has to be 'male' or 'female'.");
-                    return false;
+                if (isNaN(Number(gameanalytics.EGAGender[gender]))) {
+                    if (gender == gameanalytics.EGAGender.Undefined || !(gender == gameanalytics.EGAGender.Male || gender == gameanalytics.EGAGender.Female)) {
+                        GALogger.i("Validation fail - gender: Has to be 'male' or 'female'. Was: " + gender);
+                        return false;
+                    }
+                }
+                else {
+                    if (gender == gameanalytics.EGAGender[gameanalytics.EGAGender.Undefined] || !(gender == gameanalytics.EGAGender[gameanalytics.EGAGender.Male] || gender == gameanalytics.EGAGender[gameanalytics.EGAGender.Female])) {
+                        GALogger.i("Validation fail - gender: Has to be 'male' or 'female'. Was: " + gender);
+                        return false;
+                    }
                 }
                 return true;
             };
@@ -993,13 +1005,29 @@ var ga;
             return GAValidator;
         }());
         validators.GAValidator = GAValidator;
-    })(validators = ga.validators || (ga.validators = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(validators = gameanalytics.validators || (gameanalytics.validators = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
     var device;
     (function (device) {
-        var GALogger = ga.logging.GALogger;
+        var NameValueVersion = (function () {
+            function NameValueVersion(name, value, version) {
+                this.name = name;
+                this.value = value;
+                this.version = version;
+            }
+            return NameValueVersion;
+        }());
+        device.NameValueVersion = NameValueVersion;
+        var NameVersion = (function () {
+            function NameVersion(name, version) {
+                this.name = name;
+                this.version = version;
+            }
+            return NameVersion;
+        }());
+        device.NameVersion = NameVersion;
         var GADevice = (function () {
             function GADevice() {
             }
@@ -1028,63 +1056,133 @@ var ga;
                 }
             };
             GADevice.getOSVersionString = function () {
-                return GADevice.buildPlatform + " 0.0.0";
+                return GADevice.buildPlatform + " " + GADevice.osVersionPair.version;
             };
             GADevice.runtimePlatformToString = function () {
-                try {
-                    var platform = navigator.platform;
-                    platform = platform.toLowerCase();
-                    GALogger.d("Finding platform for: " + platform);
-                    if (platform.indexOf("mac") != -1) {
-                        return "mac_osx";
-                    }
-                    else if (platform.indexOf("linux") != -1) {
-                        return "linux";
-                    }
-                    else if (platform.indexOf("win") != -1) {
-                        return "windows";
-                    }
-                    else if (platform.indexOf("android") != -1) {
-                        return "android";
-                    }
-                    else if (platform.indexOf("iphone") != -1 || platform.indexOf("ipad") != -1 || platform.indexOf("ipod") != -1) {
-                        return "ios";
-                    }
-                    GALogger.d("Platform was not found: " + platform);
+                return GADevice.osVersionPair.name;
+            };
+            GADevice.getBrowserVersionString = function () {
+                var ua = navigator.userAgent;
+                var tem;
+                var M = ua.match(/(opera|chrome|safari|firefox|ubrowser|msie|trident|fbav(?=\/))\/?\s*(\d+)/i) || [];
+                if (/trident/i.test(M[1])) {
+                    tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+                    return 'IE ' + (tem[1] || '');
                 }
-                catch (e) {
+                if (M[1] === 'Chrome') {
+                    tem = ua.match(/\b(OPR|Edge|UBrowser)\/(\d+)/);
+                    if (tem != null) {
+                        return tem.slice(1).join(' ').replace('OPR', 'Opera').replace('UBrowser', 'UC').toLowerCase();
+                    }
                 }
-                return "unknown";
+                if (M[1].toLowerCase() === 'fbav') {
+                    M[1] = "facebook";
+                    if (M[2]) {
+                        return "facebook " + M[2];
+                    }
+                }
+                var MString = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+                if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+                    MString.splice(1, 1, tem[1]);
+                }
+                return MString.join(' ').toLowerCase();
+            };
+            GADevice.getDeviceModel = function () {
+                var result = "unknown";
+                return result;
+            };
+            GADevice.getDeviceManufacturer = function () {
+                var result = "unknown";
+                return result;
+            };
+            GADevice.matchItem = function (agent, data) {
+                var result = new NameVersion("unknown", "0.0.0");
+                var i = 0;
+                var j = 0;
+                var regex;
+                var regexv;
+                var match;
+                var matches;
+                var mathcesResult;
+                var version;
+                for (i = 0; i < data.length; i += 1) {
+                    regex = new RegExp(data[i].value, 'i');
+                    match = regex.test(agent);
+                    if (match) {
+                        regexv = new RegExp(data[i].version + '[- /:;]([\\d._]+)', 'i');
+                        matches = agent.match(regexv);
+                        version = '';
+                        if (matches) {
+                            if (matches[1]) {
+                                mathcesResult = matches[1];
+                            }
+                        }
+                        if (mathcesResult) {
+                            var matchesArray = mathcesResult.split(/[._]+/);
+                            for (j = 0; j < Math.min(matchesArray.length, 3); j += 1) {
+                                version += matchesArray[j] + (j < Math.min(matchesArray.length, 3) - 1 ? '.' : '');
+                            }
+                        }
+                        else {
+                            version = '0.0.0';
+                        }
+                        result.name = data[i].name;
+                        result.version = version;
+                        return result;
+                    }
+                }
+                return result;
             };
             return GADevice;
         }());
-        GADevice.sdkWrapperVersion = "javascript 1.0.3";
+        GADevice.sdkWrapperVersion = "javascript 2.1.3";
+        GADevice.osVersionPair = GADevice.matchItem([
+            navigator.platform,
+            navigator.userAgent,
+            navigator.appVersion,
+            navigator.vendor,
+            window.opera
+        ].join(' '), [
+            new NameValueVersion("windows_phone", "Windows Phone", "OS"),
+            new NameValueVersion("windows", "Win", "NT"),
+            new NameValueVersion("ios", "iPhone", "OS"),
+            new NameValueVersion("ios", "iPad", "OS"),
+            new NameValueVersion("ios", "iPod", "OS"),
+            new NameValueVersion("android", "Android", "Android"),
+            new NameValueVersion("blackBerry", "BlackBerry", "/"),
+            new NameValueVersion("mac_osx", "Mac", "OS X"),
+            new NameValueVersion("tizen", "Tizen", "Tizen"),
+            new NameValueVersion("linux", "Linux", "rv")
+        ]);
         GADevice.buildPlatform = GADevice.runtimePlatformToString();
-        GADevice.deviceModel = "unknown";
-        GADevice.deviceManufacturer = "unknown";
+        GADevice.deviceModel = GADevice.getDeviceModel();
+        GADevice.deviceManufacturer = GADevice.getDeviceManufacturer();
         GADevice.osVersion = GADevice.getOSVersionString();
+        GADevice.browserVersion = GADevice.getBrowserVersionString();
+        GADevice.maxSafeInteger = Math.pow(2, 53) - 1;
         device.GADevice = GADevice;
-    })(device = ga.device || (ga.device = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(device = gameanalytics.device || (gameanalytics.device = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
     var threading;
     (function (threading) {
         var TimedBlock = (function () {
-            function TimedBlock(deadline, block) {
+            function TimedBlock(deadline) {
                 this.deadline = deadline;
-                this.block = block;
                 this.ignore = false;
+                this.async = false;
+                this.running = false;
                 this.id = ++TimedBlock.idCounter;
             }
             return TimedBlock;
         }());
         TimedBlock.idCounter = 0;
         threading.TimedBlock = TimedBlock;
-    })(threading = ga.threading || (ga.threading = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(threading = gameanalytics.threading || (gameanalytics.threading = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
     var threading;
     (function (threading) {
         var PriorityQueue = (function () {
@@ -1136,13 +1234,13 @@ var ga;
             return PriorityQueue;
         }());
         threading.PriorityQueue = PriorityQueue;
-    })(threading = ga.threading || (ga.threading = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(threading = gameanalytics.threading || (gameanalytics.threading = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
     var store;
     (function (store_1) {
-        var GALogger = ga.logging.GALogger;
+        var GALogger = gameanalytics.logging.GALogger;
         var EGAStoreArgsOperator;
         (function (EGAStoreArgsOperator) {
             EGAStoreArgsOperator[EGAStoreArgsOperator["Equal"] = 0] = "Equal";
@@ -1173,7 +1271,6 @@ var ga;
                 }
                 catch (e) {
                 }
-                GALogger.d("Storage is available?: " + GAStore.storageAvailable);
             }
             GAStore.isStorageAvailable = function () {
                 return GAStore.storageAvailable;
@@ -1475,19 +1572,19 @@ var ga;
         GAStore.ProgressionStoreKey = "ga_progression";
         GAStore.ItemsStoreKey = "ga_items";
         store_1.GAStore = GAStore;
-    })(store = ga.store || (ga.store = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(store = gameanalytics.store || (gameanalytics.store = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
     var state;
     (function (state) {
-        var GAValidator = ga.validators.GAValidator;
-        var GAUtilities = ga.utilities.GAUtilities;
-        var GALogger = ga.logging.GALogger;
-        var GAStore = ga.store.GAStore;
-        var GADevice = ga.device.GADevice;
-        var EGAStore = ga.store.EGAStore;
-        var EGAStoreArgsOperator = ga.store.EGAStoreArgsOperator;
+        var GAValidator = gameanalytics.validators.GAValidator;
+        var GAUtilities = gameanalytics.utilities.GAUtilities;
+        var GALogger = gameanalytics.logging.GALogger;
+        var GAStore = gameanalytics.store.GAStore;
+        var GADevice = gameanalytics.device.GADevice;
+        var EGAStore = gameanalytics.store.EGAStore;
+        var EGAStoreArgsOperator = gameanalytics.store.EGAStoreArgsOperator;
         var GAState = (function () {
             function GAState() {
                 this.availableCustomDimensions01 = [];
@@ -1597,6 +1694,7 @@ var ga;
             };
             GAState.setBuild = function (value) {
                 GAState.instance.build = value;
+                GALogger.i("Set build version: " + value);
             };
             GAState.getUseManualSessionHandling = function () {
                 return GAState.instance.useManualSessionHandling;
@@ -1670,7 +1768,7 @@ var ga;
                 GALogger.i("Set facebook id: " + facebookId);
             };
             GAState.setGender = function (gender) {
-                GAState.instance.gender = ga.EGAGender[gender].toString().toLowerCase();
+                GAState.instance.gender = isNaN(Number(gameanalytics.EGAGender[gender])) ? gameanalytics.EGAGender[gender].toString().toLowerCase() : gameanalytics.EGAGender[gameanalytics.EGAGender[gender]].toString().toLowerCase();
                 GAStore.setItem(GAState.GenderKey, GAState.instance.gender);
                 GALogger.i("Set gender: " + GAState.instance.gender);
             };
@@ -1728,6 +1826,7 @@ var ga;
                 annotations["os_version"] = GADevice.osVersion;
                 annotations["manufacturer"] = GADevice.deviceManufacturer;
                 annotations["device"] = GADevice.deviceModel;
+                annotations["browser_version"] = GADevice.browserVersion;
                 annotations["platform"] = GADevice.buildPlatform;
                 annotations["session_id"] = GAState.instance.sessionId;
                 annotations[GAState.SessionNumKey] = GAState.instance.sessionNum;
@@ -1797,7 +1896,6 @@ var ga;
                 else if (GAState.instance.defaultUserId) {
                     GAState.instance.identifier = GAState.instance.defaultUserId;
                 }
-                GALogger.d("identifier, {clean:" + GAState.instance.identifier + "}");
             };
             GAState.ensurePersistedStates = function () {
                 if (GAStore.isStorageAvailable()) {
@@ -1813,7 +1911,6 @@ var ga;
                 else {
                     instance.facebookId = GAStore.getItem(GAState.FacebookIdKey) != null ? GAStore.getItem(GAState.FacebookIdKey) : "";
                     if (instance.facebookId) {
-                        GALogger.d("facebookid found in DB: " + instance.facebookId);
                     }
                 }
                 if (instance.gender) {
@@ -1822,7 +1919,6 @@ var ga;
                 else {
                     instance.gender = GAStore.getItem(GAState.GenderKey) != null ? GAStore.getItem(GAState.GenderKey) : "";
                     if (instance.gender) {
-                        GALogger.d("gender found in DB: " + instance.gender);
                     }
                 }
                 if (instance.birthYear && instance.birthYear != 0) {
@@ -1831,7 +1927,6 @@ var ga;
                 else {
                     instance.birthYear = GAStore.getItem(GAState.BirthYearKey) != null ? Number(GAStore.getItem(GAState.BirthYearKey)) : 0;
                     if (instance.birthYear != 0) {
-                        GALogger.d("birthYear found in DB: " + instance.birthYear);
                     }
                 }
                 if (instance.currentCustomDimension01) {
@@ -1840,7 +1935,6 @@ var ga;
                 else {
                     instance.currentCustomDimension01 = GAStore.getItem(GAState.Dimension01Key) != null ? GAStore.getItem(GAState.Dimension01Key) : "";
                     if (instance.currentCustomDimension01) {
-                        GALogger.d("Dimension01 found in cache: " + instance.currentCustomDimension01);
                     }
                 }
                 if (instance.currentCustomDimension02) {
@@ -1849,7 +1943,6 @@ var ga;
                 else {
                     instance.currentCustomDimension02 = GAStore.getItem(GAState.Dimension02Key) != null ? GAStore.getItem(GAState.Dimension02Key) : "";
                     if (instance.currentCustomDimension02) {
-                        GALogger.d("Dimension02 found in cache: " + instance.currentCustomDimension02);
                     }
                 }
                 if (instance.currentCustomDimension03) {
@@ -1858,7 +1951,6 @@ var ga;
                 else {
                     instance.currentCustomDimension03 = GAStore.getItem(GAState.Dimension03Key) != null ? GAStore.getItem(GAState.Dimension03Key) : "";
                     if (instance.currentCustomDimension03) {
-                        GALogger.d("Dimension03 found in cache: " + instance.currentCustomDimension03);
                     }
                 }
                 var sdkConfigCachedString = GAStore.getItem(GAState.SdkConfigCachedKey) != null ? GAStore.getItem(GAState.SdkConfigCachedKey) : "";
@@ -1884,15 +1976,12 @@ var ga;
             };
             GAState.validateAndFixCurrentDimensions = function () {
                 if (!GAValidator.validateDimension01(GAState.getCurrentCustomDimension01(), GAState.getAvailableCustomDimensions01())) {
-                    GALogger.d("Invalid dimension01 found in variable. Setting to nil. Invalid dimension: " + GAState.getCurrentCustomDimension01());
                     GAState.setCustomDimension01("");
                 }
                 if (!GAValidator.validateDimension02(GAState.getCurrentCustomDimension02(), GAState.getAvailableCustomDimensions02())) {
-                    GALogger.d("Invalid dimension02 found in variable. Setting to nil. Invalid dimension: " + GAState.getCurrentCustomDimension02());
                     GAState.setCustomDimension02("");
                 }
                 if (!GAValidator.validateDimension03(GAState.getCurrentCustomDimension03(), GAState.getAvailableCustomDimensions03())) {
-                    GALogger.d("Invalid dimension03 found in variable. Setting to nil. Invalid dimension: " + GAState.getCurrentCustomDimension03());
                     GAState.setCustomDimension03("");
                 }
             };
@@ -1911,14 +2000,14 @@ var ga;
         GAState.Dimension03Key = "dimension03";
         GAState.SdkConfigCachedKey = "sdk_config_cached";
         state.GAState = GAState;
-    })(state = ga.state || (ga.state = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(state = gameanalytics.state || (gameanalytics.state = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
     var tasks;
     (function (tasks) {
-        var GAUtilities = ga.utilities.GAUtilities;
-        var GALogger = ga.logging.GALogger;
+        var GAUtilities = gameanalytics.utilities.GAUtilities;
+        var GALogger = gameanalytics.logging.GALogger;
         var SdkErrorTask = (function () {
             function SdkErrorTask() {
             }
@@ -1934,7 +2023,6 @@ var ga;
                 request.onreadystatechange = function () {
                     if (request.readyState === 4) {
                         if (!request.responseText) {
-                            GALogger.d("sdk error failed. Might be no connection. Description: " + request.statusText + ", Status code: " + request.status);
                             return;
                         }
                         if (request.status != 200) {
@@ -1961,17 +2049,17 @@ var ga;
         SdkErrorTask.MaxCount = 10;
         SdkErrorTask.countMap = {};
         tasks.SdkErrorTask = SdkErrorTask;
-    })(tasks = ga.tasks || (ga.tasks = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(tasks = gameanalytics.tasks || (gameanalytics.tasks = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
     var http;
     (function (http) {
-        var GAState = ga.state.GAState;
-        var GALogger = ga.logging.GALogger;
-        var GAUtilities = ga.utilities.GAUtilities;
-        var GAValidator = ga.validators.GAValidator;
-        var SdkErrorTask = ga.tasks.SdkErrorTask;
+        var GAState = gameanalytics.state.GAState;
+        var GALogger = gameanalytics.logging.GALogger;
+        var GAUtilities = gameanalytics.utilities.GAUtilities;
+        var GAValidator = gameanalytics.validators.GAValidator;
+        var SdkErrorTask = gameanalytics.tasks.SdkErrorTask;
         var GAHTTPApi = (function () {
             function GAHTTPApi() {
                 this.protocol = "https";
@@ -1985,7 +2073,6 @@ var ga;
             GAHTTPApi.prototype.requestInit = function (callback) {
                 var gameKey = GAState.getGameKey();
                 var url = this.baseUrl + "/" + gameKey + "/" + this.initializeUrlPath;
-                GALogger.d("Sending 'init' URL: " + url);
                 var initAnnotations = GAState.getInitAnnotations();
                 var JSONstring = JSON.stringify(initAnnotations);
                 if (!JSONstring) {
@@ -1999,14 +2086,12 @@ var ga;
             };
             GAHTTPApi.prototype.sendEventsInArray = function (eventArray, requestId, callback) {
                 if (eventArray.length == 0) {
-                    GALogger.d("sendEventsInArray called with missing eventArray");
+                    return;
                 }
                 var gameKey = GAState.getGameKey();
                 var url = this.baseUrl + "/" + gameKey + "/" + this.eventsUrlPath;
-                GALogger.d("Sending 'events' URL: " + url);
                 var JSONstring = JSON.stringify(eventArray);
                 if (!JSONstring) {
-                    GALogger.d("sendEventsInArray JSON encoding failed of eventArray");
                     callback(http.EGAHTTPApiResponse.JsonEncodeFailed, null, requestId, eventArray.length);
                     return;
                 }
@@ -2024,7 +2109,6 @@ var ga;
                     return;
                 }
                 var url = this.baseUrl + "/" + gameKey + "/" + this.eventsUrlPath;
-                GALogger.d("Sending 'events' URL: " + url);
                 var payloadJSONString = "";
                 var json = GAState.getSdkErrorEventAnnotations();
                 var typeString = GAHTTPApi.sdkErrorTypeToString(type);
@@ -2036,7 +2120,6 @@ var ga;
                     GALogger.w("sendSdkErrorEvent: JSON encoding failed.");
                     return;
                 }
-                GALogger.d("sendSdkErrorEvent json: " + payloadJSONString);
                 SdkErrorTask.execute(url, type, payloadJSONString, secretKey);
             };
             GAHTTPApi.sendEventInArrayRequestCallback = function (request, url, callback, extra) {
@@ -2049,10 +2132,8 @@ var ga;
                 var responseCode = 0;
                 body = request.responseText;
                 responseCode = request.status;
-                GALogger.d("events request content: " + body);
                 var requestResponseEnum = GAHTTPApi.instance.processRequestResponse(responseCode, request.statusText, body, "Events");
                 if (requestResponseEnum != http.EGAHTTPApiResponse.Ok && requestResponseEnum != http.EGAHTTPApiResponse.BadRequest) {
-                    GALogger.d("Failed events Call. URL: " + url + ", Authorization: " + authorization + ", JSONString: " + JSONstring);
                     callback(requestResponseEnum, null, requestId, eventCount);
                     return;
                 }
@@ -2062,7 +2143,6 @@ var ga;
                     return;
                 }
                 if (requestResponseEnum == http.EGAHTTPApiResponse.BadRequest) {
-                    GALogger.d("Failed Events Call. Bad request. Response: " + JSON.stringify(requestJsonDict));
                 }
                 callback(requestResponseEnum, requestJsonDict, requestId, eventCount);
             };
@@ -2081,7 +2161,7 @@ var ga;
                     }
                 };
                 request.open("POST", url, true);
-                request.setRequestHeader("Content-Type", "application/json");
+                request.setRequestHeader("Content-Type", "text/plain");
                 request.setRequestHeader("Authorization", authorization);
                 if (gzip) {
                     throw new Error("gzip not supported");
@@ -2101,21 +2181,17 @@ var ga;
                 var responseCode = 0;
                 body = request.responseText;
                 responseCode = request.status;
-                GALogger.d("init request content : " + body);
                 var requestJsonDict = body ? JSON.parse(body) : {};
                 var requestResponseEnum = GAHTTPApi.instance.processRequestResponse(responseCode, request.statusText, body, "Init");
                 if (requestResponseEnum != http.EGAHTTPApiResponse.Ok && requestResponseEnum != http.EGAHTTPApiResponse.BadRequest) {
-                    GALogger.d("Failed Init Call. URL: " + url + ", Authorization: " + authorization + ", JSONString: " + JSONstring);
                     callback(requestResponseEnum, null);
                     return;
                 }
                 if (requestJsonDict == null) {
-                    GALogger.d("Failed Init Call. Json decoding failed");
                     callback(http.EGAHTTPApiResponse.JsonDecodeFailed, null);
                     return;
                 }
                 if (requestResponseEnum === http.EGAHTTPApiResponse.BadRequest) {
-                    GALogger.d("Failed Init Call. Bad request. Response: " + JSON.stringify(requestJsonDict));
                     callback(requestResponseEnum, null);
                     return;
                 }
@@ -2138,22 +2214,18 @@ var ga;
             };
             GAHTTPApi.prototype.processRequestResponse = function (responseCode, responseMessage, body, requestId) {
                 if (!body) {
-                    GALogger.d(requestId + " request. failed. Might be no connection. Description: " + responseMessage + ", Status code: " + responseCode);
                     return http.EGAHTTPApiResponse.NoResponse;
                 }
                 if (responseCode === 200) {
                     return http.EGAHTTPApiResponse.Ok;
                 }
                 if (responseCode === 0 || responseCode === 401) {
-                    GALogger.d(requestId + " request. 401 - Unauthorized.");
                     return http.EGAHTTPApiResponse.Unauthorized;
                 }
                 if (responseCode === 400) {
-                    GALogger.d(requestId + " request. 400 - Bad Request.");
                     return http.EGAHTTPApiResponse.BadRequest;
                 }
                 if (responseCode === 500) {
-                    GALogger.d(requestId + " request. 500 - Internal Server Error.");
                     return http.EGAHTTPApiResponse.InternalServerError;
                 }
                 return http.EGAHTTPApiResponse.UnknownResponseCode;
@@ -2174,22 +2246,22 @@ var ga;
         }());
         GAHTTPApi.instance = new GAHTTPApi();
         http.GAHTTPApi = GAHTTPApi;
-    })(http = ga.http || (ga.http = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(http = gameanalytics.http || (gameanalytics.http = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
     var events;
     (function (events_1) {
-        var GAStore = ga.store.GAStore;
-        var EGAStore = ga.store.EGAStore;
-        var EGAStoreArgsOperator = ga.store.EGAStoreArgsOperator;
-        var GAState = ga.state.GAState;
-        var GALogger = ga.logging.GALogger;
-        var GAUtilities = ga.utilities.GAUtilities;
-        var EGAHTTPApiResponse = ga.http.EGAHTTPApiResponse;
-        var GAHTTPApi = ga.http.GAHTTPApi;
-        var GAValidator = ga.validators.GAValidator;
-        var EGASdkErrorType = ga.http.EGASdkErrorType;
+        var GAStore = gameanalytics.store.GAStore;
+        var EGAStore = gameanalytics.store.EGAStore;
+        var EGAStoreArgsOperator = gameanalytics.store.EGAStoreArgsOperator;
+        var GAState = gameanalytics.state.GAState;
+        var GALogger = gameanalytics.logging.GALogger;
+        var GAUtilities = gameanalytics.utilities.GAUtilities;
+        var EGAHTTPApiResponse = gameanalytics.http.EGAHTTPApiResponse;
+        var GAHTTPApi = gameanalytics.http.GAHTTPApi;
+        var GAValidator = gameanalytics.validators.GAValidator;
+        var EGASdkErrorType = gameanalytics.http.EGASdkErrorType;
         var GAEvents = (function () {
             function GAEvents() {
             }
@@ -2245,7 +2317,7 @@ var ga;
                     GAHTTPApi.instance.sendSdkErrorEvent(EGASdkErrorType.Rejected);
                     return;
                 }
-                if (flowType === ga.EGAResourceFlowType.Sink) {
+                if (flowType === gameanalytics.EGAResourceFlowType.Sink) {
                     amount *= -1;
                 }
                 var eventDict = {};
@@ -2277,13 +2349,13 @@ var ga;
                 eventDict["category"] = GAEvents.CategoryProgression;
                 eventDict["event_id"] = progressionStatusString + ":" + progressionIdentifier;
                 var attempt_num = 0;
-                if (sendScore && progressionStatus != ga.EGAProgressionStatus.Start) {
+                if (sendScore && progressionStatus != gameanalytics.EGAProgressionStatus.Start) {
                     eventDict["score"] = score;
                 }
-                if (progressionStatus === ga.EGAProgressionStatus.Fail) {
+                if (progressionStatus === gameanalytics.EGAProgressionStatus.Fail) {
                     GAState.incrementProgressionTries(progressionIdentifier);
                 }
-                if (progressionStatus === ga.EGAProgressionStatus.Complete) {
+                if (progressionStatus === gameanalytics.EGAProgressionStatus.Complete) {
                     GAState.incrementProgressionTries(progressionIdentifier);
                     attempt_num = GAState.getProgressionTries(progressionIdentifier);
                     eventDict["attempt_num"] = attempt_num;
@@ -2338,8 +2410,9 @@ var ga;
                     var updateSetArgs = [];
                     updateSetArgs.push(["status", requestIdentifier]);
                     var events = GAStore.select(EGAStore.Events, selectArgs);
-                    if (!events) {
+                    if (!events || events.length == 0) {
                         GALogger.i("Event queue: No events to send");
+                        GAEvents.updateSessionStore();
                         return;
                     }
                     if (events.length > GAEvents.MaxEventCount) {
@@ -2411,7 +2484,6 @@ var ga;
                         GAStore["delete"](EGAStore.Events, requestIdWhereArgs);
                     }
                 }
-                GAEvents.updateSessionStore();
             };
             GAEvents.cleanupEvents = function () {
                 GAStore.update(EGAStore.Events, [["status", "new"]]);
@@ -2420,17 +2492,16 @@ var ga;
                 var args = [];
                 args.push(["session_id", EGAStoreArgsOperator.NotEqual, GAState.getSessionId()]);
                 var sessions = GAStore.select(EGAStore.Sessions, args);
-                if (!sessions) {
+                if (!sessions || sessions.length == 0) {
                     return;
                 }
                 GALogger.i(sessions.length + " session(s) located with missing session_end event.");
-                for (var i in sessions) {
+                for (var i = 0; i < sessions.length; ++i) {
                     var sessionEndEvent = JSON.parse(GAUtilities.decode64(sessions[i]["event"]));
                     var event_ts = sessionEndEvent["client_ts"];
                     var start_ts = sessions[i]["timestamp"];
                     var length = event_ts - start_ts;
                     length = Math.max(0, length);
-                    GALogger.d("fixMissingSessionEndEvents length calculated: " + length);
                     sessionEndEvent["category"] = GAEvents.CategorySessionEnd;
                     sessionEndEvent["length"] = length;
                     GAEvents.addEventToStore(sessionEndEvent);
@@ -2480,13 +2551,15 @@ var ga;
                 }
             };
             GAEvents.updateSessionStore = function () {
-                var values = {};
-                values["session_id"] = GAState.instance.sessionId;
-                values["timestamp"] = GAState.getSessionStart();
-                values["event"] = GAUtilities.encode64(JSON.stringify(GAState.getEventAnnotations()));
-                GAStore.insert(EGAStore.Sessions, values, true, "session_id");
-                if (GAStore.isStorageAvailable()) {
-                    GAStore.save();
+                if (GAState.sessionIsStarted()) {
+                    var values = {};
+                    values["session_id"] = GAState.instance.sessionId;
+                    values["timestamp"] = GAState.getSessionStart();
+                    values["event"] = GAUtilities.encode64(JSON.stringify(GAState.getEventAnnotations()));
+                    GAStore.insert(EGAStore.Sessions, values, true, "session_id");
+                    if (GAStore.isStorageAvailable()) {
+                        GAStore.save();
+                    }
                 }
             };
             GAEvents.addDimensionsToEvent = function (eventData) {
@@ -2504,67 +2577,48 @@ var ga;
                 }
             };
             GAEvents.resourceFlowTypeToString = function (value) {
-                switch (value) {
-                    case ga.EGAResourceFlowType.Source:
-                        {
-                            return "Source";
-                        }
-                    case ga.EGAResourceFlowType.Sink:
-                        {
-                            return "Sink";
-                        }
-                    default:
-                        {
-                            return "";
-                        }
+                if (value == gameanalytics.EGAResourceFlowType.Source || value == gameanalytics.EGAResourceFlowType[gameanalytics.EGAResourceFlowType.Source]) {
+                    return "Source";
+                }
+                else if (value == gameanalytics.EGAResourceFlowType.Sink || value == gameanalytics.EGAResourceFlowType[gameanalytics.EGAResourceFlowType.Sink]) {
+                    return "Sink";
+                }
+                else {
+                    return "";
                 }
             };
             GAEvents.progressionStatusToString = function (value) {
-                switch (value) {
-                    case ga.EGAProgressionStatus.Start:
-                        {
-                            return "Start";
-                        }
-                    case ga.EGAProgressionStatus.Complete:
-                        {
-                            return "Complete";
-                        }
-                    case ga.EGAProgressionStatus.Fail:
-                        {
-                            return "Fail";
-                        }
-                    default:
-                        {
-                            return "";
-                        }
+                if (value == gameanalytics.EGAProgressionStatus.Start || value == gameanalytics.EGAProgressionStatus[gameanalytics.EGAProgressionStatus.Start]) {
+                    return "Start";
+                }
+                else if (value == gameanalytics.EGAProgressionStatus.Complete || value == gameanalytics.EGAProgressionStatus[gameanalytics.EGAProgressionStatus.Complete]) {
+                    return "Complete";
+                }
+                else if (value == gameanalytics.EGAProgressionStatus.Fail || value == gameanalytics.EGAProgressionStatus[gameanalytics.EGAProgressionStatus.Fail]) {
+                    return "Fail";
+                }
+                else {
+                    return "";
                 }
             };
             GAEvents.errorSeverityToString = function (value) {
-                switch (value) {
-                    case ga.EGAErrorSeverity.Debug:
-                        {
-                            return "debug";
-                        }
-                    case ga.EGAErrorSeverity.Info:
-                        {
-                            return "info";
-                        }
-                    case ga.EGAErrorSeverity.Warning:
-                        {
-                            return "warning";
-                        }
-                    case ga.EGAErrorSeverity.Error:
-                        {
-                            return "error";
-                        }
-                    case ga.EGAErrorSeverity.Critical:
-                        {
-                            return "critical";
-                        }
-                    default:
-                        {
-                            return "";
-                        }
+                if (value == gameanalytics.EGAErrorSeverity.Debug || value == gameanalytics.EGAErrorSeverity[gameanalytics.EGAErrorSeverity.Debug]) {
+                    return "debug";
+                }
+                else if (value == gameanalytics.EGAErrorSeverity.Info || value == gameanalytics.EGAErrorSeverity[gameanalytics.EGAErrorSeverity.Info]) {
+                    return "info";
+                }
+                else if (value == gameanalytics.EGAErrorSeverity.Warning || value == gameanalytics.EGAErrorSeverity[gameanalytics.EGAErrorSeverity.Warning]) {
+                    return "warning";
+                }
+                else if (value == gameanalytics.EGAErrorSeverity.Error || value == gameanalytics.EGAErrorSeverity[gameanalytics.EGAErrorSeverity.Error]) {
+                    return "error";
+                }
+                else if (value == gameanalytics.EGAErrorSeverity.Critical || value == gameanalytics.EGAErrorSeverity[gameanalytics.EGAErrorSeverity.Critical]) {
+                    return "critical";
+                }
+                else {
+                    return "";
                 }
             };
             return GAEvents;
@@ -2579,15 +2633,15 @@ var ga;
         GAEvents.CategoryError = "error";
         GAEvents.MaxEventCount = 500;
         events_1.GAEvents = GAEvents;
-    })(events = ga.events || (ga.events = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
+    })(events = gameanalytics.events || (gameanalytics.events = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
     var threading;
     (function (threading) {
-        var GALogger = ga.logging.GALogger;
-        var GAState = ga.state.GAState;
-        var GAEvents = ga.events.GAEvents;
+        var GALogger = gameanalytics.logging.GALogger;
+        var GAState = gameanalytics.state.GAState;
+        var GAEvents = gameanalytics.events.GAEvents;
         var GAThreading = (function () {
             function GAThreading() {
                 this.blocks = new threading.PriorityQueue({
@@ -2596,24 +2650,44 @@ var ga;
                     }
                 });
                 this.id2TimedBlockMap = {};
-                GALogger.d("Initializing GA thread...");
                 GAThreading.startThread();
             }
+            GAThreading.createTimedBlock = function (delayInSeconds) {
+                if (delayInSeconds === void 0) { delayInSeconds = 0; }
+                var time = new Date();
+                time.setSeconds(time.getSeconds() + delayInSeconds);
+                var timedBlock = new threading.TimedBlock(time);
+                return timedBlock;
+            };
             GAThreading.performTaskOnGAThread = function (taskBlock, delayInSeconds) {
                 if (delayInSeconds === void 0) { delayInSeconds = 0; }
                 var time = new Date();
                 time.setSeconds(time.getSeconds() + delayInSeconds);
-                var timedBlock = new threading.TimedBlock(time, taskBlock);
+                var timedBlock = new threading.TimedBlock(time);
+                timedBlock.block = taskBlock;
+                GAThreading.instance.id2TimedBlockMap[timedBlock.id] = timedBlock;
+                GAThreading.instance.addTimedBlock(timedBlock);
+            };
+            GAThreading.performTimedBlockOnGAThread = function (timedBlock) {
                 GAThreading.instance.id2TimedBlockMap[timedBlock.id] = timedBlock;
                 GAThreading.instance.addTimedBlock(timedBlock);
             };
             GAThreading.scheduleTimer = function (interval, callback) {
                 var time = new Date();
                 time.setSeconds(time.getSeconds() + interval);
-                var timedBlock = new threading.TimedBlock(time, callback);
+                var timedBlock = new threading.TimedBlock(time);
+                timedBlock.block = callback;
                 GAThreading.instance.id2TimedBlockMap[timedBlock.id] = timedBlock;
                 GAThreading.instance.addTimedBlock(timedBlock);
                 return timedBlock.id;
+            };
+            GAThreading.getTimedBlockById = function (blockIdentifier) {
+                if (blockIdentifier in GAThreading.instance.id2TimedBlockMap) {
+                    return GAThreading.instance.id2TimedBlockMap[blockIdentifier];
+                }
+                else {
+                    return null;
+                }
             };
             GAThreading.ensureEventQueueIsRunning = function () {
                 GAThreading.instance.keepRunning = true;
@@ -2640,6 +2714,11 @@ var ga;
                     GAThreading.instance.id2TimedBlockMap[blockIdentifier].ignore = true;
                 }
             };
+            GAThreading.setEventProcessInterval = function (interval) {
+                if (interval > 0) {
+                    GAThreading.ProcessEventsIntervalInSeconds = interval;
+                }
+            };
             GAThreading.prototype.addTimedBlock = function (timedBlock) {
                 this.blocks.enqueue(timedBlock.deadline.getTime(), timedBlock);
             };
@@ -2649,7 +2728,16 @@ var ga;
                     var timedBlock;
                     while ((timedBlock = GAThreading.getNextBlock())) {
                         if (!timedBlock.ignore) {
-                            timedBlock.block();
+                            if (timedBlock.async) {
+                                if (!timedBlock.running) {
+                                    timedBlock.running = true;
+                                    timedBlock.block();
+                                    break;
+                                }
+                            }
+                            else {
+                                timedBlock.block();
+                            }
                         }
                     }
                     GAThreading.runTimeoutId = setTimeout(GAThreading.run, GAThreading.ThreadWaitTimeInMs);
@@ -2659,16 +2747,24 @@ var ga;
                     GALogger.e("Error on GA thread");
                     GALogger.e(e.stack);
                 }
-                GALogger.d("Ending GA thread");
             };
             GAThreading.startThread = function () {
-                GALogger.d("Starting GA thread");
                 GAThreading.runTimeoutId = setTimeout(GAThreading.run, 0);
             };
             GAThreading.getNextBlock = function () {
                 var now = new Date();
                 if (GAThreading.instance.blocks.hasItems() && GAThreading.instance.blocks.peek().deadline.getTime() <= now.getTime()) {
-                    return GAThreading.instance.blocks.dequeue();
+                    if (GAThreading.instance.blocks.peek().async) {
+                        if (GAThreading.instance.blocks.peek().running) {
+                            return GAThreading.instance.blocks.peek();
+                        }
+                        else {
+                            return GAThreading.instance.blocks.dequeue();
+                        }
+                    }
+                    else {
+                        return GAThreading.instance.blocks.dequeue();
+                    }
                 }
                 return null;
             };
@@ -2687,25 +2783,77 @@ var ga;
         GAThreading.ThreadWaitTimeInMs = 1000;
         GAThreading.ProcessEventsIntervalInSeconds = 8.0;
         threading.GAThreading = GAThreading;
-    })(threading = ga.threading || (ga.threading = {}));
-})(ga || (ga = {}));
-var ga;
-(function (ga) {
-    var GAThreading = ga.threading.GAThreading;
-    var GALogger = ga.logging.GALogger;
-    var GAStore = ga.store.GAStore;
-    var GAState = ga.state.GAState;
-    var GAHTTPApi = ga.http.GAHTTPApi;
-    var GADevice = ga.device.GADevice;
-    var GAValidator = ga.validators.GAValidator;
-    var EGAHTTPApiResponse = ga.http.EGAHTTPApiResponse;
-    var GAUtilities = ga.utilities.GAUtilities;
-    var GAEvents = ga.events.GAEvents;
+    })(threading = gameanalytics.threading || (gameanalytics.threading = {}));
+})(gameanalytics || (gameanalytics = {}));
+var gameanalytics;
+(function (gameanalytics) {
+    var GAThreading = gameanalytics.threading.GAThreading;
+    var GALogger = gameanalytics.logging.GALogger;
+    var GAStore = gameanalytics.store.GAStore;
+    var GAState = gameanalytics.state.GAState;
+    var GAHTTPApi = gameanalytics.http.GAHTTPApi;
+    var GADevice = gameanalytics.device.GADevice;
+    var GAValidator = gameanalytics.validators.GAValidator;
+    var EGAHTTPApiResponse = gameanalytics.http.EGAHTTPApiResponse;
+    var GAUtilities = gameanalytics.utilities.GAUtilities;
+    var GAEvents = gameanalytics.events.GAEvents;
     var GameAnalytics = (function () {
         function GameAnalytics() {
         }
         GameAnalytics.init = function () {
             GADevice.touch();
+            GameAnalytics.methodMap['configureAvailableCustomDimensions01'] = GameAnalytics.configureAvailableCustomDimensions01;
+            GameAnalytics.methodMap['configureAvailableCustomDimensions02'] = GameAnalytics.configureAvailableCustomDimensions02;
+            GameAnalytics.methodMap['configureAvailableCustomDimensions03'] = GameAnalytics.configureAvailableCustomDimensions03;
+            GameAnalytics.methodMap['configureAvailableResourceCurrencies'] = GameAnalytics.configureAvailableResourceCurrencies;
+            GameAnalytics.methodMap['configureAvailableResourceItemTypes'] = GameAnalytics.configureAvailableResourceItemTypes;
+            GameAnalytics.methodMap['configureBuild'] = GameAnalytics.configureBuild;
+            GameAnalytics.methodMap['configureSdkGameEngineVersion'] = GameAnalytics.configureSdkGameEngineVersion;
+            GameAnalytics.methodMap['configureGameEngineVersion'] = GameAnalytics.configureGameEngineVersion;
+            GameAnalytics.methodMap['configureUserId'] = GameAnalytics.configureUserId;
+            GameAnalytics.methodMap['initialize'] = GameAnalytics.initialize;
+            GameAnalytics.methodMap['addBusinessEvent'] = GameAnalytics.addBusinessEvent;
+            GameAnalytics.methodMap['addResourceEvent'] = GameAnalytics.addResourceEvent;
+            GameAnalytics.methodMap['addProgressionEvent'] = GameAnalytics.addProgressionEvent;
+            GameAnalytics.methodMap['addDesignEvent'] = GameAnalytics.addDesignEvent;
+            GameAnalytics.methodMap['addErrorEvent'] = GameAnalytics.addErrorEvent;
+            GameAnalytics.methodMap['addErrorEvent'] = GameAnalytics.addErrorEvent;
+            GameAnalytics.methodMap['setEnabledInfoLog'] = GameAnalytics.setEnabledInfoLog;
+            GameAnalytics.methodMap['setEnabledVerboseLog'] = GameAnalytics.setEnabledVerboseLog;
+            GameAnalytics.methodMap['setEnabledManualSessionHandling'] = GameAnalytics.setEnabledManualSessionHandling;
+            GameAnalytics.methodMap['setCustomDimension01'] = GameAnalytics.setCustomDimension01;
+            GameAnalytics.methodMap['setCustomDimension02'] = GameAnalytics.setCustomDimension02;
+            GameAnalytics.methodMap['setCustomDimension03'] = GameAnalytics.setCustomDimension03;
+            GameAnalytics.methodMap['setFacebookId'] = GameAnalytics.setFacebookId;
+            GameAnalytics.methodMap['setGender'] = GameAnalytics.setGender;
+            GameAnalytics.methodMap['setBirthYear'] = GameAnalytics.setBirthYear;
+            GameAnalytics.methodMap['setEventProcessInterval'] = GameAnalytics.setEventProcessInterval;
+            GameAnalytics.methodMap['startSession'] = GameAnalytics.startSession;
+            GameAnalytics.methodMap['endSession'] = GameAnalytics.endSession;
+            GameAnalytics.methodMap['onStop'] = GameAnalytics.onStop;
+            GameAnalytics.methodMap['onResume'] = GameAnalytics.onResume;
+            if (typeof window !== 'undefined' && typeof window['GameAnalytics'] !== 'undefined' && typeof window['GameAnalytics']['q'] !== 'undefined') {
+                var q = window['GameAnalytics']['q'];
+                for (var i in q) {
+                    GameAnalytics.gaCommand.apply(null, q[i]);
+                }
+            }
+        };
+        GameAnalytics.gaCommand = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            if (args.length > 0) {
+                if (args[0] in gameanalytics.GameAnalytics.methodMap) {
+                    if (args.length > 1) {
+                        gameanalytics.GameAnalytics.methodMap[args[0]].apply(null, Array.prototype.slice.call(args, 1));
+                    }
+                    else {
+                        gameanalytics.GameAnalytics.methodMap[args[0]]();
+                    }
+                }
+            }
         };
         GameAnalytics.configureAvailableCustomDimensions01 = function (customDimensions) {
             if (customDimensions === void 0) { customDimensions = []; }
@@ -2815,7 +2963,10 @@ var ga;
             if (gameKey === void 0) { gameKey = ""; }
             if (gameSecret === void 0) { gameSecret = ""; }
             GADevice.updateConnectionType();
-            GAThreading.performTaskOnGAThread(function () {
+            var timedBlock = GAThreading.createTimedBlock();
+            timedBlock.async = true;
+            GameAnalytics.initTimedBlockId = timedBlock.id;
+            timedBlock.block = function () {
                 if (GameAnalytics.isSdkReady(true, false)) {
                     GALogger.w("SDK already initialized. Can only be called once.");
                     return;
@@ -2826,7 +2977,8 @@ var ga;
                 }
                 GAState.setKeys(gameKey, gameSecret);
                 GameAnalytics.internalInitialize();
-            });
+            };
+            GAThreading.performTimedBlockOnGAThread(timedBlock);
         };
         GameAnalytics.addBusinessEvent = function (currency, amount, itemType, itemId, cartType) {
             if (currency === void 0) { currency = ""; }
@@ -2843,7 +2995,7 @@ var ga;
             });
         };
         GameAnalytics.addResourceEvent = function (flowType, currency, amount, itemType, itemId) {
-            if (flowType === void 0) { flowType = ga.EGAResourceFlowType.Undefined; }
+            if (flowType === void 0) { flowType = gameanalytics.EGAResourceFlowType.Undefined; }
             if (currency === void 0) { currency = ""; }
             if (amount === void 0) { amount = 0; }
             if (itemType === void 0) { itemType = ""; }
@@ -2857,7 +3009,7 @@ var ga;
             });
         };
         GameAnalytics.addProgressionEvent = function (progressionStatus, progression01, progression02, progression03, score) {
-            if (progressionStatus === void 0) { progressionStatus = ga.EGAProgressionStatus.Undefined; }
+            if (progressionStatus === void 0) { progressionStatus = gameanalytics.EGAProgressionStatus.Undefined; }
             if (progression01 === void 0) { progression01 = ""; }
             if (progression02 === void 0) { progression02 = ""; }
             if (progression03 === void 0) { progression03 = ""; }
@@ -2881,7 +3033,7 @@ var ga;
             });
         };
         GameAnalytics.addErrorEvent = function (severity, message) {
-            if (severity === void 0) { severity = ga.EGAErrorSeverity.Undefined; }
+            if (severity === void 0) { severity = gameanalytics.EGAErrorSeverity.Undefined; }
             if (message === void 0) { message = ""; }
             GADevice.updateConnectionType();
             GAThreading.performTaskOnGAThread(function () {
@@ -2962,7 +3114,7 @@ var ga;
             });
         };
         GameAnalytics.setGender = function (gender) {
-            if (gender === void 0) { gender = ga.EGAGender.Undefined; }
+            if (gender === void 0) { gender = gameanalytics.EGAGender.Undefined; }
             GAThreading.performTaskOnGAThread(function () {
                 if (GAValidator.validateGender(gender)) {
                     GAState.setGender(gender);
@@ -2977,18 +3129,27 @@ var ga;
                 }
             });
         };
-        GameAnalytics.startSession = function () {
+        GameAnalytics.setEventProcessInterval = function (intervalInSeconds) {
             GAThreading.performTaskOnGAThread(function () {
-                if (GAState.getUseManualSessionHandling()) {
-                    if (!GAState.isInitialized()) {
-                        return;
-                    }
+                GAThreading.setEventProcessInterval(intervalInSeconds);
+            });
+        };
+        GameAnalytics.startSession = function () {
+            if (GAState.getUseManualSessionHandling()) {
+                if (!GAState.isInitialized()) {
+                    return;
+                }
+                var timedBlock = GAThreading.createTimedBlock();
+                timedBlock.async = true;
+                GameAnalytics.initTimedBlockId = timedBlock.id;
+                timedBlock.block = function () {
                     if (GAState.isEnabled() && GAState.sessionIsStarted()) {
                         GAThreading.endSessionAndStopQueue();
                     }
                     GameAnalytics.resumeSessionAndStartQueue();
-                }
-            });
+                };
+                GAThreading.performTimedBlockOnGAThread(timedBlock);
+            }
         };
         GameAnalytics.endSession = function () {
             if (GAState.getUseManualSessionHandling()) {
@@ -2996,14 +3157,22 @@ var ga;
             }
         };
         GameAnalytics.onStop = function () {
-            try {
-                GAThreading.endSessionAndStopQueue();
-            }
-            catch (Exception) {
-            }
+            GAThreading.performTaskOnGAThread(function () {
+                try {
+                    GAThreading.endSessionAndStopQueue();
+                }
+                catch (Exception) {
+                }
+            });
         };
         GameAnalytics.onResume = function () {
-            GameAnalytics.resumeSessionAndStartQueue();
+            var timedBlock = GAThreading.createTimedBlock();
+            timedBlock.async = true;
+            GameAnalytics.initTimedBlockId = timedBlock.id;
+            timedBlock.block = function () {
+                GameAnalytics.resumeSessionAndStartQueue();
+            };
+            GAThreading.performTimedBlockOnGAThread(timedBlock);
         };
         GameAnalytics.internalInitialize = function () {
             GAState.ensurePersistedStates();
@@ -3074,6 +3243,11 @@ var ga;
             GAState.instance.sessionId = newSessionId;
             GAState.instance.sessionStart = GAState.getClientTsAdjusted();
             GAEvents.addSessionStartEvent();
+            var timedBlock = GAThreading.getTimedBlockById(GameAnalytics.initTimedBlockId);
+            if (timedBlock != null) {
+                timedBlock.running = false;
+            }
+            GameAnalytics.initTimedBlockId = -1;
         };
         GameAnalytics.resumeSessionAndStartQueue = function () {
             if (!GAState.isInitialized()) {
@@ -3102,10 +3276,19 @@ var ga;
                 }
                 return false;
             }
+            if (needsInitialized && !GAState.sessionIsStarted()) {
+                if (warn) {
+                    GALogger.w(message + "Session has not started yet");
+                }
+                return false;
+            }
             return true;
         };
         return GameAnalytics;
     }());
-    ga.GameAnalytics = GameAnalytics;
-    GameAnalytics.init();
-})(ga || (ga = {}));
+    GameAnalytics.initTimedBlockId = -1;
+    GameAnalytics.methodMap = {};
+    gameanalytics.GameAnalytics = GameAnalytics;
+})(gameanalytics || (gameanalytics = {}));
+gameanalytics.GameAnalytics.init();
+var GameAnalytics = gameanalytics.GameAnalytics.gaCommand;
