@@ -182,6 +182,7 @@ public class BrandingManager : MonoBehaviour
 			logos[i].logo = _brandingConfig.Metadata.SplashScreenLogos[i];
 		}
 		PlayerSettings.SplashScreen.logos = logos;
+		PlayerSettings.SplashScreen.background = _brandingConfig.Metadata.SplashScreenBackground;
 
         GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(_brandingConfig.Metadata.AuthoringToolUrl);
 		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetFileName(UseManager ? _brandingConfig.Metadata.FileName : "");

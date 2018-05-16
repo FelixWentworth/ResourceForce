@@ -88,6 +88,7 @@ public struct Metadata
     public string FileName;
     public string ResourcesFileName;
     public Sprite[] SplashScreenLogos;
+	public Sprite SplashScreenBackground;
 }
 
 [Serializable]
