@@ -22,6 +22,8 @@ MonoBehaviour:
     SplashScreenLogos:
     - {fileID: 21300000, guid: 1e293d8aceb77ec429bf12c97b32a168, type: 3}
     - {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
+    SplashScreenBackground: {fileID: 21300000, guid: 4e1751fa5998d944dba307a8a5b5459d,
+      type: 3}
   Languages: 0a000000
   LocalizationOverrides:
   - Key: BRANDING_FORCE_NAME
