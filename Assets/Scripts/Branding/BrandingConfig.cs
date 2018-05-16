@@ -9,8 +9,8 @@ public class BrandingConfig : ScriptableObject
 {
     public Metadata Metadata;
 
-    [Header("Languages")]
-    public SystemLanguage[] Languages;
+    [Header("Regions")]
+    public Region[] Regions;
 
     [Header("Localization Overrides")]
     public LocalizationOverride[] LocalizationOverrides;
@@ -84,7 +84,6 @@ public struct Metadata
     public string BundleId;
     public string Version;
     public string AuthoringToolUrl;
-    public string Location;
     public string FileName;
     public string ResourcesFileName;
     public Sprite[] SplashScreenLogos;
@@ -104,3 +103,11 @@ public class ColorMapping
 		Name = theme.ToString();
 	}
 }
+
+[Serializable]
+public struct Region
+{
+	public string Location;
+	public SystemLanguage[] Languages;
+}
+

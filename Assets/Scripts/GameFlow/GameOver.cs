@@ -52,7 +52,7 @@ public class GameOver : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", newHighScore);
         }
 
-	    if (BrandingManager.Instance.UseManager)
+	    if (BrandingManager.Instance.Config.Regions.Length > 1)
 	    {
 		    GameAnalytics.NewDesignEvent("TurnsSurvived", turns);
 		    GameAnalytics.NewDesignEvent("Score", totalScore);

@@ -12,13 +12,13 @@ public class DeviceLocation : MonoBehaviour {
     public Location loc;
     public GameObject startScreen;
 
+	public GameObject LanguageButton;
+	private List<GameObject> _languagesCreated = new List<GameObject>();
+
 	public GameObject LangAndLocGameObject;
 	public GameObject LangGameObject;
 
-    public Button EnglishButton;
-    public Button DutchButton;
-    public Button GreekButton;
-    public Button SpanishButton;
+	[SerializeField] private GameObject _languageSelectPanel;
 
     public static bool shouldOverrideLanguage;
     public static SystemLanguage overrideLanguage = SystemLanguage.English;
@@ -27,7 +27,6 @@ public class DeviceLocation : MonoBehaviour {
     public Text TitleText;
     public RectTransform grid;
 
-    private enum LanguageMapping { Preston = 1, Belfast = 2, Nicosia = 3, Groningen = 4, Valencia = 5 }
     private static readonly Dictionary<SystemLanguage, CultureInfo> LanguageCultureInfoMappings = new Dictionary<SystemLanguage, CultureInfo>
     {
         { SystemLanguage.English, new CultureInfo("en-gb") },
@@ -36,91 +35,42 @@ public class DeviceLocation : MonoBehaviour {
         { SystemLanguage.Greek, new CultureInfo("el") }
     };
 
-    private LocationConfig _config;
-    private int _locationIndex;
-    private GridLayoutGroup _gridLayout;
-
     private Dropdown _dropdown;
 
 	private Transform _languageButtonPanel;
 
     void Start()
     {
-        _dropdown = GetComponentInChildren<Dropdown>();
-        _gridLayout = grid.GetComponent<GridLayoutGroup>();
-        _config = this.GetComponent<LocationConfig>();
-        _locationIndex = 0;
+	    ClearLanguageButtons();
 
-        SetButtonClicks();
+		_dropdown = GetComponentInChildren<Dropdown>();
 
 		// By default the language and location object should be active
 		LangAndLocGameObject.SetActive(true);
 	    LangGameObject.SetActive(false);
 
-	    if (!BrandingManager.Instance.UseManager)
-	    {
-		    UpdateLanguagesAvailable(-1);
-	    }
-    }
+	    UpdateLocationsAvailable(loc.GetLocations());
+	    _languageSelectPanel.SetActive(_dropdown.value >= 1 || loc.GetLocations().Count <= 1);
+	}
 
-    private void SetButtonClicks()
-    {
-        EnglishButton.onClick.AddListener(EnglishSelected);
-        DutchButton.onClick.AddListener(DutchSelected);
-        GreekButton.onClick.AddListener(GreekSelected);
-        SpanishButton.onClick.AddListener(SpanishSelected);
-    }
-
-    void Update()
-    {
-	    if (!BrandingManager.Instance.UseManager)
-	    {
-		    if (_dropdown.transform.childCount != 4)
-		    {
-			    SetToggleToButtons();
-		    }
-	    }
-    }
-
-    private void SetToggleToButtons()
-    {
-        var toggles = GetComponentsInChildren<Toggle>();
-        foreach (var toggle in toggles)
-        {
-            if (toggle.gameObject.GetComponent<EventTrigger>() != null)
-            {
-                // We have already set up this trigger
-                continue;
-            }
-            var trigger = toggle.gameObject.AddComponent<EventTrigger>();
-            var clicked = new EventTrigger.Entry {eventID = EventTriggerType.PointerClick};
-            clicked.callback.AddListener((eventData) => OnToggleClicked(toggle.gameObject.name));
-            trigger.triggers.Add(clicked);
-        }
-    }
-
-    private void OnToggleClicked(string name)
-    {
-        var itemNumber = name.Substring(5, 1);
-
-        var index = int.Parse(itemNumber);
-        _dropdown.Hide();
-        _dropdown.value = -1;
-        _dropdown.value = index;
-        SetLocation(index);
-        
-    }
+	private void UpdateLocationsAvailable(List<string> locations)
+	{
+		_dropdown.ClearOptions();
+		locations.Insert(0, Localization.Get("BASIC_TEXT_SELECT_LOCATION"));
+		_dropdown.AddOptions(locations);
+		_dropdown.value = 0;
+	}
 
     public void SetLocation(Dropdown dropdown)
     {
-        SetLocation(dropdown.value);
+        SetLocation(dropdown.options[dropdown.value].text);
     }
 
-    private void SetLocation(int value)
+    private void SetLocation(string region)
     {
-        UpdateLanguagesAvailable(value);
-        loc.SetSite(value);
-    }
+        loc.SetRegion(region);
+	    SetButtonPanel(loc.GetLanguages(region));
+	}
 
 	public void SetRequiredSelection(bool languageOnly)
 	{
@@ -136,145 +86,80 @@ public class DeviceLocation : MonoBehaviour {
 			var language = supported[0];
 			shouldOverrideLanguage = true;
 			overrideLanguage = language;
-			LanguageSelectd();
+			LanguageSelected(language);
 			return;
 		}
-		SetButtonPanel();
-		EnglishButton.gameObject.SetActive(supported.Any(l => l == SystemLanguage.English));
-		DutchButton.gameObject.SetActive(supported.Any(l => l == SystemLanguage.Dutch));
-		SpanishButton.gameObject.SetActive(supported.Any(l => l == SystemLanguage.Spanish));
-		GreekButton.gameObject.SetActive(supported.Any(l => l == SystemLanguage.Greek));
+		SetButtonPanel(supported);
 	}
 
-	private void SetButtonPanel()
+	private void SetButtonPanel(SystemLanguage[] languages)
 	{
-		var activeObj = LangAndLocGameObject.activeSelf ? LangAndLocGameObject : LangGameObject;
-		Debug.Log(activeObj.name);
-		_languageButtonPanel = activeObj.GetComponentInChildren<LayoutGroup>().transform;
+		// first element of dropdown is a not a location optoon
+		var showLanguages = _dropdown.value >= 1;
+		
+		_languageSelectPanel.SetActive(showLanguages);
+		if (showLanguages)
+		{
+			var activeObj = LangAndLocGameObject.activeSelf ? LangAndLocGameObject : LangGameObject;
+			_languageButtonPanel = activeObj.GetComponentInChildren<LayoutGroup>().transform;
+			ClearLanguageButtons();
 
-		Debug.Log(_languageButtonPanel);
-
-		var englishParent = EnglishButton.transform.parent.transform;
-		var dutchParent = DutchButton.transform.parent.transform;
-		var greekParent = GreekButton.transform.parent.transform;
-		var spanishParent = SpanishButton.transform.parent.transform;
-
-		englishParent.parent = _languageButtonPanel;
-		dutchParent.parent = _languageButtonPanel;
-		greekParent.parent = _languageButtonPanel;
-		spanishParent.parent = _languageButtonPanel;
+			foreach (var language in languages)
+			{
+				Debug.Log(language);
+				var button = Instantiate(LanguageButton);
+				button.transform.parent = _languageButtonPanel;
+				button.GetComponentInChildren<Button>().onClick.AddListener(() => LanguageButtonPress(language));
+				button.GetComponentInChildren<Text>().text = language.ToString();
+				_languagesCreated.Add(button);
+			}
+		}
 	}
 
-    private void EnglishSelected()
-    {
-        shouldOverrideLanguage = true;
-        overrideLanguage = SystemLanguage.English;
-        LanguageSelectd();
-    }
+	private void LanguageButtonPress(SystemLanguage language)
+	{
+		shouldOverrideLanguage = true;
+		overrideLanguage = language;
+		LanguageSelected(language);
+	}
 
-    private void SpanishSelected()
-    {
-        shouldOverrideLanguage = true;
-        overrideLanguage = SystemLanguage.Spanish;
-        LanguageSelectd();
-    }
-
-    private void DutchSelected()
-    {
-        shouldOverrideLanguage = true;
-        overrideLanguage = SystemLanguage.Dutch;
-        LanguageSelectd();
-    }
-
-    private void GreekSelected()
-    {
-        shouldOverrideLanguage = true;
-        overrideLanguage = SystemLanguage.Greek;
-        LanguageSelectd();
-    }
-
-    public void LanguageSelectd()
+  
+    public void LanguageSelected(SystemLanguage language)
     {
         // Set num incidents to 0 to recalculate the number available on start
         Location.NumIncidents = 0;
 
-        if (_locationIndex == 0 && !BrandingManager.Instance.UseManager)
+        if (shouldOverrideLanguage)
         {
-            // Notify the player to select a location
-            StartCoroutine(WarningBox.ShowWarning(Localization.Get("WARNING_TEXT_LOCATION"), error:true, upperCase:true));
-        } 
-        else
-        {
-            if (shouldOverrideLanguage)
-            {
-                var languageCultureInfo = LanguageCultureInfoMappings[overrideLanguage];
-                Localization.UpdateLanguage(languageCultureInfo);
-            }
-
-            //player has successfully set the location, no need to show the popup on load anymore
-            PlayerPrefs.SetInt("SetLocation", 1);
-
-            PlayerPrefs.SetInt("LanguageOverride", shouldOverrideLanguage ? 1 : 0);
-            PlayerPrefs.SetInt("LanguageOverrideChosen", (int)overrideLanguage);
-
-            //load the scene again to reload data
-            SceneManager.LoadScene(0);
+            var languageCultureInfo = LanguageCultureInfoMappings[overrideLanguage];
+            Localization.UpdateLanguage(languageCultureInfo);
         }
+
+        //player has successfully set the location, no need to show the popup on load anymore
+        PlayerPrefs.SetInt("SetLocation", 1);
+
+        PlayerPrefs.SetInt("LanguageOverride", shouldOverrideLanguage ? 1 : 0);
+        PlayerPrefs.SetInt("LanguageOverrideChosen", (int)overrideLanguage);
+
+        //load the scene again to reload data
+        SceneManager.LoadScene(0);
     }
-    private void UpdateLanguagesAvailable(int locationSelected = 0)
-    {
-	    SetButtonPanel();
-		var englishParent = EnglishButton.transform.parent.gameObject;
-        var dutchParent = DutchButton.transform.parent.gameObject;
-        var greekParent = GreekButton.transform.parent.gameObject;
-        var spanishParent = SpanishButton.transform.parent.gameObject;
 
-        if (locationSelected == -1)
-        {
-            englishParent.SetActive(false);
-            dutchParent.SetActive(false);
-            greekParent.SetActive(false);
-            spanishParent.SetActive(false);
+	private void ClearLanguageButtons()
+	{
+		foreach (var created in _languagesCreated)
+		{
+			DestroyImmediate(created);
+		}
+		_languagesCreated.Clear();
+	}
+    //private void UpdateLanguagesAvailable(SystemLanguage[] languages)
+    //{
+	   // SetButtonPanel(languages);
 
-            TitleText.gameObject.SetActive(false);
-            return;
-        }
-
-        _locationIndex = locationSelected + 1;
-        switch ((LanguageMapping)_locationIndex)
-        {
-            case LanguageMapping.Preston:
-                englishParent.SetActive(_config.English_Preston);
-                dutchParent.SetActive(_config.Dutch_Preston);
-                greekParent.SetActive(_config.Greek_Preston);
-                spanishParent.SetActive(_config.Spanish_Preston);
-                break;
-            case LanguageMapping.Belfast:
-                englishParent.SetActive(_config.English_Belfast);
-                dutchParent.SetActive(_config.Dutch_Belfast);
-                greekParent.SetActive(_config.Greek_Belfast);
-                spanishParent.SetActive(_config.Spanish_Belfast);
-                break;
-            case LanguageMapping.Nicosia:
-                englishParent.SetActive(_config.English_Nicosia);
-                dutchParent.SetActive(_config.Dutch_Nicosia);
-                greekParent.SetActive(_config.Greek_Nicosia);
-                spanishParent.SetActive(_config.Spanish_Nicosia);
-                break;
-            case LanguageMapping.Groningen:
-                englishParent.SetActive(_config.English_Groningen);
-                dutchParent.SetActive(_config.Dutch_Groningen);
-                greekParent.SetActive(_config.Greek_Groningen);
-                spanishParent.SetActive(_config.Spanish_Groningen);
-                break;
-            case LanguageMapping.Valencia:
-                englishParent.SetActive(_config.English_Valencia);
-                dutchParent.SetActive(_config.Dutch_Valencia);
-                greekParent.SetActive(_config.Greek_Valencia);
-                spanishParent.SetActive(_config.Spanish_Valencia);
-                break;
-        }
-        _gridLayout.cellSize = new Vector2(grid.rect.width/2f, grid.rect.height/2f);
-        TitleText.gameObject.SetActive(true);
-    }
+    //    //_locationIndex = locationSelected + 1;
+        
+    //    _gridLayout.cellSize = new Vector2(grid.rect.width/2f, grid.rect.height/2f);
+    //    TitleText.gameObject.SetActive(true);
+    //}
 }

@@ -37,17 +37,8 @@ public class BrandingManager : MonoBehaviour
 		}
 	}	
 
-	void Start()
-	{
-		if (UseManager)
-		{
-			// 5 == Custom
-			GameObject.Find("LocationMaster").GetComponent<Location>().SetSite(5);
-		}
-	}
-
 	[Tooltip("if the manager will be used to override elements")]
-	public bool UseManager;
+	public bool UseBrandingObjects;
     
 	[Serializable]
 	public struct BrandingObjects
@@ -188,15 +179,15 @@ public class BrandingManager : MonoBehaviour
 		PlayerSettings.SplashScreen.background = _brandingConfig.Metadata.SplashScreenBackground;
 
         GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetUrl(_brandingConfig.Metadata.AuthoringToolUrl);
-		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetFileName(UseManager ? _brandingConfig.Metadata.FileName : "");
-		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetResourcesFileName(UseManager ? _brandingConfig.Metadata.ResourcesFileName : "");
+		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetFileName(_brandingConfig.Metadata.FileName);
+		GameObject.Find("ContentManager").GetComponent<ContentRequest>().SetResourcesFileName(_brandingConfig.Metadata.ResourcesFileName);
     }
 
     private void SetBrandingObjects()
 	{
 		foreach (var branding in ObjectsForBranding)
 		{
-			var active = (branding.IsBrandingObject && UseManager) || (!branding.IsBrandingObject && !UseManager);
+			var active = (branding.IsBrandingObject && UseBrandingObjects) || (!branding.IsBrandingObject && !UseBrandingObjects);
 			
 			branding.Obj.SetActive(active);
 		}

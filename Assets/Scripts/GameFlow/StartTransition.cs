@@ -32,13 +32,12 @@ public class StartTransition : MonoBehaviour {
         overrideShowLocation = false;
 
 		var deviceLocation = SelectLocationScreen.GetComponent<DeviceLocation>();
-	    var useMarketingManager = BrandingManager.Instance.UseManager;
 
-		deviceLocation.SetRequiredSelection(languageOnly: useMarketingManager);
+		deviceLocation.SetRequiredSelection(languageOnly: BrandingManager.Instance.Config.Regions.Length <= 1);
 
-	    if (useMarketingManager && newLogIn)
+	    if (newLogIn && BrandingManager.Instance.Config.Regions.Length <= 1)
 	    {
-		    deviceLocation.SetLanguages(BrandingManager.Instance.Config.Languages);
+		    deviceLocation.SetLanguages(BrandingManager.Instance.Config.Regions[0].Languages);
 	    }
 
 	    SelectLocationScreen.SetActive(newLogIn);
