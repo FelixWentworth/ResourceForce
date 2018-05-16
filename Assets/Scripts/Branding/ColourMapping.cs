@@ -8,7 +8,7 @@ public class ColourMapping : MonoBehaviour {
 	public BrandingManager.ColorTheme Theme;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		SetColor();
 	}
 
