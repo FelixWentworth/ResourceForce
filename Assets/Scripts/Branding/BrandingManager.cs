@@ -140,15 +140,18 @@ public class BrandingManager : MonoBehaviour
     private void SetImages()
 	{
 	    Config.StartScreenLogo.ApplyTo(_startScreenLogo);
+
 	    Config.GameLogo.ApplyTo(_gameLogo);
-	    Config.CitizenButtonIcon.ApplyTo(_citizenButtonIcon);
+	    ApplyPrefab(_gameLogo);
+
+        Config.CitizenButtonIcon.ApplyTo(_citizenButtonIcon);
 	    Config.EndGameLinkIcon.ApplyTo(_endGameLinkIcon);
 	    Config.ExternalLinkWebsite.ApplyTo(_externalLinkWebsite);
 	    Config.ExternalLinkFacebook.ApplyTo(_externalLinkFacebook);
 	    Config.ExternalLinkTwitter.ApplyTo(_externalLinkTwitter);
 	    Config.LocationSelectLogo.ApplyTo(_locationSelectLogo);
 	    Config.TapScreenStartBackground.ApplyTo(_tapScreenStartBackground);
-
+        
 	    Config.InGameMap.ApplyTo(_inGameMap);
 	    ApplyPrefab(_inGameMap);
 
