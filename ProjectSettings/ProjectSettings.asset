@@ -12,7 +12,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: PlayGen
-  productName: Resource Force - City of London
+  productName: Resource Force
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -39,7 +39,7 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: 1e293d8aceb77ec429bf12c97b32a168, type: 3}
+  - logo: {fileID: 21300000, guid: 9d7603ca3db945b419784c2b5f6d00a4, type: 3}
     duration: 0
   - logo: {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
     duration: 0
@@ -162,7 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.playgen.ResourceForceCityOfLondon
+    Android: com.playgen.ResourceForce
     Standalone: com.playgen.ResourceForceLonMet
     Tizen: com.playgen.ResourceForce
     WebGL: com.playgen.ResourceForceLancs
