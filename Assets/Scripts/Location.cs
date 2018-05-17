@@ -46,7 +46,7 @@ public class Location : MonoBehaviour
 	/// <returns></returns>
 	public SystemLanguage[] GetLanguages()
 	{
-		return BrandingManager.Instance.Config.Regions[0].Languages;
+		return BrandingManager.Instance.Config.Regions[0].Languages.Select(l => l.Language).ToArray();
 	}
 
 	public List<string> GetLocations()
@@ -61,6 +61,12 @@ public class Location : MonoBehaviour
 	/// <returns></returns>
 	public SystemLanguage[] GetLanguages(string region)
 	{
-		return BrandingManager.Instance.Config.Regions.FirstOrDefault(r => r.Location == region).Languages;
+		return BrandingManager.Instance.Config.Regions.FirstOrDefault(r => r.Location == region).Languages.Select(l => l.Language).ToArray();
+	}
+
+	public string GetLanguageText(string region, SystemLanguage language)
+	{
+		var thisRegion = BrandingManager.Instance.Config.Regions.FirstOrDefault(r => r.Location == region);
+		return thisRegion.Languages.FirstOrDefault(l => l.Language == language).LanguageText;
 	}
 }

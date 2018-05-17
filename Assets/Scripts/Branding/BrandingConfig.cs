@@ -108,6 +108,14 @@ public class ColorMapping
 public struct Region
 {
 	public string Location;
-	public SystemLanguage[] Languages;
+	public AvailableLanguage[] Languages;
+}
+
+[Serializable]
+public struct AvailableLanguage
+{
+	[Tooltip("What the player sees in game")]
+	public string LanguageText;
+	public SystemLanguage Language;
 }
 

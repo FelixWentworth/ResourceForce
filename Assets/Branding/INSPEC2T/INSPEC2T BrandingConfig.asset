@@ -25,15 +25,31 @@ MonoBehaviour:
       type: 3}
   Regions:
   - Location: Preston
-    Languages: 0a000000
+    Languages:
+    - LanguageText: English
+      Language: 10
   - Location: Belfast
-    Languages: 0a000000
+    Languages:
+    - LanguageText: English
+      Language: 10
   - Location: Groningen
-    Languages: 0a00000009000000
-  - Location: Nicosia
-    Languages: 0a00000010000000
+    Languages:
+    - LanguageText: Nederlands
+      Language: 9
+    - LanguageText: English
+      Language: 10
+  - Location: "\u039B\u03B5\u03C5\u03BA\u03C9\u03C3\u03AF\u03B1"
+    Languages:
+    - LanguageText: "\u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC"
+      Language: 16
+    - LanguageText: English
+      Language: 10
   - Location: Valencia
-    Languages: 0a00000022000000
+    Languages:
+    - LanguageText: "Espa\xF1ol"
+      Language: 34
+    - LanguageText: English
+      Language: 10
   LocalizationOverrides:
   - Key: BRANDING_FORCE_NAME
     EnGb: 

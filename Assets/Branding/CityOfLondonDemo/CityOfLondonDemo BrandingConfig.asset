@@ -25,7 +25,9 @@ MonoBehaviour:
       type: 3}
   Regions:
   - Location: CityOfLondon
-    Languages: 0a000000
+    Languages:
+    - LanguageText: English
+      Language: 10
   LocalizationOverrides:
   - Key: BRANDING_FORCE_NAME
     EnGb: City of London Police

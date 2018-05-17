@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿	using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -69,7 +69,7 @@ public class DeviceLocation : MonoBehaviour {
     private void SetLocation(string region)
     {
         loc.SetRegion(region);
-	    SetButtonPanel(loc.GetLanguages(region));
+	    SetButtonPanel(region, loc.GetLanguages(region));
 	}
 
 	public void SetRequiredSelection(bool languageOnly)
@@ -78,7 +78,7 @@ public class DeviceLocation : MonoBehaviour {
 		LangGameObject.SetActive(languageOnly);
 	}
 
-	public void SetLanguages(SystemLanguage[] supported)
+	public void SetLanguages(string region, SystemLanguage[] supported)
 	{
 		if (supported.Length == 1)
 		{
@@ -89,10 +89,10 @@ public class DeviceLocation : MonoBehaviour {
 			LanguageSelected(language);
 			return;
 		}
-		SetButtonPanel(supported);
+		SetButtonPanel(region, supported);
 	}
 
-	private void SetButtonPanel(SystemLanguage[] languages)
+	private void SetButtonPanel(string region, SystemLanguage[] languages)
 	{
 		// first element of dropdown is a not a location optoon
 		var showLanguages = _dropdown.value >= 1;
@@ -101,18 +101,19 @@ public class DeviceLocation : MonoBehaviour {
 		if (showLanguages)
 		{
 			var activeObj = LangAndLocGameObject.activeSelf ? LangAndLocGameObject : LangGameObject;
+
 			_languageButtonPanel = activeObj.GetComponentInChildren<LayoutGroup>().transform;
 			ClearLanguageButtons();
 
 			foreach (var language in languages)
 			{
 				Debug.Log(language);
-				var button = Instantiate(LanguageButton);
-				button.transform.parent = _languageButtonPanel;
+				var button = Instantiate(LanguageButton, _languageButtonPanel, false);
 				button.GetComponentInChildren<Button>().onClick.AddListener(() => LanguageButtonPress(language));
-				button.GetComponentInChildren<Text>().text = language.ToString();
+				button.GetComponentInChildren<Text>().text = loc.GetLanguageText(region, language);
 				_languagesCreated.Add(button);
 			}
+			LayoutRebuilder.MarkLayoutForRebuild(_languageButtonPanel.GetComponent<RectTransform>());
 		}
 	}
 
