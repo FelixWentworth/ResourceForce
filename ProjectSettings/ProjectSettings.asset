@@ -39,7 +39,7 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: 9d7603ca3db945b419784c2b5f6d00a4, type: 3}
+  - logo: {fileID: 21300000, guid: 763588d7bdfc68b46bb6c0ac3137a95c, type: 3}
     duration: 0
   - logo: {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
     duration: 0
@@ -130,7 +130,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.1.2
+  bundleVersion: 1.2
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -170,7 +170,7 @@ PlayerSettings:
     tvOS: com.playgen.ResourceForce
   buildNumber:
     iOS: 34
-  AndroidBundleVersionCode: 37
+  AndroidBundleVersionCode: 38
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1

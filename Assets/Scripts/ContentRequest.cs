@@ -6,6 +6,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using PlayGen.Unity.Utilities.Localization;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
@@ -314,7 +315,8 @@ public class ContentRequest : MonoBehaviour
             return;
         }
         var scenarios = JsonConvert.DeserializeObject<List<Scenario>>(textAsset.text);
-        loadedScenarios.AddRange(scenarios);
+	    var filteredScenarios = FilterScenarios(scenarios);
+		loadedScenarios.AddRange(filteredScenarios);
     }
 
     private IEnumerator GetSavedScenarios(List<Scenario> loadedScenarios)

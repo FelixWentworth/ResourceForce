@@ -296,8 +296,8 @@
     },
     "id": "97f58c19-066c-4975-a099-8d2681257e8c",
     "language": "Dutch",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -573,8 +573,8 @@
     },
     "id": "6db3c962-6639-436d-b575-8da5814be731",
     "language": "Dutch",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -942,8 +942,8 @@
     },
     "id": "c9deed01-989d-4467-8410-01e73537e60a",
     "language": "Dutch",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -1495,8 +1495,8 @@
     },
     "id": "26d92ccf-825f-46e3-9576-b59d932176cf",
     "language": "Dutch",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -1749,8 +1749,8 @@
     },
     "id": "dbd8f0b3-6816-4b4d-991a-4adddd96caaa",
     "language": "Dutch",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -2394,8 +2394,8 @@
     },
     "id": "202c3455-21fd-467e-990e-8b9d957d6488",
     "language": "Dutch",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -6052,8 +6052,8 @@
     },
     "id": "587c4910-226a-428a-818f-b64db88934a9",
     "language": "Dutch",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -8537,8 +8537,8 @@
     },
     "id": "4063e5da-8bb6-4fa4-9764-e14ea09c1561",
     "language": "Dutch",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -9021,8 +9021,8 @@
     },
     "id": "bf740158-ff1b-40a6-b7ab-102f75ac7c51",
     "language": "Dutch",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -9942,8 +9942,8 @@
     },
     "id": "43d9fac4-6b47-4ef0-bc81-4cd62a7c7725",
     "language": "Dutch",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -10725,8 +10725,8 @@
     },
     "id": "e199ac23-b0b5-4772-9fa1-fb01e3ca5d59",
     "language": "English",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -10910,8 +10910,8 @@
     },
     "id": "41057c83-bbd9-4f2a-8329-82eb231efb9f",
     "language": "English",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -11210,8 +11210,8 @@
     },
     "id": "4bc7b735-8c94-422a-bbd0-eb1787a6bea2",
     "language": "English",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -11418,8 +11418,8 @@
     },
     "id": "bd0c915d-d823-459a-a86b-aa96dc92477f",
     "language": "English",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -11603,8 +11603,8 @@
     },
     "id": "193f7a5a-4827-4f37-9cac-1a4c0815d03b",
     "language": "English",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -11949,8 +11949,8 @@
     },
     "id": "7958f5cc-1b11-4fd0-9af8-be826f40f20c",
     "language": "English",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -12387,8 +12387,8 @@
     },
     "id": "53964ace-d322-455a-97d1-7fe7f36583d5",
     "language": "English",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -12664,8 +12664,8 @@
     },
     "id": "59769c09-4b88-43e4-a9c7-d366b2940e1c",
     "language": "English",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -13171,8 +13171,8 @@
     },
     "id": "3c452984-0007-4f60-aafe-911f319d2ed1",
     "language": "English",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -13563,8 +13563,8 @@
     },
     "id": "0e4e164d-9013-4a54-8d97-77b0f4f42916",
     "language": "English",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -13702,8 +13702,8 @@
     },
     "id": "bbf7223c-5096-4fe7-975b-9a1f047fc3ef",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -13864,8 +13864,8 @@
     },
     "id": "8e48eb48-074e-49c6-b58c-302a07a9ca28",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -14026,8 +14026,8 @@
     },
     "id": "d656560a-c2f2-413a-bc7d-d79e3c805272",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -14234,8 +14234,8 @@
     },
     "id": "390ca60f-9073-451d-b6cc-92fd3da5ecfe",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -14442,8 +14442,8 @@
     },
     "id": "74376535-6325-4772-adf7-3d25c710bb37",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -14581,8 +14581,8 @@
     },
     "id": "f0eb1193-db27-4f8e-96c0-a4f7fcc441be",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -14766,8 +14766,8 @@
     },
     "id": "0e2d108c-0018-4da2-b177-f57c632a5945",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -14951,8 +14951,8 @@
     },
     "id": "65bb8ce0-ff93-49d8-baa6-081150dc9ba0",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -15090,8 +15090,8 @@
     },
     "id": "383e8316-19c2-4cf3-bbc6-66d9336c3ead",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -15390,8 +15390,8 @@
     },
     "id": "f1dfe2c9-51f5-4681-adb2-9dec8ac4c886",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -15575,8 +15575,8 @@
     },
     "id": "de3daced-207d-4a9a-8a45-5afe4a035229",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -15829,8 +15829,8 @@
     },
     "id": "8fd410c4-2843-4969-8805-135ad3b7a3c8",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -16037,8 +16037,8 @@
     },
     "id": "8f1898a8-7244-4571-9558-47adf1735ae5",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -16245,8 +16245,8 @@
     },
     "id": "a4fcc62d-9bba-4b25-9c93-52a50e1d1bbb",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -16545,8 +16545,8 @@
     },
     "id": "d8424654-daf4-44f6-8d24-fdce706163b0",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -16776,8 +16776,8 @@
     },
     "id": "3718db81-1f7e-495f-9fcf-0cf7a8882c9a",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -16961,8 +16961,8 @@
     },
     "id": "f57dcdd5-9fa1-46c6-b662-05456b69f969",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -17261,8 +17261,8 @@
     },
     "id": "750c1b21-cd93-4d91-aa55-6a018fe8a0c2",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -17469,8 +17469,8 @@
     },
     "id": "dc1b0e01-3023-4814-b01a-4abc84d689bf",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -17677,8 +17677,8 @@
     },
     "id": "01c1a3a4-3d3e-4d8c-8b0d-821112bfd551",
     "language": "English",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -17977,8 +17977,8 @@
     },
     "id": "1afe0d23-eb24-486e-a1bd-af7f93a7e330",
     "language": "English",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -18254,8 +18254,8 @@
     },
     "id": "2f3336d8-d596-4c86-b254-9d12fdaff777",
     "language": "English",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -18623,8 +18623,8 @@
     },
     "id": "f86600dd-537b-4e24-87fe-e324d9866a67",
     "language": "English",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -19176,8 +19176,8 @@
     },
     "id": "97511a98-f46e-4252-8e80-2f8b5b97ce69",
     "language": "English",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -19430,8 +19430,8 @@
     },
     "id": "e771bd2c-9154-4ed2-a65e-9edd337b35ab",
     "language": "English",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -20075,8 +20075,8 @@
     },
     "id": "74252d42-6323-4e67-a377-88686600cb40",
     "language": "English",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -23733,8 +23733,8 @@
     },
     "id": "cbcb8ae9-eea3-4292-9c92-114dbba617d6",
     "language": "English",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -26218,8 +26218,8 @@
     },
     "id": "c338afd7-2414-4450-80a2-fe6824140378",
     "language": "English",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -26702,8 +26702,8 @@
     },
     "id": "1895c784-ea9a-4691-b00b-9c291b77f4ec",
     "language": "English",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -27623,8 +27623,8 @@
     },
     "id": "d797fc26-ac77-4a9f-a527-ef78cfd0d580",
     "language": "English",
-    "location": "Groningen",
-    "serialNumber": 0
+    "region": "Groningen",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -28406,8 +28406,8 @@
     },
     "id": "89689f3f-4ee6-4dba-a71b-ccb05df55a46",
     "language": "Greek",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -28591,8 +28591,8 @@
     },
     "id": "808a45f5-c0dc-43d6-9ded-24ae11f18fff",
     "language": "Greek",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -28891,8 +28891,8 @@
     },
     "id": "f6e3f4c1-1398-444d-8747-cb402497f2ca",
     "language": "Greek",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -29099,8 +29099,8 @@
     },
     "id": "0366931a-112a-4c1c-a10e-48dfc965b390",
     "language": "Greek",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -29284,8 +29284,8 @@
     },
     "id": "067702fa-509b-4136-b405-01fb7cfc9767",
     "language": "Greek",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -29630,8 +29630,8 @@
     },
     "id": "90aa8038-eb5e-490e-b4ba-96b37193ba0e",
     "language": "Greek",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -30068,8 +30068,8 @@
     },
     "id": "8b177141-3e02-4122-809a-1591423978ce",
     "language": "Greek",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -30345,8 +30345,8 @@
     },
     "id": "8df7f5f6-e5be-45be-a33e-64d30900d044",
     "language": "Greek",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -30852,8 +30852,8 @@
     },
     "id": "0d8937c2-52cc-4923-a381-93919dbd0d44",
     "language": "Greek",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -31244,8 +31244,8 @@
     },
     "id": "2b4b8af9-9e50-4501-9405-d18a7633139a",
     "language": "Greek",
-    "location": "Nicosia",
-    "serialNumber": 0
+    "region": "Λευκωσία",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -31383,8 +31383,8 @@
     },
     "id": "b47db224-b3c1-4088-98ee-5cc79231281b",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -31545,8 +31545,8 @@
     },
     "id": "bfd4613f-1a58-4ef5-99a0-c2f1522ff0c0",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -31707,8 +31707,8 @@
     },
     "id": "a0fb0cbc-451f-43f3-95ee-e9fb24674a7f",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -31915,8 +31915,8 @@
     },
     "id": "f4684043-28d2-48e7-bb97-2edb8ff29efe",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -32123,8 +32123,8 @@
     },
     "id": "ca482fbd-e107-430c-8045-f9691717b288",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -32262,8 +32262,8 @@
     },
     "id": "aeb5fd3d-2c27-4ee7-8641-6ff86bcae48f",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -32447,8 +32447,8 @@
     },
     "id": "c245fbd3-cdad-42ed-a883-7dfd725f770a",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -32632,8 +32632,8 @@
     },
     "id": "b00f9b54-732c-47f1-9f5e-d5d77bf1c827",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -32771,8 +32771,8 @@
     },
     "id": "b4929d58-268f-4cb9-a3c3-b22c81fe14cc",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -33071,8 +33071,8 @@
     },
     "id": "a4822403-2076-472d-a5f4-43e42b520139",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -33256,8 +33256,8 @@
     },
     "id": "4e776601-6163-4f40-8af4-6d2a6873359a",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -33510,8 +33510,8 @@
     },
     "id": "6ffcdfc1-caba-401a-a7d7-f8bcfde476a9",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -33718,8 +33718,8 @@
     },
     "id": "4afd30e7-c837-4bc3-823c-6f56142cb714",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -33926,8 +33926,8 @@
     },
     "id": "5810a0f6-7727-42cc-91a8-7da07669a273",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -34226,8 +34226,8 @@
     },
     "id": "a150f62b-edbf-415d-af81-1f5950c637dc",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -34457,8 +34457,8 @@
     },
     "id": "9c8b7360-f817-4113-aa7d-c55ee4593927",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -34642,8 +34642,8 @@
     },
     "id": "a2ecc875-1b68-4db9-88a5-0f1f2ddd82fe",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -34942,8 +34942,8 @@
     },
     "id": "c7ab8b90-854d-4f45-bd62-3d1c0ebfc042",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -35150,8 +35150,8 @@
     },
     "id": "984431f6-1c25-4166-b70e-cd53ea0250f3",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -35404,8 +35404,8 @@
     },
     "id": "6a523427-8939-481d-b75f-3703fa7bfc3f",
     "language": "Spanish",
-    "location": "Valencia",
-    "serialNumber": 0
+    "region": "Valencia",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -35658,8 +35658,8 @@
     },
     "id": "7be72088-7965-4e20-b988-f3eef35205c2",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -36004,8 +36004,8 @@
     },
     "id": "111a9397-7481-44d8-b1e1-fda0190a28d5",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -36189,8 +36189,8 @@
     },
     "id": "2e3b00e2-c90a-4517-a1b6-7a4caac0c16d",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -36328,8 +36328,8 @@
     },
     "id": "0469c666-c964-4a47-8f2f-9a5ab31ffabf",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -36513,8 +36513,8 @@
     },
     "id": "bedd89eb-8b9b-4007-913c-30a242da65ef",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -36790,8 +36790,8 @@
     },
     "id": "b4813a71-c9dc-4c2e-8c01-eb6a1df9d435",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -37251,8 +37251,8 @@
     },
     "id": "5ca5cbf9-aba6-41da-a506-f9511f44c69d",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -37574,8 +37574,8 @@
     },
     "id": "9d1c2961-df7b-42b5-8d86-4c89f6bd90e3",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -37828,8 +37828,8 @@
     },
     "id": "3591409a-de8c-4aab-877d-38b124fe86bf",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -37898,8 +37898,8 @@
     },
     "id": "f05823e2-4727-455d-9b9d-02d4a02b6a2c",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -38175,8 +38175,8 @@
     },
     "id": "11b1c780-ff81-4675-b45f-2af0b5c09a09",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -38314,8 +38314,8 @@
     },
     "id": "9b8f0c5e-bccf-4632-bb97-9632b638bced",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -38637,8 +38637,8 @@
     },
     "id": "1e1ab215-8cf7-4e7f-9477-d3791a360685",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -38776,8 +38776,8 @@
     },
     "id": "b99a9cc0-1eb7-48e5-b100-929ac4f0ac23",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -38938,8 +38938,8 @@
     },
     "id": "3091fd69-bdeb-4a16-89b4-57bcc3338bf3",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -39077,8 +39077,8 @@
     },
     "id": "79640deb-7c35-4086-8c5b-c94e3b4b991a",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -39216,8 +39216,8 @@
     },
     "id": "b74d504f-6985-416c-8aa1-5a4f7c1cf3c1",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -39355,8 +39355,8 @@
     },
     "id": "9727fa79-2554-47c1-ab9b-de279714a6b9",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -39724,8 +39724,8 @@
     },
     "id": "332869e6-5068-4368-97a2-7dbe4af870b9",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -40047,8 +40047,8 @@
     },
     "id": "080fc372-cd8e-4e91-850a-2e585935e9b0",
     "language": "English",
-    "location": "Preston",
-    "serialNumber": 0
+    "region": "Preston",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -40600,8 +40600,8 @@
     },
     "id": "d7c5fa18-a3ba-4a42-ba50-93155b2c02f0",
     "language": "English",
-    "location": "Belfast",
-    "serialNumber": 0
+    "region": "Belfast",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -41429,8 +41429,8 @@
     },
     "id": "f40f1614-d725-4298-b70a-1e1cba0fe5a5",
     "language": "English",
-    "location": "Belfast",
-    "serialNumber": 0
+    "region": "Belfast",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -42350,8 +42350,8 @@
     },
     "id": "f12a1f3a-dd39-4646-a19a-006c39b8ca0a",
     "language": "English",
-    "location": "Belfast",
-    "serialNumber": 0
+    "region": "Belfast",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -43961,8 +43961,8 @@
     },
     "id": "c3fdd0f9-d9e4-43c4-bb17-f0c910c83f57",
     "language": "English",
-    "location": "Belfast",
-    "serialNumber": 0
+    "region": "Belfast",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -44698,8 +44698,8 @@
     },
     "id": "3ea7d7fb-df2a-40a5-b87c-59e3834c2999",
     "language": "English",
-    "location": "Belfast",
-    "serialNumber": 0
+    "region": "Belfast",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -45688,8 +45688,8 @@
     },
     "id": "ca8e3131-22d5-4f25-979e-3c5005b888ec",
     "language": "English",
-    "location": "Belfast",
-    "serialNumber": 0
+    "region": "Belfast",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -46793,8 +46793,8 @@
     },
     "id": "bd05fb87-4e3d-461f-90dd-61efd37f7668",
     "language": "English",
-    "location": "Belfast",
-    "serialNumber": 0
+    "region": "Belfast",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -47162,8 +47162,8 @@
     },
     "id": "d4ef4a39-5d9e-4fbe-92a5-38e092731f6b",
     "language": "English",
-    "location": "Belfast",
-    "serialNumber": 0
+    "region": "Belfast",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -48014,8 +48014,8 @@
     },
     "id": "1169cac4-1809-4d7c-ade4-4112b56a16f0",
     "language": "English",
-    "location": "Belfast",
-    "serialNumber": 0
+    "region": "Belfast",
+    "serialNumber": 0, "enabled": "true"
   },
   {
     "content": {
@@ -48567,7 +48567,7 @@
     },
     "id": "e85f6706-6c8a-4558-a871-9bd7a3270672",
     "language": "English",
-    "location": "Belfast",
-    "serialNumber": 0
+    "region": "Belfast",
+    "serialNumber": 0, "enabled": "true"
   }
 ]
