@@ -113,8 +113,7 @@ public class TurnManager : MonoBehaviour {
         var inGame = turn > 0;
 
         SettingsScreenQuitToMenuOption.SetActive(inGame);
-		if (BrandingManager.Instance.UseManager)
-			SettingsScreenChangePreferenceButton.SetActive(BrandingManager.Instance.Config.Languages.Length > 1);
+		SettingsScreenChangePreferenceButton.SetActive(BrandingManager.Instance.Config.Regions.Length > 1);
         //SettingsScreenScenarioReportOption.SetActive(inGame);
         SettingsScreenReplayTutorialOption.SetActive(!inGame);
         settingsScreen.SetActive(!settingsScreen.activeSelf);

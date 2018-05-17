@@ -1,39 +1,72 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
 
 public class Location : MonoBehaviour
 {
 	// Sites that are supported, custom is a specific city. If list is changed, be sure to change call to SetSite in BrandingManager.cs
-    public enum Site { Preston = 0, Belfast = 1, Nicosia = 2, Groningen = 3, Valencia = 4, Custom = 5 }
-    public static Site m_site;
+	public static string Region;
 
-    public static string CurrentLocation {
-	    get
-	    {
-		    if (m_site == Site.Custom)
-		    {
-			    return BrandingManager.Instance.Config.Metadata.Location;
-		    }
-		    return m_site.ToString();
-	    }
+	public static int NumIncidents { get; set; }
+
+	public static string CurrentLocation
+	{
+		get
+		{
+			if (BrandingManager.Instance.Config.Regions.Length == 1)
+			{
+				return BrandingManager.Instance.Config.Regions[0].Location;
+			}
+			return Region;
+		}
 	}
 
-    public static int NumIncidents { get; set; }
 
-    // Use this for initialization
-	void Awake() {
-        var siteNum = PlayerPrefs.GetInt("site");
-	    SetSite(siteNum);
+	// Use this for initialization
+	void Awake()
+	{
+		var current = PlayerPrefs.GetString("Region");
+		SetRegion(current);
 	}
 
-    public void SetSite(int site)
-    {
-        if (m_site == (Site)site)
-        {
-            // No change
-            return;
-        }
-	    m_site = (Site)site;
-        PlayerPrefs.SetInt("site", site);
-    }
+	public void SetRegion(string region)
+	{
+		if (Region == region)
+		{
+			// No change
+			return;
+		}
+		Region = region;
+		PlayerPrefs.SetString("Region", Region);
+	}
+
+	/// <summary>
+	/// Default language list
+	/// </summary>
+	/// <returns></returns>
+	public SystemLanguage[] GetLanguages()
+	{
+		return BrandingManager.Instance.Config.Regions[0].Languages.Select(l => l.Language).ToArray();
+	}
+
+	public List<string> GetLocations()
+	{
+		return BrandingManager.Instance.Config.Regions.Select(l => l.Location).ToList();
+	}
+
+	/// <summary>
+	/// Language list for specified location
+	/// </summary>
+	/// <param name="region"></param>
+	/// <returns></returns>
+	public SystemLanguage[] GetLanguages(string region)
+	{
+		return BrandingManager.Instance.Config.Regions.FirstOrDefault(r => r.Location == region).Languages.Select(l => l.Language).ToArray();
+	}
+
+	public string GetLanguageText(string region, SystemLanguage language)
+	{
+		var thisRegion = BrandingManager.Instance.Config.Regions.FirstOrDefault(r => r.Location == region);
+		return thisRegion.Languages.FirstOrDefault(l => l.Language == language).LanguageText;
+	}
 }

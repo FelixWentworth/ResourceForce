@@ -76,6 +76,7 @@
 {"key":"BASIC_TEXT_SATISFACTION_END_TURN","en-gb":"{0} Ignored Case {1}\\n\\n-{2}% Satisfaction","nl":"{0} Zaak genegeerd {1}\\n\\n-{2}% Tevredenheid","el":"{0} ΑγνοημένηΥπόθεση {1}\\n\\n-{2}% Ικανοποίηση","es":"{0} Caso ignorado {1}\\n\\n-{2}% Satisfacción"},
 {"key":"BASIC_TEXT_NO_IGNORED_CASES","en-gb":"0 Ignored Cases\\n\\nNo Satisfaction Change","nl":"0 Zaken genegeerd\\n\\nGeen verandering tevredenheid","el":"0 Αγνοημένες υποθέσεις \\n\\nΚαμία αλλαγή στην ικανοποίηση","es":"0 Casos ignorados \\n\\nLa satisfacción no ha cambiado"},
 {"key":"BASIC_TEXT_SELECT_LANGUAGE","en-gb":"Select a language","nl":"Selecteer een taal","el":"Επιλογή γλώσσας","es":"Selecciona un idioma"},
+{"key":"BASIC_TEXT_SELECT_LOCATION","en-gb":"Select a location","nl":"Selecteer een locatie","el":"Επιλέξτε μια τοποθεσία","es":"Selecciona una ubicación"},
 {"key":"BASIC_TEXT_REPLAY_TUTORIAL","en-gb":"Replay Tutorial","nl":"Herhaal Uitleg","el":"Επανάληψη οδηγού εκμάθησης","es":"Repetir el tutorial"},
 {"key":"BASIC_TEXT_ENGLISH","en-gb":"English","nl":"English","el":"English","es":"English"},
 {"key":"BASIC_TEXT_SPANISH","en-gb":"Español","nl":"Español","el":"Español","es":"Español"},

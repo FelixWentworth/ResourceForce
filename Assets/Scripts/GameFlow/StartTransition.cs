@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -32,13 +33,15 @@ public class StartTransition : MonoBehaviour {
         overrideShowLocation = false;
 
 		var deviceLocation = SelectLocationScreen.GetComponent<DeviceLocation>();
-	    var useMarketingManager = BrandingManager.Instance.UseManager;
 
-		deviceLocation.SetRequiredSelection(languageOnly: useMarketingManager);
+		deviceLocation.SetRequiredSelection(languageOnly: BrandingManager.Instance.Config.Regions.Length <= 1);
 
-	    if (useMarketingManager && newLogIn)
+	    if (newLogIn && BrandingManager.Instance.Config.Regions.Length <= 1)
 	    {
-		    deviceLocation.SetLanguages(BrandingManager.Instance.Config.Languages);
+		    var location = BrandingManager.Instance.Config.Regions[0].Location;
+		    var languages = BrandingManager.Instance.Config.Regions[0].Languages.Select(l => l.Language).ToArray();
+
+			deviceLocation.SetLanguages(location, languages);
 	    }
 
 	    SelectLocationScreen.SetActive(newLogIn);

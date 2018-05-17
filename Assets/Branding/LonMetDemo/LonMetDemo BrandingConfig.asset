@@ -16,7 +16,6 @@ MonoBehaviour:
     BundleId: com.playgen.ResourceForceLonMet
     Version: 1.1.2
     AuthoringToolUrl: https://resource-force-v1.playgen.com
-    Location: LondonMetDemo
     FileName: BasicContent.txt
     ResourcesFileName: BasicContent
     SplashScreenLogos:
@@ -24,7 +23,11 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
     SplashScreenBackground: {fileID: 21300000, guid: 4e1751fa5998d944dba307a8a5b5459d,
       type: 3}
-  Languages: 0a000000
+  Regions:
+  - Location: LondonMetDemo
+    Languages:
+    - LanguageText: English
+      Language: 10
   LocalizationOverrides:
   - Key: BRANDING_FORCE_NAME
     EnGb: London Metropolitan
