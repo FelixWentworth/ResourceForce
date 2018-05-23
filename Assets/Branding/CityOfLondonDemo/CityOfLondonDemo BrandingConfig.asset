@@ -14,12 +14,12 @@ MonoBehaviour:
   Metadata:
     AppName: Resource Force - City of London
     BundleId: com.playgen.ResourceForceCityOfLondon
-    Version: 1.1.2
+    Version: 0.5
     AuthoringToolUrl: https://resource-force-v1.playgen.com
     FileName: BasicContent.txt
     ResourcesFileName: BasicContent
     SplashScreenLogos:
-    - {fileID: 21300000, guid: 1e293d8aceb77ec429bf12c97b32a168, type: 3}
+    - {fileID: 21300000, guid: 9f1d5e008141bd54d9637955a9b59fb3, type: 3}
     - {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
     SplashScreenBackground: {fileID: 21300000, guid: 4e1751fa5998d944dba307a8a5b5459d,
       type: 3}

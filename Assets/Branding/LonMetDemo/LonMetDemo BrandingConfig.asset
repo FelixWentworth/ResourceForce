@@ -14,7 +14,7 @@ MonoBehaviour:
   Metadata:
     AppName: Resource Force - LonMetDemo
     BundleId: com.playgen.ResourceForceLonMet
-    Version: 1.1.2
+    Version: 0.5
     AuthoringToolUrl: https://resource-force-v1.playgen.com
     FileName: BasicContent.txt
     ResourcesFileName: BasicContent
