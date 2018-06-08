@@ -14,7 +14,7 @@ MonoBehaviour:
   Metadata:
     AppName: Resource Force - City of London
     BundleId: com.playgen.ResourceForceCityOfLondon
-    Version: 0.5
+    Version: 0.5.1
     AuthoringToolUrl: https://resource-force-v1.playgen.com
     FileName: BasicContent.txt
     ResourcesFileName: BasicContent
@@ -91,15 +91,15 @@ MonoBehaviour:
     SendEvent: 0
     EventName: Click_CommunityPolicing
   OptionsWebsite:
-    Url: https://www.met.police.uk/
+    Url: https://www.cityoflondon.police.uk/
     SendEvent: 0
     EventName: Click_Website
   OptionsFacebook:
-    Url: https://en-gb.facebook.com/metpoliceuk/
+    Url: https://www.facebook.com/cityoflondonpolice/
     SendEvent: 0
     EventName: Click_Facebook
   OptionsTwitter:
-    Url: https://twitter.com/metpoliceuk
+    Url: https://twitter.com/CityPolice
     SendEvent: 0
     EventName: Click_Twitter
   BrandingColors:

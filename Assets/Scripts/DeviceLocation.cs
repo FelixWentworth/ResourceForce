@@ -43,14 +43,22 @@ public class DeviceLocation : MonoBehaviour {
     {
 	    ClearLanguageButtons();
 
-		_dropdown = GetComponentInChildren<Dropdown>();
 
 		// By default the language and location object should be active
 		LangAndLocGameObject.SetActive(true);
 	    LangGameObject.SetActive(false);
 
-	    UpdateLocationsAvailable(loc.GetLocations());
-	    _languageSelectPanel.SetActive(_dropdown.value >= 1 || loc.GetLocations().Count <= 1);
+	    var setLocation = loc.GetLocations().Count > 1;
+	    if (setLocation)
+	    {
+		    _dropdown = GetComponentInChildren<Dropdown>();
+		    UpdateLocationsAvailable(loc.GetLocations());
+		    _languageSelectPanel.SetActive(true);
+		}
+	    else
+	    {
+		    _languageSelectPanel.SetActive(false);
+		}
 	}
 
 	private void UpdateLocationsAvailable(List<string> locations)
