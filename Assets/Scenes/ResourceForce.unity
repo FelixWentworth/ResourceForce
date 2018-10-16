@@ -11763,9 +11763,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e365c62730ec7647be5d121247be415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Url: https://www.cityoflondon.police.uk/advice-and-support/Pages/default.aspx
+  Url: https://www.lancashire.police.uk/help-advice/in-the-know/
   SendEvent: 0
-  EventName: Click_AdviceAndInfo
+  EventName: Click_InTheKnow
 --- !u!114 &1296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12333,7 +12333,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9f1d5e008141bd54d9637955a9b59fb3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f11d3d17c2d04be449d76051927d2bf7, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -13557,7 +13557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e365c62730ec7647be5d121247be415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Url: https://www.cityoflondon.police.uk/
+  Url: https://www.lancashire.police.uk/
   SendEvent: 0
   EventName: Click_Website
 --- !u!114 &1402
@@ -13633,7 +13633,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 60cab9540bd553c4aa4dfa5d18467d1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1687d3012c10523478c6b1d670e7c8e0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13913,7 +13913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e365c62730ec7647be5d121247be415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Url: https://www.facebook.com/cityoflondonpolice/
+  Url: https://www.facebook.com/lancspolice/
   SendEvent: 0
   EventName: Click_Facebook
 --- !u!114 &1414
@@ -14862,7 +14862,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9f1d5e008141bd54d9637955a9b59fb3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f11d3d17c2d04be449d76051927d2bf7, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -15082,7 +15082,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9f1d5e008141bd54d9637955a9b59fb3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f11d3d17c2d04be449d76051927d2bf7, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -15874,9 +15874,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e365c62730ec7647be5d121247be415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Url: https://www.cityoflondon.police.uk/community-policing/Pages/default.aspx
+  Url: https://www.lancashire.police.uk/help-advice/in-the-know/
   SendEvent: 0
-  EventName: Click_CommunityPolicing
+  EventName: Click_InTheKnow
 --- !u!114 &1535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16500,7 +16500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc24d4c2254ccc4a855b764669aced4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _brandingConfig: {fileID: 11400000, guid: e0513393a678f614aa0576f92ffbfcf1, type: 2}
+  _brandingConfig: {fileID: 11400000, guid: 9430aca58450b18408ced809e7fe7faf, type: 2}
   UseBrandingObjects: 1
   _brandingColors:
     Themes:
@@ -17484,7 +17484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e365c62730ec7647be5d121247be415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Url: https://twitter.com/CityPolice
+  Url: https://twitter.com/LancsPolice?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
   SendEvent: 0
   EventName: Click_Twitter
 --- !u!114 &1624
@@ -19346,7 +19346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectLocationScreen: {fileID: 67}
-  _hostName: https://resource-force-v1.playgen.com
+  _hostName: https://resource-force-v0.playgen.com
   _downloadTimeout: 10
   _minimumScenariosRequired: 15
   _fileName: ScenarioContent.txt
@@ -19747,7 +19747,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 22098f00e4f4fa44ea92186f4748f573, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7c5bd56a31bc704eb2952eb0641388b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

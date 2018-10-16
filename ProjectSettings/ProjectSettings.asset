@@ -12,7 +12,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: PlayGen
-  productName: Resource Force - City of London
+  productName: Resource Force - Lancashire
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -39,7 +39,7 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: 9f1d5e008141bd54d9637955a9b59fb3, type: 3}
+  - logo: {fileID: 21300000, guid: 3b34e252791acdb4295285e3b649d06c, type: 3}
     duration: 0
   - logo: {fileID: 21300000, guid: 3fc95e482e06da942b967b911e02a240, type: 3}
     duration: 0
@@ -130,7 +130,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.5
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -162,7 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.playgen.ResourceForceCityOfLondon
+    Android: com.playgen.ResourceForceLancs
     Standalone: com.playgen.ResourceForceLonMet
     Tizen: com.playgen.ResourceForce
     WebGL: com.playgen.ResourceForceLancs
@@ -170,7 +170,7 @@ PlayerSettings:
     tvOS: com.playgen.ResourceForce
   buildNumber:
     iOS: 34
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 2
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -270,7 +270,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 5f6f6b0c1e4dd5d47bac45fa7c010fbf, type: 3}
+      m_Icon: {fileID: 2800000, guid: 1687d3012c10523478c6b1d670e7c8e0, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
     AppName: Resource Force - Lancashire
     BundleId: com.playgen.ResourceForceLancs
     Version: 1.0
-    AuthoringToolUrl: https://resource-force-v0.playgen.com
+    AuthoringToolUrl: https://resource-force-v1.playgen.com
     FileName: BasicContent.txt
     ResourcesFileName: BasicContent
     SplashScreenLogos:
